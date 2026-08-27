@@ -8,7 +8,7 @@
     "homeLabel": "Easy Tools home",
     "skipToContent": "Skip to main content",
     "status": "Coming soon",
-    "toolsNav": { "label": "Tools menu", "mobileLabel": "Mobile tools menu", "open": "Tools", "all": "All tools", "wordCounter": "Word Counter", "jsonFormatter": "JSON Formatter", "passwordGenerator": "Password Generator", "base64Converter": "Base64 Converter", "urlEncoderDecoder": "URL Encoder", "youtubeThumbnailDownloader": "YouTube Thumbnails", "qrCodeGenerator": "QR Generator", "ipInfo": "IP Lookup", "imageColorPicker": "Image Color Picker" },
+    "toolsNav": { "label": "Tools menu", "mobileLabel": "Mobile tools menu", "open": "Tools", "all": "All tools", "categories": { "text": "Text", "developer": "Developer", "media": "Images & Media", "other": "More tools" }, "wordCounter": "Word Counter", "jsonFormatter": "JSON Formatter", "passwordGenerator": "Password Generator", "base64Converter": "Base64 Converter", "urlEncoderDecoder": "URL Encoder", "youtubeThumbnailDownloader": "YouTube Thumbnails", "qrCodeGenerator": "QR Generator", "ipInfo": "IP Lookup", "imageColorPicker": "Image Color Picker" },
     "footer": "© {year} Easy Tools. Simple tools for everyone.",
     "result": "Result",
     "copy": "Copy",

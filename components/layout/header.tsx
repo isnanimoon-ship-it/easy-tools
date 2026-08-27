@@ -19,7 +19,7 @@ export function Header() {
       </a>
       <Container>
         <div className="flex h-16 items-center justify-between gap-3">
-          <Link
+          <div className="flex min-w-0 items-center gap-5"><Link
             href="/"
             className="inline-flex shrink-0 items-center gap-2 rounded-md font-bold text-slate-950"
             aria-label={t("homeLabel")}
@@ -28,9 +28,7 @@ export function Header() {
               <Wrench aria-hidden="true" size={19} strokeWidth={2.4} />
             </span>
             <span className="hidden sm:inline">{t("brand")}</span>
-          </Link>
-
-          <ToolMenu />
+          </Link><ToolMenu /></div>
 
           <div className="flex items-center gap-2 sm:gap-3">
             <LanguageSwitcher />
