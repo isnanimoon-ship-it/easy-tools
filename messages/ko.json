@@ -1,0 +1,179 @@
+{
+  "Metadata": {
+    "title": "간편도구",
+    "description": "일상과 업무에 필요한 간단한 온라인 유틸리티 모음"
+  },
+  "Common": {
+    "brand": "간편도구",
+    "homeLabel": "간편도구 홈",
+    "skipToContent": "본문으로 바로가기",
+    "status": "준비 중",
+    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 변환기", "urlEncoderDecoder": "URL 인코더", "youtubeThumbnailDownloader": "유튜브 썸네일", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기" },
+    "footer": "© {year} 간편도구. 누구나 간편하게.",
+    "result": "결과",
+    "copy": "복사",
+    "copied": "복사됨",
+    "copyLabel": "결과 복사",
+    "copiedLabel": "복사 완료",
+    "language": {
+      "label": "언어 선택",
+      "ko": "한국어",
+      "en": "English",
+      "ja": "日本語"
+    }
+  },
+  "Home": {
+    "eyebrow": "필요한 도구를 한곳에서",
+    "title": "복잡한 작업을\n간단하게 해결하세요.",
+    "description": "설치와 로그인 없이 바로 사용할 수 있는 온라인 도구를 준비하고 있습니다.",
+    "tools": {
+      "title": "사용할 도구를 선택하세요",
+      "description": "설치나 로그인 없이 바로 사용할 수 있습니다.",
+      "privacy": "브라우저에서 안전하게 처리",
+      "open": "도구 열기",
+      "wordCounter": { "title": "글자수 계산기", "description": "전체 글자, 공백 제외 글자, 단어와 줄 수를 실시간으로 계산합니다." },
+      "jsonFormatter": { "title": "JSON 포맷터", "description": "JSON을 읽기 쉽게 정리하거나 불필요한 공백을 제거해 압축합니다." },
+      "passwordGenerator": { "title": "비밀번호 생성기", "description": "길이와 문자 유형을 선택해 안전한 무작위 비밀번호를 만듭니다." },
+      "base64Converter": { "title": "Base64 변환기", "description": "문자 인코딩을 선택해 텍스트와 Base64를 서로 변환합니다." },
+      "urlEncoderDecoder": { "title": "URL 인코더/디코더", "description": "전체 URL 또는 구성요소를 UTF-8 Percent Encoding으로 변환합니다." },
+      "youtubeThumbnailDownloader": { "title": "유튜브 썸네일 추출기", "description": "YouTube 영상 주소에서 실제 사용 가능한 썸네일을 해상도별로 확인하고 저장합니다." },
+      "qrCodeGenerator": { "title": "QR 코드 생성기", "description": "텍스트나 URL을 브라우저에서 QR 코드로 만들고 PNG로 저장합니다." },
+      "ipInfo": { "title": "IP 정보 확인", "description": "현재 공인 IP와 국가, 지역, ISP, ASN 등 기본 네트워크 정보를 확인합니다." },
+      "imageColorPicker": { "title": "이미지 색상 추출기", "description": "이미지를 올리고 정확한 픽셀 색상을 HEX, RGB, HSL, HSV, CMYK로 확인합니다." }
+    }
+  },
+  "Tools": {
+    "imageColorPicker": {
+      "metadata": { "title": "무료 이미지 색상 추출기", "description": "PNG, JPEG, WebP 이미지의 정확한 픽셀 색상을 브라우저에서 안전하게 추출하세요." },
+      "title": "이미지 색상 추출기", "description": "이미지를 올리고 픽셀 하나를 선택해 다섯 가지 색상 형식으로 복사하세요. 이미지는 브라우저 밖으로 전송되지 않습니다.",
+      "upload": { "title": "이미지 업로드", "help": "PNG, JPEG, WebP 이미지 한 개를 선택하거나 놓으세요. 최대 25MB, 2,400만 픽셀까지 지원합니다.", "drop": "여기에 이미지를 놓으세요." },
+      "actions": { "choose": "이미지 선택", "change": "이미지 변경", "reset": "초기화", "copy": "복사", "copied": "복사됨" },
+      "status": { "loading": "이미지를 확인하고 불러오는 중…" },
+      "info": { "title": "이미지 정보", "name": "파일명", "format": "형식", "dimensions": "크기", "size": "파일 용량" },
+      "zoom": { "label": "확대/축소", "fit": "맞춤" },
+      "preview": { "title": "이미지 미리보기", "alt": "픽셀 색상을 선택할 업로드 이미지", "help": "이미지 위에서 확대 렌즈로 픽셀을 확인한 뒤 클릭하세요. 더 정밀하게 선택하려면 확대 비율도 조절할 수 있습니다." },
+      "coordinates": { "title": "픽셀 좌표로 선택", "x": "X 좌표", "y": "Y 좌표", "select": "이 픽셀 선택" },
+      "result": { "title": "선택한 색상", "empty": "미리보기에서 픽셀을 선택하거나 좌표를 입력하세요." },
+      "history": { "title": "최근 색상", "empty": "선택한 색상이 여기에 표시됩니다." },
+      "formats": { "hex": "HEX / HEXA", "rgb": "RGB / RGBA", "hsl": "HSL / HSLA", "hsv": "HSV / HSVA", "cmyk": "CMYK" },
+      "errors": { "multiple": "이미지는 한 번에 한 개만 올려 주세요.", "unsupported": "PNG, JPEG 또는 WebP 이미지를 선택하세요.", "signature": "파일 내용이 지원하는 이미지 형식과 일치하지 않습니다.", "fileLarge": "파일이 25MB보다 큽니다. 더 작은 이미지를 선택하세요.", "imageLarge": "이미지가 2,400만 픽셀 또는 한 변 12,000px 제한을 초과합니다.", "decode": "이미지를 열 수 없습니다. 파일이 손상되었거나 지원되지 않을 수 있습니다.", "pixel": "픽셀 색상을 읽지 못했습니다. 다른 이미지를 사용해 보세요.", "coordinate": "이미지 범위 안의 정수 좌표를 입력하세요.", "copy": "색상을 복사하지 못했습니다. 브라우저의 클립보드 권한을 확인하세요." },
+      "privacy": { "notice": "개인정보 보호: 이미지와 선택 색상은 이 브라우저에서만 처리되며 업로드하거나 저장하지 않습니다.", "title": "이미지는 외부로 전송되지 않습니다", "text": "이 도구는 이미지를 서버나 브라우저 저장소에 저장하지 않습니다. 초기화하거나 페이지를 닫으면 임시 이미지를 해제합니다." },
+      "guide": { "pixelTitle": "픽셀 단위로 정확하게", "pixelText": "좌표는 디코딩된 원본 이미지를 기준으로 합니다. 확대 비율은 미리보기 크기만 바꾸며 선택되는 픽셀은 변하지 않습니다.", "zoomTitle": "정밀하게 선택하기", "zoomText": "전체 모습은 맞춤으로 보고, 정확한 선택에는 높은 확대 비율을 사용하세요. 큰 이미지는 미리보기 안에서 스크롤됩니다.", "colorTitle": "색상 형식 안내", "colorText": "투명도가 있는 색상은 HEXA, RGBA, HSLA, HSVA로 표시합니다. CMYK는 화면 색상의 수학적 변환값이며 인쇄 프로파일 값은 아닙니다." }
+    },
+    "ipInfo": {
+      "metadata": { "title": "내 IP 주소 확인 · IP 정보 조회", "description": "현재 공인 IPv4 또는 IPv6와 국가, 지역, ISP, ASN 정보를 무료로 확인하세요." },
+      "title": "IP 정보 확인", "description": "현재 공인 IP 주소와 대략적인 위치, ISP 및 네트워크 정보를 확인합니다.",
+      "provider": { "notice": "조회를 위해 IP 주소가 외부 정보 제공자 IPWHOIS.IO로 전송됩니다. 이 사이트는 조회 결과를 저장하지 않습니다.", "privacyLink": "제공자 개인정보 처리방침" },
+      "current": { "title": "현재 공인 IP" },
+      "manual": { "title": "다른 IP 조회", "label": "IPv4 또는 IPv6 주소", "help": "공인 IP 하나만 입력하세요. 사설망, localhost, URL, 도메인과 CIDR은 조회하지 않습니다.", "placeholder": "예: 8.8.8.8 또는 2001:4860:4860::8888", "empty": "조회할 공인 IP 주소를 입력하세요." },
+      "status": { "loading": "IP 정보를 확인하는 중…" },
+      "actions": { "lookup": "조회", "refresh": "다시 조회", "copy": "IP 주소 복사", "copied": "복사됨" },
+      "result": { "unknown": "알 수 없음", "approximate": "IP 기반 위치는 근사값이며 실제 거주지나 현재 위치를 보장하지 않습니다." },
+      "fields": { "ip": "공인 IP 주소", "version": "IP 버전", "country": "국가", "region": "지역/주", "city": "도시", "isp": "ISP", "organization": "조직", "asn": "ASN", "timezone": "시간대", "continent": "대륙", "postal": "우편번호", "coordinates": "위도·경도", "callingCode": "국가 전화 코드" },
+      "errors": { "invalidInput": "올바른 IPv4 또는 IPv6 주소를 입력하세요. URL, 포트, CIDR과 도메인은 지원하지 않습니다.", "nonPublic": "공인 IP 주소만 조회할 수 있습니다.", "offline": "인터넷 연결을 확인한 뒤 다시 시도하세요.", "timeout": "정보 제공자의 응답이 지연되고 있습니다. 잠시 후 다시 시도하세요.", "rateLimited": "오늘 사용할 수 있는 무료 조회 한도를 초과했습니다.", "retryAfter": "약 {seconds}초 후 다시 시도할 수 있습니다.", "unavailable": "IP 정보 서비스를 일시적으로 사용할 수 없습니다. 잠시 후 다시 시도하세요.", "rejected": "이 IP 주소의 정보를 조회할 수 없습니다.", "invalidResponse": "IP 정보 응답을 확인할 수 없습니다. 잠시 후 다시 시도하세요.", "copy": "IP 주소를 복사하지 못했습니다. 클립보드 권한을 확인하세요." },
+      "categories": { "loopback": "localhost 또는 루프백 주소는 이 기기 내부에서만 사용되므로 조회할 수 없습니다.", "private": "사설 네트워크 주소는 인터넷의 공인 위치 정보가 없어 조회할 수 없습니다.", "linkLocal": "링크 로컬 주소는 같은 네트워크 구간에서만 사용되므로 조회할 수 없습니다.", "unspecified": "미지정 주소는 실제 장치를 나타내지 않아 조회할 수 없습니다.", "cgnat": "이 주소는 통신사가 공유하는 CGNAT 주소 공간이므로 개별 공인 IP로 조회할 수 없습니다.", "multicast": "멀티캐스트 주소는 개별 장치를 나타내지 않아 조회할 수 없습니다.", "documentation": "이 주소는 문서와 테스트용으로 예약되어 있어 실제 위치 정보가 없습니다.", "reserved": "예약되거나 특수 목적으로 사용하는 IP 주소는 조회할 수 없습니다." },
+      "guide": { "publicIpTitle": "공인 IP란?", "publicIpText": "인터넷에서 연결을 식별하는 주소입니다. 공유기나 통신사 환경에서는 기기 내부의 사설 IP와 다를 수 있습니다.", "locationTitle": "위치 정보의 한계", "locationText": "IP 위치는 네트워크 등록과 라우팅 정보를 바탕으로 한 근사값입니다. 주소나 개인의 정확한 위치를 뜻하지 않습니다.", "vpnTitle": "VPN과 프록시", "vpnText": "VPN, 프록시, 회사망 또는 이동통신망을 사용하면 실제 위치 대신 해당 네트워크의 출구 위치가 표시될 수 있습니다.", "privacyTitle": "개인정보와 외부 제공자", "privacyText": "조회 요청은 브라우저에서 IPWHOIS.IO로 직접 전송됩니다. 이 사이트는 IP와 결과를 서버, 브라우저 저장소 또는 조회 기록에 보관하지 않습니다." }
+    },
+    "qrCodeGenerator": {
+      "metadata": { "title": "무료 QR 코드 생성기", "description": "텍스트와 URL을 서버 전송 없이 QR 코드로 만들고 원하는 크기의 PNG로 저장하세요." },
+      "title": "QR 코드 생성기", "description": "텍스트나 URL을 입력하면 브라우저에서 QR 코드를 자동으로 만들고 PNG로 저장합니다.",
+      "input": { "label": "QR 코드에 넣을 내용", "help": "텍스트, URL, 한글, 일본어, Emoji와 여러 줄을 입력할 수 있습니다. 입력 내용은 그대로 인코딩됩니다.", "placeholder": "텍스트 또는 https://example.com" },
+      "preview": { "title": "QR 코드 미리보기", "empty": "내용을 입력하면 QR 코드가 여기에 표시됩니다.", "processing": "QR 코드를 생성하는 중…", "canvasLabel": "입력 내용으로 생성된 QR 코드", "size": "크기", "level": "오류 복원", "margin": "Quiet Zone", "type": "입력 유형", "types": { "text": "텍스트", "url": "URL" } },
+      "options": { "title": "QR 코드 옵션", "size": { "label": "출력 크기", "help": "PNG의 실제 가로·세로 크기입니다." }, "level": { "label": "오류 복원 수준", "help": "높을수록 손상에 강하지만 담을 수 있는 데이터는 줄어듭니다.", "L": "L - 낮음 · 약 7%", "M": "M - 보통 · 약 15%", "Q": "Q - 높음 · 약 25%", "H": "H - 매우 높음 · 약 30%" }, "margin": { "label": "Quiet Zone 여백", "help": "인식을 돕는 QR 코드 바깥쪽 흰색 여백입니다.", "4": "4 modules - 기본", "6": "6 modules", "8": "8 modules" } },
+      "actions": { "download": "PNG 다운로드", "copyInput": "입력값 복사", "clear": "초기화", "downloaded": "qr-code.png를 저장했습니다.", "copied": "입력값을 복사했습니다." },
+      "warning": { "density": "데이터가 길어 실제 환경에서 스캔하기 어려울 수 있습니다. 더 큰 크기나 낮은 오류 복원 수준을 고려하세요." },
+      "errors": { "capacity": "현재 오류 복원 수준에서는 데이터가 너무 깁니다. 내용을 줄이거나 더 낮은 수준을 선택하세요.", "size": "이 데이터에는 선택한 크기가 너무 작습니다. 더 큰 출력 크기를 선택하세요.", "generation": "QR 코드를 생성하지 못했습니다. 입력과 옵션을 확인한 뒤 다시 시도하세요.", "download": "PNG를 저장하지 못했습니다. 브라우저 설정을 확인하고 다시 시도하세요.", "copy": "입력값을 복사하지 못했습니다. 클립보드 권한을 확인하세요." },
+      "guide": { "title": "사용 방법", "description": "내용을 입력하면 잠시 후 자동 생성됩니다. 크기, 오류 복원 수준과 Quiet Zone을 선택한 뒤 PNG를 다운로드하세요." },
+      "correction": { "title": "오류 복원 수준", "description": "L/M/Q/H는 손상된 영역을 약 7/15/25/30%까지 복원할 수 있는 수준을 뜻합니다. 높은 수준은 더 많은 공간을 사용합니다." },
+      "scan": { "title": "스캔 가능성", "description": "최소 4 modules의 흰색 여백과 검정·흰색 대비를 사용합니다. 데이터 길이, 출력 크기, 카메라와 인쇄 품질에 따라 실제 인식 결과는 달라질 수 있습니다." },
+      "privacy": { "title": "브라우저에서만 처리", "description": "입력 내용과 QR 코드는 서버나 외부 API로 전송하거나 브라우저 저장소에 보관하지 않습니다." }
+    },
+    "youtubeThumbnailDownloader": {
+      "metadata": { "title": "유튜브 썸네일 추출기", "description": "YouTube 영상 URL에서 실제 사용 가능한 썸네일을 해상도별로 확인하고 저장하세요." },
+      "title": "유튜브 썸네일 추출기", "description": "영상 주소나 11자리 영상 ID를 붙여넣으면 사용할 수 있는 썸네일을 브라우저에서 확인합니다.",
+      "input": { "label": "YouTube 영상 주소 또는 ID", "help": "주소창이나 YouTube 공유 기능에서 복사한 일반 영상, Shorts 또는 Live 주소를 붙여넣으세요.", "placeholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+      "actions": { "extract": "썸네일 추출", "clear": "초기화", "loading": "썸네일 확인 중…", "open": "이미지 열기", "save": "저장", "saving": "저장 중…", "saved": "이미지를 저장했습니다." },
+      "result": { "videoId": "영상 ID", "available": "사용 가능", "unavailable": "이 영상에서는 제공되지 않음", "resolution": "실제 해상도" },
+      "variants": { "max": "최대 해상도", "sd": "표준 화질", "hq": "고화질", "mq": "중간 화질", "default": "기본" },
+      "errors": { "notYoutube": "올바른 YouTube 영상 주소를 입력하세요.", "invalidUrl": "주소 형식을 확인하세요. YouTube 주소창이나 공유 기능에서 영상 주소를 다시 복사해 보세요.", "unsupported": "지원하지 않는 YouTube 주소입니다. 채널이나 검색 주소가 아니라 영상, Shorts 또는 Live 주소를 복사해 주세요.", "missingId": "영상 ID를 찾을 수 없습니다. 재생 중인 영상의 주소나 공유 주소를 복사해 주세요.", "invalidId": "영상 ID가 올바르지 않습니다. 영상 주소를 다시 복사해 주세요.", "unavailable": "공개 썸네일을 확인할 수 없습니다. 비공개·삭제 영상이거나 썸네일이 제공되지 않을 수 있습니다.", "network": "이미지를 확인할 수 없습니다. 연결 상태나 영상 주소를 확인하세요.", "save": "직접 저장할 수 없습니다. 이미지를 연 뒤 브라우저의 이미지 저장 기능을 사용하세요." },
+      "guide": { "title": "사용 방법", "description": "YouTube 영상 주소를 붙여넣고 썸네일 추출을 누른 뒤 원하는 해상도의 이미지를 열거나 저장하세요." },
+      "formats": { "title": "지원 주소", "description": "일반 watch, youtu.be 공유, Shorts, Embed, Live, 모바일 영상 주소와 11자리 영상 ID를 지원합니다. 채널·검색·재생목록 전용 주소는 지원하지 않습니다." },
+      "privacy": { "title": "개인정보와 외부 요청", "description": "입력 주소는 사이트 서버에 전송하거나 저장하지 않습니다. 썸네일 확인을 위해 검증된 영상 ID가 포함된 이미지 요청은 브라우저에서 YouTube 이미지 서버(i.ytimg.com)로 전송됩니다." },
+      "rights": { "title": "사용 권한 안내", "description": "이 도구는 영상이나 오디오를 다운로드하지 않으며 썸네일의 소유권을 부여하지 않습니다. 본인 콘텐츠 또는 허가받은 범위에서 관련 법률과 YouTube 정책에 따라 사용하세요." },
+      "faq": { "title": "자주 묻는 질문", "maxQuestion": "최대 해상도가 왜 없나요?", "maxAnswer": "모든 영상에 최대·표준 해상도 썸네일이 제공되는 것은 아닙니다. 실제 이미지 크기를 확인해 사용할 수 없는 항목을 구분합니다.", "downloadQuestion": "저장 버튼이 실패하면 어떻게 하나요?", "downloadAnswer": "브라우저나 YouTube 이미지 서버 정책에 따라 직접 저장이 제한될 수 있습니다. 이미지 열기를 누른 뒤 브라우저의 이미지 저장 기능을 사용하세요." }
+    },
+    "urlEncoderDecoder": {
+      "metadata": { "title": "URL 인코더/디코더", "description": "전체 URL과 URL 구성요소를 UTF-8 Percent Encoding으로 안전하게 인코딩하고 디코딩하세요." },
+      "title": "URL 인코더/디코더", "description": "URL 전체 또는 Query Parameter 값을 UTF-8 Percent Encoding으로 변환하고 원문으로 복원합니다.",
+      "mode": { "label": "변환 모드", "encode": "Encode 모드", "decode": "Decode 모드" },
+      "encodingType": { "label": "인코딩 방식", "component": "URL 구성요소", "fullUrl": "URL 전체", "componentHelp": "Query Parameter 값처럼 예약 문자까지 인코딩합니다.", "fullUrlHelp": "주소의 /, ?, =, & 같은 구조 문자를 유지합니다." },
+      "plusHelp": "기본 Decode에서는 +를 공백으로 바꾸지 않고 + 문자 그대로 유지합니다.",
+      "input": { "encodeLabel": "문자열 또는 URL 입력", "decodeLabel": "인코딩된 문자열 입력", "encodePlaceholder": "인코딩할 문자열이나 URL을 입력하세요.", "decodePlaceholder": "디코딩할 Percent Encoding 문자열을 입력하세요." },
+      "result": { "encodeLabel": "인코딩 결과", "decodeLabel": "디코딩 결과", "empty": "변환 결과가 여기에 표시됩니다." },
+      "actions": { "encode": "Encode", "decode": "Decode", "clear": "초기화", "copy": "결과 복사", "copied": "결과를 복사했습니다." },
+      "operations": { "encodeComponent": "UTF-8 · URL 구성요소 인코딩", "encodeFullUrl": "UTF-8 · URL 전체 인코딩", "decodeComponent": "UTF-8 · URL 구성요소 디코딩", "decodeFullUrl": "UTF-8 · URL 전체 디코딩" },
+      "errors": { "percent": "올바르지 않은 URL 인코딩 문자열입니다. % 뒤에 두 자리 16진수가 있는지 확인하세요.", "unicode": "UTF-8로 변환할 수 없는 문자가 있습니다. 입력을 다시 확인하세요.", "copy": "복사하지 못했습니다. 클립보드 권한을 확인하세요." },
+      "guide": { "title": "두 방식의 차이", "description": "URL 구성요소는 Query Parameter 값에 적합하고, URL 전체는 주소 구조를 유지할 때 적합합니다. 이미 인코딩된 %는 다시 인코딩될 수 있습니다." },
+      "privacy": { "title": "브라우저에서만 처리", "description": "입력과 결과는 서버로 전송하거나 저장하지 않으며 디코딩 결과를 링크로 실행하지 않습니다." }
+    },
+    "base64Converter": {
+      "metadata":{"title":"Base64 인코더/디코더","description":"UTF-8, EUC-KR, Shift_JIS 등 문자 인코딩을 선택해 Base64를 변환하세요."},"title":"Base64 인코더/디코더","description":"문자열을 바이트로 안전하게 변환해 Base64로 인코딩하거나 원문으로 디코딩합니다.",
+      "mode":{"label":"변환 모드","encode":"Encode 모드","decode":"Decode 모드"},"encoding":{"label":"문자 인코딩","help":"자동 감지는 UTF 형식만 보수적으로 판단합니다.","options":{"auto":"자동 감지","utf-8":"UTF-8","utf-16le":"UTF-16LE","utf-16be":"UTF-16BE","ascii":"ASCII","iso-8859-1":"ISO-8859-1","windows-1252":"Windows-1252","euc-kr":"EUC-KR","shift_jis":"Shift_JIS"}},
+      "input":{"encodeLabel":"일반 문자열 입력","decodeLabel":"Base64 문자열 입력","encodePlaceholder":"변환할 텍스트를 입력하세요.","decodePlaceholder":"디코딩할 Base64를 입력하세요."},"result":{"encodeLabel":"Base64 결과","decodeLabel":"디코딩 결과","empty":"변환 결과가 여기에 표시됩니다."},"actions":{"encode":"Encode","decode":"Decode","clear":"초기화","copy":"결과 복사","copied":"결과를 복사했습니다.","converting":"변환 중…"},
+      "applied":{"explicit":"적용 인코딩 · {encoding}","autoUsed":"자동 · UTF-8 사용","autoBom":"자동 BOM 감지 · {encoding}","autoEstimated":"자동 추정 · {encoding}","autoLow":"자동 낮은 신뢰도 추정 · {encoding}"},
+      "errors":{"base64":"올바른 Base64가 아닙니다. 문자, 길이와 끝의 = padding을 확인하세요.","unrepresentable":"선택한 인코딩으로 표현할 수 없는 문자가 있습니다. UTF-8 등 다른 인코딩을 선택하세요.","invalidBytes":"선택한 인코딩에 맞지 않는 바이트입니다. 인코딩을 확인하세요.","ambiguous":"문자 인코딩을 확정할 수 없습니다. 드롭다운에서 인코딩을 직접 선택하세요.","load":"문자 인코딩 기능을 불러오지 못했습니다. 연결을 확인하고 다시 시도하세요.","copy":"복사하지 못했습니다. 클립보드 권한을 확인하세요."},
+      "guide":{"title":"문자 인코딩 안내","description":"Base64는 암호화가 아닙니다. Auto Encode는 UTF-8을 사용하며 legacy Decode가 모호하면 인코딩을 직접 선택해야 합니다."},"privacy":{"title":"브라우저에서만 처리","description":"입력과 결과는 서버로 전송하거나 저장하지 않습니다."}
+    },
+    "passwordGenerator": {
+      "metadata": { "title": "안전한 비밀번호 생성기", "description": "브라우저에서 길이와 문자 유형을 선택해 안전한 무작위 비밀번호를 생성하세요." },
+      "title": "비밀번호 생성기", "description": "원하는 길이와 문자 유형을 선택하면 브라우저의 보안 난수로 비밀번호를 만듭니다.",
+      "settings": { "lengthGroup": "비밀번호 길이", "rangeLabel": "슬라이더로 길이 선택", "numberLabel": "길이 직접 입력", "characterTypes": "포함할 문자 유형", "uppercase": "대문자 (A–Z)", "lowercase": "소문자 (a–z)", "numbers": "숫자 (0–9)", "symbols": "특수문자" },
+      "actions": { "generate": "비밀번호 생성", "copy": "결과 복사", "copied": "비밀번호를 클립보드에 복사했습니다." },
+      "result": { "label": "생성 결과", "empty": "설정을 확인한 뒤 비밀번호를 생성하세요." },
+      "strength": { "label": "비밀번호 강도", "weak": "약함", "medium": "보통", "strong": "강함", "weakDescription": "더 긴 길이나 다양한 문자 유형을 선택하는 것이 좋습니다.", "mediumDescription": "일반적인 용도에 적절하지만 길이를 늘리면 더 안전합니다.", "strongDescription": "길이와 문자 유형을 기준으로 높은 추정 강도를 가집니다.", "notice": "강도는 추정치이며 특정 서비스 정책이나 절대적인 안전을 보장하지 않습니다." },
+      "error": { "allDisabled": "문자 유형을 하나 이상 선택하세요.", "length": "길이는 8부터 128 사이의 정수로 입력하세요.", "random": "안전한 난수를 사용할 수 없습니다. 최신 브라우저에서 다시 시도하세요.", "copy": "복사하지 못했습니다. 클립보드 권한을 확인한 뒤 다시 시도하세요." },
+      "guide": { "title": "사용 방법", "description": "길이와 포함할 문자 유형을 선택하고 생성하세요. 선택한 각 문자 유형이 결과에 최소 한 번 포함됩니다." },
+      "privacy": { "title": "브라우저에서 안전하게 생성", "description": "설정과 생성 결과는 서버로 전송하거나 저장하지 않습니다." }
+    },
+    "jsonFormatter": {
+      "metadata": { "title": "JSON 포맷터", "description": "브라우저에서 JSON을 안전하게 정리하고 압축하고 복사하세요." },
+      "title": "JSON 포맷터",
+      "description": "JSON의 데이터 표현을 바꾸지 않고 읽기 쉽게 정리하거나 간결하게 압축합니다.",
+      "input": { "label": "JSON 편집기", "description": "JSON을 입력하거나 붙여 넣은 뒤 작업을 선택하세요.", "placeholder": "여기에 JSON을 붙여 넣으세요." },
+      "actions": { "format": "정리", "minify": "압축", "copy": "복사", "clear": "초기화", "copied": "클립보드에 복사했습니다." },
+      "error": { "invalid": "올바른 JSON이 아닙니다.", "guidance": "따옴표, 쉼표, 콜론, 중괄호와 대괄호를 확인하세요.", "position": "{line}행 {column}열", "copy": "복사하지 못했습니다. 클립보드 권한을 확인한 뒤 다시 시도하세요." },
+      "guide": { "title": "작동 방식", "description": "정리는 두 칸 들여쓰기를 적용하고, 압축은 문자열 밖의 불필요한 공백만 제거합니다." },
+      "privacy": { "title": "브라우저에서만 처리", "description": "입력한 JSON은 서버로 전송하거나 저장하지 않습니다." }
+    },
+    "wordCounter": {
+      "metadata": {
+        "title": "글자수 계산기",
+        "description": "전체 글자 수, 공백 제외 글자 수, 단어 수와 줄 수를 브라우저에서 실시간으로 계산하세요."
+      },
+      "title": "글자수 계산기",
+      "description": "텍스트를 입력하면 전체 글자, 공백 제외 글자, 단어와 줄 수를 실시간으로 확인할 수 있습니다.",
+      "input": {
+        "label": "계산할 텍스트",
+        "description": "입력하거나 붙여 넣는 즉시 결과가 갱신됩니다.",
+        "placeholder": "여기에 텍스트를 입력하세요."
+      },
+      "reset": "초기화",
+      "results": {
+        "label": "계산 결과",
+        "characters": "전체 글자",
+        "charactersWithoutWhitespace": "공백 제외",
+        "words": "단어",
+        "lines": "줄"
+      },
+      "guide": {
+        "title": "계수 기준",
+        "description": "화면에 하나로 보이는 문자를 한 글자로 세며, 공백 제외 결과에서는 공백·탭·줄바꿈을 뺍니다. 단어는 한국어 기준의 언어별 단어 경계로 계산합니다.",
+        "fallback": "언어별 단어 분리를 지원하지 않는 브라우저에서는 공백을 기준으로 단어를 셉니다."
+      },
+      "privacy": {
+        "title": "브라우저에서만 처리",
+        "description": "입력한 텍스트는 서버로 전송하거나 저장하지 않습니다."
+      }
+    }
+  }
+}

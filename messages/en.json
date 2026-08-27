@@ -1,0 +1,176 @@
+{
+  "Metadata": {
+    "title": "Easy Tools",
+    "description": "A collection of simple online utilities for everyday life and work"
+  },
+  "Common": {
+    "brand": "Easy Tools",
+    "homeLabel": "Easy Tools home",
+    "skipToContent": "Skip to main content",
+    "status": "Coming soon",
+    "toolsNav": { "label": "Tools menu", "mobileLabel": "Mobile tools menu", "open": "Tools", "all": "All tools", "wordCounter": "Word Counter", "jsonFormatter": "JSON Formatter", "passwordGenerator": "Password Generator", "base64Converter": "Base64 Converter", "urlEncoderDecoder": "URL Encoder", "youtubeThumbnailDownloader": "YouTube Thumbnails", "qrCodeGenerator": "QR Generator", "ipInfo": "IP Lookup", "imageColorPicker": "Image Color Picker" },
+    "footer": "© {year} Easy Tools. Simple tools for everyone.",
+    "result": "Result",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyLabel": "Copy result",
+    "copiedLabel": "Copy complete",
+    "language": {
+      "label": "Select language",
+      "ko": "한국어",
+      "en": "English",
+      "ja": "日本語"
+    }
+  },
+  "Home": {
+    "eyebrow": "Everything you need in one place",
+    "title": "Make complex tasks\nsimple.",
+    "description": "We are preparing online tools you can use instantly without installing anything or signing in.",
+    "tools": {
+      "title": "Choose a tool",
+      "description": "Use these tools instantly without installing anything or signing in.",
+      "privacy": "Processed safely in your browser",
+      "open": "Open tool",
+      "wordCounter": { "title": "Word Counter", "description": "Count characters, non-whitespace characters, words, and lines instantly." },
+      "jsonFormatter": { "title": "JSON Formatter", "description": "Format JSON for readability or remove unnecessary whitespace to minify it." },
+      "passwordGenerator": { "title": "Password Generator", "description": "Choose a length and character types to create a secure random password." },
+      "base64Converter": { "title": "Base64 Converter", "description": "Choose a character encoding to convert between text and Base64." },
+      "urlEncoderDecoder": { "title": "URL Encoder/Decoder", "description": "Convert a full URL or component with UTF-8 percent encoding." },
+      "youtubeThumbnailDownloader": { "title": "YouTube Thumbnail Downloader", "description": "Find and save the thumbnail sizes that are actually available for a YouTube video." },
+      "qrCodeGenerator": { "title": "QR Code Generator", "description": "Turn text or a URL into a QR code in your browser and save it as PNG." },
+      "ipInfo": { "title": "IP Address Lookup", "description": "Check your public IP, country, region, ISP, ASN, and basic network information." },
+      "imageColorPicker": { "title": "Image Color Picker", "description": "Upload an image and read the exact pixel color as HEX, RGB, HSL, HSV, and CMYK." }
+    }
+  },
+  "Tools": {
+    "imageColorPicker": {
+      "metadata": { "title": "Free Image Color Picker", "description": "Pick exact pixel colors from PNG, JPEG, and WebP images locally in your browser." },
+      "title": "Image Color Picker", "description": "Upload an image, select a pixel, and copy its color in five useful formats. Your image stays in this browser.",
+      "upload": { "title": "Upload an image", "help": "Choose or drop one PNG, JPEG, or WebP image (up to 25 MB and 24 megapixels).", "drop": "Drop the image here." },
+      "actions": { "choose": "Choose image", "change": "Change image", "reset": "Reset", "copy": "Copy", "copied": "Copied" },
+      "status": { "loading": "Checking and loading the image…" },
+      "info": { "title": "Image information", "name": "File name", "format": "Format", "dimensions": "Dimensions", "size": "File size" },
+      "zoom": { "label": "Zoom", "fit": "Fit" },
+      "preview": { "title": "Image preview", "alt": "Uploaded image for pixel color selection", "help": "Move over the image to inspect pixels in the magnifier, then click to select. Use zoom for even more precision." },
+      "coordinates": { "title": "Select by pixel coordinates", "x": "X coordinate", "y": "Y coordinate", "select": "Select this pixel" },
+      "result": { "title": "Selected color", "empty": "Select a pixel in the preview or enter its coordinates." },
+      "history": { "title": "Recent colors", "empty": "Selected colors will appear here." },
+      "formats": { "hex": "HEX / HEXA", "rgb": "RGB / RGBA", "hsl": "HSL / HSLA", "hsv": "HSV / HSVA", "cmyk": "CMYK" },
+      "errors": { "multiple": "Please upload one image at a time.", "unsupported": "Choose a PNG, JPEG, or WebP image.", "signature": "The file contents do not match a supported image format.", "fileLarge": "This file is larger than 25 MB. Choose a smaller image.", "imageLarge": "This image exceeds 24 megapixels or 12,000 pixels on one side.", "decode": "This image could not be opened. It may be damaged or unsupported.", "pixel": "The pixel color could not be read. Try another image.", "coordinate": "Enter whole-number coordinates inside the image bounds.", "copy": "The color could not be copied. Check browser clipboard permission." },
+      "privacy": { "notice": "Private by design: the image and selected colors are processed only in this browser and are not uploaded or saved.", "title": "Your image stays private", "text": "This tool does not send the image to a server or save it in browser storage. Resetting or closing the page releases the temporary image." },
+      "guide": { "pixelTitle": "Pixel-accurate sampling", "pixelText": "Coordinates refer to the original decoded image. Zoom changes only the preview size, not the sampled pixel.", "zoomTitle": "Choose precisely", "zoomText": "Use Fit for an overview and higher zoom levels for exact pixel selection. Large previews scroll inside their own area.", "colorTitle": "Color formats", "colorText": "Alpha-aware images use HEXA, RGBA, HSLA, and HSVA. CMYK is a mathematical screen-color conversion, not a print profile." }
+    },
+    "ipInfo": {
+      "metadata": { "title": "My IP Address · IP Information Lookup", "description": "Check your public IPv4 or IPv6, country, region, ISP, and ASN information for free." },
+      "title": "IP Address Lookup", "description": "Check your current public IP address, approximate location, ISP, and network information.",
+      "provider": { "notice": "Your IP address is sent to the external provider IPWHOIS.IO for lookup. This site does not store the result.", "privacyLink": "Provider privacy policy" },
+      "current": { "title": "Current public IP" },
+      "manual": { "title": "Look up another IP", "label": "IPv4 or IPv6 address", "help": "Enter one public IP. Private, localhost, URL, domain, and CIDR values are not queried.", "placeholder": "e.g. 8.8.8.8 or 2001:4860:4860::8888", "empty": "Enter a public IP address to look it up." },
+      "status": { "loading": "Checking IP information…" },
+      "actions": { "lookup": "Look up", "refresh": "Refresh", "copy": "Copy IP address", "copied": "Copied" },
+      "result": { "unknown": "Unknown", "approximate": "IP-based location is approximate and does not confirm a residence or precise current location." },
+      "fields": { "ip": "Public IP address", "version": "IP version", "country": "Country", "region": "Region/state", "city": "City", "isp": "ISP", "organization": "Organization", "asn": "ASN", "timezone": "Timezone", "continent": "Continent", "postal": "Postal code", "coordinates": "Coordinates", "callingCode": "Calling code" },
+      "errors": { "invalidInput": "Enter a valid IPv4 or IPv6 address. URLs, ports, CIDR values, and domains are not supported.", "nonPublic": "Only public IP addresses can be looked up.", "offline": "Check your internet connection and try again.", "timeout": "The provider is taking too long to respond. Try again shortly.", "rateLimited": "The free lookup limit for today has been reached.", "retryAfter": "Try again in about {seconds} seconds.", "unavailable": "The IP information service is temporarily unavailable. Try again shortly.", "rejected": "Information for this IP address is unavailable.", "invalidResponse": "The IP information response could not be verified. Try again shortly.", "copy": "The IP address could not be copied. Check clipboard permissions." },
+      "categories": { "loopback": "A localhost or loopback address only works on this device and cannot be looked up.", "private": "A private network address has no public internet location information.", "linkLocal": "A link-local address only works on the local network segment and cannot be looked up.", "unspecified": "An unspecified address does not identify a real device.", "cgnat": "This is carrier-grade shared address space, not an individual public IP.", "multicast": "A multicast address does not identify an individual device.", "documentation": "This address is reserved for documentation and testing and has no real location.", "reserved": "A reserved or special-purpose IP address cannot be looked up." },
+      "guide": { "publicIpTitle": "What is a public IP?", "publicIpText": "It identifies an internet connection. Behind a router or carrier network, it may differ from a device's private IP.", "locationTitle": "Location limitations", "locationText": "IP location is an estimate based on network registration and routing. It is not a street address or a person's precise location.", "vpnTitle": "VPNs and proxies", "vpnText": "When using a VPN, proxy, corporate network, or mobile carrier, the result may show that network's exit location.", "privacyTitle": "Privacy and external provider", "privacyText": "Lookup requests go directly from your browser to IPWHOIS.IO. This site does not retain IPs or results on its server, in browser storage, or in lookup history." }
+    },
+    "qrCodeGenerator": {
+      "metadata": { "title": "Free QR Code Generator", "description": "Create a QR code from text or a URL without sending it to a server, then download a PNG at your chosen size." },
+      "title": "QR Code Generator", "description": "Enter text or a URL to create a QR code automatically in your browser and save it as PNG.",
+      "input": { "label": "Content to encode", "help": "Enter text, a URL, Korean, Japanese, Emoji, or multiple lines. Your content is encoded exactly as entered.", "placeholder": "Text or https://example.com" },
+      "preview": { "title": "QR code preview", "empty": "Enter content to see a QR code here.", "processing": "Generating QR code…", "canvasLabel": "QR code generated from the input", "size": "Size", "level": "Error correction", "margin": "Quiet Zone", "type": "Input type", "types": { "text": "Text", "url": "URL" } },
+      "options": { "title": "QR code options", "size": { "label": "Output size", "help": "The actual width and height of the PNG." }, "level": { "label": "Error correction level", "help": "Higher levels resist more damage but hold less data.", "L": "L - Low · about 7%", "M": "M - Medium · about 15%", "Q": "Q - High · about 25%", "H": "H - Very high · about 30%" }, "margin": { "label": "Quiet Zone margin", "help": "The white outer margin that helps scanners recognize the code.", "4": "4 modules - Default", "6": "6 modules", "8": "8 modules" } },
+      "actions": { "download": "Download PNG", "copyInput": "Copy input", "clear": "Clear", "downloaded": "Saved qr-code.png.", "copied": "Input copied." },
+      "warning": { "density": "This data is long and may be harder to scan in real conditions. Consider a larger size or lower error correction level." },
+      "errors": { "capacity": "The data is too long for this error correction level. Shorten it or choose a lower level.", "size": "The selected output size is too small for this data. Choose a larger size.", "generation": "The QR code could not be generated. Check the input and options, then try again.", "download": "The PNG could not be saved. Check your browser settings and try again.", "copy": "The input could not be copied. Check clipboard permission." },
+      "guide": { "title": "How to use", "description": "The code updates shortly after you type. Choose the size, error correction level, and Quiet Zone, then download the PNG." },
+      "correction": { "title": "Error correction", "description": "L/M/Q/H can recover roughly 7/15/25/30% of damaged area. Higher levels consume more code capacity." },
+      "scan": { "title": "Scan reliability", "description": "Codes use at least a 4-module white margin and black-on-white contrast. Real scanning still depends on data length, output size, camera, and print quality." },
+      "privacy": { "title": "Processed only in your browser", "description": "Your input and QR code are not sent to a server or external API and are not stored in browser storage." }
+    },
+    "youtubeThumbnailDownloader": {
+      "metadata": { "title": "YouTube Thumbnail Downloader", "description": "Check and save the thumbnail resolutions actually available for a YouTube video URL." },
+      "title": "YouTube Thumbnail Downloader", "description": "Paste a video URL or an 11-character video ID to check available thumbnails in your browser.",
+      "input": { "label": "YouTube video URL or ID", "help": "Paste a regular video, Shorts, or Live URL copied from the address bar or YouTube Share button.", "placeholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+      "actions": { "extract": "Extract thumbnails", "clear": "Clear", "loading": "Checking thumbnails…", "open": "Open image", "save": "Download", "saving": "Saving…", "saved": "Image downloaded." },
+      "result": { "videoId": "Video ID", "available": "Available", "unavailable": "Not available for this video", "resolution": "Actual resolution" },
+      "variants": { "max": "Max Resolution", "sd": "Standard Definition", "hq": "High Quality", "mq": "Medium Quality", "default": "Default" },
+      "errors": { "notYoutube": "Enter a valid YouTube video URL.", "invalidUrl": "Check the address format, or copy the video URL again from YouTube's address bar or Share button.", "unsupported": "This YouTube address is not supported. Copy a video, Shorts, or Live URL rather than a channel or search page.", "missingId": "No video ID was found. Copy the playing video's address or Share URL.", "invalidId": "The video ID is invalid. Copy the video URL again.", "unavailable": "A public thumbnail could not be verified. The video may be private, deleted, or have no available thumbnail.", "network": "The images could not be checked. Check your connection and the video URL.", "save": "Direct download failed. Open the image and use your browser's save image command." },
+      "guide": { "title": "How to use", "description": "Paste a YouTube video URL, extract the thumbnails, then open or download the resolution you need." },
+      "formats": { "title": "Supported URLs", "description": "Regular watch, youtu.be Share, Shorts, Embed, Live, mobile video URLs, and 11-character video IDs are supported. Channel, search, and playlist-only URLs are not." },
+      "privacy": { "title": "Privacy and external requests", "description": "Your input URL is not sent to or stored on this site's server. To check thumbnails, your browser sends image requests containing the validated video ID to YouTube's image server (i.ytimg.com)." },
+      "rights": { "title": "Usage rights", "description": "This tool does not download video or audio and does not grant ownership of thumbnails. Use only your content or content you are authorized to use, in accordance with applicable law and YouTube policies." },
+      "faq": { "title": "Frequently asked questions", "maxQuestion": "Why is Max Resolution unavailable?", "maxAnswer": "Not every video provides Max or Standard thumbnails. The tool checks actual image dimensions and marks unavailable variants.", "downloadQuestion": "What if Download fails?", "downloadAnswer": "Direct downloads can be restricted by browser or YouTube image-server policy. Open the image and use your browser's save image command." }
+    },
+    "urlEncoderDecoder": {
+      "metadata": { "title": "URL Encoder/Decoder", "description": "Safely encode and decode full URLs and URL components with UTF-8 percent encoding." },
+      "title": "URL Encoder/Decoder", "description": "Convert a full URL or query parameter value with UTF-8 percent encoding and restore the original text.",
+      "mode": { "label": "Conversion mode", "encode": "Encode mode", "decode": "Decode mode" },
+      "encodingType": { "label": "Encoding type", "component": "URL Component", "fullUrl": "Full URL", "componentHelp": "Encodes reserved characters for values such as query parameters.", "fullUrlHelp": "Keeps URL structure characters such as /, ?, =, and &." },
+      "plusHelp": "Standard Decode keeps + as a literal plus character; it does not turn + into a space.",
+      "input": { "encodeLabel": "Text or URL input", "decodeLabel": "Encoded string input", "encodePlaceholder": "Enter text or a URL to encode.", "decodePlaceholder": "Enter a percent-encoded string to decode." },
+      "result": { "encodeLabel": "Encoded result", "decodeLabel": "Decoded result", "empty": "The converted result appears here." },
+      "actions": { "encode": "Encode", "decode": "Decode", "clear": "Clear", "copy": "Copy result", "copied": "Result copied." },
+      "operations": { "encodeComponent": "UTF-8 · URL Component Encoding", "encodeFullUrl": "UTF-8 · Full URL Encoding", "decodeComponent": "UTF-8 · URL Component Decoding", "decodeFullUrl": "UTF-8 · Full URL Decoding" },
+      "errors": { "percent": "This is not valid URL-encoded text. Check that each % is followed by two hexadecimal digits.", "unicode": "Some characters cannot be converted to UTF-8. Check the input and try again.", "copy": "Could not copy the result. Check clipboard permission." },
+      "guide": { "title": "Choosing a method", "description": "URL Component is best for query parameter values. Full URL keeps the address structure. An existing % escape may be encoded again." },
+      "privacy": { "title": "Processed only in your browser", "description": "Your input and result are not sent to a server or stored, and decoded output is never opened as a link." }
+    },
+    "base64Converter": {
+      "metadata":{"title":"Base64 Encoder/Decoder","description":"Convert Base64 with UTF-8, EUC-KR, Shift_JIS, and other character encodings."},"title":"Base64 Encoder/Decoder","description":"Safely convert text to bytes and Base64, or decode Base64 back to text.","mode":{"label":"Conversion mode","encode":"Encode mode","decode":"Decode mode"},"encoding":{"label":"Character encoding","help":"Auto detection identifies UTF formats conservatively.","options":{"auto":"Auto detect","utf-8":"UTF-8","utf-16le":"UTF-16LE","utf-16be":"UTF-16BE","ascii":"ASCII","iso-8859-1":"ISO-8859-1","windows-1252":"Windows-1252","euc-kr":"EUC-KR","shift_jis":"Shift_JIS"}},
+      "input":{"encodeLabel":"Plain text input","decodeLabel":"Base64 input","encodePlaceholder":"Enter text to encode.","decodePlaceholder":"Enter Base64 to decode."},"result":{"encodeLabel":"Base64 result","decodeLabel":"Decoded result","empty":"The converted result appears here."},"actions":{"encode":"Encode","decode":"Decode","clear":"Clear","copy":"Copy result","copied":"Result copied.","converting":"Converting…"},"applied":{"explicit":"Applied encoding · {encoding}","autoUsed":"Auto · Using UTF-8","autoBom":"Auto BOM detected · {encoding}","autoEstimated":"Auto estimate · {encoding}","autoLow":"Auto low-confidence estimate · {encoding}"},
+      "errors":{"base64":"This is not valid Base64. Check the characters, length, and = padding at the end.","unrepresentable":"Some characters cannot be represented by the selected encoding. Choose UTF-8 or another encoding.","invalidBytes":"These bytes are not valid for the selected encoding. Check the encoding.","ambiguous":"The character encoding cannot be determined. Select it directly from the list.","load":"The character encoding support could not be loaded. Check your connection and try again.","copy":"Could not copy. Check clipboard permission."},"guide":{"title":"About character encoding","description":"Base64 is not encryption. Auto Encode uses UTF-8, and ambiguous legacy Decode requires a manual encoding choice."},"privacy":{"title":"Processed only in your browser","description":"Your input and result are never sent to a server or stored."}
+    },
+    "passwordGenerator": {
+      "metadata": { "title": "Secure Password Generator", "description": "Create a secure random password with your chosen length and character types in your browser." },
+      "title": "Password Generator", "description": "Choose a length and character types to create a password using secure browser randomness.",
+      "settings": { "lengthGroup": "Password length", "rangeLabel": "Choose length with slider", "numberLabel": "Enter exact length", "characterTypes": "Character types to include", "uppercase": "Uppercase (A–Z)", "lowercase": "Lowercase (a–z)", "numbers": "Numbers (0–9)", "symbols": "Special characters" },
+      "actions": { "generate": "Generate password", "copy": "Copy result", "copied": "Password copied to clipboard." },
+      "result": { "label": "Generated password", "empty": "Review the settings, then generate a password." },
+      "strength": { "label": "Password strength", "weak": "Weak", "medium": "Medium", "strong": "Strong", "weakDescription": "Consider using a longer length or more character types.", "mediumDescription": "Suitable for general use, but a longer password would be safer.", "strongDescription": "The selected length and character types provide high estimated strength.", "notice": "Strength is an estimate and does not guarantee a service policy or absolute security." },
+      "error": { "allDisabled": "Select at least one character type.", "length": "Enter a whole number from 8 through 128.", "random": "Secure randomness is unavailable. Try again in an up-to-date browser.", "copy": "Could not copy. Check clipboard permission and try again." },
+      "guide": { "title": "How to use", "description": "Choose a length and character types, then generate. Every selected character type appears at least once." },
+      "privacy": { "title": "Generated securely in your browser", "description": "Your settings and generated password are never sent to a server or stored." }
+    },
+    "jsonFormatter": {
+      "metadata": { "title": "JSON Formatter", "description": "Format, minify, and copy JSON safely in your browser." },
+      "title": "JSON Formatter",
+      "description": "Make JSON easier to read or compact it without changing its data representation.",
+      "input": { "label": "JSON editor", "description": "Paste or enter JSON, then choose an action.", "placeholder": "Paste JSON here." },
+      "actions": { "format": "Format", "minify": "Minify", "copy": "Copy", "clear": "Clear", "copied": "Copied to clipboard." },
+      "error": { "invalid": "This is not valid JSON.", "guidance": "Check quotation marks, commas, colons, braces, and brackets.", "position": "Line {line}, column {column}", "copy": "Could not copy. Check clipboard permission and try again." },
+      "guide": { "title": "How it works", "description": "Format adds two-space indentation. Minify removes only unnecessary whitespace outside strings." },
+      "privacy": { "title": "Processed only in your browser", "description": "Your JSON is not sent to a server or stored." }
+    },
+    "wordCounter": {
+      "metadata": {
+        "title": "Word Counter",
+        "description": "Count characters, characters without whitespace, words, and lines instantly in your browser."
+      },
+      "title": "Word Counter",
+      "description": "Enter text to see character, non-whitespace character, word, and line counts update instantly.",
+      "input": {
+        "label": "Text to count",
+        "description": "Results update as soon as you type or paste text.",
+        "placeholder": "Enter your text here."
+      },
+      "reset": "Reset",
+      "results": {
+        "label": "Count results",
+        "characters": "Characters",
+        "charactersWithoutWhitespace": "Without whitespace",
+        "words": "Words",
+        "lines": "Lines"
+      },
+      "guide": {
+        "title": "How counting works",
+        "description": "A user-perceived character counts as one. Spaces, tabs, and line breaks are excluded only from the non-whitespace count. Words use English language boundaries.",
+        "fallback": "Browsers without language-aware word segmentation count words by whitespace instead."
+      },
+      "privacy": {
+        "title": "Processed only in your browser",
+        "description": "Your text is never sent to a server or stored."
+      }
+    }
+  }
+}

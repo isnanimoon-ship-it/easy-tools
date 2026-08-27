@@ -1,0 +1,176 @@
+{
+  "Metadata": {
+    "title": "かんたんツール",
+    "description": "日常や仕事に役立つシンプルなオンラインツール集"
+  },
+  "Common": {
+    "brand": "かんたんツール",
+    "homeLabel": "かんたんツールのホーム",
+    "skipToContent": "本文へ移動",
+    "status": "準備中",
+    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64変換", "urlEncoderDecoder": "URLエンコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー" },
+    "footer": "© {year} かんたんツール。誰でもかんたんに。",
+    "result": "結果",
+    "copy": "コピー",
+    "copied": "コピー済み",
+    "copyLabel": "結果をコピー",
+    "copiedLabel": "コピー完了",
+    "language": {
+      "label": "言語を選択",
+      "ko": "한국어",
+      "en": "English",
+      "ja": "日本語"
+    }
+  },
+  "Home": {
+    "eyebrow": "必要なツールをひとつの場所に",
+    "title": "複雑な作業を\nかんたんに。",
+    "description": "インストールやログインなしですぐに使えるオンラインツールを準備しています。",
+    "tools": {
+      "title": "ツールを選択してください",
+      "description": "インストールやログインなしですぐに利用できます。",
+      "privacy": "ブラウザ内で安全に処理",
+      "open": "ツールを開く",
+      "wordCounter": { "title": "文字数カウンター", "description": "文字数、空白を除く文字数、単語数、行数をリアルタイムで計算します。" },
+      "jsonFormatter": { "title": "JSONフォーマッター", "description": "JSONを読みやすく整形したり、不要な空白を削除して圧縮したりできます。" },
+      "passwordGenerator": { "title": "パスワード生成", "description": "長さと文字種を選んで、安全なランダムパスワードを作成します。" },
+      "base64Converter": { "title": "Base64変換", "description": "文字エンコーディングを選んでテキストとBase64を相互変換します。" },
+      "urlEncoderDecoder": { "title": "URLエンコーダー/デコーダー", "description": "URL全体または構成要素をUTF-8パーセントエンコーディングで変換します。" },
+      "youtubeThumbnailDownloader": { "title": "YouTubeサムネイル抽出", "description": "YouTube動画で実際に利用できるサムネイルを解像度別に確認して保存します。" },
+      "qrCodeGenerator": { "title": "QRコード生成", "description": "テキストやURLをブラウザでQRコードにしてPNGで保存します。" },
+      "ipInfo": { "title": "IPアドレス情報", "description": "現在のグローバルIP、国、地域、ISP、ASNなどの基本情報を確認します。" },
+      "imageColorPicker": { "title": "画像カラーピッカー", "description": "画像をアップロードし、正確なピクセル色をHEX、RGB、HSL、HSV、CMYKで確認します。" }
+    }
+  },
+  "Tools": {
+    "imageColorPicker": {
+      "metadata": { "title": "無料画像カラーピッカー", "description": "PNG、JPEG、WebP画像の正確なピクセル色をブラウザ内で安全に抽出します。" },
+      "title": "画像カラーピッカー", "description": "画像のピクセルを選択し、5種類の色形式でコピーできます。画像はブラウザの外に送信されません。",
+      "upload": { "title": "画像をアップロード", "help": "PNG、JPEG、WebP画像を1つ選択またはドロップしてください。上限は25MB、2400万ピクセルです。", "drop": "ここに画像をドロップしてください。" },
+      "actions": { "choose": "画像を選択", "change": "画像を変更", "reset": "リセット", "copy": "コピー", "copied": "コピー済み" },
+      "status": { "loading": "画像を確認して読み込み中…" },
+      "info": { "title": "画像情報", "name": "ファイル名", "format": "形式", "dimensions": "サイズ", "size": "ファイル容量" },
+      "zoom": { "label": "ズーム", "fit": "フィット" },
+      "preview": { "title": "画像プレビュー", "alt": "ピクセル色を選択するアップロード画像", "help": "画像上で拡大レンズのピクセルを確認してからクリックします。さらに正確に選ぶにはズームも使えます。" },
+      "coordinates": { "title": "ピクセル座標で選択", "x": "X座標", "y": "Y座標", "select": "このピクセルを選択" },
+      "result": { "title": "選択した色", "empty": "プレビューでピクセルを選ぶか、座標を入力してください。" },
+      "history": { "title": "最近の色", "empty": "選択した色がここに表示されます。" },
+      "formats": { "hex": "HEX / HEXA", "rgb": "RGB / RGBA", "hsl": "HSL / HSLA", "hsv": "HSV / HSVA", "cmyk": "CMYK" },
+      "errors": { "multiple": "画像は1回に1つだけアップロードしてください。", "unsupported": "PNG、JPEG、WebP画像を選択してください。", "signature": "ファイルの内容が対応画像形式と一致しません。", "fileLarge": "ファイルが25MBを超えています。小さい画像を選択してください。", "imageLarge": "画像が2400万ピクセル、または一辺12000pxの上限を超えています。", "decode": "画像を開けません。破損または未対応の可能性があります。", "pixel": "ピクセル色を読み取れませんでした。別の画像をお試しください。", "coordinate": "画像範囲内の整数座標を入力してください。", "copy": "色をコピーできませんでした。ブラウザのクリップボード権限を確認してください。" },
+      "privacy": { "notice": "プライバシー保護：画像と選択色はこのブラウザ内だけで処理され、アップロードも保存もされません。", "title": "画像は外部に送信されません", "text": "このツールは画像をサーバーやブラウザストレージに保存しません。リセットまたはページを閉じると一時画像を解放します。" },
+      "guide": { "pixelTitle": "ピクセル単位の正確さ", "pixelText": "座標はデコードされた元画像が基準です。ズームはプレビューサイズだけを変え、選択ピクセルは変えません。", "zoomTitle": "正確に選択", "zoomText": "全体表示にはフィット、正確な選択には高いズーム率を使います。大きな画像はプレビュー内でスクロールします。", "colorTitle": "色形式", "colorText": "透明色はHEXA、RGBA、HSLA、HSVAで表示します。CMYKは画面色の数式変換であり、印刷プロファイル値ではありません。" }
+    },
+    "ipInfo": {
+      "metadata": { "title": "IPアドレス確認・IP情報検索", "description": "現在のIPv4またはIPv6、国、地域、ISP、ASN情報を無料で確認できます。" },
+      "title": "IPアドレス情報", "description": "現在のグローバルIP、推定地域、ISP、ネットワーク情報を確認します。",
+      "provider": { "notice": "検索のためIPアドレスが外部プロバイダーIPWHOIS.IOに送信されます。このサイトは結果を保存しません。", "privacyLink": "プロバイダーのプライバシーポリシー" },
+      "current": { "title": "現在のグローバルIP" },
+      "manual": { "title": "別のIPを検索", "label": "IPv4またはIPv6アドレス", "help": "グローバルIPを1つ入力してください。プライベート、localhost、URL、ドメイン、CIDRは検索しません。", "placeholder": "例: 8.8.8.8 または 2001:4860:4860::8888", "empty": "検索するグローバルIPを入力してください。" },
+      "status": { "loading": "IP情報を確認しています…" },
+      "actions": { "lookup": "検索", "refresh": "再検索", "copy": "IPアドレスをコピー", "copied": "コピー済み" },
+      "result": { "unknown": "不明", "approximate": "IPベースの位置は推定値であり、住所や現在地を正確に示すものではありません。" },
+      "fields": { "ip": "グローバルIPアドレス", "version": "IPバージョン", "country": "国", "region": "地域・州", "city": "都市", "isp": "ISP", "organization": "組織", "asn": "ASN", "timezone": "タイムゾーン", "continent": "大陸", "postal": "郵便番号", "coordinates": "緯度・経度", "callingCode": "国番号" },
+      "errors": { "invalidInput": "正しいIPv4またはIPv6を入力してください。URL、ポート、CIDR、ドメインには対応していません。", "nonPublic": "グローバルIPアドレスのみ検索できます。", "offline": "インターネット接続を確認して再試行してください。", "timeout": "プロバイダーの応答が遅れています。しばらくしてから再試行してください。", "rateLimited": "本日の無料検索上限に達しました。", "retryAfter": "約{seconds}秒後に再試行できます。", "unavailable": "IP情報サービスを一時的に利用できません。しばらくしてから再試行してください。", "rejected": "このIPアドレスの情報は取得できません。", "invalidResponse": "IP情報の応答を確認できませんでした。しばらくしてから再試行してください。", "copy": "IPアドレスをコピーできませんでした。クリップボード権限を確認してください。" },
+      "categories": { "loopback": "localhostまたはループバックアドレスはこの端末内だけで使われるため検索できません。", "private": "プライベートネットワークアドレスには公開された位置情報がありません。", "linkLocal": "リンクローカルアドレスは同じネットワーク区間だけで使われるため検索できません。", "unspecified": "未指定アドレスは実際の端末を示しません。", "cgnat": "通信事業者が共有するCGNATアドレス空間であり、個別のグローバルIPではありません。", "multicast": "マルチキャストアドレスは個別の端末を示しません。", "documentation": "このアドレスは文書・テスト用に予約され、実際の位置情報はありません。", "reserved": "予約済みまたは特殊用途のIPアドレスは検索できません。" },
+      "guide": { "publicIpTitle": "グローバルIPとは？", "publicIpText": "インターネット接続を識別するアドレスです。ルーターや通信事業者の環境では端末のプライベートIPと異なります。", "locationTitle": "位置情報の制限", "locationText": "IP位置はネットワーク登録と経路情報による推定値です。住所や個人の正確な位置ではありません。", "vpnTitle": "VPNとプロキシ", "vpnText": "VPN、プロキシ、社内ネットワーク、携帯回線では、そのネットワークの出口位置が表示される場合があります。", "privacyTitle": "プライバシーと外部プロバイダー", "privacyText": "検索はブラウザからIPWHOIS.IOへ直接送信されます。このサイトはIPと結果をサーバー、ブラウザストレージ、履歴に保存しません。" }
+    },
+    "qrCodeGenerator": {
+      "metadata": { "title": "無料QRコード生成", "description": "テキストやURLをサーバーへ送信せずQRコードにし、選んだサイズのPNGで保存できます。" },
+      "title": "QRコード生成", "description": "テキストやURLを入力するとブラウザでQRコードを自動生成し、PNGで保存できます。",
+      "input": { "label": "QRコードに入れる内容", "help": "テキスト、URL、韓国語、日本語、Emoji、複数行を入力できます。内容は入力どおりにエンコードされます。", "placeholder": "テキストまたは https://example.com" },
+      "preview": { "title": "QRコードプレビュー", "empty": "内容を入力するとQRコードが表示されます。", "processing": "QRコードを生成中…", "canvasLabel": "入力内容から生成されたQRコード", "size": "サイズ", "level": "誤り訂正", "margin": "Quiet Zone", "type": "入力タイプ", "types": { "text": "テキスト", "url": "URL" } },
+      "options": { "title": "QRコードのオプション", "size": { "label": "出力サイズ", "help": "PNGの実際の幅と高さです。" }, "level": { "label": "誤り訂正レベル", "help": "高いほど損傷に強くなりますが、格納できるデータは減ります。", "L": "L - 低 · 約7%", "M": "M - 中 · 約15%", "Q": "Q - 高 · 約25%", "H": "H - 最高 · 約30%" }, "margin": { "label": "Quiet Zoneの余白", "help": "読み取りを助けるQRコード外側の白い余白です。", "4": "4 modules - デフォルト", "6": "6 modules", "8": "8 modules" } },
+      "actions": { "download": "PNGをダウンロード", "copyInput": "入力値をコピー", "clear": "クリア", "downloaded": "qr-code.pngを保存しました。", "copied": "入力値をコピーしました。" },
+      "warning": { "density": "データが長いため実際の環境では読み取りにくい場合があります。より大きいサイズか低い誤り訂正レベルを検討してください。" },
+      "errors": { "capacity": "現在の誤り訂正レベルではデータが長すぎます。内容を短くするか低いレベルを選んでください。", "size": "このデータには選択したサイズが小さすぎます。より大きいサイズを選んでください。", "generation": "QRコードを生成できませんでした。入力とオプションを確認して再試行してください。", "download": "PNGを保存できませんでした。ブラウザ設定を確認して再試行してください。", "copy": "入力値をコピーできませんでした。クリップボード権限を確認してください。" },
+      "guide": { "title": "使い方", "description": "入力後しばらくすると自動生成されます。サイズ、誤り訂正レベル、Quiet Zoneを選びPNGをダウンロードしてください。" },
+      "correction": { "title": "誤り訂正レベル", "description": "L/M/Q/Hは損傷領域を約7/15/25/30%復元できるレベルです。高いレベルほど多くの容量を使用します。" },
+      "scan": { "title": "読み取りやすさ", "description": "最低4 modulesの白い余白と白黒の高いコントラストを使用します。実際の読み取りはデータ長、サイズ、カメラ、印刷品質で変わります。" },
+      "privacy": { "title": "ブラウザ内だけで処理", "description": "入力内容とQRコードはサーバーや外部APIへ送信されず、ブラウザストレージにも保存されません。" }
+    },
+    "youtubeThumbnailDownloader": {
+      "metadata": { "title": "YouTubeサムネイル抽出", "description": "YouTube動画URLから実際に利用できるサムネイルを解像度別に確認して保存できます。" },
+      "title": "YouTubeサムネイル抽出", "description": "動画URLまたは11文字の動画IDを貼り付けて、利用可能なサムネイルをブラウザで確認します。",
+      "input": { "label": "YouTube動画URLまたはID", "help": "アドレスバーまたはYouTubeの共有機能からコピーした通常動画、Shorts、LiveのURLを貼り付けてください。", "placeholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+      "actions": { "extract": "サムネイルを抽出", "clear": "クリア", "loading": "サムネイルを確認中…", "open": "画像を開く", "save": "保存", "saving": "保存中…", "saved": "画像を保存しました。" },
+      "result": { "videoId": "動画ID", "available": "利用可能", "unavailable": "この動画では利用できません", "resolution": "実際の解像度" },
+      "variants": { "max": "最大解像度", "sd": "標準画質", "hq": "高画質", "mq": "中画質", "default": "デフォルト" },
+      "errors": { "notYoutube": "正しいYouTube動画URLを入力してください。", "invalidUrl": "URL形式を確認するか、YouTubeのアドレスバーまたは共有機能から動画URLを再度コピーしてください。", "unsupported": "このYouTube URL形式には対応していません。チャンネルや検索ページではなく、動画、Shorts、LiveのURLをコピーしてください。", "missingId": "動画IDが見つかりません。再生中の動画URLまたは共有URLをコピーしてください。", "invalidId": "動画IDが正しくありません。動画URLを再度コピーしてください。", "unavailable": "公開サムネイルを確認できません。非公開・削除済みの動画、またはサムネイルがない可能性があります。", "network": "画像を確認できません。接続状態と動画URLを確認してください。", "save": "直接保存できません。画像を開き、ブラウザの画像保存機能を使用してください。" },
+      "guide": { "title": "使い方", "description": "YouTube動画URLを貼り付けて抽出し、必要な解像度の画像を開くか保存します。" },
+      "formats": { "title": "対応URL", "description": "通常のwatch、youtu.be共有、Shorts、Embed、Live、モバイル動画URL、11文字の動画IDに対応します。チャンネル、検索、再生リストのみのURLには対応しません。" },
+      "privacy": { "title": "プライバシーと外部リクエスト", "description": "入力URLはこのサイトのサーバーへ送信・保存されません。サムネイル確認のため、検証済み動画IDを含む画像リクエストがブラウザからYouTube画像サーバー（i.ytimg.com）へ送信されます。" },
+      "rights": { "title": "利用権について", "description": "このツールは動画や音声をダウンロードせず、サムネイルの所有権を付与しません。ご自身のコンテンツまたは許可された範囲で、関連法令とYouTubeポリシーに従って使用してください。" },
+      "faq": { "title": "よくある質問", "maxQuestion": "最大解像度がないのはなぜですか？", "maxAnswer": "すべての動画に最大・標準解像度のサムネイルがあるわけではありません。実際の画像サイズを確認して利用不可を判定します。", "downloadQuestion": "保存に失敗した場合は？", "downloadAnswer": "ブラウザやYouTube画像サーバーのポリシーにより直接保存が制限されることがあります。画像を開き、ブラウザの画像保存機能を使用してください。" }
+    },
+    "urlEncoderDecoder": {
+      "metadata": { "title": "URLエンコーダー/デコーダー", "description": "URL全体とURL構成要素をUTF-8パーセントエンコーディングで安全に変換します。" },
+      "title": "URLエンコーダー/デコーダー", "description": "URL全体またはクエリパラメータの値をUTF-8パーセントエンコーディングに変換し、元の文字列へ戻します。",
+      "mode": { "label": "変換モード", "encode": "Encodeモード", "decode": "Decodeモード" },
+      "encodingType": { "label": "エンコード方式", "component": "URL構成要素", "fullUrl": "URL全体", "componentHelp": "クエリパラメータの値のように予約文字もエンコードします。", "fullUrlHelp": "/、?、=、&などURLの構造を表す文字を維持します。" },
+      "plusHelp": "通常のDecodeでは+をスペースに変換せず、+のまま維持します。",
+      "input": { "encodeLabel": "文字列またはURLの入力", "decodeLabel": "エンコード済み文字列の入力", "encodePlaceholder": "エンコードする文字列またはURLを入力してください。", "decodePlaceholder": "デコードするパーセントエンコーディングを入力してください。" },
+      "result": { "encodeLabel": "エンコード結果", "decodeLabel": "デコード結果", "empty": "変換結果がここに表示されます。" },
+      "actions": { "encode": "エンコード", "decode": "デコード", "clear": "クリア", "copy": "結果をコピー", "copied": "結果をコピーしました。" },
+      "operations": { "encodeComponent": "UTF-8 · URL構成要素のエンコード", "encodeFullUrl": "UTF-8 · URL全体のエンコード", "decodeComponent": "UTF-8 · URL構成要素のデコード", "decodeFullUrl": "UTF-8 · URL全体のデコード" },
+      "errors": { "percent": "正しいURLエンコード文字列ではありません。%の後に2桁の16進数があるか確認してください。", "unicode": "UTF-8へ変換できない文字があります。入力を確認してください。", "copy": "コピーできませんでした。クリップボードの権限を確認してください。" },
+      "guide": { "title": "方式の選び方", "description": "URL構成要素はクエリパラメータの値に適し、URL全体はアドレス構造を維持します。既存の%は再度エンコードされる場合があります。" },
+      "privacy": { "title": "ブラウザ内だけで処理", "description": "入力と結果はサーバーへ送信・保存されず、デコード結果をリンクとして開くこともありません。" }
+    },
+    "base64Converter": {
+      "metadata":{"title":"Base64エンコーダー/デコーダー","description":"UTF-8、EUC-KR、Shift_JISなどを選択してBase64を変換できます。"},"title":"Base64エンコーダー/デコーダー","description":"文字列を安全にバイトとBase64へ変換し、元の文字列へデコードします。","mode":{"label":"変換モード","encode":"Encodeモード","decode":"Decodeモード"},"encoding":{"label":"文字エンコーディング","help":"自動検出はUTF形式のみを慎重に判定します。","options":{"auto":"自動検出","utf-8":"UTF-8","utf-16le":"UTF-16LE","utf-16be":"UTF-16BE","ascii":"ASCII","iso-8859-1":"ISO-8859-1","windows-1252":"Windows-1252","euc-kr":"EUC-KR","shift_jis":"Shift_JIS"}},
+      "input":{"encodeLabel":"通常文字列の入力","decodeLabel":"Base64の入力","encodePlaceholder":"変換するテキストを入力してください。","decodePlaceholder":"デコードするBase64を入力してください。"},"result":{"encodeLabel":"Base64の結果","decodeLabel":"デコード結果","empty":"変換結果がここに表示されます。"},"actions":{"encode":"エンコード","decode":"デコード","clear":"クリア","copy":"結果をコピー","copied":"結果をコピーしました。","converting":"変換中…"},"applied":{"explicit":"適用エンコーディング · {encoding}","autoUsed":"自動 · UTF-8を使用","autoBom":"自動BOM検出 · {encoding}","autoEstimated":"自動推定 · {encoding}","autoLow":"自動・低信頼度推定 · {encoding}"},
+      "errors":{"base64":"有効なBase64ではありません。文字、長さ、末尾の= paddingを確認してください。","unrepresentable":"選択したエンコーディングで表現できない文字があります。UTF-8などを選択してください。","invalidBytes":"選択したエンコーディングでは無効なバイトです。設定を確認してください。","ambiguous":"文字エンコーディングを特定できません。リストから直接選択してください。","load":"文字エンコーディング機能を読み込めませんでした。接続を確認して再試行してください。","copy":"コピーできませんでした。クリップボードの権限を確認してください。"},"guide":{"title":"文字エンコーディングについて","description":"Base64は暗号化ではありません。Auto EncodeはUTF-8を使用し、曖昧なlegacy Decodeでは直接選択が必要です。"},"privacy":{"title":"ブラウザ内だけで処理","description":"入力と結果はサーバーへ送信、保存されません。"}
+    },
+    "passwordGenerator": {
+      "metadata": { "title": "安全なパスワード生成", "description": "ブラウザで長さと文字種を選び、安全なランダムパスワードを生成できます。" },
+      "title": "パスワード生成", "description": "長さと文字種を選ぶと、ブラウザの安全な乱数でパスワードを作成します。",
+      "settings": { "lengthGroup": "パスワードの長さ", "rangeLabel": "スライダーで長さを選択", "numberLabel": "長さを直接入力", "characterTypes": "含める文字種", "uppercase": "大文字 (A–Z)", "lowercase": "小文字 (a–z)", "numbers": "数字 (0–9)", "symbols": "特殊文字" },
+      "actions": { "generate": "パスワードを生成", "copy": "結果をコピー", "copied": "パスワードをクリップボードにコピーしました。" },
+      "result": { "label": "生成結果", "empty": "設定を確認してからパスワードを生成してください。" },
+      "strength": { "label": "パスワード強度", "weak": "弱い", "medium": "普通", "strong": "強い", "weakDescription": "長さを増やすか、より多くの文字種を選ぶことをおすすめします。", "mediumDescription": "一般的な用途には適していますが、長くするとより安全です。", "strongDescription": "長さと文字種に基づく推定強度は高い状態です。", "notice": "強度は推定値であり、サービスのポリシー適合や絶対的な安全を保証しません。" },
+      "error": { "allDisabled": "文字種を1つ以上選択してください。", "length": "8から128までの整数を入力してください。", "random": "安全な乱数を利用できません。最新のブラウザでもう一度お試しください。", "copy": "コピーできませんでした。クリップボードの権限を確認して再試行してください。" },
+      "guide": { "title": "使い方", "description": "長さと含める文字種を選んで生成します。選択した各文字種が結果に1文字以上含まれます。" },
+      "privacy": { "title": "ブラウザで安全に生成", "description": "設定と生成したパスワードはサーバーへ送信、保存されません。" }
+    },
+    "jsonFormatter": {
+      "metadata": { "title": "JSONフォーマッター", "description": "ブラウザでJSONを安全に整形、圧縮、コピーできます。" },
+      "title": "JSONフォーマッター",
+      "description": "JSONのデータ表現を変えずに、読みやすく整形またはコンパクトに圧縮します。",
+      "input": { "label": "JSONエディター", "description": "JSONを入力または貼り付けて、操作を選択してください。", "placeholder": "ここにJSONを貼り付けてください。" },
+      "actions": { "format": "整形", "minify": "圧縮", "copy": "コピー", "clear": "クリア", "copied": "クリップボードにコピーしました。" },
+      "error": { "invalid": "有効なJSONではありません。", "guidance": "引用符、カンマ、コロン、中括弧、角括弧を確認してください。", "position": "{line}行 {column}列", "copy": "コピーできませんでした。クリップボードの権限を確認して再試行してください。" },
+      "guide": { "title": "使い方", "description": "整形は2スペースのインデントを追加し、圧縮は文字列外の不要な空白のみを削除します。" },
+      "privacy": { "title": "ブラウザ内だけで処理", "description": "入力したJSONはサーバーへ送信、保存されません。" }
+    },
+    "wordCounter": {
+      "metadata": {
+        "title": "文字数カウンター",
+        "description": "文字数、空白を除く文字数、単語数、行数をブラウザですぐに計算できます。"
+      },
+      "title": "文字数カウンター",
+      "description": "テキストを入力すると、文字数、空白を除く文字数、単語数、行数がリアルタイムで更新されます。",
+      "input": {
+        "label": "カウントするテキスト",
+        "description": "入力または貼り付けると、結果がすぐに更新されます。",
+        "placeholder": "ここにテキストを入力してください。"
+      },
+      "reset": "リセット",
+      "results": {
+        "label": "カウント結果",
+        "characters": "文字数",
+        "charactersWithoutWhitespace": "空白を除く",
+        "words": "単語数",
+        "lines": "行数"
+      },
+      "guide": {
+        "title": "カウント方法",
+        "description": "画面上で一つに見える文字を1文字として数えます。空白、タブ、改行は空白を除く文字数からのみ除外され、単語は日本語の境界に基づいて数えます。",
+        "fallback": "言語別の単語分割に対応していないブラウザでは、空白を基準に単語を数えます。"
+      },
+      "privacy": {
+        "title": "ブラウザ内だけで処理",
+        "description": "入力したテキストはサーバーに送信・保存されません。"
+      }
+    }
+  }
+}
