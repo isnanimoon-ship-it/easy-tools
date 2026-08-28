@@ -11,5 +11,5 @@ export function getBaseUrl() {
     return new URL(`https://${vercelUrl}`);
   }
 
-  return new URL("https://konly.co.kr");
+  return new URL("https://www.konly.co.kr");
 }

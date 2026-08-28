@@ -16,10 +16,10 @@ describe("SEO metadata", () => {
   });
   it("lists every locale and tool exactly once in the sitemap", () => {
     const entries=sitemap(); expect(entries).toHaveLength(30); expect(new Set(entries.map(entry=>entry.url)).size).toBe(30);
-    expect(entries.every(entry=>entry.url.startsWith("https://konly.co.kr/"))).toBe(true);
-    expect(entries.find(entry=>entry.url.endsWith("/en/tools/json-formatter"))?.alternates?.languages?.["x-default"]).toBe("https://konly.co.kr/ko/tools/json-formatter");
+    expect(entries.every(entry=>entry.url.startsWith("https://www.konly.co.kr/"))).toBe(true);
+    expect(entries.find(entry=>entry.url.endsWith("/en/tools/json-formatter"))?.alternates?.languages?.["x-default"]).toBe("https://www.konly.co.kr/ko/tools/json-formatter");
   });
   it("publishes the production sitemap through robots", () => {
-    expect(robots()).toEqual({rules:{userAgent:"*",allow:"/"},sitemap:"https://konly.co.kr/sitemap.xml",host:"https://konly.co.kr"});
+    expect(robots()).toEqual({rules:{userAgent:"*",allow:"/"},sitemap:"https://www.konly.co.kr/sitemap.xml",host:"https://www.konly.co.kr"});
   });
 });
