@@ -5,12 +5,13 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import { Base64Converter, type Base64ConverterLabels } from "@/components/tools/base64-converter/base64-converter";
 import { routing } from "@/i18n/routing";
+import { createPageMetadata } from "@/lib/seo";
 
 type PageProps = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params; if (!hasLocale(routing.locales, locale)) notFound();
   const t = await getTranslations({ locale, namespace: "Tools.base64Converter.metadata" }); const pathname = `/${locale}/tools/base64-converter`;
-  return { title: t("title"), description: t("description"), alternates: { canonical: pathname, languages: Object.fromEntries(routing.locales.map((item) => [item, `/${item}/tools/base64-converter`])) } };
+  return createPageMetadata({ locale, title: t("title"), description: t("description"), pathname });
 }
 export default async function Page({ params }: PageProps) {
   const { locale } = await params; if (!hasLocale(routing.locales, locale)) notFound(); setRequestLocale(locale); const t = await getTranslations("Tools.base64Converter");

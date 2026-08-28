@@ -6,12 +6,13 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import { QrCodeGenerator, type QrCodeGeneratorLabels } from "@/components/tools/qr-code-generator/qr-code-generator";
 import { routing } from "@/i18n/routing";
+import { createPageMetadata } from "@/lib/seo";
 
 type PageProps = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params; if (!hasLocale(routing.locales, locale)) notFound();
   const t = await getTranslations({ locale, namespace: "Tools.qrCodeGenerator.metadata" }); const pathname = `/${locale}/tools/qr-code-generator`;
-  return { title: t("title"), description: t("description"), alternates: { canonical: pathname, languages: Object.fromEntries(routing.locales.map((item) => [item, `/${item}/tools/qr-code-generator`])) } };
+  return createPageMetadata({ locale, title: t("title"), description: t("description"), pathname });
 }
 
 export default async function Page({ params }: PageProps) {

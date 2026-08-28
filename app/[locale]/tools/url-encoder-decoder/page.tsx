@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import { UrlEncoderDecoder, type UrlEncoderDecoderLabels } from "@/components/tools/url-encoder-decoder/url-encoder-decoder";
 import { routing } from "@/i18n/routing";
+import { createPageMetadata } from "@/lib/seo";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -14,14 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!hasLocale(routing.locales, locale)) notFound();
   const t = await getTranslations({ locale, namespace: "Tools.urlEncoderDecoder.metadata" });
   const pathname = `/${locale}/tools/url-encoder-decoder`;
-  return {
-    title: t("title"),
-    description: t("description"),
-    alternates: {
-      canonical: pathname,
-      languages: Object.fromEntries(routing.locales.map((item) => [item, `/${item}/tools/url-encoder-decoder`])),
-    },
-  };
+  return createPageMetadata({ locale, title: t("title"), description: t("description"), pathname });
 }
 
 export default async function Page({ params }: PageProps) {

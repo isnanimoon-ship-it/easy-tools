@@ -9,6 +9,7 @@ import {
   type WordCounterLabels,
 } from "@/components/tools/word-counter/word-counter";
 import { routing } from "@/i18n/routing";
+import { createPageMetadata } from "@/lib/seo";
 
 type WordCounterPageProps = {
   params: Promise<{ locale: string }>;
@@ -26,19 +27,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "Tools.wordCounter.metadata" });
   const pathname = `/${locale}/tools/word-counter`;
 
-  return {
-    title: t("title"),
-    description: t("description"),
-    alternates: {
-      canonical: pathname,
-      languages: Object.fromEntries(
-        routing.locales.map((supportedLocale) => [
-          supportedLocale,
-          `/${supportedLocale}/tools/word-counter`,
-        ]),
-      ),
-    },
-  };
+  return createPageMetadata({ locale, title: t("title"), description: t("description"), pathname });
 }
 
 export default async function WordCounterPage({ params }: WordCounterPageProps) {

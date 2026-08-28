@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import { YouTubeThumbnailDownloader, type YouTubeThumbnailLabels } from "@/components/tools/youtube-thumbnail-downloader/youtube-thumbnail-downloader";
 import { routing } from "@/i18n/routing";
+import { createPageMetadata } from "@/lib/seo";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!hasLocale(routing.locales, locale)) notFound();
   const t = await getTranslations({ locale, namespace: "Tools.youtubeThumbnailDownloader.metadata" });
   const pathname = `/${locale}/tools/youtube-thumbnail-downloader`;
-  return { title: t("title"), description: t("description"), alternates: { canonical: pathname, languages: Object.fromEntries(routing.locales.map((item) => [item, `/${item}/tools/youtube-thumbnail-downloader`])) } };
+  return createPageMetadata({ locale, title: t("title"), description: t("description"), pathname });
 }
 
 export default async function Page({ params }: PageProps) {

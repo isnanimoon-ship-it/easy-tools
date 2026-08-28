@@ -6,7 +6,8 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { getBaseUrl } from "@/lib/site-url";
-import { routing } from "@/i18n/routing";
+import { localizedAlternates, siteName } from "@/lib/seo";
+import { routing, type AppLocale } from "@/i18n/routing";
 
 import "../globals.css";
 
@@ -29,6 +30,7 @@ export async function generateMetadata({
   }
 
   const t = await getTranslations({ locale, namespace: "Metadata" });
+  const typedLocale = locale as AppLocale;
 
   return {
     metadataBase: getBaseUrl(),
@@ -37,18 +39,17 @@ export async function generateMetadata({
       template: `%s | ${t("title")}`,
     },
     description: t("description"),
+    applicationName: siteName(typedLocale),
     icons: {
       icon: "/site-icon.svg",
     },
     alternates: {
       canonical: `/${locale}`,
-      languages: Object.fromEntries(
-        routing.locales.map((supportedLocale) => [
-          supportedLocale,
-          `/${supportedLocale}`,
-        ]),
-      ),
+      languages: localizedAlternates(`/${locale}`),
     },
+    openGraph: { title: t("title"), description: t("description"), url: `/${locale}`, siteName: siteName(typedLocale), locale: typedLocale === "ko" ? "ko_KR" : typedLocale === "ja" ? "ja_JP" : "en_US", type: "website", images: [{ url: "/og", width: 1200, height: 630, alt: `${siteName(typedLocale)} · KONLY` }] },
+    twitter: { card: "summary_large_image", title: t("title"), description: t("description"), images: ["/og"] },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   };
 }
 
@@ -64,10 +65,13 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const baseUrl = getBaseUrl();
+  const jsonLd = { "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${baseUrl.origin}/#website`, url: baseUrl.origin, name: siteName(locale as AppLocale), alternateName: "KONLY", inLanguage: routing.locales, description: messages.Metadata.description }, { "@type": "WebApplication", "@id": `${baseUrl.origin}/#webapp`, url: baseUrl.origin, name: siteName(locale as AppLocale), description: messages.Metadata.description, applicationCategory: "UtilitiesApplication", operatingSystem: "Any", browserRequirements: "Requires a modern web browser", inLanguage: routing.locales, isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" } }] };
 
   return (
     <html lang={locale}>
       <body className="flex min-h-screen flex-col antialiased">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main id="main-content" className="flex-1">

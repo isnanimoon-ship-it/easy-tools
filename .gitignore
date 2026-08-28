@@ -26,3 +26,7 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 Thumbs.db
+
+# generated AI agent instruction stubs
+/AGENTS.md
+/CLAUDE.md

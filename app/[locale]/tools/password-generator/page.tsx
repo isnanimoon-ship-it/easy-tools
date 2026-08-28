@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import { PasswordGenerator, type PasswordGeneratorLabels } from "@/components/tools/password-generator/password-generator";
 import { routing } from "@/i18n/routing";
+import { createPageMetadata } from "@/lib/seo";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!hasLocale(routing.locales, locale)) notFound();
   const t = await getTranslations({ locale, namespace: "Tools.passwordGenerator.metadata" });
   const pathname = `/${locale}/tools/password-generator`;
-  return { title: t("title"), description: t("description"), alternates: { canonical: pathname, languages: Object.fromEntries(routing.locales.map((item) => [item, `/${item}/tools/password-generator`])) } };
+  return createPageMetadata({ locale, title: t("title"), description: t("description"), pathname });
 }
 
 export default async function PasswordGeneratorPage({ params }: PageProps) {
