@@ -951,140 +951,130 @@ Critic 96점, Critical 0, High 0, 자동 테스트 PASS, Console Error 0, 모바
 - Optimizer: jsdom 및 구형 브라우저 호환을 위해 Blob 바이트 읽기에 FileReader fallback 추가 후 전체 재검증 PASS.
 - Optimizer 2: 사용자 요청으로 커서 주변 11×11 원본 픽셀을 220×220 격자로 보여 주는 확대 렌즈와 중앙 픽셀·좌표 표시를 추가. 화면 가장자리 자동 배치와 실제 Chrome 픽셀 위치 검증 PASS.
 - Product Owner 최종 판정: 평가 90 이상, Critical/High 0, 자동 테스트 PASS, Console Error 0, 모바일 PASS를 모두 충족하여 `DONE`.
-# 개인정보 자동 가리기 완료 기록 — 2026-08-29
+# 개인정보 가리기 수동 전환 완료 기록 — 2026-08-29
+
+## 재설계 배경
+
+- 이전 버전(개선 1~4 기록, 이제 대체됨)은 브라우저 OCR(Tesseract.js)과 정규식 기반 자동 탐지(전화번호·이메일·IP·URL·주민번호형태·카드번호·QR·이름·아바타)로 설계되어 있었다.
+- 사용자가 실제 스크린샷(신분증, 카카오톡 대화, 이메일 캡처)으로 반복 QA한 결과, 이름 탐지가 문장 일부·UI 단어를 오탐하고 신분증의 실제 주민번호는 놓치는 등 여러 차례 개선에도 정확도가 신뢰 기준에 미치지 못했다.
+- Product Owner가 자동 탐지(OCR/QR/이름/아바타) 전체를 제거하고 완전 수동 선택 기반 마스킹 도구로 전환하기로 결정했다. `tasks/privacy-redactor/SPEC.md`가 이 전환 이후의 유일한 최신 SPEC이며, 이전 OCR/QR/이름/아바타 관련 절은 전부 대체됐다.
 
 ## 최종 상태
 
-- 기능: 개인정보 자동 가리기 / Privacy Redactor
-- URL: `/{locale}/tools/privacy-redactor`
+- 기능: 이미지 개인정보 가리기 / Privacy Redactor(수동 마스킹)
+- URL: `/{locale}/tools/privacy-redactor`(route·registry key 유지)
 - 상태: `DONE`
-- 개선 반복: 2/5
-- 최종 Critic 점수: 95/100
-- 이슈: Critical 0, High 0, Medium 0, Low 1
-- Low: 실제 모바일 기기의 터치 및 별도 스크린리더 수동 청취는 자동화 환경에서 수행하지 못했다. 포인터 이벤트, 키보드 대체 조작, 접근성 이름 및 320px 화면은 실제 Chrome으로 검증했다.
 
-## 역할별 결과
+## Builder 결과
 
-### Builder
+- Tesseract.js OCR, QR 탐지(`BarcodeDetector`/jsQR), 정규식 기반 개인정보 탐지, 아바타 탐지 코드와 `public/ocr/` 모델 자산, `workers/privacy-redactor.worker.ts`를 전부 제거했다.
+- `RedactionRegion`을 좌표+선택 상태만 남기도록 단순화했다(`lib/tools/privacy-redactor/types.ts`, `geometry.ts`).
+- 연속 드래그로 영역 이어서 추가, 영역 복제, Undo/Redo(추가·삭제·복제·이동·resize 각각), Zoom(확대 시 실제 렌더 크기 변경), 방향키 1px·Shift+방향키 10px 이동을 구현했다.
+- Solid(기본·권장)·Pixelate 가림, 원본/결과 미리보기, PNG 다운로드는 이전과 동일하게 유지했다.
+- `package.json`에서 `tesseract.js` 의존성을 제거했다(`jsqr`는 QR 코드 생성기 자체 테스트가 사용하므로 유지).
 
-- PNG/JPEG/정적 WebP 입력, 25MiB·40MP·16,384px 제한과 EXIF 방향 보정을 구현했다.
-- Tesseract.js `kor+eng` OCR, 개인정보 규칙 탐지, native `BarcodeDetector` 우선 및 jsQR fallback QR 탐지를 브라우저 내부에서 수행한다.
-- 자동 후보 선택, 범주별 선택, 개별 선택, 수동 영역 생성·이동·크기 조절·좌표 편집·삭제를 구현했다.
-- 불투명 Solid와 8/16/24px Pixelate, 원본/결과 미리보기, PNG 다운로드, 취소·초기화·오류 복구를 구현했다.
-- 입력 이미지·OCR 결과·영역·출력은 서버나 브라우저 저장소에 저장하지 않는다. Builder는 최종 PASS를 승인하지 않았다.
+## 구현 중 발견·수정한 버그
 
-### Critic 사전 품질 질문 및 최종 평가
-
-1. 첫 화면에서 자동 탐지의 한계와 최종 수동 검토 필요성을 이해할 수 있는가? — PASS
-2. 사용자가 검토 없이 다운로드하지 않도록 충분히 안내하는가? — PASS
-3. 자동 후보의 종류·위험도·부분 마스킹 값·선택 상태가 명확한가? — PASS
-4. 전체·범주·개별 후보를 빠르게 선택하고 해제할 수 있는가? — PASS
-5. 자동 탐지 실패를 수동 영역으로 보완할 수 있는가? — PASS
-6. 포인터 없이 키보드와 숫자 입력만으로도 영역을 만들고 수정할 수 있는가? — PASS
-7. Solid와 Pixelate의 보안 차이 및 권장 기본값이 분명한가? — PASS
-8. 모바일에서 입력, 미리보기, 옵션, 다운로드 흐름이 자연스러운가? — PASS
-9. OCR 모델만 내려받고 민감한 이미지·텍스트는 외부로 보내지 않는다는 설명이 명확한가? — PASS
-10. 다운로드 전에 선택 영역과 자동 탐지 한계를 다시 확인하게 하는가? — PASS
-11. OCR 또는 QR 탐지가 실패해도 수동 편집을 계속할 수 있는가? — PASS
-12. 위험도 표시가 탐지 정확도를 확정 사실처럼 오해시키지 않는가? — PASS
-13. QR payload와 OCR 원문이 DOM·로그·저장소에 불필요하게 노출되지 않는가? — PASS
-14. Canvas를 보기 어려운 사용자도 접근 가능한 영역 목록과 편집 필드를 사용할 수 있는가? — PASS
-15. 대용량 분석의 진행, 취소, 오류 복구가 예측 가능한가? — PASS
-
-| 평가 영역 | 점수 | 근거 |
-|---|---:|---|
-| 핵심 기능·정확성 | 24/25 | 실 OCR과 모든 Must 탐지, QR, 편집, 출력 통과. OCR 특성상 모든 실사진 자동 탐지는 보장하지 않음 |
-| UX·정보 구조 | 19/20 | 단계와 검토 흐름이 명확하며 수동 복구 제공 |
-| 모바일 반응형 | 14/15 | Chrome 320/375/768/1280px 통과, 실제 물리 기기 수동 확인은 미실시 |
-| 접근성 | 14/15 | label, 키보드 좌표 편집, 상태·오류 안내 제공; 별도 스크린리더 청취는 미실시 |
-| 성능·안정성 | 9/10 | Worker, lazy OCR, 취소, 39.68MP 경계 테스트 통과 |
-| 다국어 | 5/5 | ko/en/ja 통과 |
-| SEO | 5/5 | locale URL, metadata, canonical, hreflang, sitemap 통과 |
-| 개인정보·보안 | 5/5 | 민감 데이터 네트워크 전송·저장 0, 출력 metadata 누출 0 |
-| 합계 | **95/100** | PASS 기준 90 이상 |
-
-### QA 및 Optimizer
-
-- 개선 1: 반복 숫자 주민번호가 Luhn 카드로 중복 탐지되던 문제와 빠른 포인터 입력의 draft race를 수정했다.
-- 개선 2: 키보드만으로 수동 영역을 생성하는 좌표 기반 경로와 native QR detector 우선 정책을 추가했다.
-- 실제 Chrome에서 합성 이미지의 전화번호, 이메일, IPv4, URL, 주민번호 형태, 카드, QR을 Tesseract OCR부터 결과까지 검증했다.
-- PNG/JPEG/WebP, EXIF orientation 6, Solid 픽셀, Pixelate 블록, 선택 영역 외 픽셀 보존, PNG signature를 검증했다.
-- 분석 취소, 빈 선택 다운로드 방지, manual move/resize/edit/delete, locale 3개, viewport 320/375/768/1280을 검증했다.
-- 이미지·OCR·파일명 등 민감 요청 0, client storage 누출 0, 결과 metadata/text 누출 0, Console Error 0, page error 0이다.
-
-최종 검증 증거:
-
-- `npm.cmd run lint`: PASS, warning 0
-- `npm.cmd run type-check`: PASS, TypeScript 오류 0
-- `npm.cmd test -- --run`: PASS, 32 files / 337 tests / fail·skip·todo 0
-- `npm.cmd run build`: PASS, 50개 정적 페이지 및 3개 locale 개인정보 가리기 페이지 생성
-- `node tests/privacy-redactor-browser.mjs`: PASS
-- `node tests/privacy-redactor-formats.mjs`: PASS
-- 메뉴·SEO·다크 모드 브라우저 회귀 테스트: PASS
-
-## Product Owner 최종 판정
-
-Critic 95점, Critical 0, High 0, 자동 테스트 PASS, Console Error 0, 모바일 반응형 PASS 및 `docs/EVALUATION.md`의 완료 게이트를 충족했다. 2회 개선 후 `DONE`으로 기록한다.
-# 개인정보 자동 가리기 개선 3 완료 — 2026-08-29
-
-- 사용자 재현: 374×236 신분증 이미지와 1013×629 확대 이미지에서 `820701 2345678` 주민번호 공백 표기를 자동 탐지하지 못했다.
-- 판정: Must Have의 흔한 주민번호 표시 형식을 놓치는 High Issue로 기존 완료 상태를 다시 열었다.
-- 원인: 하이픈 필수 정규식, OCR block/line 경계 의존, 글자 높이 0.75배의 좁은 토큰 간격 제한, 작은 이미지를 확대하지 않는 OCR 입력, 기본 단일 문단 분할 모드였다.
-- Optimizer: 공백·하이픈·긴 대시·점·무구분 13자리 형식을 지원하고, 무구분 값은 날짜와 뒷자리 첫 숫자를 검사해 보통 위험도로 분류한다. 명시적 6-7 구분자는 SPEC의 형태 탐지 원칙대로 유지한다.
-- Optimizer: OCR block ID가 달라도 세로 중첩이 있는 토큰을 같은 시각적 행으로 결합하고, 주민번호에 한해 글자 높이 3배까지의 간격을 허용한다.
-- Optimizer: 1200px 미만 이미지는 OCR 전용으로 목표 폭 1600px, 최대 4배 확대하고 grayscale·contrast 전처리와 Tesseract Sparse Text·300 DPI 설정을 적용한다. 원본과 최종 출력 해상도는 변경하지 않는다.
-- QA fixture: 배경 무늬와 흩어진 한글 문구가 있는 374×236 이미지의 `820701  2345678`을 실제 Chrome/Tesseract 전체 흐름으로 검증했다.
-- 재검증: 주민번호 변형·날짜·오탐 방지·OCR 크기 단위 테스트를 포함해 개인정보 테스트 33개 PASS, 전체 32 files / 350 tests PASS.
-- 브라우저: 저해상도 신분증형 탐지 PASS, 기존 전화·이메일·IP·URL·카드·QR·수동 편집·출력 회귀 PASS, PNG/JPEG/WebP·EXIF·39.68MP 회귀 PASS.
-- 품질: Critic 97/100, Critical 0, High 0, Console Error 0, Page Error 0, TypeScript 오류 0, lint warning 0, production build 50 pages PASS.
-- 남은 Low: 사용자가 제공한 원본 파일 자체는 대화 이미지로만 확인되어 동일 binary 재실행은 불가능했다. 동일 크기·표기·배경 복잡도를 재현한 자동 fixture로 검증했으며, 실제 원본 재확인이 권장된다.
-- Product Owner 최종 판정: 완료 조건을 다시 충족하여 개선 반복 `3/5`, 상태 `DONE`.
-# 개인정보 자동 가리기 개선 4 완료 — 2026-08-29
-
-## 재개 사유와 범위 결정
-
-- 사용자 실사례에서 카카오톡 참가자명, 이메일 주소, 게시판 작성자명이 탐지되지 않았고 `원본 보기`가 현재 편집 상태에서 아무 변화도 만들지 않았다.
-- 이름은 기존 Could Have였지만 채팅·이메일·고객센터·중고거래·게시판이라는 승인된 주요 사용 사례와 자동 탐지 범위가 불일치해 Product Owner가 V1 Must Have 이름 후보로 승격했다.
-- 얼굴 인식이나 신원 판별은 계속 금지한다. 이름은 한국 성씨로 시작하는 2~4자 한글 문자열을 보통 위험 후보로만 제시하고 사용자가 검토·해제한다.
-
-## Optimizer 4
-
-- 한국 성씨 기반 이름 후보를 추가하고 `김석현`, `김지수`, `이하나`, `이수진`을 탐지한다. 이메일·이미지·인터넷·한국어·선택 등 대표 UI 단어는 제외한다.
-- 이름 목록 값은 첫 글자 외 마스킹하며 기본 선택하되 `보통` 위험도로 표시해 확정된 이름이라고 과장하지 않는다.
-- 이메일 OCR의 전각 `＠`, `﹫`, `。`, `．` 문자를 ASCII `@`, `.`으로 정규화한다.
-- 폭 1200px 경계의 불연속을 제거하고 2200px 미만 이미지는 목표 폭 2200px, 최대 4배까지 OCR 전용 확대한다. 원본과 출력 해상도는 변경하지 않는다.
-- 미리보기 상태를 `editor / clean / result`로 분리했다. `원본 보기`는 SVG overlay를 실제로 제거하며 버튼은 `편집 영역 보기`로 바뀌어 복귀할 수 있다.
-- 이름 카테고리와 원본/편집 전환 문구를 ko/en/ja에 추가했다.
-
-## Critic 재평가 질문
-
-1. 카카오톡형 화면에서 참가자 이름 후보를 찾는가? — PASS
-2. 게시판 `작성자` 값의 이름 후보를 찾는가? — PASS
-3. 작은 회색 이메일 주소가 OCR과 정규식을 거쳐 후보가 되는가? — PASS
-4. 이름이 확정 사실이 아니라 검토할 보통 위험 후보로 표시되는가? — PASS
-5. 일반적인 UI 단어를 이름으로 대량 오인하지 않도록 최소 제외 규칙이 있는가? — PASS
-6. 원본 보기를 누르면 편집 overlay가 실제로 사라지는가? — PASS
-7. 순수 원본에서 편집 영역으로 명확하게 돌아올 수 있는가? — PASS
-8. 순수 원본, 영역 편집, 가림 결과 세 상태가 서로 구분되는가? — PASS
-9. 확대 분석이 원본과 다운로드 이미지 해상도를 변경하지 않는가? — PASS
-10. 기존 주민번호·전화·IP·URL·카드·QR 탐지를 손상시키지 않는가? — PASS
-11. 이름과 이메일 원문이 네트워크·저장소·console로 유출되지 않는가? — PASS
-12. 모바일과 세 locale에서 새 카테고리가 레이아웃을 깨지 않는가? — PASS
-
-최종 Critic 점수는 96/100이다. Critical 0, High 0, Medium 0, Low 1이다. Low는 성씨 기반 휴리스틱이 모든 별명·외국인명·영문명을 포괄하지 못하고 일부 일반 단어를 후보로 만들 가능성이 있다는 점이다. 자동 확정 대신 보통 위험 후보와 수동 편집 경로를 유지한다.
+- Undo/Redo가 선택 상태를 무조건 초기화하던 것을, 되돌린 뒤에도 해당 영역이 남아 있으면 선택을 보존하도록 수정했다.
+- Zoom이 시각적으로 아무 효과가 없던 버그 — Tailwind `max-w-full` 클래스가 인라인 `width` 스타일을 덮어써서 발생. Zoom 활성화 시 해당 클래스를 조건부로 제거해 수정했다.
+- 상단 메뉴(`Common.toolsNav.privacyRedactor`)에 이전 이름이 남아 있던 i18n 누락을 사용자 리포트로 발견해 수정했다. 도구 문구는 `Common.toolsNav`·`Home.tools`·`Tools.*` 세 곳을 모두 갱신해야 하는데 한 곳을 놓친 사례다.
 
 ## QA 증거
 
-- `tests/privacy-redactor-scenarios-browser.mjs`: 실제 Chrome/Tesseract에서 카카오톡형 590×663 이름, 이메일형 1538×1122 작은 회색 주소, 게시판형 1196×782 작성자 탐지 PASS.
-- 같은 테스트에서 `원본 보기 → SVG overlay 0 → 편집 영역 보기 → SVG 복구` PASS.
-- 저해상도 374×236 주민등록증형 공백 주민번호 PASS.
-- 기존 전화·이메일·IP·URL·주민번호·카드·QR·수동 편집·PNG 출력 회귀 PASS.
-- PNG/JPEG/WebP, EXIF orientation, Solid/Pixelate, 39.68MP 경계 PASS.
-- 단위 테스트: 개인정보 44개 PASS.
-- 전체 테스트: 32 files / 361 tests PASS, fail·skip·todo 0.
-- TypeScript 오류 0, lint warning 0, production build 50 pages PASS.
-- Console Error 0, Page Error 0, 민감 데이터 외부 요청·client storage 누출 0.
+- `node tests/privacy-redactor-browser.mjs`, `node tests/privacy-redactor-formats.mjs`(수동 흐름 기준으로 재작성): 실제 Chrome에서 PASS
+- 연속 추가·이동·resize·좌표 수정·복제·삭제·Undo/Redo·Zoom·키보드 이동 PASS
+- Solid/Pixelate pixel 검증, PNG signature, EXIF/GPS 미포함 PASS
+- 이미지·영역의 외부 전송 및 client storage 저장 0(초기 "Object URL 누수" 의심은 브라우저 내부 IndexedDB 항목이었고 실제 누수가 아님을 재확인)
+- `npm run lint`·`npm run type-check`·`npm test -- --run`·`npm run build` 전부 PASS
 
 ## Product Owner 최종 판정
 
-평가 96점, Critical 0, High 0, 자동 테스트 PASS, Console Error 0, 모바일 및 기존 회귀 PASS로 완료 게이트를 충족했다. 개선 반복 `4/5`, 상태 `DONE`으로 기록한다. Git 푸시는 수행하지 않았다.
+`tasks/privacy-redactor/SPEC.md` §19 완료 조건을 모두 충족했다. 이 라운드는 별도의 100점 Critic 채점표를 다시 작성하지 않고, SPEC §19 완료 조건과 실제 브라우저 QA 결과로 완료를 확인했다. 상태 `DONE`.
+
+# 스크린샷 상태바 제거 완료 기록 — 2026-08-29
+
+## 최종 상태
+
+- 기능: 스크린샷 상태바 제거 / Screenshot Status Bar Remover
+- URL: `/{locale}/tools/screenshot-statusbar-remover`
+- 상태: `DONE`
+- 최종 Critic 점수: 93/100
+- 이슈: Critical 0, High 0, Medium 1(회귀 1에서 해결), Low 2(원어민 번역 검수 미실시, 좁은 뷰포트 문구 잘림 미측정)
+
+## Builder 결과
+
+- OCR이나 CV 모델 없이, 분석용으로 축소한 이미지 상단 0~10% 구간에서 boundaryEdge(경계 밝기차)·edgeAsymmetry(좌우 아이콘 밀도 비대칭)·heightPrior(비율 기반 2봉 분포)·aspectPenalty(종횡비 보정) 점수를 조합하는 순수 TypeScript 알고리즘을 구현했다(`lib/tools/screenshot-statusbar-remover/detection.ts`).
+- "가장 강한 경계"가 아니라 "임계값을 넘는 후보 중 가장 얕은(위쪽) 후보"를 선택해 앱 헤더까지 잘라내는 사고를 구조적으로 방지했다.
+- 수동 조정 UI 3종(Drag handle·Slider·px 입력+±1버튼+방향키)을 모두 제공하고 항상 같은 state로 동기화했다.
+
+## Critic 평가(1회차, `docs/EVALUATION.md` 100점 기준)
+
+| 평가 영역 | 점수 | 근거 |
+|---|---:|---|
+| 핵심 기능과 정확성 | 20/25 | Must Have 전 항목 통과. "이미 잘린 이미지"에서 얕은(45px) 오탐 1건 실측(Medium) |
+| 사용성·정보 구조 | 20/20 | 목적 발견·흐름 효율·상태 피드백·오류 복구 전 항목 충족 |
+| 모바일 반응형 | 15/15 | 320/375/768/1440px 가로 스크롤 0, 터치 타깃 수정 반영 |
+| 접근성 | 15/15 | 키보드 Tab 4회·Enter 활성화 실측, label·live status 제공 |
+| 성능·안정성 | 10/10 | 9000px 이미지 감지 149ms, Object URL 누수 0 |
+| 다국어·콘텐츠 | 3/5 | 번역 완결성은 PASS했지만 원어민 검수·좁은 뷰포트 잘림 측정 미실시(Low 2건) |
+| SEO·공유 가능성 | 5/5 | locale별 metadata, canonical/hreflang |
+| 개인정보·보안 | 5/5 | 네트워크 요청 0, EXIF/GPS 미포함 |
+| 합계 | **93/100** | PASS 기준 90 이상 |
+
+## Builder가 실제 Chrome에서 발견·수정한 버그
+
+- 드래그 손잡이(원)가 히트 영역(rect)보다 나중에 그려져 클릭이 손잡이에서 막히던 문제 — 손잡이·선에 `pointerEvents="none"` 적용.
+- `fill="transparent"` rect가 기본 `pointer-events: visiblePainted`에서 히트테스트 대상이 아니던 문제 — `pointerEvents="all"` 명시.
+- 미리보기 모드 전환 시 `<img>`가 리마운트되며 감지가 재실행돼 사용자의 수동 조정값을 덮어쓰던 문제 — 이미지당 최초 1회만 감지하도록 `detectedForRef` 가드 추가.
+- 모바일 드래그 hit-band가 이미지 폭 고정 비율이라 375px 뷰포트에서 실제 터치 영역이 7~8px에 불과하던 문제(SPEC 요구 44px 미달, Medium) — `ResizeObserver`로 실제 표시 배율을 측정해 항상 ≈44 CSS px가 되도록 수정.
+
+## 회귀 1 — 실사용자 테스트(NAVER, "스크린샷 이지" 앱)로 발견한 알고리즘 결함 수정
+
+- DONE 판정 이후 사용자가 실제 NAVER·"스크린샷 이지" 스크린샷으로 테스트하다가, NAVER 자체 헤더(햄버거+로고)가 상태바와 거의 같은 초록색으로 테마 매칭돼 있어 헤더까지 통째로 잘려나가는 것을 발견했다.
+- 원인: 기존 `boundaryEdgeScore`가 후보 줄 바로 위·아래 2줄만 비교하는 국소 비교라, 미세한 색 차이(테마 매칭)는 증거로 인정받지 못하고 더 깊고 뚜렷한 헤더/본문 경계만 선택됐다.
+- 수정(사용자 제안 방식 채택): 상단 4줄의 채널별 중앙값을 기준색으로 고정하고, 각 줄의 색이 기준값에서 얼마나 누적으로 벗어났는지 비교하는 `colorDriftScore`/`referenceColor`로 교체.
+- 부작용 발견: 상태바·헤더 색이 완전히 동일한 극단 케이스에서, 민감해진 신호가 더 깊은 곳(헤더→본문 경계)의 진짜 색 변화를 찾아 그 지점까지 잘라버리는 회귀가 생겼다.
+- 수정: 아이콘 근거(`asymmetry`)가 없는 순수 색-이탈 후보는 `ratio ≤ 0.055`(실측 상태바 비율 상한) 안에서만 신뢰하도록 깊이 제한(`DRIFT_ONLY_MAX_RATIO`)을 추가했다. 아이콘 근거가 있는 후보는 이 제한을 적용하지 않는다.
+- 재검증: NAVER형 테마 매칭 케이스는 정확히 상태바만 감지, 동일 배경색 극단 케이스는 다시 "미감지"로 안전 복귀 — 두 사례 모두 유닛 테스트로 고정했다.
+
+## QA 증거
+
+- `npm run lint`·`npm run type-check`·`npm test -- --run`(338 tests)·`npm run build` 전부 PASS
+- `node tests/screenshot-statusbar-remover-browser.mjs`, `node tests/screenshot-statusbar-remover-scenarios-browser.mjs`: Object URL 누수 0, 키보드 전용(Tab 순회+Enter) 흐름, 320/375/768/1440px 가로 스크롤 0 PASS
+- Console Error 0, page error 0
+
+## Product Owner 최종 판정
+
+Critic 93/100(≥90), Critical 0·High 0, `docs/EVALUATION.md` QA 게이트(자동 테스트·Console Error 0·모바일·수용 기준) 전부 PASS로 `DONE` 판정. 이후 실사용자 테스트로 발견한 알고리즘 결함 2건(회귀 1)을 추가 수정하고 재검증까지 완료했다.
+
+# 텍스트 정리기 완료 기록 — 2026-08-30
+
+## 최종 상태
+
+- 기능: 텍스트 정리기 / Text Cleaner
+- URL: `/{locale}/tools/text-cleaner`
+- 상태: `DONE`(정식 100점 Critic 채점 회차는 진행하지 않고, SPEC 완료 조건과 실제 QA 결과로 완료를 확인했다)
+
+## Builder 결과
+
+- 공백/줄바꿈 정리와 중복 줄 제거를 하나의 도구에서 옵션으로 조합하는 고정 9단계 파이프라인을 구현했다(`lib/tools/text-cleaner/pipeline.ts`): 줄바꿈 정규화 → 특수 공백(Tab/NBSP/전각 공백) 변환 → 줄 앞뒤 공백 제거 → 연속 공백 정리 → 빈 줄 처리(유지/1개로 축소/모두 제거) → 한 줄로 합치기 → comparisonKey 생성 → 중복 제거(첫/마지막 유지) → 결과 생성.
+- `cleanedLine`(출력)과 `comparisonKey`(중복 비교 전용)를 분리해, 대소문자·앞뒤 공백·내부 공백·NFC 정규화 옵션이 출력 텍스트 자체를 바꾸지 않고 비교 기준에만 영향을 주도록 구현했다.
+- "한 줄로 합치기"는 `join("\n").replace(/\n+/g, " ")` 방식으로 처리해 빈 줄이 있던 자리에서 공백이 2개로 겹치는 문제를 피했다.
+- 빠른 설정(Quick Presets) 5종(기본 정리/빈 줄 제거/중복 제거/한 줄로 만들기/완전히 정리), 결과 텍스트 직접 편집(입력·옵션 변경 시 재계산 결과로 덮어써짐을 안내), LF/CRLF 다운로드, 200/500ms 디바운스 실시간 재계산을 구현했다.
+- 글자 수는 UTF-16 `.length`가 아니라 코드 포인트 기준(`[...text].length`)으로 계산해 이모지 등 서로게이트 쌍 문자를 올바르게 1개로 센다.
+
+## 구현 중 발견·수정한 문제
+
+- 결과 textarea를 편집 가능하게 유지하면서 입력/옵션 변경 시에는 새로 계산한 값으로 덮어써야 하는 요구사항을 `useEffect` 안에서 `setState`하는 방식으로 처음 구현했으나, `react-hooks/set-state-in-effect` lint 규칙에 위배됨을 발견하고 React의 "렌더 중 상태 조정" 공식 패턴으로 교체했다.
+- QA 스크립트를 `http://127.0.0.1:3000`으로 실행했을 때 페이지의 모든 상호작용이 죽어 있는 것처럼 보이는 문제를 발견했다 — 원인은 컴포넌트 버그가 아니라 Next.js dev 서버가 기본적으로 `localhost`만 신뢰하고 `127.0.0.1`에서 오는 정적 JS 청크 요청을 차단해(cross-origin dev asset 차단) 클라이언트 JS가 전혀 로드되지 않았기 때문이었다. QA 스크립트의 기본 접속 주소를 `localhost`로 변경해 해결했다.
+
+## QA 증거
+
+- `lib/tools/text-cleaner/text-cleaner.test.ts`: 34개 유닛 테스트 PASS(파이프라인 각 단계, 첫/마지막 유지, comparisonKey 순서, 이모지 코드 포인트 글자 수, SPEC 필수 조합 시나리오 포함)
+- `node tests/text-cleaner-browser.mjs`(실제 Chrome): 필수 조합 시나리오, 빠른 설정 적용과 수동 옵션 변경 시 설정 해제, 한 줄 합치기의 중복 제거 자동 비활성, 첫/마지막 유지, 결과 종류(중복만/1회만) 필터, 이모지 글자 수, 결과 직접 편집 후 재계산 덮어쓰기, 클립보드 복사, LF/CRLF 다운로드, 대용량 입력 성능 경고, ko/en/ja 3개 locale·320/375/768px 모바일 뷰포트 PASS
+- `npm run lint`·`npm run type-check`·`npm test -- --run`(375 tests)·`npm run build` 전부 PASS
+- Console Error 0, page error 0, 민감 데이터 외부 요청 0(완전 client-only)
+
+## Product Owner 최종 판정
+
+`tasks/text-cleaner/SPEC.md`의 파이프라인 순서·중복 처리 규칙을 그대로 구현했고, 유닛·실브라우저 QA가 모두 PASS했다. 상태 `DONE`.
