@@ -1,0 +1,3 @@
+import type{Rect}from"./types";
+export function clampRect(rect:Rect,width:number,height:number):Rect{const x=Math.max(0,Math.min(Math.round(rect.x),Math.max(0,width-1))),y=Math.max(0,Math.min(Math.round(rect.y),Math.max(0,height-1)));return{x,y,width:Math.max(1,Math.min(Math.round(rect.width),width-x)),height:Math.max(1,Math.min(Math.round(rect.height),height-y))};}
+export function clientToImage(clientX:number,clientY:number,bounds:{left:number;top:number;width:number;height:number},width:number,height:number){if(bounds.width<=0||bounds.height<=0)return null;return{x:Math.max(0,Math.min(width,Math.round((clientX-bounds.left)/bounds.width*width))),y:Math.max(0,Math.min(height,Math.round((clientY-bounds.top)/bounds.height*height)))};}

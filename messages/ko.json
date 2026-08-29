@@ -9,7 +9,7 @@
     "skipToContent": "본문으로 바로가기",
     "status": "준비 중",
     "theme": { "enableDark": "다크 모드 켜기", "enableLight": "라이트 모드 켜기" },
-    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 변환기", "urlEncoderDecoder": "URL 인코더", "youtubeThumbnailDownloader": "유튜브 썸네일", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 압축기", "screenshotStitcher": "스크린샷 이어붙이기", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기" },
+    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 변환기", "urlEncoderDecoder": "URL 인코더", "youtubeThumbnailDownloader": "유튜브 썸네일", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 압축기", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기" },
     "footer": "© {year} 간편도구. 누구나 간편하게.",
     "result": "결과",
     "copy": "복사",
@@ -43,11 +43,51 @@
       "imageColorPicker": { "title": "이미지 색상 추출기", "description": "이미지를 올리고 정확한 픽셀 색상을 HEX, RGB, HSL, HSV, CMYK로 확인합니다." },
       "imageCompressor": { "title": "이미지 압축기", "description": "JPG, PNG, WebP 사진을 원하는 품질이나 목표 용량으로 브라우저에서 줄입니다." },
       "screenshotStitcher": { "title": "스크린샷 자동 이어붙이기", "description": "연속 스크린샷의 겹치는 영역을 찾아 중복 없이 하나의 긴 PNG로 합칩니다." },
+      "privacyRedactor": { "title": "이미지 마스킹 도구", "description": "사진이나 스크린샷에서 가리고 싶은 부분을 직접 선택해 마스킹한 PNG로 저장합니다." },
+      "screenshotStatusbarRemover": { "title": "스크린샷 상태바 제거", "description": "스마트폰 스크린샷 상단의 시간·배터리·통신 상태바를 감지해 제거하고 다운로드합니다." },
       "regexTester": { "title": "정규식 테스터", "description": "JavaScript 정규식을 실행해 매치, 캡처 그룹과 문자열 치환 결과를 확인합니다." },
-      "cronExpressionGenerator": { "title": "Cron 표현식 생성기", "description": "5필드 Cron을 만들고 해석하며 시간대별 다음 실행 시간을 확인합니다." }
+      "cronExpressionGenerator": { "title": "Cron 표현식 생성기", "description": "5필드 Cron을 만들고 해석하며 시간대별 다음 실행 시간을 확인합니다." },
+      "textCleaner": { "title": "텍스트 정리기", "description": "여러 줄의 공백과 빈 줄을 정리하고 중복된 줄을 제거합니다." }
     }
   },
   "Tools": {
+    "privacyRedactor": {
+      "metadata": { "title": "무료 온라인 이미지 모자이크·가리기", "description": "사진이나 스크린샷에서 가리고 싶은 부분을 직접 선택해 단색 또는 모자이크로 가리고 다운로드하세요. 브라우저에서만 처리됩니다." },
+      "title": "이미지 개인정보 가리기", "description": "가리고 싶은 부분을 직접 드래그로 선택하고, 단색 또는 모자이크로 가린 뒤 다운로드하세요. 서버로 전송되지 않고 브라우저에서만 처리됩니다.",
+      "upload": { "title": "이미지 선택", "help": "PNG, JPG, 정지 WebP 한 장을 선택하거나 여기에 놓으세요. 최대 25MB·4천만 픽셀", "drop": "여기에 이미지를 놓으세요." },
+      "privacy": "이미지는 브라우저에서만 처리되며 서버로 전송되지 않습니다.",
+      "actions": { "choose": "이미지 선택", "change": "이미지 변경", "clear": "초기화", "select": "선택", "addRegion": "영역 추가", "addByCoordinates": "좌표로 영역 추가", "original": "원본 보기", "editor": "편집 영역 보기", "result": "결과 보기", "selectAll": "모두 선택", "clearAll": "모두 해제", "on": "전체 선택", "off": "전체 해제", "preview": "가림 결과 만들기", "delete": "영역 삭제", "duplicate": "영역 복제", "download": "PNG 다운로드", "undo": "실행 취소", "redo": "다시 실행", "zoomOut": "축소", "zoomIn": "확대", "zoomFit": "맞춤" },
+      "regions": { "title": "가림 영역 {count}개", "selected": "가림 {count}개", "item": "영역 {index}", "redact": "이 영역 가리기", "empty": "아직 추가한 영역이 없습니다. \"영역 추가\"를 누르고 가릴 부분을 드래그하세요." },
+      "editor": { "addHelp": "이미지에서 가릴 부분을 드래그하세요. 계속 드래그하면 영역을 이어서 추가할 수 있습니다.", "selectHelp": "영역을 선택해 이동하거나 손잡이와 좌표로 크기를 조절하세요. 방향키로 1px, Shift+방향키로 10px씩 이동합니다.", "canvasLabel": "개인정보 가림 영역 편집기", "coordinates": "선택 영역 좌표", "x": "X", "y": "Y", "width": "너비", "height": "높이", "sizeLabel": "{width} × {height}" },
+      "preview": { "originalAlt": "개인정보 가림 영역이 표시된 원본 이미지", "cleanAlt": "편집 표시가 없는 순수 원본 이미지", "resultAlt": "개인정보 가림 적용 결과 이미지" },
+      "mask": { "title": "가림 방식", "method": "방식", "solid": "단색 가림 · 권장", "pixelate": "모자이크", "color": "단색", "black": "검정", "white": "흰색", "pixelSize": "모자이크 크기", "warning": "안전한 공유에는 완전히 불투명한 단색 가림을 권장합니다. 모자이크는 원본을 추측할 가능성이 있습니다." },
+      "result": { "title": "다운로드 준비", "review": "다운로드 전에 가려질 영역을 한 번 더 확인해 주세요.", "metadata": "다운로드 PNG는 새로 생성되며 원본의 GPS·EXIF와 편집 레이어를 포함하지 않습니다." },
+      "errors": { "multiple-files": "이미지는 한 장만 선택하세요.", "unsupported-type": "PNG, JPG 또는 정지 WebP 이미지를 선택하세요.", "file-too-large": "파일은 25MB 이하여야 합니다.", "animated-image": "움직이는 WebP와 GIF는 지원하지 않습니다. 정지 이미지로 변환해 주세요.", "dimension-limit": "이미지가 4천만 픽셀 또는 한 변 16,384px 제한을 초과합니다.", "decode-failed": "이미지를 읽을 수 없습니다. 파일이 손상되었을 수 있습니다.", "canvas-failed": "이미지 결과를 만들지 못했습니다. 더 작은 이미지로 다시 시도하세요.", "no-selected-region": "가릴 영역을 하나 이상 선택하거나 직접 추가하세요." }
+    },
+    "screenshotStatusbarRemover": {
+      "metadata": { "title": "무료 스크린샷 상태바 제거 · 아이폰·갤럭시", "description": "스마트폰 스크린샷 상단의 시간·배터리·통신 상태바를 브라우저에서 감지해 제거하고 다운로드하세요." },
+      "title": "스크린샷 상태바 제거", "description": "세로형 스마트폰 스크린샷 상단의 상태바 높이를 감지해 제거선으로 보여드립니다. 확인하거나 직접 조정한 뒤 다운로드하세요.",
+      "upload": { "title": "이미지 선택", "help": "PNG, JPG, 정지 WebP 세로형 스크린샷 한 장을 선택하거나 여기에 놓으세요. 최대 25MB·4천만 픽셀", "drop": "여기에 이미지를 놓으세요." },
+      "privacy": "이미지는 브라우저에서만 처리되며 서버로 전송되지 않습니다. 상태바 이외의 개인정보는 자동으로 제거되지 않습니다.",
+      "actions": { "choose": "이미지 선택", "change": "이미지 변경", "clear": "초기화", "original": "원본 보기", "editor": "편집 화면 보기", "result": "결과 보기", "reset": "감지값으로 초기화", "minus1": "1px 줄이기", "plus1": "1px 늘리기", "preview": "결과 만들기", "download": "PNG 다운로드" },
+      "notices": { "landscape": "현재 버전은 세로형 스마트폰 스크린샷에 최적화되어 있습니다. 자동 감지 없이 직접 조정해 사용하세요.", "tooSmall": "이미지가 너무 작아 자동 감지를 사용할 수 없습니다. 직접 조정해 사용하세요.", "notDetected": "상태바가 감지되지 않았습니다. 직접 제거 높이를 조정하세요.", "reviewSuggested": "감지 결과를 확인한 뒤 필요하면 직접 조정하세요.", "confidence": "상태바 감지: {level} · 제거 높이 {height}px" },
+      "confidence": { "high": "높음", "medium": "보통", "low": "낮음" },
+      "editor": { "help": "파란 선을 위아래로 드래그하거나 오른쪽 슬라이더·숫자 입력으로 조정하세요. 방향키로 1px, Shift+방향키로 10px씩 움직입니다.", "canvasLabel": "상태바 제거선 편집기", "heightTitle": "제거 높이", "heightPx": "px", "slider": "제거 높이 슬라이더" },
+      "preview": { "originalAlt": "제거선이 표시된 원본 이미지", "cleanAlt": "편집 표시가 없는 순수 원본 이미지", "resultAlt": "상태바가 제거된 결과 이미지" },
+      "result": { "title": "다운로드 준비", "review": "다운로드 전에 상태바가 정확히 제거됐는지, 앱 헤더가 잘리지 않았는지 확인해 주세요.", "metadata": "다운로드 이미지는 새로 생성되며 원본의 GPS 등 메타데이터를 포함하지 않습니다." },
+      "errors": { "multiple-files": "이미지는 한 장만 선택하세요.", "unsupported-type": "PNG, JPG 또는 정지 WebP 이미지를 선택하세요.", "file-too-large": "파일은 25MB 이하여야 합니다.", "dimension-limit": "이미지가 4천만 픽셀 또는 한 변 16,384px 제한을 초과합니다.", "decode-failed": "이미지를 읽을 수 없습니다. 파일이 손상되었을 수 있습니다.", "canvas-failed": "결과 이미지를 만들지 못했습니다. 더 작은 이미지로 다시 시도하세요.", "crop-exceeds-image": "제거 높이가 이미지 높이보다 클 수 없습니다." }
+    },
+    "textCleaner": {
+      "metadata": { "title": "무료 온라인 텍스트 정리기 · 공백·중복 줄 제거", "description": "여러 줄 공백, 빈 줄, 중복된 줄을 한 번에 정리하세요. 브라우저에서만 처리됩니다." },
+      "title": "텍스트 정리기", "description": "불필요한 공백과 빈 줄을 정리하고 중복된 줄을 제거합니다. 옵션을 조합해 원하는 형태로 텍스트를 정리하세요.",
+      "presets": { "title": "빠른 설정", "basic": "기본 정리", "removeBlank": "빈 줄 제거", "removeDuplicate": "중복 제거", "oneLine": "한 줄로 만들기", "full": "완전히 정리" },
+      "input": { "label": "원본 텍스트", "placeholder": "정리할 텍스트를 입력하거나 붙여넣으세요.", "tooLarge": "입력이 너무 큽니다 (최대 10MB). 텍스트를 나눠서 처리해 주세요.", "perfWarning": "입력이 커서 처리 속도가 느려질 수 있습니다." },
+      "actions": { "reset": "초기화", "copy": "결과 복사", "copied": "복사됨", "download": "TXT 다운로드" },
+      "output": { "label": "정리된 텍스트", "overwriteNotice": "결과는 직접 수정할 수 있지만, 입력이나 옵션을 변경하면 새 결과로 덮어써집니다.", "newline": "줄바꿈" },
+      "stats": { "label": "통계", "originalLines": "원본 줄 수", "resultLines": "결과 줄 수", "removedLines": "제거된 줄 수", "originalChars": "원본 글자 수", "resultChars": "결과 글자 수", "uniqueLines": "고유 줄", "duplicateLines": "중복 줄" },
+      "whitespace": { "title": "공백·줄바꿈 정리", "collapseSpaces": "연속된 공백을 1개로 줄이기", "trimLines": "줄 앞뒤 공백 제거", "tabToSpaces": "탭을 공백으로 변환", "normalizeSpecialSpaces": "특수 공백(전각·NBSP)을 일반 공백으로 변환", "blankLines": { "title": "빈 줄 처리", "keep": "유지", "collapse": "연속된 빈 줄을 1개로 줄이기", "remove": "모든 빈 줄 제거" }, "mergeToOneLine": "모든 줄을 한 줄로 합치기" },
+      "duplicate": { "title": "중복된 줄 제거", "disabledByMerge": "한 줄로 합치기가 켜져 있으면 중복 제거는 적용되지 않습니다.", "ignoreCase": "대소문자 구분 안 함", "ignoreSurroundingWhitespace": "줄 앞뒤 공백 무시", "ignoreInnerWhitespaceDiff": "줄 내부 공백 차이 무시", "unicodeNormalize": "유니코드 정규화(NFC) 후 비교", "keep": { "title": "남길 줄", "first": "처음 나온 줄", "last": "마지막에 나온 줄" }, "resultType": { "title": "결과 종류", "unique": "중복 제거된 전체", "duplicatesOnly": "중복이었던 줄만", "onceOnly": "한 번만 나온 줄만" } }
+    },
     "screenshotStitcher": {
       "metadata": { "title": "무료 스크린샷 자동 이어붙이기", "description": "여러 스크린샷의 겹치는 부분을 브라우저에서 자동으로 찾아 하나의 긴 PNG로 합치세요." },
       "title": "스크린샷 자동 이어붙이기", "description": "연속으로 찍은 이미지의 겹치는 부분을 자동으로 찾아 중복을 제거하고 긴 스크린샷으로 만드세요.",

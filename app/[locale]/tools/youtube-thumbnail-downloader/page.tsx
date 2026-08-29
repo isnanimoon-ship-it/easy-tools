@@ -30,7 +30,7 @@ export default async function Page({ params }: PageProps) {
     errors: { "not-youtube": t("errors.notYoutube"), "invalid-url": t("errors.invalidUrl"), "unsupported-format": t("errors.unsupported"), "missing-video-id": t("errors.missingId"), "invalid-video-id": t("errors.invalidId"), "thumbnail-unavailable": t("errors.unavailable"), network: t("errors.network") },
   };
   return <>
-    <section className="border-b border-[var(--border)] bg-[var(--surface)]"><Container className="py-10 sm:py-14"><div className="max-w-3xl"><h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-[var(--text-muted)]">{t("description")}</p></div></Container></section>
+    <section className="border-b border-[var(--border)] bg-[var(--surface)]"><Container className="py-10 sm:py-14"><div className="max-w-4xl"><h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-[var(--text-muted)]">{t("description")}</p></div></Container></section>
     <Container className="py-8 sm:py-12">
       <YouTubeThumbnailDownloader labels={labels} />
       <section className="mt-8 grid gap-4 lg:grid-cols-2">

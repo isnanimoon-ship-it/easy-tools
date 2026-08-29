@@ -1,0 +1,46 @@
+import assert from"node:assert/strict";
+import{chromium}from"playwright-core";
+const baseUrl=process.env.QA_BASE_URL??"http://127.0.0.1:3137",browser=await chromium.launch({executablePath:"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",headless:true});
+const consoleErrors=[],pageErrors=[],sensitiveRequests=[];
+try{
+ const context=await browser.newContext({viewport:{width:1280,height:1000},acceptDownloads:true}),page=await context.newPage();
+ page.on("console",message=>{if(message.type()==="error")consoleErrors.push(message.text())});page.on("pageerror",error=>pageErrors.push(error.message));page.on("request",request=>{const post=request.postData()??"";if(/data:image/i.test(`${request.url()} ${post}`))sensitiveRequests.push(request.url())});
+ await page.goto(`${baseUrl}/ko/tools/privacy-redactor`,{waitUntil:"networkidle"});
+ const dataUrl=await page.evaluate(()=>{const canvas=document.createElement("canvas");canvas.width=1000;canvas.height=760;const c=canvas.getContext("2d");c.fillStyle="#fff";c.fillRect(0,0,1000,760);c.fillStyle="#111";c.font='bold 36px "Malgun Gothic",sans-serif';c.fillText("synthetic private screenshot",55,75);return canvas.toDataURL("image/png")});
+ const buffer=Buffer.from(dataUrl.split(",")[1],"base64");await page.locator("#privacy-file").setInputFiles({name:"synthetic-private.png",mimeType:"image/png",buffer});
+ await page.getByText("1000 × 760px",{exact:false}).waitFor();
+ const svg=page.getByLabel("개인정보 가림 영역 편집기");await svg.scrollIntoViewIfNeeded();
+ await page.getByRole("button",{name:"영역 추가",exact:true}).click();
+ let box=await svg.boundingBox();assert.ok(box);
+ await page.mouse.move(box.x+box.width*.10,box.y+box.height*.10);await page.mouse.down();await page.mouse.move(box.x+box.width*.25,box.y+box.height*.22);await page.mouse.up();
+ assert.match(await page.locator("body").innerText(),/영역 1/);
+ await page.mouse.move(box.x+box.width*.40,box.y+box.height*.10);await page.mouse.down();await page.mouse.move(box.x+box.width*.55,box.y+box.height*.22);await page.mouse.up();
+ assert.match(await page.locator("body").innerText(),/가림 영역 2개/);
+ await page.getByRole("button",{name:"선택",exact:true}).click();
+ const firstGroup=svg.locator("g").first(),firstRect=firstGroup.locator("rect"),beforeMove=await firstRect.boundingBox();assert.ok(beforeMove);
+ await page.mouse.move(beforeMove.x+beforeMove.width/2,beforeMove.y+beforeMove.height/2);await page.mouse.down();await page.mouse.move(beforeMove.x+beforeMove.width/2+20,beforeMove.y+beforeMove.height/2+10);await page.mouse.up();
+ const coordinateInputs=page.locator('aside input[type="number"]'),movedX=Number(await coordinateInputs.nth(0).inputValue());assert.ok(movedX>0);
+ const resizeHandle=firstGroup.locator("circle").nth(4);await resizeHandle.scrollIntoViewIfNeeded();const handleBox=await resizeHandle.boundingBox();assert.ok(handleBox);const oldWidth=Number(await coordinateInputs.nth(2).inputValue());
+ await page.mouse.move(handleBox.x+handleBox.width/2,handleBox.y+handleBox.height/2);await page.mouse.down();await page.mouse.move(handleBox.x+handleBox.width/2+15,handleBox.y+handleBox.height/2+10);await page.mouse.up();
+ assert.ok(Number(await coordinateInputs.nth(2).inputValue())>oldWidth);
+ const editorSection=page.locator("aside section",{hasText:"선택 영역 좌표"});await editorSection.getByRole("button",{name:"영역 복제"}).click();
+ assert.match(await page.locator("body").innerText(),/가림 영역 3개/);
+ await page.keyboard.press("Control+z");assert.match(await page.locator("body").innerText(),/가림 영역 2개/);
+ await page.keyboard.press("Control+y");assert.match(await page.locator("body").innerText(),/가림 영역 3개/);
+ await page.getByRole("button",{name:"영역 1",exact:true}).click();
+ await svg.focus();const beforeNudge=Number(await coordinateInputs.nth(0).inputValue());await page.keyboard.press("ArrowRight");
+ assert.equal(Number(await coordinateInputs.nth(0).inputValue()),beforeNudge+1);
+ await page.keyboard.press("Shift+ArrowRight");assert.equal(Number(await coordinateInputs.nth(0).inputValue()),beforeNudge+11);
+ await page.getByRole("button",{name:"확대"}).click();await page.getByRole("button",{name:"확대"}).click();
+ const zoomedBox=await svg.boundingBox();assert.ok(zoomedBox.width>box.width);
+ await page.getByRole("button",{name:/^(맞춤|\d+%)$/}).click();
+ await page.getByRole("button",{name:"좌표로 영역 추가"}).click();assert.match(await page.locator("body").innerText(),/가림 영역 4개/);
+ const selectedText=await page.getByText(/가림 \d+개/).innerText();assert.ok(Number(selectedText.match(/\d+/)?.[0])>=4);
+ await page.getByRole("button",{name:"가림 결과 만들기"}).click();await page.getByText("다운로드 준비").waitFor();const downloadPromise=page.waitForEvent("download");await page.getByRole("button",{name:"PNG 다운로드"}).click();const download=await downloadPromise;assert.equal(download.suggestedFilename(),"privacy-redacted.png");const stream=await download.createReadStream(),chunks=[];for await(const chunk of stream)chunks.push(chunk);const png=Buffer.concat(chunks);assert.deepEqual([...png.subarray(0,8)],[137,80,78,71,13,10,26,10]);const binary=png.toString("latin1");for(const forbidden of ["Exif","GPS"])assert.equal(binary.includes(forbidden),false);
+ const storage=await page.evaluate(()=>({local:{...localStorage},session:{...sessionStorage}}));assert.equal(JSON.stringify(storage).match(/synthetic-private|privacy-redacted|data:image/i),null);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
+ await page.getByRole("button",{name:"초기화"}).click();assert.match(await page.locator("body").innerText(),/이미지 선택/);
+ await context.close();
+ for(const[locale,width,title]of[["ko",320,"이미지 개인정보 가리기"],["en",375,"Image Privacy Masking"],["ja",768,"画像の個人情報を隠す"]]){const mobile=await browser.newContext({viewport:{width,height:900}}),p=await mobile.newPage();p.on("console",message=>{if(message.type()==="error")consoleErrors.push(`${locale}: ${message.text()}`)});p.on("pageerror",error=>pageErrors.push(`${locale}: ${error.message}`));await p.goto(`${baseUrl}/${locale}/tools/privacy-redactor`,{waitUntil:"domcontentloaded"});assert.equal(await p.getByRole("heading",{name:title,level:1}).isVisible(),true);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);await mobile.close();}
+ assert.deepEqual(sensitiveRequests,[]);assert.deepEqual(consoleErrors,[]);assert.deepEqual(pageErrors,[]);process.stdout.write(JSON.stringify({manualOnly:true,continuousAdd:true,pointerMove:true,pointerResize:true,duplicate:true,undo:true,redo:true,keyboardNudge:true,zoom:true,coordinateAdd:true,solidPreview:true,pngDownload:true,pngSignature:true,metadataLeak:0,clientStorageLeak:0,locales:3,viewports:[320,375,768,1280],sensitiveRequests:0,consoleErrors:0,pageErrors:0},null,2));
+}finally{await browser.close()}

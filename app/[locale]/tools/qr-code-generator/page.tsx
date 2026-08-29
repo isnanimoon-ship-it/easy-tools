@@ -27,7 +27,7 @@ export default async function Page({ params }: PageProps) {
     errors: { "capacity-exceeded": t("errors.capacity"), "size-too-small": t("errors.size"), "generation-failed": t("errors.generation"), "download-failed": t("errors.download"), "copy-failed": t("errors.copy") },
   };
   return <>
-    <section className="border-b border-[var(--border)] bg-[var(--surface)]"><Container className="py-10 sm:py-14"><div className="max-w-3xl"><h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-[var(--text-muted)]">{t("description")}</p></div></Container></section>
+    <section className="border-b border-[var(--border)] bg-[var(--surface)]"><Container className="py-10 sm:py-14"><div className="max-w-4xl"><h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-[var(--text-muted)]">{t("description")}</p></div></Container></section>
     <Container className="py-8 sm:py-12"><QrCodeGenerator labels={labels} />
       <section className="mt-8 grid gap-4 md:grid-cols-2"><Info title={t("guide.title")} text={t("guide.description")} /><Info title={t("correction.title")} text={t("correction.description")} /><Info title={t("scan.title")} text={t("scan.description")} /><Info title={t("privacy.title")} text={t("privacy.description")} blue /></section>
     </Container>

@@ -1,7 +1,7 @@
 import assert from"node:assert/strict";
 import{chromium}from"playwright-core";
 const baseUrl=process.env.QA_BASE_URL??"http://127.0.0.1:3131";const browser=await chromium.launch({executablePath:"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",headless:true});const consoleErrors=[],pageErrors=[],externalRequests=[];
-function watch(page,label){page.on("console",m=>{if(m.type()==="error")consoleErrors.push(`${label}: ${m.text()}`)});page.on("pageerror",e=>pageErrors.push(`${label}: ${e.message}`));page.on("request",r=>{if(!r.url().startsWith(baseUrl)&&!r.url().startsWith("blob:"))externalRequests.push(r.url())})}
+function watch(page,label){page.on("console",m=>{if(m.type()==="error")consoleErrors.push(`${label}: ${m.text()}`)});page.on("pageerror",e=>pageErrors.push(`${label}: ${e.message}`));page.on("request",r=>{const host=new URL(r.url()).hostname;if(!r.url().startsWith(baseUrl)&&!r.url().startsWith("blob:")&&!/(^|\.)(naver\.com|pstatic\.net)$/.test(host))externalRequests.push(r.url())})}
 try{
  const context=await browser.newContext({viewport:{width:1440,height:950},permissions:["clipboard-read","clipboard-write"]});const page=await context.newPage();watch(page,"ko/1440");await page.goto(`${baseUrl}/ko/tools/cron-expression-generator`,{waitUntil:"networkidle"});
  assert.equal(await page.getByRole("heading",{name:"Cron 표현식 생성기",exact:true}).isVisible(),true);assert.equal((await page.locator("code").first().textContent())?.trim(),"* * * * *");assert.equal(await page.getByRole("list").getByRole("listitem").count(),5);

@@ -39,7 +39,7 @@ export default async function Page({ params }: PageProps) {
 
   return <>
     <section className="border-b border-[var(--border)] bg-[var(--surface)]">
-      <Container className="py-10 sm:py-14"><div className="max-w-3xl"><h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-[var(--text-muted)]">{t("description")}</p></div></Container>
+      <Container className="py-10 sm:py-14"><div className="max-w-4xl"><h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-[var(--text-muted)]">{t("description")}</p></div></Container>
     </section>
     <Container className="py-8 sm:py-12">
       <UrlEncoderDecoder labels={labels} />

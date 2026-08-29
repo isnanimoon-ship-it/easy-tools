@@ -55,7 +55,7 @@ export default async function WordCounterPage({ params }: WordCounterPageProps) 
     <>
       <section className="border-b border-[var(--border)] bg-[var(--surface)]">
         <Container className="py-10 sm:py-14">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">
               {t("title")}
             </h1>

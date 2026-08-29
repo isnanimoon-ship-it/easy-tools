@@ -2,6 +2,7 @@ import {
   Binary,
   Braces,
   CalendarClock,
+  Crop,
   FileKey,
   FileText,
   Globe2,
@@ -12,6 +13,8 @@ import {
   Palette,
   QrCode,
   Regex,
+  ShieldAlert,
+  WholeWord,
   type LucideIcon,
 } from "lucide-react";
 
@@ -45,6 +48,9 @@ export const TOOLS = [
   { path: "/tools/screenshot-stitcher", translationKey: "screenshotStitcher", category: "media", icon: Images, homeOrder: 11, menuOrder: 1 },
   { path: "/tools/regex-tester", translationKey: "regexTester", category: "developer", icon: Regex, homeOrder: 12, menuOrder: 4 },
   { path: "/tools/cron-expression-generator", translationKey: "cronExpressionGenerator", category: "developer", icon: CalendarClock, homeOrder: 13, menuOrder: 5 },
+  { path: "/tools/privacy-redactor", translationKey: "privacyRedactor", category: "media", icon: ShieldAlert, homeOrder: 14, menuOrder: 5 },
+  { path: "/tools/screenshot-statusbar-remover", translationKey: "screenshotStatusbarRemover", category: "media", icon: Crop, homeOrder: 15, menuOrder: 6 },
+  { path: "/tools/text-cleaner", translationKey: "textCleaner", category: "text", icon: WholeWord, homeOrder: 16, menuOrder: 2 },
 ] as const satisfies readonly ToolDefinition[];
 
 export type ToolPath = (typeof TOOLS)[number]["path"];

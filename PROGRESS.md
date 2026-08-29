@@ -1,5 +1,64 @@
 # 프로젝트 진행 현황
 
+## 스크린샷 자동 이어붙이기 완료 기록 — 2026-08-29
+
+- URL: `/{locale}/tools/screenshot-stitcher`
+- 상태: `DONE`
+- 개선 회차: 1/5
+- Builder: PNG/JPEG/WebP 2~20장 선택·Drop·추가, drag 및 버튼 순서 변경, 360px grayscale/gradient 탐색과 720px 재검증, confidence gate, 수동 overlap, 고정 UI 제외, Worker 분석·합성, PNG 미리보기·정보·다운로드, ko/en/ja·메뉴·SEO를 구현했다. Builder는 최종 승인하지 않았다.
+- Optimizer 1: 단순 상·하단 thumbnail이던 연결 미리보기를 실제 overlap 제거 후 seam Canvas로 교체했다. 제외 범위 변경은 350ms debounce 후 해당 이미지 쌍만 재분석하도록 개선했고, 폭 차이 10% 안전 gate·animated WebP 거부·JPEG/WebP 정확도 QA를 추가했다. 전역 WCS 도입 이후 오래된 회귀 테스트가 정상 분석 요청을 파일 유출로 오인하던 조건도 사용자 이미지 요청과 분리했다.
+
+### Critic 사전 품질 질문과 최종 결과
+
+1. 일반 세로 합치기와 자동 중복 제거의 차이를 이해할 수 있는가? → 제목·설명·분석 단계로 명확함.
+2. 이미지 순서와 변경 방법이 명확한가? → 순번·thumbnail·drag handle·위/아래 버튼 제공.
+3. 자동 감지의 성공과 불확실 상태를 구별할 수 있는가? → 추정 confidence와 자동/수동 상태 badge 제공.
+4. 불확실한 이미지가 사용자 확인 없이 잘리는가? → confidence gate 실패 시 overlap 0·미해결로 두고 합성 차단.
+5. 실제 중복 제거 후 연결부를 확인할 수 있는가? → 원본 좌표를 반영한 seam Canvas와 경계선 제공.
+6. 수동 overlap 보정이 직관적인가? → 1px slider·숫자 입력·실시간 seam preview·확인 버튼 제공.
+7. 반복 header/footer 오탐 복구 경로가 있는가? → 양쪽 제외 px 변경 시 해당 쌍 자동 재분석.
+8. 폭이나 순서가 다른 이미지의 위험을 알리는가? → 2% 안내, 10% 초과 자동 적용 거부, 순서 수동 관리.
+9. 긴 작업의 진행과 취소가 명확한가? → pair progress·백분율·취소와 generation 폐기 제공.
+10. 모바일에서 여러 이미지와 연결을 관리할 수 있는가? → 320~1440px overflow 0, 44px control, 버튼 reorder 제공.
+11. 키보드·스크린리더 사용자가 조작할 수 있는가? → native control·label·live status·상태 text 제공. 실제 스크린리더 수동 청취는 미실시.
+12. 업로드 전에 개인정보 처리 방식을 알 수 있는가? → upload 바로 아래 browser-only 안내 제공.
+13. 제한·decode·Canvas 오류에서 복구할 수 있는가? → 제한별 사용자 오류와 파일 축소·재선택 안내 제공.
+14. 반복 작업의 자원 lifecycle이 안전한가? → Worker terminate, bitmap close, URL revoke, stale generation 폐기.
+15. ko/en/ja에서 의미와 흐름이 일치하는가? → 3개 locale 직접 URL·기능·metadata 검증.
+
+### Critic 최종 점수
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 핵심 기능과 정확성 | 25/25 | 2/5/20장, codec별 overlap, pixel round trip, 오탐 거부 |
+| 사용성·정보 구조 | 19/20 | 순서→분석→검토→합성 흐름과 실제 seam 보정 제공 |
+| 모바일 반응형 | 15/15 | 320/375/768/1280/1440px, overflow·잘림 0 |
+| 접근성 | 14/15 | keyboard 대안·label·live status·44px 충족, 실제 스크린리더 청취 미실시 |
+| 성능·안정성 | 9/10 | Worker·순차 decode·취소·20장 및 1080×9600 결과 PASS |
+| 다국어·콘텐츠 | 5/5 | ko/en/ja 동일 기능과 오류·metadata |
+| SEO·공유 | 5/5 | 독립 URL, canonical/hreflang, sitemap 42 URL |
+| 개인정보·보안 | 5/5 | image 요청·storage 저장 0, Blob/Worker lifecycle |
+| 합계 | **97/100** | PASS 기준 90 이상 |
+
+### QA 최종 증거
+
+- Critical 0, High 0, Medium 0, Low 1(실제 스크린리더 수동 청취 미실시)
+- `npm run lint`: PASS, warning 0
+- `npm run type-check`: PASS, TypeScript 오류 0
+- `npm test -- --run`: PASS, 30 files / 315 tests / fail·skip·todo 0
+- `npm run build`: PASS, 47개 정적 페이지
+- 5장 PNG: overlap `[150,150,150,150]`, 360×1900, 684,000 pixel 완전 일치
+- JPEG/WebP 2장: 실제 Chrome encode·decode 후 overlap 각각 ±5px PASS
+- 1080×2400급 5장: overlap 600px, 최종 1080×9600 PASS
+- 20장 분석 PASS, unrelated·flat·ambiguous 자동 연결 거부 PASS
+- drag reorder·버튼 reorder·수동 0px·해당 쌍 제외 범위 자동 재분석·stale 결과 차단 PASS
+- PNG 다운로드 signature·dimensions·filename PASS
+- 320/375/768/1280/1440px, ko/en/ja, light/dark PASS
+- 이미지 관련 외부 전송·storage 변경 0
+- Console Error 0, page error 0, hydration error 0
+- 기존 브라우저 회귀 스크립트 전체 PASS
+- 최종 판정: 점수 97, Critical/High 0 및 모든 완료 gate를 충족하여 Product Owner가 `DONE`으로 기록
+
 ## 전역 다크 모드 완료 기록 — 2026-08-29
 
 - 적용 범위: 홈, 공통 레이아웃과 12개 도구의 `ko`/`en`/`ja` 전체 URL
@@ -892,3 +951,140 @@ Critic 96점, Critical 0, High 0, 자동 테스트 PASS, Console Error 0, 모바
 - Optimizer: jsdom 및 구형 브라우저 호환을 위해 Blob 바이트 읽기에 FileReader fallback 추가 후 전체 재검증 PASS.
 - Optimizer 2: 사용자 요청으로 커서 주변 11×11 원본 픽셀을 220×220 격자로 보여 주는 확대 렌즈와 중앙 픽셀·좌표 표시를 추가. 화면 가장자리 자동 배치와 실제 Chrome 픽셀 위치 검증 PASS.
 - Product Owner 최종 판정: 평가 90 이상, Critical/High 0, 자동 테스트 PASS, Console Error 0, 모바일 PASS를 모두 충족하여 `DONE`.
+# 개인정보 자동 가리기 완료 기록 — 2026-08-29
+
+## 최종 상태
+
+- 기능: 개인정보 자동 가리기 / Privacy Redactor
+- URL: `/{locale}/tools/privacy-redactor`
+- 상태: `DONE`
+- 개선 반복: 2/5
+- 최종 Critic 점수: 95/100
+- 이슈: Critical 0, High 0, Medium 0, Low 1
+- Low: 실제 모바일 기기의 터치 및 별도 스크린리더 수동 청취는 자동화 환경에서 수행하지 못했다. 포인터 이벤트, 키보드 대체 조작, 접근성 이름 및 320px 화면은 실제 Chrome으로 검증했다.
+
+## 역할별 결과
+
+### Builder
+
+- PNG/JPEG/정적 WebP 입력, 25MiB·40MP·16,384px 제한과 EXIF 방향 보정을 구현했다.
+- Tesseract.js `kor+eng` OCR, 개인정보 규칙 탐지, native `BarcodeDetector` 우선 및 jsQR fallback QR 탐지를 브라우저 내부에서 수행한다.
+- 자동 후보 선택, 범주별 선택, 개별 선택, 수동 영역 생성·이동·크기 조절·좌표 편집·삭제를 구현했다.
+- 불투명 Solid와 8/16/24px Pixelate, 원본/결과 미리보기, PNG 다운로드, 취소·초기화·오류 복구를 구현했다.
+- 입력 이미지·OCR 결과·영역·출력은 서버나 브라우저 저장소에 저장하지 않는다. Builder는 최종 PASS를 승인하지 않았다.
+
+### Critic 사전 품질 질문 및 최종 평가
+
+1. 첫 화면에서 자동 탐지의 한계와 최종 수동 검토 필요성을 이해할 수 있는가? — PASS
+2. 사용자가 검토 없이 다운로드하지 않도록 충분히 안내하는가? — PASS
+3. 자동 후보의 종류·위험도·부분 마스킹 값·선택 상태가 명확한가? — PASS
+4. 전체·범주·개별 후보를 빠르게 선택하고 해제할 수 있는가? — PASS
+5. 자동 탐지 실패를 수동 영역으로 보완할 수 있는가? — PASS
+6. 포인터 없이 키보드와 숫자 입력만으로도 영역을 만들고 수정할 수 있는가? — PASS
+7. Solid와 Pixelate의 보안 차이 및 권장 기본값이 분명한가? — PASS
+8. 모바일에서 입력, 미리보기, 옵션, 다운로드 흐름이 자연스러운가? — PASS
+9. OCR 모델만 내려받고 민감한 이미지·텍스트는 외부로 보내지 않는다는 설명이 명확한가? — PASS
+10. 다운로드 전에 선택 영역과 자동 탐지 한계를 다시 확인하게 하는가? — PASS
+11. OCR 또는 QR 탐지가 실패해도 수동 편집을 계속할 수 있는가? — PASS
+12. 위험도 표시가 탐지 정확도를 확정 사실처럼 오해시키지 않는가? — PASS
+13. QR payload와 OCR 원문이 DOM·로그·저장소에 불필요하게 노출되지 않는가? — PASS
+14. Canvas를 보기 어려운 사용자도 접근 가능한 영역 목록과 편집 필드를 사용할 수 있는가? — PASS
+15. 대용량 분석의 진행, 취소, 오류 복구가 예측 가능한가? — PASS
+
+| 평가 영역 | 점수 | 근거 |
+|---|---:|---|
+| 핵심 기능·정확성 | 24/25 | 실 OCR과 모든 Must 탐지, QR, 편집, 출력 통과. OCR 특성상 모든 실사진 자동 탐지는 보장하지 않음 |
+| UX·정보 구조 | 19/20 | 단계와 검토 흐름이 명확하며 수동 복구 제공 |
+| 모바일 반응형 | 14/15 | Chrome 320/375/768/1280px 통과, 실제 물리 기기 수동 확인은 미실시 |
+| 접근성 | 14/15 | label, 키보드 좌표 편집, 상태·오류 안내 제공; 별도 스크린리더 청취는 미실시 |
+| 성능·안정성 | 9/10 | Worker, lazy OCR, 취소, 39.68MP 경계 테스트 통과 |
+| 다국어 | 5/5 | ko/en/ja 통과 |
+| SEO | 5/5 | locale URL, metadata, canonical, hreflang, sitemap 통과 |
+| 개인정보·보안 | 5/5 | 민감 데이터 네트워크 전송·저장 0, 출력 metadata 누출 0 |
+| 합계 | **95/100** | PASS 기준 90 이상 |
+
+### QA 및 Optimizer
+
+- 개선 1: 반복 숫자 주민번호가 Luhn 카드로 중복 탐지되던 문제와 빠른 포인터 입력의 draft race를 수정했다.
+- 개선 2: 키보드만으로 수동 영역을 생성하는 좌표 기반 경로와 native QR detector 우선 정책을 추가했다.
+- 실제 Chrome에서 합성 이미지의 전화번호, 이메일, IPv4, URL, 주민번호 형태, 카드, QR을 Tesseract OCR부터 결과까지 검증했다.
+- PNG/JPEG/WebP, EXIF orientation 6, Solid 픽셀, Pixelate 블록, 선택 영역 외 픽셀 보존, PNG signature를 검증했다.
+- 분석 취소, 빈 선택 다운로드 방지, manual move/resize/edit/delete, locale 3개, viewport 320/375/768/1280을 검증했다.
+- 이미지·OCR·파일명 등 민감 요청 0, client storage 누출 0, 결과 metadata/text 누출 0, Console Error 0, page error 0이다.
+
+최종 검증 증거:
+
+- `npm.cmd run lint`: PASS, warning 0
+- `npm.cmd run type-check`: PASS, TypeScript 오류 0
+- `npm.cmd test -- --run`: PASS, 32 files / 337 tests / fail·skip·todo 0
+- `npm.cmd run build`: PASS, 50개 정적 페이지 및 3개 locale 개인정보 가리기 페이지 생성
+- `node tests/privacy-redactor-browser.mjs`: PASS
+- `node tests/privacy-redactor-formats.mjs`: PASS
+- 메뉴·SEO·다크 모드 브라우저 회귀 테스트: PASS
+
+## Product Owner 최종 판정
+
+Critic 95점, Critical 0, High 0, 자동 테스트 PASS, Console Error 0, 모바일 반응형 PASS 및 `docs/EVALUATION.md`의 완료 게이트를 충족했다. 2회 개선 후 `DONE`으로 기록한다.
+# 개인정보 자동 가리기 개선 3 완료 — 2026-08-29
+
+- 사용자 재현: 374×236 신분증 이미지와 1013×629 확대 이미지에서 `820701 2345678` 주민번호 공백 표기를 자동 탐지하지 못했다.
+- 판정: Must Have의 흔한 주민번호 표시 형식을 놓치는 High Issue로 기존 완료 상태를 다시 열었다.
+- 원인: 하이픈 필수 정규식, OCR block/line 경계 의존, 글자 높이 0.75배의 좁은 토큰 간격 제한, 작은 이미지를 확대하지 않는 OCR 입력, 기본 단일 문단 분할 모드였다.
+- Optimizer: 공백·하이픈·긴 대시·점·무구분 13자리 형식을 지원하고, 무구분 값은 날짜와 뒷자리 첫 숫자를 검사해 보통 위험도로 분류한다. 명시적 6-7 구분자는 SPEC의 형태 탐지 원칙대로 유지한다.
+- Optimizer: OCR block ID가 달라도 세로 중첩이 있는 토큰을 같은 시각적 행으로 결합하고, 주민번호에 한해 글자 높이 3배까지의 간격을 허용한다.
+- Optimizer: 1200px 미만 이미지는 OCR 전용으로 목표 폭 1600px, 최대 4배 확대하고 grayscale·contrast 전처리와 Tesseract Sparse Text·300 DPI 설정을 적용한다. 원본과 최종 출력 해상도는 변경하지 않는다.
+- QA fixture: 배경 무늬와 흩어진 한글 문구가 있는 374×236 이미지의 `820701  2345678`을 실제 Chrome/Tesseract 전체 흐름으로 검증했다.
+- 재검증: 주민번호 변형·날짜·오탐 방지·OCR 크기 단위 테스트를 포함해 개인정보 테스트 33개 PASS, 전체 32 files / 350 tests PASS.
+- 브라우저: 저해상도 신분증형 탐지 PASS, 기존 전화·이메일·IP·URL·카드·QR·수동 편집·출력 회귀 PASS, PNG/JPEG/WebP·EXIF·39.68MP 회귀 PASS.
+- 품질: Critic 97/100, Critical 0, High 0, Console Error 0, Page Error 0, TypeScript 오류 0, lint warning 0, production build 50 pages PASS.
+- 남은 Low: 사용자가 제공한 원본 파일 자체는 대화 이미지로만 확인되어 동일 binary 재실행은 불가능했다. 동일 크기·표기·배경 복잡도를 재현한 자동 fixture로 검증했으며, 실제 원본 재확인이 권장된다.
+- Product Owner 최종 판정: 완료 조건을 다시 충족하여 개선 반복 `3/5`, 상태 `DONE`.
+# 개인정보 자동 가리기 개선 4 완료 — 2026-08-29
+
+## 재개 사유와 범위 결정
+
+- 사용자 실사례에서 카카오톡 참가자명, 이메일 주소, 게시판 작성자명이 탐지되지 않았고 `원본 보기`가 현재 편집 상태에서 아무 변화도 만들지 않았다.
+- 이름은 기존 Could Have였지만 채팅·이메일·고객센터·중고거래·게시판이라는 승인된 주요 사용 사례와 자동 탐지 범위가 불일치해 Product Owner가 V1 Must Have 이름 후보로 승격했다.
+- 얼굴 인식이나 신원 판별은 계속 금지한다. 이름은 한국 성씨로 시작하는 2~4자 한글 문자열을 보통 위험 후보로만 제시하고 사용자가 검토·해제한다.
+
+## Optimizer 4
+
+- 한국 성씨 기반 이름 후보를 추가하고 `김석현`, `김지수`, `이하나`, `이수진`을 탐지한다. 이메일·이미지·인터넷·한국어·선택 등 대표 UI 단어는 제외한다.
+- 이름 목록 값은 첫 글자 외 마스킹하며 기본 선택하되 `보통` 위험도로 표시해 확정된 이름이라고 과장하지 않는다.
+- 이메일 OCR의 전각 `＠`, `﹫`, `。`, `．` 문자를 ASCII `@`, `.`으로 정규화한다.
+- 폭 1200px 경계의 불연속을 제거하고 2200px 미만 이미지는 목표 폭 2200px, 최대 4배까지 OCR 전용 확대한다. 원본과 출력 해상도는 변경하지 않는다.
+- 미리보기 상태를 `editor / clean / result`로 분리했다. `원본 보기`는 SVG overlay를 실제로 제거하며 버튼은 `편집 영역 보기`로 바뀌어 복귀할 수 있다.
+- 이름 카테고리와 원본/편집 전환 문구를 ko/en/ja에 추가했다.
+
+## Critic 재평가 질문
+
+1. 카카오톡형 화면에서 참가자 이름 후보를 찾는가? — PASS
+2. 게시판 `작성자` 값의 이름 후보를 찾는가? — PASS
+3. 작은 회색 이메일 주소가 OCR과 정규식을 거쳐 후보가 되는가? — PASS
+4. 이름이 확정 사실이 아니라 검토할 보통 위험 후보로 표시되는가? — PASS
+5. 일반적인 UI 단어를 이름으로 대량 오인하지 않도록 최소 제외 규칙이 있는가? — PASS
+6. 원본 보기를 누르면 편집 overlay가 실제로 사라지는가? — PASS
+7. 순수 원본에서 편집 영역으로 명확하게 돌아올 수 있는가? — PASS
+8. 순수 원본, 영역 편집, 가림 결과 세 상태가 서로 구분되는가? — PASS
+9. 확대 분석이 원본과 다운로드 이미지 해상도를 변경하지 않는가? — PASS
+10. 기존 주민번호·전화·IP·URL·카드·QR 탐지를 손상시키지 않는가? — PASS
+11. 이름과 이메일 원문이 네트워크·저장소·console로 유출되지 않는가? — PASS
+12. 모바일과 세 locale에서 새 카테고리가 레이아웃을 깨지 않는가? — PASS
+
+최종 Critic 점수는 96/100이다. Critical 0, High 0, Medium 0, Low 1이다. Low는 성씨 기반 휴리스틱이 모든 별명·외국인명·영문명을 포괄하지 못하고 일부 일반 단어를 후보로 만들 가능성이 있다는 점이다. 자동 확정 대신 보통 위험 후보와 수동 편집 경로를 유지한다.
+
+## QA 증거
+
+- `tests/privacy-redactor-scenarios-browser.mjs`: 실제 Chrome/Tesseract에서 카카오톡형 590×663 이름, 이메일형 1538×1122 작은 회색 주소, 게시판형 1196×782 작성자 탐지 PASS.
+- 같은 테스트에서 `원본 보기 → SVG overlay 0 → 편집 영역 보기 → SVG 복구` PASS.
+- 저해상도 374×236 주민등록증형 공백 주민번호 PASS.
+- 기존 전화·이메일·IP·URL·주민번호·카드·QR·수동 편집·PNG 출력 회귀 PASS.
+- PNG/JPEG/WebP, EXIF orientation, Solid/Pixelate, 39.68MP 경계 PASS.
+- 단위 테스트: 개인정보 44개 PASS.
+- 전체 테스트: 32 files / 361 tests PASS, fail·skip·todo 0.
+- TypeScript 오류 0, lint warning 0, production build 50 pages PASS.
+- Console Error 0, Page Error 0, 민감 데이터 외부 요청·client storage 누출 0.
+
+## Product Owner 최종 판정
+
+평가 96점, Critical 0, High 0, 자동 테스트 PASS, Console Error 0, 모바일 및 기존 회귀 PASS로 완료 게이트를 충족했다. 개선 반복 `4/5`, 상태 `DONE`으로 기록한다. Git 푸시는 수행하지 않았다.

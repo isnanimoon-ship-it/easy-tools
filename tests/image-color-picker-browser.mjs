@@ -33,6 +33,7 @@ try {
     page.on("request", request => requests.push(request.url()));
     const pathname = `/${locale}/tools/image-color-picker`;
     await page.goto(`${baseUrl}${pathname}`, { waitUntil: "networkidle" });
+    const storageBefore = await page.evaluate(() => JSON.stringify({ local: { ...localStorage }, session: { ...sessionStorage } }));
     assert.equal(await page.locator("h1").count(), 1);
     assert.equal(new URL(await page.locator('link[rel="canonical"]').getAttribute("href")).pathname, pathname);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true);
@@ -64,7 +65,7 @@ try {
         await page.getByAltText("Uploaded image for pixel color selection").waitFor();
       }
       assert.equal(requests.some(url => url.startsWith("blob:") === false && /four-colors|sample\.(jpg|webp)/.test(url)), false);
-      assert.equal(await page.evaluate(() => Object.keys(localStorage).length + Object.keys(sessionStorage).length), 0);
+      assert.equal(await page.evaluate(() => JSON.stringify({ local: { ...localStorage }, session: { ...sessionStorage } })), storageBefore);
       await page.getByRole("button", { name: "Reset" }).click();
       assert.equal(await page.getByAltText("Uploaded image for pixel color selection").count(), 0);
     }

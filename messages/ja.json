@@ -9,7 +9,7 @@
     "skipToContent": "本文へ移動",
     "status": "準備中",
     "theme": { "enableDark": "ダークモードをオン", "enableLight": "ライトモードをオン" },
-    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64変換", "urlEncoderDecoder": "URLエンコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像圧縮", "screenshotStitcher": "スクリーンショット結合", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター" },
+    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64変換", "urlEncoderDecoder": "URLエンコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像圧縮", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像マスキング", "screenshotStatusbarRemover": "ステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー" },
     "footer": "© {year} かんたんツール。誰でもかんたんに。",
     "result": "結果",
     "copy": "コピー",
@@ -43,11 +43,51 @@
       "imageColorPicker": { "title": "画像カラーピッカー", "description": "画像をアップロードし、正確なピクセル色をHEX、RGB、HSL、HSV、CMYKで確認します。" },
       "imageCompressor": { "title": "画像圧縮", "description": "JPG、PNG、WebPを品質または目標サイズでブラウザー内圧縮します。" },
       "screenshotStitcher": { "title": "スクリーンショット自動結合", "description": "連続画像の重複部分を検出し、1枚の長いPNGに結合します。" },
+      "privacyRedactor": { "title": "画像マスキングツール", "description": "写真やスクリーンショットで隠したい部分を選び、マスキングしたPNGを保存します。" },
+      "screenshotStatusbarRemover": { "title": "スクリーンショットのステータスバー削除", "description": "スマホのスクリーンショット上部の時刻・バッテリー・通信状態バーを検出して削除し、ダウンロードします。" },
       "regexTester": { "title": "正規表現テスター", "description": "JavaScript正規表現の一致、キャプチャグループ、置換結果を確認します。" },
-      "cronExpressionGenerator": { "title": "Cron式ジェネレーター", "description": "5フィールドCronを作成・解析し、タイムゾーン別の次回実行を確認します。" }
+      "cronExpressionGenerator": { "title": "Cron式ジェネレーター", "description": "5フィールドCronを作成・解析し、タイムゾーン別の次回実行を確認します。" },
+      "textCleaner": { "title": "テキストクリーナー", "description": "複数行の空白と空行を整理し、重複行を削除します。" }
     }
   },
   "Tools": {
+    "privacyRedactor": {
+      "metadata": { "title": "無料オンライン画像モザイク・隠しツール", "description": "写真やスクリーンショットで隠したい部分を自分で選び、単色またはモザイクで隠してダウンロードできます。処理はすべてブラウザ内で行われます。" },
+      "title": "画像の個人情報を隠す", "description": "隠したい部分をドラッグで選択し、単色またはモザイクで隠してダウンロードします。サーバーには送信されず、ブラウザ内だけで処理されます。",
+      "upload": { "title": "画像を選択", "help": "PNG、JPG、静止WebPを1枚選択またはドロップしてください。最大25MB・4,000万画素。", "drop": "ここに画像をドロップしてください。" },
+      "privacy": "画像はブラウザ内でのみ処理され、サーバーには送信されません。",
+      "actions": { "choose": "画像を選択", "change": "画像を変更", "clear": "リセット", "select": "選択", "addRegion": "領域を追加", "addByCoordinates": "座標で領域を追加", "original": "元画像を表示", "editor": "編集画面を表示", "result": "結果を表示", "selectAll": "すべて選択", "clearAll": "すべて解除", "on": "すべて選択", "off": "すべて解除", "preview": "隠し結果を作成", "delete": "領域を削除", "duplicate": "領域を複製", "download": "PNGをダウンロード", "undo": "元に戻す", "redo": "やり直す", "zoomOut": "縮小", "zoomIn": "拡大", "zoomFit": "全体表示" },
+      "regions": { "title": "隠す領域 {count}個", "selected": "{count}個を隠します", "item": "領域 {index}", "redact": "この領域を隠す", "empty": "まだ領域がありません。「領域を追加」を押して隠したい部分をドラッグしてください。" },
+      "editor": { "addHelp": "画像内で隠したい部分をドラッグしてください。続けてドラッグすると複数の領域を追加できます。", "selectHelp": "領域を選択して移動するか、ハンドルや座標でサイズを調整してください。矢印キーで1px、Shift+矢印キーで10px移動します。", "canvasLabel": "個人情報マスキング編集エディター", "coordinates": "選択領域の座標", "x": "X", "y": "Y", "width": "幅", "height": "高さ", "sizeLabel": "{width} × {height}" },
+      "preview": { "originalAlt": "マスキング領域を表示した元画像", "cleanAlt": "編集表示のない元画像", "resultAlt": "マスキング適用後の画像" },
+      "mask": { "title": "マスキング方式", "method": "方式", "solid": "単色で隠す・推奨", "pixelate": "モザイク", "color": "単色", "black": "黒", "white": "白", "pixelSize": "モザイクサイズ", "warning": "安全に共有するには完全に不透明な単色での塗りつぶしを推奨します。モザイクは元の内容を推測される可能性があります。" },
+      "result": { "title": "ダウンロード準備完了", "review": "ダウンロード前にマスキング領域をもう一度確認してください。", "metadata": "ダウンロードするPNGは新規生成され、元画像のGPS・EXIF情報や編集レイヤーは含まれません。" },
+      "errors": { "multiple-files": "画像は1枚だけ選択してください。", "unsupported-type": "PNG、JPG、または静止WebP画像を選択してください。", "file-too-large": "ファイルは25MB以下にしてください。", "animated-image": "アニメーションWebPとGIFには対応していません。静止画像に変換してください。", "dimension-limit": "画像が4,000万画素または最大辺16,384pxの制限を超えています。", "decode-failed": "画像を読み込めません。ファイルが破損している可能性があります。", "canvas-failed": "画像の結果を作成できませんでした。より小さい画像で再試行してください。", "no-selected-region": "隠す領域を1つ以上選択または追加してください。" }
+    },
+    "screenshotStatusbarRemover": {
+      "metadata": { "title": "無料スクリーンショットのステータスバー削除・iPhone/Android", "description": "スマホのスクリーンショット上部の時刻・バッテリー・通信状態バーをブラウザで検出して削除し、ダウンロードできます。" },
+      "title": "スクリーンショットのステータスバー削除", "description": "縦向きスマホスクリーンショット上部のステータスバーの高さを検出し、削除ラインを表示します。確認または調整してダウンロードしてください。",
+      "upload": { "title": "画像を選択", "help": "PNG、JPG、静止WebPの縦向きスクリーンショットを1枚選択またはドロップしてください。最大25MB・4,000万画素", "drop": "ここに画像をドロップしてください。" },
+      "privacy": "画像はブラウザ内でのみ処理され、サーバーには送信されません。このツールはステータスバー以外の個人情報を自動的には削除しません。",
+      "actions": { "choose": "画像を選択", "change": "画像を変更", "clear": "リセット", "original": "元画像を表示", "editor": "編集画面を表示", "result": "結果を表示", "reset": "検出値にリセット", "minus1": "1px減らす", "plus1": "1px増やす", "preview": "結果を作成", "download": "PNGをダウンロード" },
+      "notices": { "landscape": "現在のバージョンは縦向きスマホスクリーンショットに最適化されています。自動検出は無効になるため、手動で調整してください。", "tooSmall": "画像が小さすぎるため自動検出を使用できません。手動で調整してください。", "notDetected": "ステータスバーが検出されませんでした。削除する高さを手動で調整してください。", "reviewSuggested": "検出結果を確認し、必要に応じて調整してください。", "confidence": "ステータスバー検出: {level}・削除する高さ {height}px" },
+      "confidence": { "high": "高い", "medium": "普通", "low": "低い" },
+      "editor": { "help": "青い線を上下にドラッグするか、右側のスライダー・数値入力で調整してください。矢印キーで1px、Shift+矢印キーで10px移動します。", "canvasLabel": "ステータスバー削除ラインエディター", "heightTitle": "削除する高さ", "heightPx": "px", "slider": "削除する高さのスライダー" },
+      "preview": { "originalAlt": "削除ラインを表示した元画像", "cleanAlt": "編集表示のない元画像", "resultAlt": "ステータスバーを削除した結果画像" },
+      "result": { "title": "ダウンロード準備完了", "review": "ダウンロード前に、ステータスバーが正しく削除され、アプリのヘッダーが切れていないか確認してください。", "metadata": "ダウンロードする画像は新規生成され、元画像のGPSなどのメタデータは含まれません。" },
+      "errors": { "multiple-files": "画像は1枚だけ選択してください。", "unsupported-type": "PNG、JPG、または静止WebP画像を選択してください。", "file-too-large": "ファイルは25MB以下にしてください。", "dimension-limit": "画像が4,000万画素または最大辺16,384pxの制限を超えています。", "decode-failed": "画像を読み込めません。ファイルが破損している可能性があります。", "canvas-failed": "結果画像を作成できませんでした。より小さい画像で再試行してください。", "crop-exceeds-image": "削除する高さは画像の高さより大きくできません。" }
+    },
+    "textCleaner": {
+      "metadata": { "title": "無料オンラインテキストクリーナー・空白と重複行の削除", "description": "余分な空白、空行、重複行をまとめて整理します。ブラウザ内のみで処理されます。" },
+      "title": "テキストクリーナー", "description": "不要な空白や空行を整理し、重複した行を削除します。オプションを組み合わせて希望の形にテキストを整えましょう。",
+      "presets": { "title": "クイック設定", "basic": "基本整理", "removeBlank": "空行削除", "removeDuplicate": "重複削除", "oneLine": "1行にまとめる", "full": "完全整理" },
+      "input": { "label": "元のテキスト", "placeholder": "整理したいテキストを入力または貼り付けてください。", "tooLarge": "入力が大きすぎます(最大10MB)。テキストを分割して処理してください。", "perfWarning": "入力が大きいため、処理が遅くなる場合があります。" },
+      "actions": { "reset": "リセット", "copy": "結果をコピー", "copied": "コピーしました", "download": "TXTをダウンロード" },
+      "output": { "label": "整理後のテキスト", "overwriteNotice": "結果は直接編集できますが、入力やオプションを変更すると新しい結果で上書きされます。", "newline": "改行コード" },
+      "stats": { "label": "統計", "originalLines": "元の行数", "resultLines": "結果の行数", "removedLines": "削除された行数", "originalChars": "元の文字数", "resultChars": "結果の文字数", "uniqueLines": "重複のない行", "duplicateLines": "重複行" },
+      "whitespace": { "title": "空白・改行の整理", "collapseSpaces": "連続する空白を1つにまとめる", "trimLines": "各行の前後の空白を削除", "tabToSpaces": "タブを空白に変換", "normalizeSpecialSpaces": "特殊な空白(全角スペース・NBSP)を通常の空白に変換", "blankLines": { "title": "空行の処理", "keep": "維持", "collapse": "連続する空行を1つにまとめる", "remove": "すべての空行を削除" }, "mergeToOneLine": "すべての行を1行にまとめる" },
+      "duplicate": { "title": "重複行の削除", "disabledByMerge": "「1行にまとめる」が有効な場合、重複削除は適用されません。", "ignoreCase": "大文字・小文字を区別しない", "ignoreSurroundingWhitespace": "前後の空白を無視", "ignoreInnerWhitespaceDiff": "行内部の空白差を無視", "unicodeNormalize": "Unicode正規化(NFC)後に比較", "keep": { "title": "残す行", "first": "最初に出現した行", "last": "最後に出現した行" }, "resultType": { "title": "結果の種類", "unique": "重複を除いたすべて", "duplicatesOnly": "重複していた行のみ", "onceOnly": "1回だけ出現した行のみ" } }
+    },
     "screenshotStitcher": {
       "metadata": { "title": "無料スクリーンショット自動結合", "description": "連続スクリーンショットの重複部分をブラウザーで検出し、1枚の長いPNGに結合します。" },
       "title": "スクリーンショット自動結合", "description": "連続キャプチャの重複部分を見つけて削除し、1枚の長いスクリーンショットを作成します。",
