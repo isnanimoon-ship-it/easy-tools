@@ -15,16 +15,16 @@ export function ResultPanel({
   return (
     <section
       aria-label={title}
-      className={`rounded-2xl border border-slate-200 bg-white p-5 ${className}`}
+      className={`rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 ${className}`}
       {...props}
     >
       <div className="mb-4 flex items-center justify-between gap-4">
-        <h2 className="font-bold text-slate-950">
+        <h2 className="font-bold text-[var(--foreground)]">
           {title}
         </h2>
         {action}
       </div>
-      <div aria-live="polite" className="text-slate-700">
+      <div aria-live="polite" className="text-[var(--foreground)]">
         {children}
       </div>
     </section>

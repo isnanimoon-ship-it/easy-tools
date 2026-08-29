@@ -17,18 +17,18 @@ export function TextInput({
 
   return (
     <div className={className}>
-      <label htmlFor={id} className="mb-2 block font-semibold text-slate-800">
+      <label htmlFor={id} className="mb-2 block font-semibold text-[var(--foreground)]">
         {label}
       </label>
       {description ? (
-        <p id={descriptionId} className="mb-2 text-sm text-slate-500">
+        <p id={descriptionId} className="mb-2 text-sm text-[var(--text-muted)]">
           {description}
         </p>
       ) : null}
       <input
         id={id}
         aria-describedby={descriptionId}
-        className="min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-slate-950 placeholder:text-slate-400 hover:border-slate-400 focus:border-blue-600"
+        className="min-h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3.5 py-2.5 text-[var(--foreground)] placeholder:text-[var(--text-muted)] hover:border-[var(--border)] focus:border-[var(--primary)]"
         {...props}
       />
     </div>

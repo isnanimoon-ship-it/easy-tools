@@ -8,7 +8,8 @@
     "homeLabel": "간편도구 홈",
     "skipToContent": "본문으로 바로가기",
     "status": "준비 중",
-    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 변환기", "urlEncoderDecoder": "URL 인코더", "youtubeThumbnailDownloader": "유튜브 썸네일", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기" },
+    "theme": { "enableDark": "다크 모드 켜기", "enableLight": "라이트 모드 켜기" },
+    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 변환기", "urlEncoderDecoder": "URL 인코더", "youtubeThumbnailDownloader": "유튜브 썸네일", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 압축기", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기" },
     "footer": "© {year} 간편도구. 누구나 간편하게.",
     "result": "결과",
     "copy": "복사",
@@ -39,10 +40,44 @@
       "youtubeThumbnailDownloader": { "title": "유튜브 썸네일 추출기", "description": "YouTube 영상 주소에서 실제 사용 가능한 썸네일을 해상도별로 확인하고 저장합니다." },
       "qrCodeGenerator": { "title": "QR 코드 생성기", "description": "텍스트나 URL을 브라우저에서 QR 코드로 만들고 PNG로 저장합니다." },
       "ipInfo": { "title": "IP 정보 확인", "description": "현재 공인 IP와 국가, 지역, ISP, ASN 등 기본 네트워크 정보를 확인합니다." },
-      "imageColorPicker": { "title": "이미지 색상 추출기", "description": "이미지를 올리고 정확한 픽셀 색상을 HEX, RGB, HSL, HSV, CMYK로 확인합니다." }
+      "imageColorPicker": { "title": "이미지 색상 추출기", "description": "이미지를 올리고 정확한 픽셀 색상을 HEX, RGB, HSL, HSV, CMYK로 확인합니다." },
+      "imageCompressor": { "title": "이미지 압축기", "description": "JPG, PNG, WebP 사진을 원하는 품질이나 목표 용량으로 브라우저에서 줄입니다." },
+      "regexTester": { "title": "정규식 테스터", "description": "JavaScript 정규식을 실행해 매치, 캡처 그룹과 문자열 치환 결과를 확인합니다." },
+      "cronExpressionGenerator": { "title": "Cron 표현식 생성기", "description": "5필드 Cron을 만들고 해석하며 시간대별 다음 실행 시간을 확인합니다." }
     }
   },
   "Tools": {
+    "regexTester": {
+      "metadata": { "title": "무료 정규식 테스터 · JavaScript Regex 테스트", "description": "JavaScript 정규표현식의 매치, 플래그, 캡처 그룹과 치환 결과를 브라우저에서 안전하게 확인하세요." },
+      "title": "정규식 테스터", "description": "JavaScript 정규표현식을 실시간으로 검증하고 매치 위치, 캡처 그룹과 문자열 치환 결과를 확인하세요.",
+      "fields": { "pattern": "정규식 Pattern", "patternHelp": "앞뒤 / 없이 pattern만 입력하세요. 입력한 역슬래시는 그대로 JavaScript RegExp에 전달됩니다.", "flags": "Flags", "test": "테스트 문자열", "testHelp": "여러 줄, 한글, 일본어와 Emoji를 포함할 수 있습니다. Index는 JavaScript UTF-16 위치입니다.", "replacement": "치환 문자열", "replacementHelp": "$&, $1, $2, $<name>, $$ 등 JavaScript 치환 문법을 사용할 수 있습니다." },
+      "flags": { "g": "모든 일치 항목 찾기", "i": "대소문자 구분 안 함", "m": "^와 $를 줄 단위로 적용", "s": ".이 줄바꿈까지 포함", "u": "Unicode code point 모드", "y": "현재 위치부터 sticky match" },
+      "status": { "valid": "올바른 JavaScript 정규식", "running": "정규식을 안전한 Worker에서 실행하는 중…", "noMatch": "일치하는 문자열이 없습니다.", "matches": "Matches", "firstOnly": "g flag가 없으면 JavaScript 동작에 따라 첫 번째 Match만 표시합니다.", "global": "g flag가 활성화되어 전체 Match를 찾았습니다." },
+      "preview": { "title": "Match 미리보기", "empty": "정규식과 테스트 문자열을 입력하면 매칭된 위치가 표시됩니다.", "limit": "성능을 위해 첫 1,000개 Match만 강조했습니다." },
+      "details": { "title": "Match 정보", "empty": "아직 실행 결과가 없습니다.", "value": "Value", "index": "Index", "groups": "Capture Groups", "named": "Named Groups", "unmatched": "—", "zero": "길이 0인 Match", "truncated": "Match가 10,000개 이상입니다. 추가 실행을 중단하고 일부 결과만 표시합니다.", "detailLimit": "성능을 위해 첫 200개 Match의 상세 정보만 표시합니다." },
+      "replace": { "title": "치환 결과 미리보기", "unchanged": "원본과 결과가 같습니다." },
+      "actions": { "run": "지금 실행", "clear": "초기화", "copyPattern": "Pattern 복사", "copyLiteral": "전체 정규식 복사", "copyReplacement": "치환 결과 복사", "copied": "복사됨" },
+      "examples": { "title": "정규식 예제", "hint": "간단한 형식 예제이며 완전한 유효성 검사를 보장하지 않습니다. 테스트 문자열은 변경하지 않습니다.", "email": "이메일", "number": "숫자", "date": "날짜", "url": "URL", "phone": "휴대전화" },
+      "errors": { "patternLong": "Pattern은 10,000자 이하로 입력하세요.", "textLong": "테스트 문자열은 500,000자 이하로 입력하세요.", "replacementLong": "치환 문자열은 100,000자 이하로 입력하세요.", "resultLarge": "치환 결과가 너무 커 미리보기와 복사를 생략했습니다.", "timeout": "정규식 실행 시간이 너무 깁니다. Pattern을 단순화하거나 테스트 문자열을 줄이세요.", "worker": "정규식 실행 Worker를 시작하지 못했습니다. 최신 브라우저에서 다시 시도하세요.", "copy": "클립보드에 복사하지 못했습니다. 권한을 확인하세요." },
+      "reference": { "title": "JavaScript 정규식 빠른 참고", "description": "현재 브라우저의 JavaScript RegExp 문법을 기준으로 합니다.", "characters": { "title": "문자 클래스", "items": ". 임의 문자\n\\d 숫자 · \\w 단어 문자\n\\s 공백 · [abc] 문자 집합" }, "quantifiers": { "title": "수량자", "items": "* 0회 이상 · + 1회 이상\n? 0 또는 1회\n{n} 정확히 n회 · {n,m} 범위" }, "anchors": { "title": "앵커", "items": "^ 시작 · $ 끝\n\\b 단어 경계 · \\B 비경계" }, "groups": { "title": "그룹", "items": "(...) 캡처\n(?:...) 비캡처\n(?<name>...) 이름 있는 캡처" }, "lookaround": { "title": "Lookaround", "items": "(?=...) 긍정 전방\n(?!...) 부정 전방\n(?<=...) 긍정 후방" }, "escape": { "title": "Escape", "items": "\\. 마침표 · \\\\ 역슬래시\n\\t 탭 · \\n 줄바꿈" } },
+      "privacy": "개인정보 보호: Pattern, 테스트 문자열과 치환 결과는 이 브라우저의 Worker에서만 처리되며 서버로 전송되거나 저장되지 않습니다."
+    },
+    "imageCompressor": {
+      "metadata": { "title": "무료 이미지 압축 · 사진 용량 줄이기", "description": "JPG, PNG, WebP 이미지를 서버 업로드 없이 100KB, 200KB, 500KB 등 원하는 용량으로 줄이세요." },
+      "title": "이미지 용량 줄이기", "description": "JPG, PNG, WebP 사진을 원하는 품질이나 목표 용량으로 압축하고 전후 결과를 비교해 다운로드하세요.",
+      "upload": { "title": "이미지 업로드", "help": "JPG, PNG, WebP 한 개를 선택하거나 놓으세요. 최대 25MB, 2,400만 픽셀까지 지원합니다.", "drop": "여기에 이미지를 놓으세요." },
+      "actions": { "choose": "이미지 선택", "change": "이미지 변경", "clear": "초기화", "compress": "지금 압축", "download": "압축 이미지 다운로드" },
+      "status": { "loading": "이미지를 확인하는 중…", "compressing": "이미지를 압축하는 중…", "progress": "최적 품질을 찾는 중 · {current}/{max}" },
+      "info": { "title": "원본 이미지 정보", "name": "파일명", "format": "형식", "dimensions": "이미지 크기", "size": "원본 용량" },
+      "settings": { "title": "압축 설정", "mode": "압축 방식", "qualityMode": "품질 기준", "targetMode": "목표 용량", "quality": "품질", "target": "빠른 목표 용량", "customTarget": "직접 입력", "output": "출력 형식", "original": "원본 형식 유지", "maxWidth": "최대 가로 크기", "keepSize": "원본 크기 유지" },
+      "formats": { "jpeg": "JPEG", "png": "PNG", "webp": "WebP" },
+      "notices": { "png": "PNG 출력은 품질 값으로 용량이 크게 줄지 않을 수 있습니다. 더 작은 파일은 WebP 또는 JPEG를 고려하세요.", "jpeg": "JPEG는 투명도를 지원하지 않아 투명 영역에 흰색 배경이 적용됩니다.", "metadata": "압축 과정에서 위치·촬영 정보 등 일부 이미지 메타데이터가 제거될 수 있습니다." },
+      "preview": { "original": "원본 미리보기", "result": "압축 결과 미리보기", "empty": "설정을 선택하면 압축 결과가 여기에 표시됩니다." },
+      "result": { "title": "용량 비교", "size": "결과 용량", "saved": "감소", "saving": "원본보다 용량이 줄었습니다.", "larger": "원본보다 {size} 커졌습니다. 원본 사용을 고려하세요.", "same": "용량 변화가 없습니다.", "targetMet": "선택한 목표 용량 이하로 압축했습니다.", "targetMissed": "현재 해상도에서는 목표 용량에 도달하기 어렵습니다. 최대 가로 크기를 줄이거나 출력 형식을 바꿔 보세요.", "quality": "적용 품질" },
+      "errors": { "multiple": "이미지는 한 번에 한 개만 올려 주세요.", "unsupported": "JPG, PNG 또는 WebP 이미지를 선택하세요.", "fileLarge": "파일이 25MB보다 큽니다. 더 작은 이미지를 선택하세요.", "signature": "파일 내용이 표시된 이미지 형식과 일치하지 않습니다.", "decode": "이미지를 불러올 수 없습니다. 파일이 손상되었을 수 있습니다.", "dimensions": "이미지가 2,400만 픽셀 또는 한 변 12,000px 제한을 초과합니다.", "encoder": "이 브라우저는 선택한 출력 형식을 지원하지 않습니다.", "encode": "이미지를 압축하지 못했습니다. 설정을 바꾸고 다시 시도하세요.", "target": "목표 용량은 10~10240KB 사이의 정수로 입력하세요.", "unreachable": "현재 해상도에서는 목표 용량에 도달하기 어렵습니다.", "download": "이미지를 다운로드하지 못했습니다. 다시 시도하세요." },
+      "privacy": { "notice": "개인정보 보호: 이미지는 브라우저에서 직접 처리되며 서버에 업로드되거나 저장되지 않습니다.", "title": "이미지는 외부로 전송되지 않습니다", "text": "원본과 압축 결과는 현재 탭의 임시 메모리에서만 처리됩니다. 초기화하거나 페이지를 닫으면 임시 데이터를 해제합니다." },
+      "guide": { "qualityTitle": "품질과 용량의 균형", "qualityText": "품질 수치가 높을수록 선명하지만 파일이 커질 수 있습니다. 일반 사진은 80%부터 비교해 보세요.", "targetTitle": "원하는 KB에 맞추기", "targetText": "100KB, 200KB, 500KB 또는 1MB를 선택하면 가능한 높은 품질에서 목표 이하를 찾습니다." }
+    },
     "imageColorPicker": {
       "metadata": { "title": "무료 이미지 색상 추출기", "description": "PNG, JPEG, WebP 이미지의 정확한 픽셀 색상을 브라우저에서 안전하게 추출하세요." },
       "title": "이미지 색상 추출기", "description": "이미지를 올리고 픽셀 하나를 선택해 다섯 가지 색상 형식으로 복사하세요. 이미지는 브라우저 밖으로 전송되지 않습니다.",
@@ -144,6 +179,17 @@
       "error": { "invalid": "올바른 JSON이 아닙니다.", "guidance": "따옴표, 쉼표, 콜론, 중괄호와 대괄호를 확인하세요.", "position": "{line}행 {column}열", "copy": "복사하지 못했습니다. 클립보드 권한을 확인한 뒤 다시 시도하세요." },
       "guide": { "title": "작동 방식", "description": "정리는 두 칸 들여쓰기를 적용하고, 압축은 문자열 밖의 불필요한 공백만 제거합니다." },
       "privacy": { "title": "브라우저에서만 처리", "description": "입력한 JSON은 서버로 전송하거나 저장하지 않습니다." }
+    },
+    "cronExpressionGenerator": {
+      "metadata":{"title":"Cron 표현식 생성기·해석기","description":"Linux 5필드 Cron 표현식을 만들고 검증하며 시간대별 다음 실행 시간을 확인하세요."},"title":"Cron 표현식 생성기","description":"실행 주기를 선택해 5필드 Cron을 만들거나 기존 표현식을 해석하고 다음 실행 시간을 확인합니다.",
+      "mode":{"label":"입력 방식","generator":"간편 생성기","direct":"직접 입력"},"presets":{"title":"자주 쓰는 Preset","everyMinute":"매분","every5Minutes":"5분마다","every10Minutes":"10분마다","every30Minutes":"30분마다","hourly":"매시간","midnight":"매일 자정","daily9":"매일 오전 9시","monday9":"매주 월요일 오전 9시","monthlyFirst":"매월 1일 자정","weekdays9":"평일 오전 9시"},
+      "generator":{"frequency":"실행 주기","interval":"간격","hour":"시 (0–23)","minute":"분 (0–59)","weekdays":"요일","dates":"날짜","months":"월","monthLabel":"{month}월"},"modes":{"every-minute":"매분","every-n-minutes":"매 N분","hourly":"매시간","every-n-hours":"매 N시간","daily":"매일","weekly":"매주·특정 요일","monthly":"매월·특정 날짜","specific-date":"특정 월과 날짜"},"weekdays":{"0":"일","1":"월","2":"화","3":"수","4":"목","5":"금","6":"토"},"weekdayNames":{"0":"일요일","1":"월요일","2":"화요일","3":"수요일","4":"목요일","5":"금요일","6":"토요일"},
+      "direct":{"label":"Cron 표현식","help":"분 시 일 월 요일 순서의 숫자형 5필드와 *, 쉼표, 하이픈, 슬래시를 지원합니다."},"result":{"title":"Cron 결과","empty":"표현식을 입력하세요."},"status":{"valid":"유효한 5필드 Cron 표현식입니다.","empty":"표현식을 입력하면 검증 결과가 표시됩니다."},"actions":{"copyCron":"Cron 복사","copyDescription":"설명 복사","copied":"복사됨","clear":"초기화"},
+      "descriptionTitle":"사람이 읽는 설명","descriptions":{"everyMinute":"매분 실행","everyNMinutes":"{n}분마다 실행","hourlyAt":"매시간 {m}분에 실행","everyNHours":"{n}시간마다 {m}분에 실행","dailyAt":"매일 {time}에 실행","weeklyAt":"매주 {days} {time}에 실행","monthlyAt":"매월 {dates}일 {time}에 실행","specificDate":"{months}월 {dates}일 {time}에 실행","custom":"사용자 지정 일정입니다. 아래 필드 의미와 다음 실행 시간을 확인하세요.","orSuffix":"Day of Month와 Day of Week 중 하나가 일치할 때 실행합니다(OR)."},
+      "fields":{"title":"필드별 의미","minute":"Minute","hour":"Hour","dayOfMonth":"Day of Month","month":"Month","dayOfWeek":"Day of Week"},"warnings":{"domDowOr":"Day of Month와 Day of Week가 모두 지정되었습니다. 이 도구는 Unix/Vixie 규칙에 따라 둘 중 하나가 일치하면 실행합니다(OR)."},
+      "timezone":{"label":"시간대","browser":"브라우저 시간대 · {zone}","warning":"Cron 표현식 자체에는 시간대가 포함되지 않습니다. 실제 실행 시간은 서버나 서비스의 시간대 설정에 따라 달라질 수 있습니다."},"next":{"title":"다음 실행 예정 시간","count":"표시 횟수","empty":"유효한 표현식의 다음 실행 시간이 여기에 표시됩니다."},
+      "errors":{"fieldCount":"분 시 일 월 요일의 5개 필드가 필요합니다.","tooLong":"표현식은 1,000자 이하여야 합니다.","syntax":"지원하지 않는 Cron 문법입니다.","syntaxToken":"{field} 필드의 “{token}” 문법을 확인하세요.","range":"{field} 값 “{token}”은 {min}~{max} 범위여야 합니다.","rangeOrder":"{field} 범위 “{token}”은 시작값이 끝값보다 클 수 없습니다.","step":"{field} 간격 “{token}”은 {min}~{max} 범위여야 합니다.","copy":"복사하지 못했습니다. 클립보드 권한을 확인하세요."},
+      "reference":{"title":"Cron 빠른 문법표","description":"첫 버전은 Unix/Vixie 방식의 숫자형 5필드 Cron만 지원합니다.","syntax":"*  모든 값\n,  여러 값\n-  범위\n/  간격","fields":"Minute 0–59 · Hour 0–23 · Day 1–31 · Month 1–12 · Weekday 0–7 (0과 7은 일요일)"},"vercel":{"title":"Vercel Cron 사용 시 주의","description":"Vercel 등 실행 플랫폼은 시간대와 허용 주기에 별도 정책이 있을 수 있습니다. 배포 전 해당 플랫폼의 최신 공식 문서를 확인하세요."},"privacy":"표현식과 설정은 브라우저 메모리에서만 처리하며 서버로 전송하거나 저장하지 않습니다."
     },
     "wordCounter": {
       "metadata": {

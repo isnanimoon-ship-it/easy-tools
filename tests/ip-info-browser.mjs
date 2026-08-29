@@ -8,8 +8,8 @@ const locales = ["ko", "en", "ja"];
 const viewports = [{ width: 320, height: 800 }, { width: 375, height: 812 }, { width: 768, height: 1024 }, { width: 1024, height: 768 }, { width: 1280, height: 900 }];
 const label = {
   ko: { input: "IPv4 또는 IPv6 주소", lookup: "조회", copy: "IP 주소 복사", nav: "IP 정보 확인", private: /사설 네트워크/ },
-  en: { input: "IPv4 or IPv6 address", lookup: "Look up", copy: "Copy IP address", nav: "IP Lookup", private: /private network/ },
-  ja: { input: "IPv4またはIPv6アドレス", lookup: "検索", copy: "IPアドレスをコピー", nav: "IP情報確認", private: /プライベートネットワーク/ },
+  en: { input: "IPv4 or IPv6 address", lookup: "Look up", copy: "Copy IP address", nav: "IP Address Lookup", private: /private network/ },
+  ja: { input: "IPv4またはIPv6アドレス", lookup: "検索", copy: "IPアドレスをコピー", nav: "IPアドレス情報", private: /プライベートネットワーク/ },
 };
 const responseFor = (ip, type = "IPv4") => ({ success: true, ip, type, continent: "North America", continent_code: "NA", country: "United States", country_code: "US", region: "California", city: "Mountain View", postal: "94043", latitude: 37.4, longitude: -122.1, calling_code: "1", connection: { asn: 15169, org: "Example Organization with a deliberately long but wrapping name", isp: "Example ISP" }, timezone: { id: "America/Los_Angeles" } });
 await mkdir("artifacts", { recursive: true });

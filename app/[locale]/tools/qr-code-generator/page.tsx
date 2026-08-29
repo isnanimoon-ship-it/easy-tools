@@ -27,10 +27,10 @@ export default async function Page({ params }: PageProps) {
     errors: { "capacity-exceeded": t("errors.capacity"), "size-too-small": t("errors.size"), "generation-failed": t("errors.generation"), "download-failed": t("errors.download"), "copy-failed": t("errors.copy") },
   };
   return <>
-    <section className="border-b border-slate-200 bg-white"><Container className="py-10 sm:py-14"><div className="max-w-3xl"><h1 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-slate-600">{t("description")}</p></div></Container></section>
+    <section className="border-b border-[var(--border)] bg-[var(--surface)]"><Container className="py-10 sm:py-14"><div className="max-w-3xl"><h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-[var(--text-muted)]">{t("description")}</p></div></Container></section>
     <Container className="py-8 sm:py-12"><QrCodeGenerator labels={labels} />
       <section className="mt-8 grid gap-4 md:grid-cols-2"><Info title={t("guide.title")} text={t("guide.description")} /><Info title={t("correction.title")} text={t("correction.description")} /><Info title={t("scan.title")} text={t("scan.description")} /><Info title={t("privacy.title")} text={t("privacy.description")} blue /></section>
     </Container>
   </>;
 }
-function Info({ title, text, blue = false }: { title: string; text: string; blue?: boolean }) { return <div className={`rounded-2xl border p-5 sm:p-6 ${blue ? "border-blue-200 bg-blue-50" : "border-slate-200 bg-white"}`}><h2 className={`font-bold ${blue ? "text-blue-950" : "text-slate-950"}`}>{title}</h2><p className={`mt-2 text-sm leading-6 ${blue ? "text-blue-900" : "text-slate-600"}`}>{text}</p></div>; }
+function Info({ title, text, blue = false }: { title: string; text: string; blue?: boolean }) { return <div className={`rounded-2xl border p-5 sm:p-6 ${blue ? "border-[var(--info-border)] bg-[var(--info-bg)]" : "border-[var(--border)] bg-[var(--surface)]"}`}><h2 className={`font-bold ${blue ? "text-[var(--info-fg)]" : "text-[var(--foreground)]"}`}>{title}</h2><p className={`mt-2 text-sm leading-6 ${blue ? "text-[var(--info-fg)]" : "text-[var(--text-muted)]"}`}>{text}</p></div>; }

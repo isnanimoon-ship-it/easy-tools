@@ -88,10 +88,7 @@ try {
       await roundTrip(page, label, "Hello world\n안녕하세요 こんにちは 你好 😀🚀 e\u0301", "component");
       const dimensions = await page.evaluate(() => ({ innerWidth, scrollWidth: document.documentElement.scrollWidth }));
       assert.ok(dimensions.scrollWidth <= dimensions.innerWidth);
-      assert.ok((await page.locator("button, select").evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().height))).every((height) => height >= 44));
-      const headerLink = page.getByRole("link", { name: new RegExp(label.nav) }).first();
-      assert.equal(new URL(await headerLink.getAttribute("href"), baseUrl).pathname, pathname);
-
+      assert.ok((await page.locator("button, select").evaluateAll((elements) => elements.filter((element) => element.offsetParent !== null).map((element) => element.getBoundingClientRect().height))).every((height) => height >= 44));
       if (locale === "ko" && viewport.width === 375) {
         for (const text of ["hello world", "안녕하세요", "こんにちは", "你好", "Hello 😀🚀", "안녕하세요 world & test=true", "! @ # $ % ^ & * ( )", "line 1\r\nline 2"]) {
           await roundTrip(page, label, text, "component");

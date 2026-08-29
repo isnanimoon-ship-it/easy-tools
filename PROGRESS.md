@@ -1,12 +1,226 @@
 # 프로젝트 진행 현황
 
+## 전역 다크 모드 완료 기록 — 2026-08-29
+
+- 적용 범위: 홈, 공통 레이아웃과 12개 도구의 `ko`/`en`/`ja` 전체 URL
+- 상태: `DONE`
+- 개선 회차: 1/5
+- Builder: 헤더 테마 전환 버튼, 운영체제 테마 자동 감지, `konly-theme` 로컬 저장, 첫 화면 bootstrap, light/dark semantic color token, 다국어 접근성 문구를 구현했다. 입력 데이터나 테마 값은 서버로 전송하지 않으며 Builder는 최종 승인하지 않았다.
+- Optimizer 1: 모바일 헤더 밀도를 조정하고, UI 경계선 대비를 3:1 이상으로 강화했으며, localStorage 접근이 차단된 환경에서도 운영체제 설정으로 안전하게 복구하도록 bootstrap을 보완했다.
+
+### Critic 사전 품질 질문과 결과
+
+1. 현재 상태와 전환 동작을 즉시 이해할 수 있는가? → 아이콘과 ko/en/ja 동작형 접근성 이름으로 충족.
+2. 첫 방문에서 운영체제 설정을 따르는가? → light/dark 에뮬레이션 모두 PASS.
+3. 명시한 선택이 시스템 설정보다 우선하는가? → 저장값 우선 테스트 PASS.
+4. 새로고침·도구 이동·언어 변경에도 유지되는가? → 모두 PASS.
+5. 첫 화면에서 반대 테마가 번쩍이거나 hydration 오류가 발생하지 않는가? → 사전 bootstrap 및 오류 0 확인.
+6. 320px 모바일 헤더에서 컨트롤이 겹치지 않는가? → 320/375px PASS.
+7. 배경·카드·입력·결과 영역의 위계가 양쪽 테마에서 명확한가? → 13개 페이지 시각 및 computed-style 검사 PASS.
+8. 본문·보조 문구·상태 문구의 대비가 충분한가? → WCAG AA token 검사 PASS.
+9. 키보드와 터치로 전환하기 쉬운가? → native button, focus ring, 44×44px target PASS.
+10. 오류·경고·성공 상태가 색상 외 정보도 제공하는가? → 기존 텍스트·아이콘 의미를 유지함.
+11. 사용자 이미지·QR·canvas·색상 견본이 변형되지 않는가? → CSS filter 0 확인.
+12. 모션 감소 설정을 존중하는가? → reduced-motion에서 transition 제거.
+13. JavaScript 또는 저장소를 사용할 수 없어도 안전한가? → CSS fallback 및 storage 차단 테스트 PASS.
+14. 다크 모드 사용 때문에 외부 요청이나 개인정보 저장이 늘어나는가? → 테마 관련 네트워크 요청 0, light/dark 값만 로컬 저장.
+15. 기존 도구 기능과 SEO가 회귀하지 않았는가? → 기존 14개 브라우저 스크립트와 SEO 테스트 PASS.
+16. 모든 언어와 화면 크기에서 일관적인가? → ko/en/ja 및 320/375/768/1024/1440px PASS.
+
+### Critic 점수
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 핵심 기능과 정확성 | 25/25 | 시스템 감지·수동 전환·저장·복구 검증 |
+| 사용성·정보 구조 | 19/20 | 전역 헤더에서 일관된 전환 제공 |
+| 모바일 반응형 | 15/15 | 5개 viewport에서 겹침·overflow 0 |
+| 접근성 | 14/15 | 키보드·동작형 이름·focus·대비 충족, 실제 스크린리더 수동 청취 미실시 |
+| 성능·안정성 | 10/10 | 추가 라이브러리·서버 요청 없이 초기 bootstrap 적용 |
+| 다국어·현지화 | 5/5 | ko/en/ja label 및 경로 유지 검증 |
+| SEO·공유 | 5/5 | 기존 metadata·canonical·hreflang·sitemap 회귀 없음 |
+| 개인정보·보안 | 5/5 | 테마 값만 로컬 저장, 네트워크 요청 0 |
+| 합계 | **98/100** | PASS 기준 90 이상 |
+
+### QA 최종 증거
+
+- Critical 0, High 0, Medium 0, Low 1(실제 스크린리더 수동 청취 미실시)
+- `npm run lint`: PASS, warning 0
+- `npm run type-check`: PASS, TypeScript 오류 0
+- `npm test -- --run`: PASS, 29 files / 309 tests / fail·skip·todo 0
+- `npm run build`: PASS, 44개 정적 페이지 생성
+- 전용 Chrome QA: 13 pages × light/dark, 320/375/768/1024/1440px PASS
+- 저장값·운영체제 변경·잘못된 저장값·저장소 차단·JavaScript 비활성 fallback PASS
+- 텍스트 4.5:1 및 UI 경계 3:1 대비, 44×44px target, 가로 overflow 0
+- 사용자 이미지·canvas filter 0, 밝은 surface 누출 0, 테마 관련 네트워크 요청 0
+- Console Error 0, page error 0, hydration error 0
+- 기존 도구 브라우저 QA 14개 스크립트 PASS
+- 최종 판정: 점수 98, Critical/High 0 및 모든 완료 조건을 충족하여 Product Owner가 `DONE`으로 기록
+
+## Cron 표현식 생성기 완료 기록 — 2026-08-29
+
+- URL: `/{locale}/tools/cron-expression-generator`
+- 상태: `DONE`
+- 개선 회차: 1/5
+- Builder: Unix/Vixie 숫자형 5필드 Cron 생성·직접 입력·검증, Preset, 양방향 동기화, 자연어·필드 설명, DOM/DOW OR 경고, 브라우저/UTC/Asia-Seoul 시간대, 다음 5/10/20회, 복사·초기화, ko/en/ja·메뉴·SEO를 구현했다. `croner@10.0.1`을 exact pin으로 사용했으며 Builder는 최종 승인하지 않았다.
+- Optimizer 1: 서버와 브라우저의 기준 시각 차이로 발생한 hydration 오류를 mount 이후 계산으로 수정했다. 요일 range(`1-5`)의 역동기화·자연어 확장과 문장용 요일명을 보완했다.
+
+### Critic 사전 품질 질문과 결과
+
+1. Cron을 모르는 사용자가 매일 오전 9시를 만들 수 있는가? — Preset과 시각 선택으로 가능, 충족.
+2. 개발자가 표현식을 바로 입력할 수 있는가? — 직접 입력 tab과 300ms 검증 제공, 충족.
+3. 다섯 필드와 범위를 즉시 확인할 수 있는가? — 필드 카드와 Quick Reference 제공, 충족.
+4. 생성기와 직접 입력 전환에서 값이 손실되지 않는가? — 인식 가능한 식은 역동기화, 복잡한 식은 custom으로 원문 유지, 충족.
+5. Preset 적용 후 직접 수정하기 쉬운가? — Preset 결과를 같은 expression source로 편집 가능, 충족.
+6. 오류 필드와 해결 범위가 구체적인가? — field·token·min/max별 사용자 오류 제공, 충족.
+7. 복잡한 Cron을 잘못 단순화하지 않는가? — 확실한 template 외에는 custom과 필드 설명 제공, 충족.
+8. DOM/DOW OR 의미가 오해되지 않는가? — 결과 설명과 alert에 OR 규칙 명시, 충족.
+9. timezone이 식 자체가 아닌 미리보기 기준임이 분명한가? — 고정 안내 제공, 충족.
+10. 다음 실행 시간이 선택 timezone과 일치하는가? — Asia/Seoul·UTC·New York DST 고정 테스트, 충족.
+11. Sunday 0/7이 동일한가? — 동일 instant 자동 테스트, 충족.
+12. 모바일에서 요일·월과 긴 결과를 조작할 수 있는가? — 320/375/768/1440px overflow 0, 충족.
+13. 키보드·스크린리더가 control과 상태를 이해하는가? — label, tab role, fieldset, aria-pressed, status/alert 제공. 실제 스크린리더 수동 청취는 미실시.
+14. 입력이 외부로 전송·저장되지 않는가? — 외부 입력 요청 0, URL·storage 기록 0, 충족.
+
+### Critic 점수
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 핵심 기능과 정확성 | 25/25 | 5필드 subset·범위·step·OR·0/7·next-run 검증 |
+| 사용성·정보 구조 | 19/20 | 생성기·직접 입력·Preset·설명 명확. 고급 custom 식은 필드 지식 필요 |
+| 모바일 반응형 | 15/15 | 320/375/768/1440px 실제 Chrome, overflow 0 |
+| 접근성 | 14/15 | label·keyboard·aria-pressed·live error. 실제 screen reader 청취 미실시 |
+| 성능·안정성 | 10/10 | 최대 20회·300ms debounce·hydration 오류 회귀 검증 |
+| 다국어·현지화 | 5/5 | ko/en/ja 기능·route·문구 검증 |
+| SEO·공유 | 5/5 | metadata, canonical/hreflang, sitemap 39 URL |
+| 개인정보·보안 | 5/5 | browser-only, 입력 외부 요청·저장 0 |
+| 합계 | **98/100** | PASS 기준 90 이상 |
+
+### QA 최종 증거
+
+- Critical 0, High 0, Medium 0, Low 1(실제 screen reader 수동 청취 미실시)
+- `npm run lint`: PASS, warning 0
+- `npm run type-check`: PASS, TypeScript 오류 0
+- `npm test -- --run`: PASS, 28 files / 303 tests / fail·skip·todo 0
+- `npm run build`: PASS, 44개 정적 페이지와 ko/en/ja Cron route 생성
+- parser·validator 38 tests: 필수 정상식·범위 오류·unsupported dialect·공백·OR·0/7·Asia/Seoul·UTC·DST·20회 cap PASS
+- 실제 Chrome: 생성·직접 입력·오류 복구·자연어·Preset 역동기화·시간대·다음 5/20회·복사 PASS
+- viewport 320/375/768/1440, locale ko/en/ja, horizontal overflow 0
+- Console Error 0, page error 0, hydration error 0, 사용자 입력 외부 요청 0
+- 메뉴 12개 링크·개발자 6개와 sitemap 39 URL·hreflang·canonical·OG/Twitter PASS
+- 최종 판정: 점수 98, Critical/High 0, 자동 테스트·Console·모바일·필수 기능 기준을 충족하여 Product Owner가 `DONE`으로 기록
+
+## 정규식 테스터 완료 기록 — 2026-08-29
+
+- URL: `/{locale}/tools/regex-tester`
+- 상태: `DONE`
+- 개선 회차: 1/5
+- Builder: JavaScript RegExp의 `g/i/m/s/u/y`, 300ms 자동 실행, 별도 Web Worker와 1초 타임아웃, 매치·캡처·named group·UTF-16 index·치환 미리보기, 예제·복사·초기화, ko/en/ja·메뉴·SEO 연결을 구현했다. Builder는 최종 승인하지 않았다.
+- Optimizer 1: 초기 화면에서 `지금 실행` 버튼이 작동하지 않던 문제와, `g` 활성 상태에서 매치가 하나면 비전역 안내를 보여 주던 문제를 수정하고 브라우저 회귀 테스트를 추가했다.
+
+### Critic 사전 품질 질문과 결과
+
+1. 처음 방문한 사용자가 Pattern, Flag, Test String의 순서를 이해하는가? — 명시적 label·도움말·예제 제공, 충족.
+2. 현재 정규식이 유효한지 즉시 알 수 있는가? — 300ms debounce 상태 표시와 수동 실행 제공, 충족.
+3. `g` 유무에 따른 결과 차이를 오해하지 않는가? — 플래그 설명과 결과별 안내를 실제 flag 상태에 맞춰 표시, 충족.
+4. 매치 위치와 값, 캡처 그룹을 정확히 확인할 수 있는가? — UTF-16 시작/끝 index, numbered/named capture 제공, 충족.
+5. zero-length 매치가 무한 반복 없이 이해 가능하게 표시되는가? — Unicode-aware 전진과 전용 문구 제공, 충족.
+6. 치환 결과가 JavaScript 표준 token과 일치하는가? — 네이티브 `String.replace` 사용 및 token 테스트, 충족.
+7. 잘못된 정규식에서 앱이 깨지지 않고 복구되는가? — 화면 오류 처리 후 다음 정상 입력 실행 성공, 충족.
+8. catastrophic backtracking이 UI 전체를 멈추지 않는가? — 전용 Worker를 1초에 종료하고 즉시 재생성, 실브라우저 heartbeat 검증, 충족.
+9. 대량 입력과 매치가 브라우저 자원을 무제한 소비하지 않는가? — 입력·매치·상세·강조·치환 결과 상한 적용, 충족.
+10. 모바일에서 긴 Pattern과 결과가 레이아웃을 깨뜨리지 않는가? — 320/375/768/1440px 가로 overflow 0, 충족.
+11. 키보드와 스크린리더가 입력·플래그·상태를 식별할 수 있는가? — label, fieldset/legend, status/alert 제공. 실제 스크린리더 수동 청취는 미실시.
+12. 사용자의 Pattern과 테스트 문자열이 외부로 전송·저장되는가? — 외부 요청 0, URL·storage 기록 0, 충족.
+13. 한국어·영어·일본어에서 핵심 UI와 직접 URL이 동일하게 작동하는가? — 3 locale 실브라우저 검증, 충족.
+14. 초기화와 타임아웃 이후 다시 작업을 이어갈 수 있는가? — 초기 실행·초기화·타임아웃 후 복구 회귀 테스트, 충족.
+
+### Critic 점수
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 핵심 기능과 정확성 | 25/25 | 네이티브 RegExp/replace 대조, flags·groups·index·zero-length 검증 |
+| 사용성·정보 구조 | 19/20 | 실행 흐름·설명·오류 복구 명확. 고급 결과는 초보자에게 다소 조밀함 |
+| 모바일 반응형 | 15/15 | 320/375/768/1440px 실제 Chrome, overflow 0 |
+| 접근성 | 14/15 | label·fieldset·keyboard·live status/alert. 실제 스크린리더 청취 미실시 |
+| 성능·안정성 | 10/10 | Worker 격리, 1초 timeout, 응답성·복구·상한 검증 |
+| 다국어·현지화 | 5/5 | ko/en/ja route·문구 검증 |
+| SEO·공유 | 5/5 | metadata, canonical/hreflang, sitemap 36 URL |
+| 개인정보·보안 | 5/5 | client-only 처리, 입력 외부 요청·저장 0 |
+| 합계 | **98/100** | PASS 기준 90 이상 |
+
+### QA 최종 증거
+
+- Critical 0, High 0, Medium 0, Low 1(실제 스크린리더 수동 청취 미실시)
+- `npm run lint`: PASS, warning 0
+- `npm run type-check`: PASS, TypeScript 오류 0
+- `npm test -- --run`: PASS, 27 files / 265 tests / fail·skip·todo 0
+- `npm run build`: PASS, 41개 정적 페이지 생성 및 ko/en/ja 정규식 테스터 route 확인
+- 실제 Chrome: global/case-insensitive/capture/named group/replace/Unicode zero-length/invalid syntax PASS
+- ReDoS timeout PASS, timeout 동안 main thread heartbeat 유지, timeout 후 Worker 복구 PASS
+- viewport 320/375/768/1440, locale ko/en/ja, horizontal overflow 0
+- Console Error 0, page error 0, 사용자 입력 외부 요청 0
+- 메뉴 11개 링크·4개 카테고리와 sitemap 36 URL·hreflang·canonical·OG/Twitter PASS
+- 최종 판정: 점수 98, Critical/High 0, 자동 테스트·Console·모바일·필수 기능 기준을 모두 충족하여 Product Owner가 `DONE`으로 기록
+
+## 이미지 압축기 완료 기록 — 2026-08-29
+
+- URL: `/{locale}/tools/image-compressor`
+- 상태: `DONE`
+- 개선 회차: 2/5
+- Builder: JPEG/PNG/WebP 단일 업로드, Drag & Drop, 품질 10~100, 100KB/200KB/500KB/1MB 및 직접 목표, 출력 변환, 최대 가로 축소, 비교·다운로드, ko/en/ja와 메뉴·홈·SEO 연결 구현. Builder는 자체 승인하지 않음.
+- Optimizer 1: 설정 변경 직후 이전 결과 다운로드가 남는 High 이슈를 발견해 generation 무효화와 결과 URL 해제를 즉시 수행하도록 수정.
+- Optimizer 2: 결과 형식 표시 누락과 압축 중 상태 문구를 보완하고 React effect 규칙에 맞춰 option event에서 stale 결과를 즉시 무효화.
+
+### Critic 사전 품질 질문과 결과
+
+1. 비개발자가 품질과 절감률 차이를 이해하는가? — 품질 안내와 실제 감소량·절감률을 분리해 표시, 충족.
+2. 200KB 이하가 목적일 때 바로 설정 가능한가? — 목표 모드와 200KB preset 제공, 충족.
+3. 결과가 원본보다 크면 성공으로 오해하지 않는가? — 증가량과 원본 사용 권고를 텍스트로 표시, 충족.
+4. PNG 압축 한계와 대안을 이해하는가? — PNG quality 비적용 및 WebP/JPEG 안내, 충족.
+5. 전후 용량·크기·형식 차이가 명확한가? — 비교 카드에 원본/결과 bytes, dimensions, MIME 표시, 충족.
+6. 목표를 달성하며 가능한 높은 품질을 선택하는가? — 최대 10회 탐색과 최고 quality 후보 단위 테스트, 충족.
+7. 모바일에서 비교와 다운로드가 쉬운가? — 세로 흐름, 320/375px 실제 Chrome overflow 0, 충족.
+8. 투명 이미지를 JPEG로 바꿀 결과를 미리 아는가? — 흰 배경 경고와 실제 alpha=255 검증, 충족.
+9. 긴 처리와 목표 미달에서 상태·복구를 아는가? — 탐색 진행과 해상도/형식 변경 안내, 충족.
+10. 서버 미전송 설명과 실제 동작이 일치하는가? — 외부 이미지 요청 0, storage 사용 없음, 충족.
+11. 키보드·보조기술로 설정과 상태에 접근 가능한가? — label, fieldset/legend, radio/range/select, status/alert, 충족.
+12. 반복·빠른 설정 변경 결과를 신뢰할 수 있는가? — generation token과 즉시 stale 결과 폐기 후 재검증, 충족.
+
+### Critic 점수
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 핵심 기능과 정확성 | 25/25 | 형식, 품질, 목표 탐색, alpha, orientation, 결과 decode 검증 |
+| 사용성·정보 구조 | 19/20 | preset·비교·복구 안내 명확. drag slider는 범위 밖 |
+| 모바일 반응형 | 15/15 | 320/375/768/1440 실제 Chrome, overflow 0 |
+| 접근성 | 14/15 | 명시적 label·keyboard·status/alert. 실제 screen reader 수동 청취 미실시 |
+| 성능·안정성 | 9/10 | 24MP quality run 약 1.45초, crash 0. Worker 미사용은 측정상 허용 |
+| 다국어·콘텐츠 | 5/5 | ko/en/ja 기능·문구·route 검증 |
+| SEO·공유 | 5/5 | 독립 URL, metadata, sitemap 33 URL, hreflang |
+| 개인정보·보안 | 5/5 | client-only, 외부 이미지 요청 0, 입력 저장 없음 |
+| 합계 | **97/100** | PASS 기준 90 이상 |
+
+### QA 최종 증거
+
+- Critical 0, High 0, Medium 0, Low 1(실제 screen reader 수동 청취 미실시)
+- `npm run lint`: PASS, warning 0
+- `npm run type-check`: PASS, TypeScript 오류 0
+- `npm test`: PASS, 26 files / 241 tests / fail·skip·todo 0
+- `npm run build`: PASS, ko/en/ja 이미지 압축기 정적 생성
+- 실제 Chrome: JPEG/PNG/WebP, quality 20/50/80/100, 목표 100/200/500KB/1MB, PNG alpha, JPEG 흰 배경, EXIF Orientation 1~8 dimensions, 다운로드 PASS
+- 6000×4000(24MP) JPEG 기본 압축: 약 1.45초, crash 0
+- viewport 320/375/768/1440, locale ko/en/ja, horizontal overflow 0
+- Console Error 0, page error 0, 외부 이미지 요청 0
+- 메뉴 10개 링크와 sitemap 33 URL·33 x-default 회귀 PASS
+- 최종 판정: 평가 97, Critical/High 0, 자동 테스트·Console·모바일·수용 기준 PASS이므로 Product Owner가 `DONE` 기록
+
 ## 현재 상태
 
 - 단계: `DONE`
-- 활성 기능: URL Encoder / Decoder (`url-encoder-decoder`)
+- 활성 기능: Cron 표현식 생성기 (`cron-expression-generator`)
 - 개선 회차: 1/5
 - 다음 행동: 다음 기능은 별도 승인 SPEC 작성 후 시작
-- 비고: 기존 네 기능과 URL Encoder / Decoder 모두 `DONE`
+- 비고: Cron 표현식 생성기를 포함한 기존 도구 기능 모두 `DONE`
 
 ## 상태 규칙
 

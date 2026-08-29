@@ -24,7 +24,7 @@ try {
     await page.goto(`${baseUrl}/${locale}`, { waitUntil: "domcontentloaded" }); await assertLayout(page);
     assert.equal(await page.getByRole("button", { name: trigger, exact: true }).isVisible(), true);
     await page.getByRole("button", { name: trigger, exact: true }).click(); const panel = page.locator("#tool-panel"); await panel.waitFor();
-    assert.equal(await panel.getByRole("link").count(), 9); assert.equal(await page.getByRole("heading", { name: all }).count(), 0);
+    assert.equal(await panel.getByRole("link").count(), 12); assert.equal(await page.getByRole("heading", { name: all }).count(), 0);
     assert.equal(await panel.getByRole("heading").count(), 4); await page.keyboard.press("Escape"); assert.equal(await panel.count(), 0);
     assert.equal(await page.getByRole("button", { name: trigger, exact: true }).evaluate(node => node === document.activeElement), true);
     await context.close();
@@ -33,15 +33,15 @@ try {
   const context = await browser.newContext({ viewport: { width: 1280, height: 850 } }); const page = await context.newPage(); watch(page, "ko/1280");
   await page.goto(`${baseUrl}/ko/tools/json-formatter`, { waitUntil: "domcontentloaded" }); await assertLayout(page);
   for (const label of ["텍스트", "개발자", "이미지·미디어", "기타 도구", "전체 도구"]) assert.equal(await page.getByRole("button", { name: new RegExp(label) }).isVisible(), true);
-  const developer = page.getByRole("button", { name: /개발자/ }); assert.equal(await developer.getAttribute("aria-expanded"), "false"); assert.match(await developer.getAttribute("class"), /bg-blue-50/);
-  await developer.click(); let panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 4); assert.equal(await panel.getByRole("heading", { name: "개발자" }).count(), 1);
+  const developer = page.getByRole("button", { name: /개발자/ }); assert.equal(await developer.getAttribute("aria-expanded"), "false"); assert.match(await developer.getAttribute("class"), /bg-\[var\(--info-bg\)\]/);
+  await developer.click(); let panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 6); assert.equal(await panel.getByRole("heading", { name: "개발자" }).count(), 1);
   await page.keyboard.press("Escape"); assert.equal(await developer.evaluate(node => node === document.activeElement), true);
   await page.getByRole("button", { name: /기타 도구/ }).click(); panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 2); assert.equal(await panel.getByRole("heading", { name: "기타 도구" }).count(), 1);
   await page.keyboard.press("Escape");
-  await page.getByRole("button", { name: /전체 도구/ }).click(); panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 9); assert.equal(await panel.getByRole("heading").count(), 4);
+  await page.getByRole("button", { name: /전체 도구/ }).click(); panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 12); assert.equal(await panel.getByRole("heading").count(), 4);
   await page.screenshot({ path: "artifacts/tool-menu-1280-ko.png" });
   await context.close();
 
   assert.deepEqual(consoleErrors, []); assert.deepEqual(pageErrors, []);
-  process.stdout.write(JSON.stringify({ mobileCases: mobileCases.length, desktopMenus: 5, desktopCategories: 4, otherLinks: 2, links: 9, consoleErrors: 0, pageErrors: 0, horizontalOverflow: 0, overlap: 0 }, null, 2));
+  process.stdout.write(JSON.stringify({ mobileCases: mobileCases.length, desktopMenus: 5, desktopCategories: 4, otherLinks: 2, links: 12, consoleErrors: 0, pageErrors: 0, horizontalOverflow: 0, overlap: 0 }, null, 2));
 } finally { await browser.close(); }

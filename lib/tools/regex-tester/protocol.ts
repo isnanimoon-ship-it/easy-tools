@@ -1,0 +1,12 @@
+export const MAX_PATTERN_LENGTH=10_000;
+export const MAX_TEXT_LENGTH=500_000;
+export const MAX_REPLACEMENT_LENGTH=100_000;
+export const MAX_REPLACEMENT_RESULT_LENGTH=2_000_000;
+export const MAX_MATCHES=10_000;
+export const MAX_DETAIL_MATCHES=200;
+export const MAX_HIGHLIGHT_MATCHES=1_000;
+export type MatchRecord={value:string;start:number;end:number;captures:Array<string|null>;named:Record<string,string|null>;zeroLength:boolean};
+export type RegexRequest={requestId:number;pattern:string;flags:string;text:string;replacement:string};
+export type RegexSuccess={requestId:number;status:"success";matches:MatchRecord[];truncated:boolean;replacement:string|null;replacementChanged:boolean;replacementTooLarge:boolean};
+export type RegexFailure={requestId:number;status:"syntax-error"|"limit-error"|"runtime-error";code?:"pattern-too-long"|"text-too-long"|"replacement-too-long";message?:string};
+export type RegexResponse=RegexSuccess|RegexFailure;

@@ -64,13 +64,13 @@ export function IpInfoLookup({ labels, lookup = lookupIp }: { labels: IpInfoLabe
   return <section className="grid gap-6">
     <ResultCard title={labels.currentTitle} state={current} labels={labels} copied={current.status === "success" && copiedIp === current.value.ip} copyFailed={current.status === "success" && copyFailedIp === current.value.ip} onCopy={copyIp} action={<Button variant="secondary" onClick={() => run("current")} disabled={current.status === "loading"}><RefreshCw aria-hidden="true" size={18} />{labels.refresh}</Button>} />
 
-    <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6" aria-labelledby="manual-ip-title">
-      <h2 id="manual-ip-title" className="text-xl font-bold text-slate-950">{labels.manualTitle}</h2>
+    <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-6" aria-labelledby="manual-ip-title">
+      <h2 id="manual-ip-title" className="text-xl font-bold text-[var(--foreground)]">{labels.manualTitle}</h2>
       <form onSubmit={submit} className="mt-4">
-        <label htmlFor="ip-lookup-input" className="font-bold text-slate-950">{labels.inputLabel}</label>
-        <p id="ip-input-help" className="mt-1 text-sm leading-6 text-slate-600">{labels.inputHelp}</p>
+        <label htmlFor="ip-lookup-input" className="font-bold text-[var(--foreground)]">{labels.inputLabel}</label>
+        <p id="ip-input-help" className="mt-1 text-sm leading-6 text-[var(--text-muted)]">{labels.inputHelp}</p>
         <div className="mt-3 flex flex-col gap-3 sm:flex-row">
-          <input id="ip-lookup-input" value={input} onChange={(event) => { setInput(event.target.value.slice(0, 64)); if (manual.status === "error") setManual(initial); }} maxLength={64} spellCheck={false} autoComplete="off" inputMode="text" placeholder={labels.placeholder} aria-describedby="ip-input-help" className="min-h-11 min-w-0 flex-1 rounded-xl border border-slate-300 bg-slate-50 px-4 font-mono text-base outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100" />
+          <input id="ip-lookup-input" value={input} onChange={(event) => { setInput(event.target.value.slice(0, 64)); if (manual.status === "error") setManual(initial); }} maxLength={64} spellCheck={false} autoComplete="off" inputMode="text" placeholder={labels.placeholder} aria-describedby="ip-input-help" className="min-h-11 min-w-0 flex-1 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-4 font-mono text-base outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)]" />
           <Button type="submit" disabled={manual.status === "loading"}><Search aria-hidden="true" size={18} />{labels.lookup}</Button>
         </div>
       </form>
@@ -80,18 +80,18 @@ export function IpInfoLookup({ labels, lookup = lookupIp }: { labels: IpInfoLabe
 }
 
 function ResultCard({ title, state, labels, copied, copyFailed, onCopy, action }: { title: string; state: ViewState; labels: IpInfoLabels; copied: boolean; copyFailed: boolean; onCopy: (ip: string) => void; action: React.ReactNode }) {
-  return <section className="rounded-2xl border border-blue-200 bg-white p-4 shadow-sm sm:p-6" aria-labelledby="current-ip-title" aria-busy={state.status === "loading"}>
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><h2 id="current-ip-title" className="text-xl font-bold text-slate-950">{title}</h2>{action}</div>
+  return <section className="rounded-2xl border border-[var(--info-border)] bg-[var(--surface)] p-4 shadow-sm sm:p-6" aria-labelledby="current-ip-title" aria-busy={state.status === "loading"}>
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><h2 id="current-ip-title" className="text-xl font-bold text-[var(--foreground)]">{title}</h2>{action}</div>
     <div className="mt-5"><ResultBody state={state} labels={labels} copied={copied} copyFailed={copyFailed} onCopy={onCopy} /></div>
   </section>;
 }
 
 function ResultBody({ state, labels, copied, copyFailed, onCopy }: { state: ViewState; labels: IpInfoLabels; copied: boolean; copyFailed: boolean; onCopy: (ip: string) => void }) {
-  if (state.status === "idle") return <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">{labels.emptyResult}</p>;
-  if (state.status === "loading") return <p role="status" className="animate-pulse rounded-xl bg-blue-50 p-5 font-semibold text-blue-900">{labels.loading}</p>;
+  if (state.status === "idle") return <p className="rounded-xl bg-[var(--surface-muted)] p-4 text-sm text-[var(--text-muted)]">{labels.emptyResult}</p>;
+  if (state.status === "loading") return <p role="status" className="animate-pulse rounded-xl bg-[var(--info-bg)] p-5 font-semibold text-[var(--info-fg)]">{labels.loading}</p>;
   if (state.status === "error") {
     const detail = state.error === "non-public-ip" && state.category && state.category !== "public" ? labels.categories[state.category] : labels.errors[state.error];
-    return <p role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium leading-6 text-red-900">{detail}{state.error === "rate-limited" && state.retryAfterSeconds !== undefined ? ` ${labels.retryAfter.replace("{seconds}", String(state.retryAfterSeconds))}` : ""}</p>;
+    return <p role="alert" className="rounded-xl border border-[var(--error-border)] bg-[var(--error-bg)] p-4 text-sm font-medium leading-6 text-[var(--error-fg)]">{detail}{state.error === "rate-limited" && state.retryAfterSeconds !== undefined ? ` ${labels.retryAfter.replace("{seconds}", String(state.retryAfterSeconds))}` : ""}</p>;
   }
   const value = state.value; const location = [value.city, value.region, value.country].filter(Boolean).join(", ") || labels.unknown;
   const fields: Array<[string, string | null]> = [
@@ -101,11 +101,11 @@ function ResultBody({ state, labels, copied, copyFailed, onCopy }: { state: View
     [labels.fields.coordinates, value.latitude !== null && value.longitude !== null ? `${value.latitude}, ${value.longitude}` : null], [labels.fields.callingCode, value.callingCode ? `+${value.callingCode.replace(/^\+/, "")}` : null],
   ];
   return <div>
-    <div className="rounded-xl bg-blue-50 p-4 sm:p-5"><p className="text-sm font-semibold text-blue-800">{labels.fields.ip}</p><div className="mt-2 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><p dir="ltr" className="min-w-0 break-all font-mono text-2xl font-bold tracking-tight text-blue-950 sm:text-3xl">{value.ip}</p><Button variant="secondary" onClick={() => onCopy(value.ip)}><Copy aria-hidden="true" size={18} />{copied ? labels.copied : labels.copy}</Button></div><p className="mt-2 text-sm text-blue-900">{location}</p></div>
-    <dl className="mt-5 grid gap-px overflow-hidden rounded-xl border border-slate-200 bg-slate-200 sm:grid-cols-2">
-      {fields.map(([name, content]) => <div key={name} className="min-w-0 bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wide text-slate-500">{name}</dt><dd className="mt-1 overflow-wrap-anywhere break-words font-medium text-slate-900">{content ?? labels.unknown}</dd></div>)}
+    <div className="rounded-xl bg-[var(--info-bg)] p-4 sm:p-5"><p className="text-sm font-semibold text-[var(--info-fg)]">{labels.fields.ip}</p><div className="mt-2 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><p dir="ltr" className="min-w-0 break-all font-mono text-2xl font-bold tracking-tight text-[var(--info-fg)] sm:text-3xl">{value.ip}</p><Button variant="secondary" onClick={() => onCopy(value.ip)}><Copy aria-hidden="true" size={18} />{copied ? labels.copied : labels.copy}</Button></div><p className="mt-2 text-sm text-[var(--info-fg)]">{location}</p></div>
+    <dl className="mt-5 grid gap-px overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--border)] sm:grid-cols-2">
+      {fields.map(([name, content]) => <div key={name} className="min-w-0 bg-[var(--surface)] p-4"><dt className="text-xs font-bold uppercase tracking-wide text-[var(--text-muted)]">{name}</dt><dd className="mt-1 overflow-wrap-anywhere break-words font-medium text-[var(--foreground)]">{content ?? labels.unknown}</dd></div>)}
     </dl>
-    <p className="mt-4 text-sm leading-6 text-slate-600">{labels.approximate}</p>
-    {copyFailed ? <p role="alert" className="mt-3 rounded-xl border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-900">{labels.errors["copy-failed"]}</p> : null}
+    <p className="mt-4 text-sm leading-6 text-[var(--text-muted)]">{labels.approximate}</p>
+    {copyFailed ? <p role="alert" className="mt-3 rounded-xl border border-[var(--error-border)] bg-[var(--error-bg)] p-3 text-sm font-medium text-[var(--error-fg)]">{labels.errors["copy-failed"]}</p> : null}
   </div>;
 }

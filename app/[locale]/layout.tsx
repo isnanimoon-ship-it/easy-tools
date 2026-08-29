@@ -3,10 +3,12 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { NaverWcs } from "@/components/analytics/naver-wcs";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { getBaseUrl } from "@/lib/site-url";
 import { localizedAlternates, siteName } from "@/lib/seo";
+import { THEME_BOOTSTRAP } from "@/lib/theme";
 import { routing, type AppLocale } from "@/i18n/routing";
 
 import "../globals.css";
@@ -69,9 +71,11 @@ export default async function LocaleLayout({
   const jsonLd = { "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${baseUrl.origin}/#website`, url: baseUrl.origin, name: siteName(locale as AppLocale), alternateName: "KONLY", inLanguage: routing.locales, description: messages.Metadata.description }, { "@type": "WebApplication", "@id": `${baseUrl.origin}/#webapp`, url: baseUrl.origin, name: siteName(locale as AppLocale), description: messages.Metadata.description, applicationCategory: "UtilitiesApplication", operatingSystem: "Any", browserRequirements: "Requires a modern web browser", inLanguage: routing.locales, isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" } }] };
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{__html:THEME_BOOTSTRAP}}/></head>
       <body className="flex min-h-screen flex-col antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
+        <NaverWcs />
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main id="main-content" className="flex-1">

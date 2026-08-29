@@ -114,34 +114,34 @@ export function YouTubeThumbnailDownloader({ labels, imageLoader = loadThumbnail
 
   const hasInput = input.trim().length > 0;
   const errorId = error ? "youtube-thumbnail-error" : undefined;
-  return <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+  return <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-6">
     <form onSubmit={submit}>
-      <label htmlFor="youtube-url" className="font-bold text-slate-950">{labels.inputLabel}</label>
-      <p id="youtube-url-help" className="mt-1 text-sm leading-6 text-slate-600">{labels.inputHelp}</p>
-      <input id="youtube-url" ref={inputRef} value={input} disabled={loading} onChange={(event) => { setInput(event.target.value); invalidate(); }} aria-describedby={["youtube-url-help", errorId].filter(Boolean).join(" ")} aria-invalid={Boolean(error) || undefined} placeholder={labels.placeholder} spellCheck={false} inputMode="url" autoComplete="url" className="mt-3 min-h-12 w-full min-w-0 rounded-xl border border-slate-300 bg-slate-50 px-4 font-mono text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 disabled:cursor-wait" />
+      <label htmlFor="youtube-url" className="font-bold text-[var(--foreground)]">{labels.inputLabel}</label>
+      <p id="youtube-url-help" className="mt-1 text-sm leading-6 text-[var(--text-muted)]">{labels.inputHelp}</p>
+      <input id="youtube-url" ref={inputRef} value={input} disabled={loading} onChange={(event) => { setInput(event.target.value); invalidate(); }} aria-describedby={["youtube-url-help", errorId].filter(Boolean).join(" ")} aria-invalid={Boolean(error) || undefined} placeholder={labels.placeholder} spellCheck={false} inputMode="url" autoComplete="url" className="mt-3 min-h-12 w-full min-w-0 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-4 font-mono text-sm outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)] disabled:cursor-wait" />
       <div className="mt-4 grid grid-cols-2 gap-3 sm:flex">
         <Button type="submit" disabled={!hasInput || loading}>{loading ? labels.loading : labels.extract}</Button>
         <Button variant="secondary" onClick={clear} disabled={!input && !videoId && !error}>{labels.clear}</Button>
       </div>
     </form>
 
-    {error ? <p id="youtube-thumbnail-error" role="alert" className="mt-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium leading-6 text-red-900">{labels.errors[error]}</p> : null}
-    {videoId ? <div className="mt-7 border-t border-slate-200 pt-6">
-      <p className="break-all text-sm text-slate-600"><strong className="text-slate-950">{labels.videoId}:</strong> <code>{videoId}</code></p>
-      {loading ? <p role="status" className="mt-4 font-semibold text-blue-800">{labels.loading}</p> : null}
+    {error ? <p id="youtube-thumbnail-error" role="alert" className="mt-5 rounded-xl border border-[var(--error-border)] bg-[var(--error-bg)] p-4 text-sm font-medium leading-6 text-[var(--error-fg)]">{labels.errors[error]}</p> : null}
+    {videoId ? <div className="mt-7 border-t border-[var(--border)] pt-6">
+      <p className="break-all text-sm text-[var(--text-muted)]"><strong className="text-[var(--foreground)]">{labels.videoId}:</strong> <code>{videoId}</code></p>
+      {loading ? <p role="status" className="mt-4 font-semibold text-[var(--info-fg)]">{labels.loading}</p> : null}
       <div className="mt-5 grid min-w-0 gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {cards.map((card) => <article key={card.variant.key} className="min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
-          {card.status === "available" ? <img src={card.url} alt="" width={card.width} height={card.height} decoding="async" className="aspect-video w-full bg-slate-200 object-contain" /> : <div className="grid aspect-video place-items-center bg-slate-100 px-4 text-center text-sm font-medium text-slate-500">{card.status === "pending" ? labels.loading : labels.unavailable}</div>}
-          <div className="p-4"><h2 className="font-bold text-slate-950">{labels.variants[card.variant.key]}</h2>
-            <p className="mt-1 text-sm text-slate-600">{card.status === "available" ? `${labels.resolution}: ${card.width} × ${card.height}` : card.status === "pending" ? labels.loading : labels.unavailable}</p>
+        {cards.map((card) => <article key={card.variant.key} className="min-w-0 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)]">
+          {card.status === "available" ? <img src={card.url} alt="" width={card.width} height={card.height} decoding="async" className="aspect-video w-full bg-[var(--border)] object-contain" /> : <div className="grid aspect-video place-items-center bg-[var(--surface-muted)] px-4 text-center text-sm font-medium text-[var(--text-muted)]">{card.status === "pending" ? labels.loading : labels.unavailable}</div>}
+          <div className="p-4"><h2 className="font-bold text-[var(--foreground)]">{labels.variants[card.variant.key]}</h2>
+            <p className="mt-1 text-sm text-[var(--text-muted)]">{card.status === "available" ? `${labels.resolution}: ${card.width} × ${card.height}` : card.status === "pending" ? labels.loading : labels.unavailable}</p>
             {card.status === "available" ? <div className="mt-4 flex flex-wrap gap-2">
-              <a href={card.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-100"><ExternalLink aria-hidden="true" size={17} />{labels.open}</a>
+              <a href={card.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm font-semibold text-[var(--foreground)] hover:bg-[var(--surface-muted)]"><ExternalLink aria-hidden="true" size={17} />{labels.open}</a>
               <Button variant="secondary" className="text-sm" onClick={() => void save(card)} disabled={saving !== null}><Download aria-hidden="true" size={17} />{saving === card.variant.key ? labels.saving : labels.save}</Button>
             </div> : null}
           </div>
         </article>)}
       </div>
     </div> : null}
-    {status ? <p role="status" className={`mt-4 text-sm font-semibold ${status === labels.saved ? "text-emerald-700" : "text-red-800"}`}>{status}</p> : null}
+    {status ? <p role="status" className={`mt-4 text-sm font-semibold ${status === labels.saved ? "text-[var(--success-fg)]" : "text-[var(--error-fg)]"}`}>{status}</p> : null}
   </section>;
 }

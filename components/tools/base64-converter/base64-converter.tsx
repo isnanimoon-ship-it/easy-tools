@@ -102,34 +102,34 @@ export function Base64Converter({ labels }: { labels: Base64ConverterLabels }) {
   }
 
   const errorId = error ? "base64-converter-error" : undefined;
-  return <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-    <div role="group" aria-label={labels.modeLabel} className="grid grid-cols-2 gap-2 rounded-xl bg-slate-100 p-1 sm:max-w-sm">
-      {(["encode", "decode"] as const).map((item) => <button key={item} type="button" aria-pressed={mode === item} onClick={() => { if (mode !== item) resetForMode(item); }} className={`min-h-11 rounded-lg px-4 font-semibold outline-none focus:ring-4 focus:ring-blue-100 ${mode === item ? "bg-white text-blue-700 shadow-sm" : "text-slate-600 hover:text-slate-950"}`}>{item === "encode" ? labels.encodeMode : labels.decodeMode}</button>)}
+  return <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-6">
+    <div role="group" aria-label={labels.modeLabel} className="grid grid-cols-2 gap-2 rounded-xl bg-[var(--surface-muted)] p-1 sm:max-w-sm">
+      {(["encode", "decode"] as const).map((item) => <button key={item} type="button" aria-pressed={mode === item} onClick={() => { if (mode !== item) resetForMode(item); }} className={`min-h-11 rounded-lg px-4 font-semibold outline-none focus:ring-4 focus:ring-[var(--focus-ring)] ${mode === item ? "bg-[var(--surface)] text-[var(--primary)] shadow-sm" : "text-[var(--text-muted)] hover:text-[var(--foreground)]"}`}>{item === "encode" ? labels.encodeMode : labels.decodeMode}</button>)}
     </div>
 
-    <label className="mt-6 block max-w-sm text-sm font-semibold text-slate-700">{labels.encodingLabel}
-      <select value={encoding} onChange={(event) => changeEncoding(event.target.value as EncodingChoice)} aria-describedby="base64-encoding-help" className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-base outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100">
+    <label className="mt-6 block max-w-sm text-sm font-semibold text-[var(--foreground)]">{labels.encodingLabel}
+      <select value={encoding} onChange={(event) => changeEncoding(event.target.value as EncodingChoice)} aria-describedby="base64-encoding-help" className="mt-2 min-h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 text-base outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)]">
         {choices.map((choice) => <option key={choice} value={choice}>{labels.encodings[choice]}</option>)}
       </select>
     </label>
-    <p id="base64-encoding-help" className="mt-2 text-sm text-slate-500">{labels.encodingHelp}</p>
+    <p id="base64-encoding-help" className="mt-2 text-sm text-[var(--text-muted)]">{labels.encodingHelp}</p>
 
     <div className="mt-6 grid gap-5 lg:grid-cols-2">
-      <label className="block font-bold text-slate-950">{mode === "encode" ? labels.inputEncode : labels.inputDecode}
-        <textarea ref={inputRef} value={input} onChange={(event) => { setInput(event.target.value); setResult(""); clearFeedback(); }} aria-describedby={errorId} aria-invalid={Boolean(error) || undefined} placeholder={mode === "encode" ? labels.inputPlaceholderEncode : labels.inputPlaceholderDecode} spellCheck={false} className="mt-2 min-h-64 w-full resize-y rounded-xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm leading-6 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100" />
+      <label className="block font-bold text-[var(--foreground)]">{mode === "encode" ? labels.inputEncode : labels.inputDecode}
+        <textarea ref={inputRef} value={input} onChange={(event) => { setInput(event.target.value); setResult(""); clearFeedback(); }} aria-describedby={errorId} aria-invalid={Boolean(error) || undefined} placeholder={mode === "encode" ? labels.inputPlaceholderEncode : labels.inputPlaceholderDecode} spellCheck={false} className="mt-2 min-h-64 w-full resize-y rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 font-mono text-sm leading-6 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)]" />
       </label>
-      <label className="block font-bold text-slate-950">{mode === "encode" ? labels.resultEncode : labels.resultDecode}
-        <textarea value={result} readOnly placeholder={labels.resultEmpty} spellCheck={false} className="mt-2 min-h-64 w-full resize-y rounded-xl border border-slate-200 bg-white p-4 font-mono text-sm leading-6 text-slate-950 outline-none focus:ring-4 focus:ring-blue-100" />
+      <label className="block font-bold text-[var(--foreground)]">{mode === "encode" ? labels.resultEncode : labels.resultDecode}
+        <textarea value={result} readOnly placeholder={labels.resultEmpty} spellCheck={false} className="mt-2 min-h-64 w-full resize-y rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 font-mono text-sm leading-6 text-[var(--foreground)] outline-none focus:ring-4 focus:ring-[var(--focus-ring)]" />
       </label>
     </div>
 
-    <p className="mt-4 min-h-6 text-sm font-semibold text-blue-800" aria-live="polite">{applied}</p>
-    {error ? <p id="base64-converter-error" role="alert" className="mt-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium leading-6 text-red-900">{labels.errors[error]}</p> : null}
+    <p className="mt-4 min-h-6 text-sm font-semibold text-[var(--info-fg)]" aria-live="polite">{applied}</p>
+    {error ? <p id="base64-converter-error" role="alert" className="mt-3 rounded-xl border border-[var(--error-border)] bg-[var(--error-bg)] p-4 text-sm font-medium leading-6 text-[var(--error-fg)]">{labels.errors[error]}</p> : null}
     <div className="mt-5 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
       <Button onClick={convert} disabled={!hasContent || converting}>{converting ? labels.converting : mode === "encode" ? labels.encode : labels.decode}</Button>
       <Button variant="secondary" onClick={clear} disabled={input.length === 0 && result.length === 0 && !error}>{labels.clear}</Button>
       <Button variant="secondary" onClick={copy} disabled={!result}>{labels.copy}</Button>
     </div>
-    {copied ? <p role="status" className="mt-3 text-sm font-semibold text-emerald-700">{labels.copied}</p> : null}
+    {copied ? <p role="status" className="mt-3 text-sm font-semibold text-[var(--success-fg)]">{labels.copied}</p> : null}
   </section>;
 }

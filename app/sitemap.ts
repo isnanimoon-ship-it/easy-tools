@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { getBaseUrl } from "@/lib/site-url";
 
-const paths = ["", "/tools/word-counter", "/tools/json-formatter", "/tools/password-generator", "/tools/base64-converter", "/tools/url-encoder-decoder", "/tools/youtube-thumbnail-downloader", "/tools/qr-code-generator", "/tools/ip-info", "/tools/image-color-picker"] as const;
+const paths = ["", "/tools/word-counter", "/tools/json-formatter", "/tools/password-generator", "/tools/base64-converter", "/tools/url-encoder-decoder", "/tools/regex-tester", "/tools/cron-expression-generator", "/tools/youtube-thumbnail-downloader", "/tools/qr-code-generator", "/tools/ip-info", "/tools/image-color-picker", "/tools/image-compressor"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getBaseUrl();

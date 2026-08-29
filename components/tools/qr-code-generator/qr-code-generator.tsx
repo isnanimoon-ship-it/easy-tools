@@ -84,49 +84,49 @@ export function QrCodeGenerator({ labels, renderer = renderQrCode }: { labels: Q
   }
 
   const errorId = error ? "qr-code-error" : undefined;
-  return <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-    <label htmlFor="qr-input" className="font-bold text-slate-950">{labels.inputLabel}</label>
-    <p id="qr-input-help" className="mt-1 text-sm leading-6 text-slate-600">{labels.inputHelp}</p>
-    <textarea id="qr-input" ref={inputRef} value={input} onChange={(event) => updateInput(event.target.value)} aria-describedby={["qr-input-help", errorId].filter(Boolean).join(" ")} aria-invalid={Boolean(error) || undefined} placeholder={labels.placeholder} className="mt-3 min-h-36 w-full min-w-0 resize-y overflow-auto rounded-xl border border-slate-300 bg-slate-50 p-4 text-base leading-6 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100" />
+  return <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-6">
+    <label htmlFor="qr-input" className="font-bold text-[var(--foreground)]">{labels.inputLabel}</label>
+    <p id="qr-input-help" className="mt-1 text-sm leading-6 text-[var(--text-muted)]">{labels.inputHelp}</p>
+    <textarea id="qr-input" ref={inputRef} value={input} onChange={(event) => updateInput(event.target.value)} aria-describedby={["qr-input-help", errorId].filter(Boolean).join(" ")} aria-invalid={Boolean(error) || undefined} placeholder={labels.placeholder} className="mt-3 min-h-36 w-full min-w-0 resize-y overflow-auto rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 text-base leading-6 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)]" />
 
     <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.8fr)]">
-      <section aria-labelledby="qr-preview-title" className="min-w-0 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6">
-        <h2 id="qr-preview-title" className="font-bold text-slate-950">{labels.previewTitle}</h2>
-        <div className="mt-4 grid min-h-64 place-items-center overflow-hidden rounded-xl bg-white p-3">
+      <section aria-labelledby="qr-preview-title" className="min-w-0 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 sm:p-6">
+        <h2 id="qr-preview-title" className="font-bold text-[var(--foreground)]">{labels.previewTitle}</h2>
+        <div className="mt-4 grid min-h-64 place-items-center overflow-hidden rounded-xl bg-[var(--surface)] p-3">
           <canvas ref={canvasRef} role="img" aria-label={labels.canvasLabel} className={`h-auto max-h-[32rem] max-w-full ${phase === "success" ? "block" : "hidden"}`} />
-          {phase === "empty" ? <p className="text-center text-sm leading-6 text-slate-500">{labels.empty}</p> : null}
-          {phase === "processing" ? <p role="status" className="text-center font-semibold text-blue-800">{labels.processing}</p> : null}
-          {phase === "error" ? <p className="text-center text-sm text-slate-500">{labels.empty}</p> : null}
+          {phase === "empty" ? <p className="text-center text-sm leading-6 text-[var(--text-muted)]">{labels.empty}</p> : null}
+          {phase === "processing" ? <p role="status" className="text-center font-semibold text-[var(--info-fg)]">{labels.processing}</p> : null}
+          {phase === "error" ? <p className="text-center text-sm text-[var(--text-muted)]">{labels.empty}</p> : null}
         </div>
-        {result ? <dl className="mt-4 grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+        {result ? <dl className="mt-4 grid gap-2 text-sm text-[var(--foreground)] sm:grid-cols-2">
           <Meta label={labels.currentSize} value={`${result.options.size} × ${result.options.size}px`} />
           <Meta label={labels.currentLevel} value={result.options.level} />
           <Meta label={labels.currentMargin} value={`${result.options.margin} modules`} />
           <Meta label={labels.inputType} value={labels.inputTypes[result.inputType]} />
         </dl> : null}
-        {result?.metadata.warning ? <p className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm font-medium leading-6 text-amber-950">{labels.densityWarning}</p> : null}
+        {result?.metadata.warning ? <p className="mt-4 rounded-xl border border-[var(--warning-border)] bg-[var(--warning-bg)] p-3 text-sm font-medium leading-6 text-[var(--warning-fg)]">{labels.densityWarning}</p> : null}
       </section>
 
-      <fieldset className="min-w-0 rounded-2xl border border-slate-200 p-4 sm:p-6">
-        <legend className="px-1 font-bold text-slate-950">{labels.optionsTitle}</legend>
+      <fieldset className="min-w-0 rounded-2xl border border-[var(--border)] p-4 sm:p-6">
+        <legend className="px-1 font-bold text-[var(--foreground)]">{labels.optionsTitle}</legend>
         <Select label={labels.sizeLabel} help={labels.sizeHelp} value={options.size} onChange={(value) => updateOptions({ ...options, size: Number(value) as QrSize })} options={QR_SIZES.map((value) => ({ value, label: `${value}px` }))} />
         <Select label={labels.levelLabel} help={labels.levelHelp} value={options.level} onChange={(value) => updateOptions({ ...options, level: value as ErrorCorrectionLevel })} options={ERROR_LEVELS.map((value) => ({ value, label: labels.levels[value] }))} />
         <Select label={labels.marginLabel} help={labels.marginHelp} value={options.margin} onChange={(value) => updateOptions({ ...options, margin: Number(value) as QuietZone })} options={QUIET_ZONES.map((value) => ({ value, label: labels.margins[value] }))} />
       </fieldset>
     </div>
 
-    {error ? <p id="qr-code-error" role="alert" className="mt-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium leading-6 text-red-900">{labels.errors[error]}</p> : null}
+    {error ? <p id="qr-code-error" role="alert" className="mt-5 rounded-xl border border-[var(--error-border)] bg-[var(--error-bg)] p-4 text-sm font-medium leading-6 text-[var(--error-fg)]">{labels.errors[error]}</p> : null}
     <div className="mt-5 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
       <Button onClick={download} disabled={phase !== "success"}><Download aria-hidden="true" size={18} />{labels.download}</Button>
       <Button variant="secondary" onClick={() => void copyInput()} disabled={input === ""}><Clipboard aria-hidden="true" size={18} />{labels.copyInput}</Button>
       <Button variant="secondary" onClick={reset} disabled={input === "" && options.size === 256 && options.level === "M" && options.margin === 4}>{labels.clear}</Button>
     </div>
-    {feedback ? <p role="status" className="mt-3 text-sm font-semibold text-emerald-700">{feedback}</p> : null}
+    {feedback ? <p role="status" className="mt-3 text-sm font-semibold text-[var(--success-fg)]">{feedback}</p> : null}
   </section>;
 }
 
-function Meta({ label, value }: { label: string; value: string }) { return <div className="flex min-w-0 justify-between gap-3 rounded-lg bg-white px-3 py-2"><dt className="font-semibold">{label}</dt><dd className="break-all text-right">{value}</dd></div>; }
+function Meta({ label, value }: { label: string; value: string }) { return <div className="flex min-w-0 justify-between gap-3 rounded-lg bg-[var(--surface)] px-3 py-2"><dt className="font-semibold">{label}</dt><dd className="break-all text-right">{value}</dd></div>; }
 function Select({ label, help, value, onChange, options }: { label: string; help: string; value: string | number; onChange: (value: string) => void; options: { value: string | number; label: string }[] }) {
   const id = `qr-${label.replace(/\W/g, "-")}`;
-  return <label className="mt-4 block font-semibold text-slate-950" htmlFor={id}>{label}<span className="mt-1 block text-sm font-normal leading-6 text-slate-600">{help}</span><select id={id} value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100">{options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>;
+  return <label className="mt-4 block font-semibold text-[var(--foreground)]" htmlFor={id}>{label}<span className="mt-1 block text-sm font-normal leading-6 text-[var(--text-muted)]">{help}</span><select id={id} value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 min-h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)]">{options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>;
 }

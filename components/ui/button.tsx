@@ -12,8 +12,8 @@ export function Button({
 }: ButtonProps) {
   const variantClass =
     variant === "primary"
-      ? "bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-300"
-      : "border border-slate-300 bg-white text-slate-800 hover:bg-slate-50 disabled:text-slate-400";
+      ? "bg-[var(--primary-fill)] text-white hover:bg-[var(--primary-fill-hover)] disabled:bg-[var(--border)]"
+      : "border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:bg-[var(--surface-muted)] disabled:text-[var(--text-muted)]";
 
   return (
     <button

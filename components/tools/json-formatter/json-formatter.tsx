@@ -89,11 +89,11 @@ export function JsonFormatter({ labels }: { labels: JsonFormatterLabels }) {
     : null;
 
   return (
-    <section aria-labelledby="json-formatter-editor-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-      <h2 id="json-formatter-editor-heading" className="text-lg font-bold text-slate-950">
+    <section aria-labelledby="json-formatter-editor-heading" className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-6">
+      <h2 id="json-formatter-editor-heading" className="text-lg font-bold text-[var(--foreground)]">
         {labels.inputLabel}
       </h2>
-      <p id="json-formatter-description" className="mt-1 text-sm leading-6 text-slate-600">
+      <p id="json-formatter-description" className="mt-1 text-sm leading-6 text-[var(--text-muted)]">
         {labels.inputDescription}
       </p>
       <textarea
@@ -109,7 +109,7 @@ export function JsonFormatter({ labels }: { labels: JsonFormatterLabels }) {
         aria-invalid={feedback?.type === "invalid" ? true : undefined}
         placeholder={labels.placeholder}
         spellCheck={false}
-        className="mt-4 min-h-72 w-full resize-y rounded-xl border border-slate-300 bg-slate-50 p-4 font-mono text-sm leading-6 text-slate-950 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+        className="mt-4 min-h-72 w-full resize-y rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 font-mono text-sm leading-6 text-[var(--foreground)] outline-none transition focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)]"
       />
 
       <div className="mt-4 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
@@ -120,17 +120,17 @@ export function JsonFormatter({ labels }: { labels: JsonFormatterLabels }) {
       </div>
 
       {feedback?.type === "invalid" ? (
-        <div id="json-formatter-error" role="alert" className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-900">
+        <div id="json-formatter-error" role="alert" className="mt-4 rounded-xl border border-[var(--error-border)] bg-[var(--error-bg)] p-4 text-sm text-[var(--error-fg)]">
           <p className="font-bold">{labels.invalid}</p>
           <p className="mt-1 leading-6">{labels.guidance}</p>
           {positionMessage ? <p className="mt-1 font-medium">{positionMessage}</p> : null}
         </div>
       ) : null}
       {feedback?.type === "copy-error" ? (
-        <p id="json-formatter-error" role="alert" className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-900">{labels.copyError}</p>
+        <p id="json-formatter-error" role="alert" className="mt-4 rounded-xl border border-[var(--error-border)] bg-[var(--error-bg)] p-4 text-sm font-medium text-[var(--error-fg)]">{labels.copyError}</p>
       ) : null}
       {feedback?.type === "copied" ? (
-        <p role="status" aria-live="polite" className="mt-4 text-sm font-semibold text-emerald-700">{labels.copied}</p>
+        <p role="status" aria-live="polite" className="mt-4 text-sm font-semibold text-[var(--success-fg)]">{labels.copied}</p>
       ) : null}
     </section>
   );

@@ -1,13 +1,64 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #f8fafc;
   --foreground: #172033;
   --surface: #ffffff;
+  --surface-elevated: #ffffff;
   --surface-muted: #f1f5f9;
-  --border: #dbe3ee;
+  --border: #8492a6;
+  --text-muted: #64748b;
   --primary: #2563eb;
   --primary-hover: #1d4ed8;
+  --primary-fill: #2563eb;
+  --primary-fill-hover: #1d4ed8;
+  --primary-soft: #eff6ff;
+  --focus-ring: #dbeafe;
+  --success-bg: #ecfdf5;
+  --success-fg: #047857;
+  --success-border: #a7f3d0;
+  --warning-bg: #fffbeb;
+  --warning-fg: #78350f;
+  --warning-border: #fde68a;
+  --error-bg: #fef2f2;
+  --error-fg: #991b1b;
+  --error-border: #fecaca;
+  --info-bg: #eff6ff;
+  --info-fg: #1e3a8a;
+  --info-border: #bfdbfe;
+  --code-bg: #020617;
+  --code-fg: #f8fafc;
+}
+
+:root.dark {
+  --background: #0b1120;
+  --foreground: #e5edf8;
+  --surface: #111827;
+  --surface-elevated: #172033;
+  --surface-muted: #1e293b;
+  --border: #5b6b82;
+  --text-muted: #a8b5c7;
+  --primary: #60a5fa;
+  --primary-hover: #93c5fd;
+  --primary-fill: #2563eb;
+  --primary-fill-hover: #1d4ed8;
+  --primary-soft: #172554;
+  --focus-ring: rgb(59 130 246 / 0.35);
+  --success-bg: #052e2b;
+  --success-fg: #6ee7b7;
+  --success-border: #065f46;
+  --warning-bg: #3b2604;
+  --warning-fg: #fde68a;
+  --warning-border: #92400e;
+  --error-bg: #450a0a;
+  --error-fg: #fecaca;
+  --error-border: #991b1b;
+  --info-bg: #172554;
+  --info-fg: #bfdbfe;
+  --info-border: #1d4ed8;
+  --code-bg: #020617;
+  --code-fg: #f8fafc;
 }
 
 * {
@@ -26,6 +77,48 @@ body {
   font-family:
     Arial, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
     sans-serif;
+}
+
+body, header, footer, main, section, article, div, button, input, textarea, select, code {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 160ms;
+  transition-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, header, footer, main, section, article, div, button, input, textarea, select, code { transition-duration: 0s; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --background: #0b1120;
+    --foreground: #e5edf8;
+    --surface: #111827;
+    --surface-elevated: #172033;
+    --surface-muted: #1e293b;
+    --border: #5b6b82;
+    --text-muted: #a8b5c7;
+    --primary: #60a5fa;
+    --primary-hover: #93c5fd;
+    --primary-fill: #2563eb;
+    --primary-fill-hover: #1d4ed8;
+    --primary-soft: #172554;
+    --focus-ring: rgb(59 130 246 / 0.35);
+    --success-bg: #052e2b;
+    --success-fg: #6ee7b7;
+    --success-border: #065f46;
+    --warning-bg: #3b2604;
+    --warning-fg: #fde68a;
+    --warning-border: #92400e;
+    --error-bg: #450a0a;
+    --error-fg: #fecaca;
+    --error-border: #991b1b;
+    --info-bg: #172554;
+    --info-fg: #bfdbfe;
+    --info-border: #1d4ed8;
+    --code-bg: #020617;
+    --code-fg: #f8fafc;
+  }
 }
 
 button,

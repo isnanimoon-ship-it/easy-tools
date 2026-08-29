@@ -96,44 +96,44 @@ export function PasswordGenerator({ labels }: { labels: PasswordGeneratorLabels 
 
   const errorMessage = feedback === "all-disabled" ? labels.allDisabledError : feedback === "length" ? labels.lengthError : feedback === "random" ? labels.randomError : feedback === "copy-error" ? labels.copyError : null;
 
-  return <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+  return <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-6">
     <fieldset aria-describedby={feedback === "length" ? "password-generator-error" : undefined}>
-      <legend className="text-lg font-bold text-slate-950">{labels.lengthGroup}</legend>
+      <legend className="text-lg font-bold text-[var(--foreground)]">{labels.lengthGroup}</legend>
       <div className="mt-4 grid items-end gap-4 sm:grid-cols-[1fr_8rem]">
-        <label className="block text-sm font-semibold text-slate-700">{labels.rangeLabel}
+        <label className="block text-sm font-semibold text-[var(--foreground)]">{labels.rangeLabel}
           <input type="range" min="8" max="128" step="1" value={options.length} onChange={(event) => { const length = Number(event.target.value); setOptions((current) => ({ ...current, length })); setLengthInput(String(length)); resetTransientState(); }} className="mt-3 h-11 w-full accent-blue-600" />
         </label>
-        <label className="block text-sm font-semibold text-slate-700">{labels.numberLabel}
-          <input type="number" min="8" max="128" step="1" value={lengthInput} aria-invalid={feedback === "length" || undefined} aria-describedby={feedback === "length" ? "password-generator-error" : undefined} onChange={(event) => changeLengthInput(event.target.value)} onBlur={() => normalizeLength(true)} className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 px-3 text-base outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100" />
+        <label className="block text-sm font-semibold text-[var(--foreground)]">{labels.numberLabel}
+          <input type="number" min="8" max="128" step="1" value={lengthInput} aria-invalid={feedback === "length" || undefined} aria-describedby={feedback === "length" ? "password-generator-error" : undefined} onChange={(event) => changeLengthInput(event.target.value)} onBlur={() => normalizeLength(true)} className="mt-2 min-h-11 w-full rounded-xl border border-[var(--border)] px-3 text-base outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)]" />
         </label>
       </div>
     </fieldset>
 
     <fieldset className="mt-7" aria-describedby={feedback === "all-disabled" ? "password-generator-error" : undefined}>
-      <legend className="text-lg font-bold text-slate-950">{labels.characterTypes}</legend>
+      <legend className="text-lg font-bold text-[var(--foreground)]">{labels.characterTypes}</legend>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
-        {(["uppercase", "lowercase", "numbers", "symbols"] as const).map((key) => <label key={key} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 font-medium text-slate-800 hover:bg-slate-50">
+        {(["uppercase", "lowercase", "numbers", "symbols"] as const).map((key) => <label key={key} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl border border-[var(--border)] px-4 py-3 font-medium text-[var(--foreground)] hover:bg-[var(--surface-muted)]">
           <input type="checkbox" checked={options[key]} onChange={(event) => changeType(key, event.target.checked)} className="size-5 accent-blue-600" />
           {labels[key]}
         </label>)}
       </div>
     </fieldset>
 
-    {errorMessage ? <p id="password-generator-error" role="alert" className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium leading-6 text-red-900">{errorMessage}</p> : null}
+    {errorMessage ? <p id="password-generator-error" role="alert" className="mt-4 rounded-xl border border-[var(--error-border)] bg-[var(--error-bg)] p-4 text-sm font-medium leading-6 text-[var(--error-fg)]">{errorMessage}</p> : null}
 
     <Button onClick={handleGenerate} disabled={selectedCount === 0} className="mt-6 w-full sm:w-auto">{labels.generate}</Button>
 
-    <div className="mt-7 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-      <h2 className="font-bold text-slate-950">{labels.resultLabel}</h2>
-      {result ? <output className="mt-3 block break-all rounded-xl border border-slate-200 bg-white p-4 font-mono text-base leading-7 text-slate-950" aria-live="polite">{result.password}</output> : <p className="mt-3 text-sm text-slate-500">{labels.emptyResult}</p>}
+    <div className="mt-7 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 sm:p-5">
+      <h2 className="font-bold text-[var(--foreground)]">{labels.resultLabel}</h2>
+      {result ? <output className="mt-3 block break-all rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 font-mono text-base leading-7 text-[var(--foreground)]" aria-live="polite">{result.password}</output> : <p className="mt-3 text-sm text-[var(--text-muted)]">{labels.emptyResult}</p>}
       {strength ? <div className="mt-5">
-        <div className="flex items-center justify-between gap-3"><span className="font-semibold text-slate-800">{labels.strengthLabel}</span><strong>{labels.strength[strength.level]}</strong></div>
+        <div className="flex items-center justify-between gap-3"><span className="font-semibold text-[var(--foreground)]">{labels.strengthLabel}</span><strong>{labels.strength[strength.level]}</strong></div>
         <meter min="0" max="100" value={strength.meterValue} aria-label={`${labels.strengthLabel}: ${labels.strength[strength.level]}`} className="mt-2 h-3 w-full" />
-        <p className="mt-2 text-sm leading-6 text-slate-600">{labels.strengthDescription[strength.level]}</p>
-        <p className="mt-1 text-xs leading-5 text-slate-500">{labels.strengthNotice}</p>
+        <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">{labels.strengthDescription[strength.level]}</p>
+        <p className="mt-1 text-xs leading-5 text-[var(--text-muted)]">{labels.strengthNotice}</p>
       </div> : null}
       <Button variant="secondary" onClick={handleCopy} disabled={!result} className="mt-5 w-full sm:w-auto">{labels.copy}</Button>
-      {feedback === "copied" ? <p role="status" className="mt-3 text-sm font-semibold text-emerald-700">{labels.copied}</p> : null}
+      {feedback === "copied" ? <p role="status" className="mt-3 text-sm font-semibold text-[var(--success-fg)]">{labels.copied}</p> : null}
     </div>
   </section>;
 }

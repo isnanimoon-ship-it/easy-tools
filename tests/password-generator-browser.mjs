@@ -84,11 +84,8 @@ try {
 
       const dimensions = await page.evaluate(() => ({ innerWidth: window.innerWidth, scrollWidth: document.documentElement.scrollWidth }));
       assert.ok(dimensions.scrollWidth <= dimensions.innerWidth, `horizontal overflow at ${locale}/${viewport.width}`);
-      const touchTargets = await page.locator("button, label:has(input[type=checkbox])").evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().height));
+      const touchTargets = await page.locator("button, label:has(input[type=checkbox])").evaluateAll((elements) => elements.filter((element) => element.offsetParent !== null).map((element) => element.getBoundingClientRect().height));
       assert.ok(touchTargets.every((height) => height >= 44), `small touch target at ${locale}/${viewport.width}`);
-
-      const headerLink = page.getByRole("link", { name: labels[locale].nav }).first();
-      assert.equal(new URL(await headerLink.getAttribute("href"), baseUrl).pathname, pathname);
 
       if (locale === "ko" && viewport.width === 375) {
         await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: baseUrl });

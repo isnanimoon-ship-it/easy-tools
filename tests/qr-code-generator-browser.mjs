@@ -8,7 +8,7 @@ const locales = ["ko", "en", "ja"];
 const viewports = [{ width: 320, height: 800 }, { width: 375, height: 812 }, { width: 768, height: 1024 }, { width: 1024, height: 768 }, { width: 1280, height: 900 }];
 const labels = {
   ko: { input: "QR 코드에 넣을 내용", size: /출력 크기/, level: /오류 복원 수준/, margin: /Quiet Zone 여백/, download: "PNG 다운로드", copy: "입력값 복사", clear: "초기화", nav: "QR 코드 생성기", url: "URL", text: "텍스트" },
-  en: { input: "Content to encode", size: /Output size/, level: /Error correction level/, margin: /Quiet Zone margin/, download: "Download PNG", copy: "Copy input", clear: "Clear", nav: "QR Generator", url: "URL", text: "Text" },
+  en: { input: "Content to encode", size: /Output size/, level: /Error correction level/, margin: /Quiet Zone margin/, download: "Download PNG", copy: "Copy input", clear: "Clear", nav: "QR Code Generator", url: "URL", text: "Text" },
   ja: { input: "QRコードに入れる内容", size: /出力サイズ/, level: /誤り訂正レベル/, margin: /Quiet Zoneの余白/, download: "PNGをダウンロード", copy: "入力値をコピー", clear: "クリア", nav: "QRコード生成", url: "URL", text: "テキスト" },
 };
 await mkdir("artifacts", { recursive: true });
@@ -34,7 +34,7 @@ try {
     for (const alternate of locales) assert.equal(new URL(await page.locator(`link[rel="alternate"][hreflang="${alternate}"]`).getAttribute("href")).pathname, `/${alternate}/tools/qr-code-generator`);
     const input = page.getByRole("textbox", { name: label.input }); const download = page.getByRole("button", { name: label.download });
     assert.equal(await download.isDisabled(), true); assert.equal(await page.getByRole("button", { name: label.copy }).isDisabled(), true);
-    await generate(page, label, "Hello World"); assert.equal(await page.locator("canvas").getAttribute("width"), "256"); assert.equal(await page.getByText(label.text, { exact: true }).count(), 1);
+    await generate(page, label, "Hello World"); assert.equal(await page.locator("canvas").getAttribute("width"), "256"); assert.equal(await page.locator("dd").getByText(label.text, { exact: true }).count(), 1);
     const dimensions = await page.evaluate(() => ({ width: innerWidth, scroll: document.documentElement.scrollWidth })); assert.ok(dimensions.scroll <= dimensions.width);
     assert.ok((await page.locator("button, textarea, select").evaluateAll((nodes) => nodes.filter((node) => node.offsetParent !== null).map((node) => node.getBoundingClientRect().height))).every((height) => height >= 44));
     const visibleHeaderItems = await page.locator("header a, header select").evaluateAll((nodes) => nodes.filter((node) => node.offsetParent !== null).map((node) => { const r = node.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom }; }));
@@ -42,14 +42,14 @@ try {
 
     if (locale === "ko" && viewport.width === 375) {
       for (const value of ["Hello World", "안녕하세요", "こんにちは", "Hello 😀🚀", "https://example.com", "https://example.com/search?q=hello&sort=new", "line 1\nline 2", "!@#$%^&*()", "  exact spaces\n"]) await generate(page, label, value);
-      await generate(page, label, "https://example.com"); assert.equal(await page.getByText(label.url, { exact: true }).count(), 1); await generate(page, label, "example.com"); assert.equal(await page.getByText(label.text, { exact: true }).count(), 1);
+      await generate(page, label, "https://example.com"); assert.equal(await page.locator("dd").getByText(label.url, { exact: true }).count(), 1); await generate(page, label, "example.com"); assert.equal(await page.locator("dd").getByText(label.text, { exact: true }).count(), 1);
       for (const level of ["L", "M", "Q", "H"]) { await page.getByRole("combobox", { name: label.level }).selectOption(level); await waitForQr(page); assert.equal(await decode(page), "example.com"); }
       for (const margin of ["4", "6", "8"]) { await page.getByRole("combobox", { name: label.margin }).selectOption(margin); await waitForQr(page); assert.equal(await decode(page), "example.com"); }
       for (const size of ["128", "256", "512", "1024"]) { await page.getByRole("combobox", { name: label.size }).selectOption(size); await waitForQr(page); assert.equal(await page.locator("canvas").getAttribute("width"), size); assert.equal(await decode(page), "example.com"); }
       const downloadPromise = page.waitForEvent("download"); await download.click(); const file = await downloadPromise; assert.equal(file.suggestedFilename(), "qr-code.png");
       await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: baseUrl }); await page.getByRole("button", { name: label.copy }).click(); assert.equal(await page.evaluate(() => navigator.clipboard.readText()), "example.com");
       await page.getByRole("combobox", { name: label.size }).selectOption("128"); await input.fill("a".repeat(500)); await page.locator("#qr-code-error").waitFor(); assert.match(await page.locator("#qr-code-error").textContent(), /크기/);
-      await page.getByRole("combobox", { name: label.size }).selectOption("1024"); await input.fill("a".repeat(850)); await waitForQr(page); assert.equal(await page.locator(".bg-amber-50").count(), 1);
+      await page.getByRole("combobox", { name: label.size }).selectOption("1024"); await input.fill("a".repeat(850)); await waitForQr(page); assert.equal(await page.getByText(/스캔하기 어려울 수 있습니다/).count(), 1);
       await input.fill("😀".repeat(2000)); await page.locator("#qr-code-error").waitFor(); assert.match(await page.locator("#qr-code-error").textContent(), /너무 깁니다/);
       await input.fill(""); assert.equal(await page.locator("canvas.block").count(), 0); assert.equal(await page.locator("#qr-code-error").count(), 0);
       const marker = "QR_PRIVATE_MARKER_7e31"; await generate(page, label, marker); assert.equal(requests.some((request) => request.includes(marker)), false);

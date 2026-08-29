@@ -23,7 +23,7 @@ export function LanguageSwitcher() {
 
   return (
     <div className="flex items-center gap-2">
-      <Languages aria-hidden="true" className="text-slate-500" size={18} />
+      <Languages aria-hidden="true" className="hidden text-[var(--text-muted)] sm:block" size={18} />
       <label htmlFor="language-select" className="sr-only">
         {t("label")}
       </label>
@@ -32,7 +32,7 @@ export function LanguageSwitcher() {
         value={locale}
         disabled={isPending}
         onChange={(event) => changeLocale(event.target.value as AppLocale)}
-        className="min-h-11 rounded-lg border border-slate-300 bg-white px-2.5 text-sm font-semibold text-slate-700"
+        className="min-h-11 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-2.5 text-sm font-semibold text-[var(--foreground)]"
         aria-label={t("label")}
       >
         {routing.locales.map((supportedLocale) => (

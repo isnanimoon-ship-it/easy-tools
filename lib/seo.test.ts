@@ -15,7 +15,7 @@ describe("SEO metadata", () => {
     expect(metadata.robots).toMatchObject({index:true,follow:true});
   });
   it("lists every locale and tool exactly once in the sitemap", () => {
-    const entries=sitemap(); expect(entries).toHaveLength(30); expect(new Set(entries.map(entry=>entry.url)).size).toBe(30);
+    const entries=sitemap(); expect(entries).toHaveLength(39); expect(new Set(entries.map(entry=>entry.url)).size).toBe(39);
     expect(entries.every(entry=>entry.url.startsWith("https://www.konly.co.kr/"))).toBe(true);
     expect(entries.find(entry=>entry.url.endsWith("/en/tools/json-formatter"))?.alternates?.languages?.["x-default"]).toBe("https://www.konly.co.kr/ko/tools/json-formatter");
   });

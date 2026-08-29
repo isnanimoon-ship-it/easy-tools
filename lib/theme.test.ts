@@ -1,0 +1,2 @@
+import{describe,expect,it}from"vitest";import{isTheme,resolveTheme}from"./theme";
+describe("theme",()=>{it.each([["light",false,"light"],["dark",false,"dark"],[null,true,"dark"],[null,false,"light"],["invalid",true,"dark"]])("resolves %s",(stored,system,expected)=>expect(resolveTheme(stored,system)).toBe(expected));it("allows only persisted values",()=>{expect(isTheme("light")).toBe(true);expect(isTheme("dark")).toBe(true);expect(isTheme("system")).toBe(false)})});
