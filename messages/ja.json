@@ -9,7 +9,7 @@
     "skipToContent": "本文へ移動",
     "status": "準備中",
     "theme": { "enableDark": "ダークモードをオン", "enableLight": "ライトモードをオン" },
-    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64変換", "urlEncoderDecoder": "URLエンコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像圧縮", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター" },
+    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64変換", "urlEncoderDecoder": "URLエンコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像圧縮", "screenshotStitcher": "スクリーンショット結合", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター" },
     "footer": "© {year} かんたんツール。誰でもかんたんに。",
     "result": "結果",
     "copy": "コピー",
@@ -42,11 +42,25 @@
       "ipInfo": { "title": "IPアドレス情報", "description": "現在のグローバルIP、国、地域、ISP、ASNなどの基本情報を確認します。" },
       "imageColorPicker": { "title": "画像カラーピッカー", "description": "画像をアップロードし、正確なピクセル色をHEX、RGB、HSL、HSV、CMYKで確認します。" },
       "imageCompressor": { "title": "画像圧縮", "description": "JPG、PNG、WebPを品質または目標サイズでブラウザー内圧縮します。" },
+      "screenshotStitcher": { "title": "スクリーンショット自動結合", "description": "連続画像の重複部分を検出し、1枚の長いPNGに結合します。" },
       "regexTester": { "title": "正規表現テスター", "description": "JavaScript正規表現の一致、キャプチャグループ、置換結果を確認します。" },
       "cronExpressionGenerator": { "title": "Cron式ジェネレーター", "description": "5フィールドCronを作成・解析し、タイムゾーン別の次回実行を確認します。" }
     }
   },
   "Tools": {
+    "screenshotStitcher": {
+      "metadata": { "title": "無料スクリーンショット自動結合", "description": "連続スクリーンショットの重複部分をブラウザーで検出し、1枚の長いPNGに結合します。" },
+      "title": "スクリーンショット自動結合", "description": "連続キャプチャの重複部分を見つけて削除し、1枚の長いスクリーンショットを作成します。",
+      "upload": { "title": "スクリーンショットを追加", "help": "複数のPNG、JPG、WebPを選択するか、ここにドロップしてください。", "dropActive": "ここに画像をドロップしてください。", "limit": "2～20枚 · 1ファイル20MB · 合計100MB" },
+      "actions": { "choose": "画像を選択", "add": "画像を追加", "clear": "すべてクリア", "up": "上へ移動", "down": "下へ移動", "remove": "画像を削除", "analyze": "重複を自動検出", "reanalyze": "除外範囲で再解析", "cancel": "キャンセル", "confirm": "この接続を確認", "compose": "長い画像を作成", "download": "PNGをダウンロード" },
+      "status": { "loading": "画像を確認中…", "needTwo": "解析するには画像を2枚以上追加してください。", "analyzing": "画像の接続を解析中 · {current}/{total}", "composing": "元の解像度で長い画像を作成中…" },
+      "list": { "title": "画像の順序", "help": "上から下へ結合されます。ドラッグまたは矢印ボタンで並べ替えてください。", "count": "{count}枚", "widthWarning": "最初の画像と幅が異なるため、比率を保って調整されます。" },
+      "connections": { "title": "接続を確認", "help": "自動結果を確認し、不自然な接続は重複の高さを調整してください。", "confidence": "推定一致信頼度 {value}%", "review": "重複部分を確実に特定できませんでした。値を調整して確認してください。", "overlap": "削除する重複の高さ", "fixedUi": "固定ヘッダー・フッター除外", "excludeBottom": "前画像の下端を除外(px)", "excludeTop": "次画像の上端を除外(px)", "bottom": "前画像の下端", "top": "次画像の上端", "bottomAlt": "画像{index}の下端プレビュー", "topAlt": "画像{index}の上端プレビュー", "seamAlt": "画像{from}と{to}の重複削除後の接続プレビュー", "unresolved": "結果を作成する前にすべての接続を確認してください。", "status": { "auto": "自動検出", "review": "手動確認", "manual": "手動設定" } },
+      "result": { "title": "完成した長いスクリーンショット", "previewAlt": "結合したスクリーンショットのプレビュー", "stale": "接続設定が変更されました。画像を再作成してください。", "images": "使用画像", "dimensions": "結果サイズ", "totalHeight": "元の高さ合計", "removed": "削除した重複", "size": "ファイルサイズ" },
+      "errors": { "too-many-files": "画像は最大20枚まで追加できます。", "unsupported-type": "PNG、JPG、WebP画像を選択してください。", "file-too-large": "1ファイルは20MB以下にしてください。", "total-too-large": "合計ファイルサイズは100MB以下にしてください。", "animated-image": "アニメーションWebPには対応していません。静止画像に変換してください。", "dimension-limit": "画像が3,000万ピクセルまたは一辺16,384pxを超えています。", "decode-failed": "画像を読み込めません。ファイルが破損している可能性があります。", "too-few-files": "画像を2枚以上追加してください。", "worker-unsupported": "このブラウザーでは自動解析を利用できません。最新のChromeをお試しください。", "output-limit": "結果がブラウザーの処理上限を超えます。画像の数またはサイズを減らしてください。", "canvas-limit": "画像を処理できませんでした。数またはサイズを減らして再試行してください。" },
+      "privacy": "プライバシー：画像はこのブラウザー内だけで処理され、サーバーへ送信・保存されません。",
+      "guide": { "orderTitle": "最初に順序を確認", "orderText": "正確な重複検出には撮影順序が正しい必要があります。", "reviewTitle": "接続部分を確認", "reviewText": "繰り返しメニューや単色領域は曖昧です。信頼度とプレビューを確認してください。", "privacyTitle": "ブラウザー内処理", "privacyText": "元画像と結果は外部へ送信されず、クリアまたはタブを閉じると解放されます。" }
+    },
     "regexTester": {
       "metadata": { "title": "無料JavaScript正規表現テスター", "description": "JavaScript正規表現のフラグ、キャプチャグループ、名前付きグループ、置換をブラウザーで確認できます。" },
       "title": "正規表現テスター", "description": "JavaScript正規表現をリアルタイムで検証し、一致位置、キャプチャグループ、置換結果を確認できます。",

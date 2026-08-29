@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import robots from "@/app/robots";
 import sitemap from "@/app/sitemap";
 import { createPageMetadata, localizedAlternates } from "./seo";
+import { routing } from "@/i18n/routing";
+import { TOOLS } from "@/lib/tools/registry";
 
 describe("SEO metadata", () => {
   it("creates reciprocal locale and x-default alternates", () => {
@@ -15,7 +17,9 @@ describe("SEO metadata", () => {
     expect(metadata.robots).toMatchObject({index:true,follow:true});
   });
   it("lists every locale and tool exactly once in the sitemap", () => {
-    const entries=sitemap(); expect(entries).toHaveLength(39); expect(new Set(entries.map(entry=>entry.url)).size).toBe(39);
+    const entries=sitemap(); const expectedPaths=["",...TOOLS.map(tool=>tool.path)];
+    expect(entries).toHaveLength(expectedPaths.length*routing.locales.length); expect(new Set(entries.map(entry=>entry.url)).size).toBe(entries.length);
+    for(const path of expectedPaths) for(const locale of routing.locales) expect(entries.some(entry=>entry.url===`https://www.konly.co.kr/${locale}${path}`)).toBe(true);
     expect(entries.every(entry=>entry.url.startsWith("https://www.konly.co.kr/"))).toBe(true);
     expect(entries.find(entry=>entry.url.endsWith("/en/tools/json-formatter"))?.alternates?.languages?.["x-default"]).toBe("https://www.konly.co.kr/ko/tools/json-formatter");
   });

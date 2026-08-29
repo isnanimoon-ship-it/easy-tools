@@ -9,7 +9,7 @@
     "skipToContent": "본문으로 바로가기",
     "status": "준비 중",
     "theme": { "enableDark": "다크 모드 켜기", "enableLight": "라이트 모드 켜기" },
-    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 변환기", "urlEncoderDecoder": "URL 인코더", "youtubeThumbnailDownloader": "유튜브 썸네일", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 압축기", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기" },
+    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 변환기", "urlEncoderDecoder": "URL 인코더", "youtubeThumbnailDownloader": "유튜브 썸네일", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 압축기", "screenshotStitcher": "스크린샷 이어붙이기", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기" },
     "footer": "© {year} 간편도구. 누구나 간편하게.",
     "result": "결과",
     "copy": "복사",
@@ -42,11 +42,25 @@
       "ipInfo": { "title": "IP 정보 확인", "description": "현재 공인 IP와 국가, 지역, ISP, ASN 등 기본 네트워크 정보를 확인합니다." },
       "imageColorPicker": { "title": "이미지 색상 추출기", "description": "이미지를 올리고 정확한 픽셀 색상을 HEX, RGB, HSL, HSV, CMYK로 확인합니다." },
       "imageCompressor": { "title": "이미지 압축기", "description": "JPG, PNG, WebP 사진을 원하는 품질이나 목표 용량으로 브라우저에서 줄입니다." },
+      "screenshotStitcher": { "title": "스크린샷 자동 이어붙이기", "description": "연속 스크린샷의 겹치는 영역을 찾아 중복 없이 하나의 긴 PNG로 합칩니다." },
       "regexTester": { "title": "정규식 테스터", "description": "JavaScript 정규식을 실행해 매치, 캡처 그룹과 문자열 치환 결과를 확인합니다." },
       "cronExpressionGenerator": { "title": "Cron 표현식 생성기", "description": "5필드 Cron을 만들고 해석하며 시간대별 다음 실행 시간을 확인합니다." }
     }
   },
   "Tools": {
+    "screenshotStitcher": {
+      "metadata": { "title": "무료 스크린샷 자동 이어붙이기", "description": "여러 스크린샷의 겹치는 부분을 브라우저에서 자동으로 찾아 하나의 긴 PNG로 합치세요." },
+      "title": "스크린샷 자동 이어붙이기", "description": "연속으로 찍은 이미지의 겹치는 부분을 자동으로 찾아 중복을 제거하고 긴 스크린샷으로 만드세요.",
+      "upload": { "title": "스크린샷 추가", "help": "PNG, JPG, WebP 파일을 여러 장 선택하거나 여기에 놓으세요.", "dropActive": "여기에 이미지를 놓으세요.", "limit": "2~20장 · 파일당 20MB · 전체 100MB" },
+      "actions": { "choose": "이미지 선택", "add": "이미지 추가", "clear": "전체 초기화", "up": "위로 이동", "down": "아래로 이동", "remove": "이미지 삭제", "analyze": "겹침 자동 찾기", "reanalyze": "제외 범위로 다시 분석", "cancel": "취소", "confirm": "이 연결 확인", "compose": "긴 이미지 만들기", "download": "PNG 다운로드" },
+      "status": { "loading": "이미지를 확인하는 중…", "needTwo": "자동 분석하려면 이미지를 2장 이상 추가하세요.", "analyzing": "이미지 연결을 분석하는 중 · {current}/{total}", "composing": "원본 해상도로 긴 이미지를 만드는 중…" },
+      "list": { "title": "이미지 순서", "help": "위에서 아래 순서로 연결됩니다. 끌거나 화살표 버튼으로 순서를 바꾸세요.", "count": "{count}장", "widthWarning": "첫 이미지와 너비가 달라 비율에 맞게 조정됩니다." },
+      "connections": { "title": "연결 확인", "help": "자동 결과를 확인하고 어색한 연결은 겹침 높이를 직접 조정하세요.", "confidence": "일치 신뢰도(추정) {value}%", "review": "겹치는 부분을 확실하게 찾지 못했습니다. 값을 조정하고 연결을 확인하세요.", "overlap": "제거할 겹침 높이", "fixedUi": "고정 헤더·하단 메뉴 제외 설정", "excludeBottom": "앞 이미지 하단 제외(px)", "excludeTop": "뒤 이미지 상단 제외(px)", "bottom": "앞 이미지 하단", "top": "뒤 이미지 상단", "bottomAlt": "{index}번 이미지 하단 미리보기", "topAlt": "{index}번 이미지 상단 미리보기", "seamAlt": "{from}번과 {to}번 이미지의 중복 제거 후 연결 미리보기", "unresolved": "모든 연결을 확인해야 결과를 만들 수 있습니다.", "status": { "auto": "자동 감지", "review": "수동 확인 필요", "manual": "수동 설정" } },
+      "result": { "title": "완성된 긴 스크린샷", "previewAlt": "이어붙인 스크린샷 미리보기", "stale": "연결 설정이 바뀌었습니다. 이미지를 다시 생성하세요.", "images": "사용 이미지", "dimensions": "결과 크기", "totalHeight": "원본 높이 합", "removed": "제거된 중복", "size": "파일 크기" },
+      "errors": { "too-many-files": "이미지는 최대 20장까지 추가할 수 있습니다.", "unsupported-type": "PNG, JPG 또는 WebP 이미지를 선택하세요.", "file-too-large": "파일 하나는 20MB 이하여야 합니다.", "total-too-large": "전체 파일 크기는 100MB 이하여야 합니다.", "animated-image": "움직이는 WebP는 지원하지 않습니다. 정지 이미지로 변환해 주세요.", "dimension-limit": "이미지가 3,000만 픽셀 또는 한 변 16,384px 제한을 초과합니다.", "decode-failed": "이미지를 읽을 수 없습니다. 파일이 손상되었을 수 있습니다.", "too-few-files": "이미지를 2장 이상 추가하세요.", "worker-unsupported": "이 브라우저에서는 자동 이미지 분석을 사용할 수 없습니다. 최신 Chrome에서 다시 시도하세요.", "output-limit": "결과 이미지가 브라우저 처리 한도를 초과합니다. 이미지 수나 크기를 줄이세요.", "canvas-limit": "이미지를 처리하지 못했습니다. 이미지 수나 크기를 줄이고 다시 시도하세요." },
+      "privacy": "개인정보 보호: 이미지는 현재 브라우저에서만 처리되며 서버에 업로드되거나 저장되지 않습니다.",
+      "guide": { "orderTitle": "순서를 먼저 확인하세요", "orderText": "촬영한 순서가 맞아야 겹치는 영역을 정확하게 찾을 수 있습니다.", "reviewTitle": "연결부를 확인하세요", "reviewText": "반복되는 메뉴나 단색 화면은 오탐될 수 있습니다. 신뢰도와 미리보기를 확인하세요.", "privacyTitle": "브라우저에서만 처리", "privacyText": "원본과 결과는 외부 서버로 전송하지 않으며 초기화하거나 탭을 닫으면 해제됩니다." }
+    },
     "regexTester": {
       "metadata": { "title": "무료 정규식 테스터 · JavaScript Regex 테스트", "description": "JavaScript 정규표현식의 매치, 플래그, 캡처 그룹과 치환 결과를 브라우저에서 안전하게 확인하세요." },
       "title": "정규식 테스터", "description": "JavaScript 정규표현식을 실시간으로 검증하고 매치 위치, 캡처 그룹과 문자열 치환 결과를 확인하세요.",
