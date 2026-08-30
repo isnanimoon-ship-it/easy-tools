@@ -664,11 +664,11 @@ export function FaviconGenerator() {
                   <span className="truncate text-xs text-[var(--text-muted)]">{siteName.trim() || t("context.tabPlaceholder")}</span>
                 </div>
                 <div className="flex items-center gap-3 rounded-xl border border-[var(--border)] p-3">
-                  <FaviconCanvas spec={spec} size={180} displaySize={44} className="rounded-xl" />
+                  <FaviconCanvas spec={spec} size={180} displaySize={44} />
                   <span className="text-xs text-[var(--text-muted)]">{t("context.iosLabel")}</span>
                 </div>
                 <div className="flex items-center gap-3 rounded-xl border border-[var(--border)] p-3">
-                  <FaviconCanvas spec={spec} size={192} displaySize={44} className="rounded-full" />
+                  <FaviconCanvas spec={spec} size={192} displaySize={44} />
                   <span className="text-xs text-[var(--text-muted)]">{t("context.androidLabel")}</span>
                 </div>
               </div>

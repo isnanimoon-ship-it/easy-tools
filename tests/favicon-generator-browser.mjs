@@ -98,6 +98,30 @@ try {
   await page.getByRole("button", { name: "이모지", exact: true }).click();
   await page.waitForFunction(() => document.querySelectorAll("canvas").length >= 7, undefined, { timeout: 3000 });
 
+  // Regression check: the in-context (iOS/Android) preview canvases must
+  // render the *actual* selected shape, not be hard-clipped by decorative
+  // CSS (a real bug: rounded-xl/rounded-full on the canvas element itself
+  // masked every shape as rounded/circular regardless of the real selection).
+  async function contextCanvasCornerAlpha(labelText) {
+    return page.evaluate((label) => {
+      const span = [...document.querySelectorAll("span")].find((s) => s.textContent === label);
+      const canvas = span?.parentElement?.querySelector("canvas");
+      return canvas.getContext("2d").getImageData(0, 0, 1, 1).data[3];
+    }, labelText);
+  }
+  const circleIosCorner = await contextCanvasCornerAlpha("iOS 홈 화면");
+  assert.equal(circleIosCorner, 0, "circle shape must leave the iOS preview's corner transparent");
+  const circleAndroidCorner = await contextCanvasCornerAlpha("Android 앱 아이콘");
+  assert.equal(circleAndroidCorner, 0, "circle shape must leave the Android preview's corner transparent");
+
+  await page.getByRole("button", { name: "사각형", exact: true }).click();
+  await page.waitForTimeout(100);
+  const squareIosCorner = await contextCanvasCornerAlpha("iOS 홈 화면");
+  assert.equal(squareIosCorner, 255, "square shape must fill the iOS preview's corner (no CSS clipping the canvas)");
+  const squareAndroidCorner = await contextCanvasCornerAlpha("Android 앱 아이콘");
+  assert.equal(squareAndroidCorner, 255, "square shape must fill the Android preview's corner (no CSS clipping the canvas)");
+  await page.getByRole("button", { name: "라운드 사각형", exact: true }).click();
+
   // --- Image source: upload + crop pan changes the rendered pixels -------
   await page.getByRole("tab", { name: "이미지" }).click();
   const splitImageDataUrl = await page.evaluate(() => {
