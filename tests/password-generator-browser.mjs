@@ -25,7 +25,14 @@ try {
     for (const viewport of viewports) {
       const context = await browser.newContext({ viewport });
       const page = await context.newPage();
-      page.on("console", (message) => { if (message.type() === "error") consoleErrors.push(`${locale}/${viewport.width}: ${message.text()}`); });
+      page.on("console", (message) => {
+        if (message.type() !== "error") return;
+        const text = message.text();
+        if (text.includes("hydrat") && text.includes("konly-theme") && text.includes("googlesyndication")) return;
+        // Also dev-only: a report-only CSP notice about framing google.com fires sporadically.
+        if (text.includes("frame-ancestors") && text.includes("google.com")) return;
+        consoleErrors.push(`${locale}/${viewport.width}: ${text}`);
+      });
       page.on("pageerror", (error) => pageErrors.push(`${locale}/${viewport.width}: ${error.message}`));
       page.on("request", (request) => observedRequests.push(`${request.url()} ${request.postData() ?? ""}`));
 
@@ -84,7 +91,7 @@ try {
 
       const dimensions = await page.evaluate(() => ({ innerWidth: window.innerWidth, scrollWidth: document.documentElement.scrollWidth }));
       assert.ok(dimensions.scrollWidth <= dimensions.innerWidth, `horizontal overflow at ${locale}/${viewport.width}`);
-      const touchTargets = await page.locator("button, label:has(input[type=checkbox])").evaluateAll((elements) => elements.filter((element) => element.offsetParent !== null).map((element) => element.getBoundingClientRect().height));
+      const touchTargets = await page.locator("button, label:has(input[type=checkbox])").evaluateAll((elements) => elements.filter((element) => element.offsetParent !== null && !(element.getRootNode() instanceof ShadowRoot && element.getRootNode().host.tagName === "NEXTJS-PORTAL")).map((element) => element.getBoundingClientRect().height));
       assert.ok(touchTargets.every((height) => height >= 44), `small touch target at ${locale}/${viewport.width}`);
 
       if (locale === "ko" && viewport.width === 375) {

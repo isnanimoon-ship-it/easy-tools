@@ -7,10 +7,12 @@ import { exceedsMaxInput, inputByteLength, shouldWarnLargeInput } from "./valida
 function options(overrides: {
   whitespace?: Partial<TextCleanerOptions["whitespace"]>;
   duplicate?: Partial<TextCleanerOptions["duplicate"]>;
+  regexRule?: Partial<TextCleanerOptions["regexRule"]>;
 } = {}): TextCleanerOptions {
   return {
     whitespace: { ...DEFAULT_OPTIONS.whitespace, ...overrides.whitespace },
     duplicate: { ...DEFAULT_OPTIONS.duplicate, ...overrides.duplicate },
+    regexRule: { ...DEFAULT_OPTIONS.regexRule, ...overrides.regexRule },
   };
 }
 
@@ -208,6 +210,84 @@ describe("presets", () => {
     const opts = buildPresetOptions("full");
     const result = cleanText("  a  \n\na\nb", opts);
     expect(result.text).toBe("a\nb");
+  });
+  it("preserves a custom regex rule across a preset switch instead of discarding it", () => {
+    const customRule = { enabled: true, pattern: "^#.*$", replacement: "", ignoreCase: false };
+    const opts = buildPresetOptions("basic", customRule);
+    expect(opts.regexRule).toEqual(customRule);
+  });
+});
+
+describe("regex rule (idea #2 — power-user pre-processing step)", () => {
+  it("is a no-op when disabled", () => {
+    const result = cleanText("#skip\nkeep", options({ regexRule: { enabled: false, pattern: "^#.*$\\n?", replacement: "" } }));
+    expect(result.text).toBe("#skip\nkeep");
+  });
+  it("removes lines matching a pattern before the rest of the pipeline runs", () => {
+    // Regex removes the exact matched spans; a trailing blank left behind
+    // by the last removed line is a separate, later concern the (also
+    // independent) blank-line step cleans up if the user opts into it.
+    const result = cleanText(
+      "#comment\nkeep me\n#also skip",
+      options({
+        whitespace: { blankLines: "remove" },
+        regexRule: { enabled: true, pattern: "^#.*$\\n?", replacement: "" },
+      }),
+    );
+    expect(result.text).toBe("keep me");
+  });
+  it("applies replacement text, not just deletion", () => {
+    const result = cleanText(
+      "foo bar foo",
+      options({ regexRule: { enabled: true, pattern: "foo", replacement: "baz" } }),
+    );
+    expect(result.text).toBe("baz bar baz");
+  });
+  it("respects the case-insensitive flag", () => {
+    const result = cleanText(
+      "Foo foo FOO",
+      options({ regexRule: { enabled: true, pattern: "foo", replacement: "x", ignoreCase: true } }),
+    );
+    expect(result.text).toBe("x x x");
+  });
+  it("is case-sensitive by default", () => {
+    const result = cleanText(
+      "Foo foo",
+      options({ regexRule: { enabled: true, pattern: "foo", replacement: "x" } }),
+    );
+    expect(result.text).toBe("Foo x");
+  });
+  it("composes with the rest of the pipeline — regex runs first, then whitespace cleanup", () => {
+    const result = cleanText(
+      "foo   bar",
+      options({
+        whitespace: { collapseSpaces: true },
+        regexRule: { enabled: true, pattern: "foo", replacement: "x" },
+      }),
+    );
+    expect(result.text).toBe("x bar");
+  });
+  it("reports an invalid pattern as a regexError without throwing or altering the text", () => {
+    const result = cleanText("hello", options({ regexRule: { enabled: true, pattern: "(unterminated", replacement: "" } }));
+    expect(result.regexError).not.toBeNull();
+    expect(result.text).toBe("hello");
+  });
+  it("reports no error for a valid rule or when disabled", () => {
+    expect(cleanText("hello", options()).regexError).toBeNull();
+    expect(
+      cleanText("hello", options({ regexRule: { enabled: true, pattern: "h", replacement: "H" } })).regexError,
+    ).toBeNull();
+  });
+  it("true original char/line stats reflect the text before the regex rule ran, not after", () => {
+    const result = cleanText(
+      "line1\nline2\nline3",
+      options({
+        whitespace: { blankLines: "keep" },
+        regexRule: { enabled: true, pattern: "^line2$\\n?", replacement: "" },
+      }),
+    );
+    expect(result.stats.originalLines).toBe(3);
+    expect(result.text).toBe("line1\nline3");
   });
 });
 

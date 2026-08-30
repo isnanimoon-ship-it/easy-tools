@@ -7,6 +7,12 @@ const labels: JsonFormatterLabels = {
   inputLabel: "JSON editor", inputDescription: "Enter JSON", placeholder: "Paste JSON",
   format: "Format", minify: "Minify", copy: "Copy", clear: "Clear", copied: "Copied",
   invalid: "Invalid JSON", guidance: "Check punctuation", position: "Line {line}, column {column}", copyError: "Copy failed",
+  viewEdit: "Edit", viewTree: "Tree view", viewModeLabel: "View mode", treeInvalid: "Enter valid JSON to see it as a tree.",
+  tree: {
+    expandAll: "Expand all", collapseAll: "Collapse all", expandNode: "Expand", collapseNode: "Collapse",
+    searchLabel: "Search keys", searchPlaceholder: "Search keys", matchCount: "__INDEX__ of __TOTAL__",
+    noMatches: "No matching keys.", prevMatch: "Previous match", nextMatch: "Next match", itemCount: "__COUNT__ items",
+  },
 };
 
 function button(name: string) {
@@ -83,5 +89,42 @@ describe("JsonFormatter", () => {
     expect(editor.value).toBe("");
     expect(document.activeElement).toBe(editor);
     expect(screen.queryByRole("alert")).toBeNull();
+  });
+
+  it("switches to tree view and renders parsed JSON as a colored, collapsible tree", () => {
+    render(<JsonFormatter labels={labels} />);
+    fireEvent.change(screen.getByRole("textbox", { name: "JSON editor" }), {
+      target: { value: '{"name":"Ada","active":true}' },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Tree view" }));
+
+    expect(screen.queryByRole("textbox", { name: "JSON editor" })).toBeNull();
+    expect(screen.getByText('"name"').textContent).toBe('"name"');
+    expect(screen.getByText('"Ada"')).toBeTruthy();
+    expect(screen.getByText("true")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Format" })).toBeNull();
+  });
+
+  it("shows a friendly message in tree view when the current text is not valid JSON", () => {
+    render(<JsonFormatter labels={labels} />);
+    fireEvent.change(screen.getByRole("textbox", { name: "JSON editor" }), {
+      target: { value: '{"a":}' },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Tree view" }));
+
+    expect(screen.getByText("Enter valid JSON to see it as a tree.")).toBeTruthy();
+  });
+
+  it("keeps tree view content in sync after switching back to edit and formatting", () => {
+    render(<JsonFormatter labels={labels} />);
+    const editor = screen.getByRole("textbox", { name: "JSON editor" }) as HTMLTextAreaElement;
+    fireEvent.change(editor, { target: { value: '{"a":1}' } });
+    fireEvent.click(screen.getByRole("button", { name: "Tree view" }));
+    fireEvent.click(screen.getByRole("button", { name: "Edit" }));
+    fireEvent.click(button("Format"));
+    fireEvent.click(screen.getByRole("button", { name: "Tree view" }));
+
+    expect(screen.getByText('"a"')).toBeTruthy();
+    expect(screen.getByText("1")).toBeTruthy();
   });
 });

@@ -5,6 +5,7 @@ import type {
   DuplicateOptions,
   DuplicateResultType,
   LineRecord,
+  RegexRuleOptions,
   TextCleanerOptions,
 } from "./types";
 
@@ -32,6 +33,22 @@ function convertSpecialWhitespace(
 
 function collapseRegularSpaces(line: string): string {
   return line.replace(/ {2,}/g, " ");
+}
+
+// Runs before every other step, directly on the raw pasted text — this is a
+// power-user escape hatch for patterns the built-in options can't express
+// (e.g. "drop every line starting with #"), not a replacement for them.
+function applyRegexRule(text: string, rule: RegexRuleOptions): { text: string; error: string | null } {
+  if (!rule.enabled || rule.pattern === "") return { text, error: null };
+  try {
+    // "m" (multiline) so ^/$ anchor to each line, not the whole text — the
+    // natural expectation for a line-oriented cleanup tool, unlike a
+    // general-purpose regex engine where flags are chosen explicitly.
+    const regex = new RegExp(rule.pattern, rule.ignoreCase ? "gmi" : "gm");
+    return { text: text.replace(regex, rule.replacement), error: null };
+  } catch (error) {
+    return { text, error: error instanceof Error ? error.message : "Invalid regular expression" };
+  }
 }
 
 function isBlank(line: string): boolean {
@@ -119,7 +136,10 @@ function buildStats(input: {
 
 export function cleanText(text: string, options: TextCleanerOptions): CleanResult {
   const originalChars = charCount(text);
-  const normalized = normalizeNewlines(text);
+  const originalLineCount = normalizeNewlines(text).split("\n").length;
+
+  const regexResult = applyRegexRule(text, options.regexRule);
+  const normalized = normalizeNewlines(regexResult.text);
   const originalLines = normalized.split("\n");
 
   const processedLines = originalLines.map((line) => {
@@ -143,8 +163,9 @@ export function cleanText(text: string, options: TextCleanerOptions): CleanResul
     return {
       text: merged,
       mergedToOneLine: true,
+      regexError: regexResult.error,
       stats: buildStats({
-        originalLines: originalLines.length,
+        originalLines: originalLineCount,
         resultLines: merged.length > 0 ? 1 : 0,
         originalChars,
         resultChars: charCount(merged),
@@ -175,8 +196,9 @@ export function cleanText(text: string, options: TextCleanerOptions): CleanResul
   return {
     text: resultText,
     mergedToOneLine: false,
+    regexError: regexResult.error,
     stats: buildStats({
-      originalLines: originalLines.length,
+      originalLines: originalLineCount,
       resultLines: finalLines.length,
       originalChars,
       resultChars: charCount(resultText),

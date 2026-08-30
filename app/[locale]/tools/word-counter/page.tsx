@@ -49,6 +49,11 @@ export default async function WordCounterPage({ params }: WordCounterPageProps) 
     charactersWithoutWhitespace: t("results.charactersWithoutWhitespace"),
     words: t("results.words"),
     lines: t("results.lines"),
+    readingTimeMinutes: t.raw("readingTime.minutes"),
+    readingTimeSeconds: t.raw("readingTime.seconds"),
+    copyResults: t("actions.copyResults"),
+    copied: t("actions.copied"),
+    copyError: t("actions.copyError"),
   };
 
   return (

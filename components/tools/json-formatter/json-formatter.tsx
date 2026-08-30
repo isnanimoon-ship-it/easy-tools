@@ -1,13 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
   formatJson,
+  isBlankJsonInput,
   minifyJson,
   type JsonTransformError,
 } from "@/lib/tools/json-formatter/transform-json";
+
+import { JsonTreeView, type JsonTreeLabels } from "./json-tree-view";
 
 export type JsonFormatterLabels = {
   inputLabel: string;
@@ -22,6 +25,11 @@ export type JsonFormatterLabels = {
   guidance: string;
   position: string;
   copyError: string;
+  viewEdit: string;
+  viewTree: string;
+  viewModeLabel: string;
+  treeInvalid: string;
+  tree: JsonTreeLabels;
 };
 
 type Feedback =
@@ -33,6 +41,7 @@ type Feedback =
 export function JsonFormatter({ labels }: { labels: JsonFormatterLabels }) {
   const [text, setText] = useState("");
   const [feedback, setFeedback] = useState<Feedback>(null);
+  const [viewMode, setViewMode] = useState<"edit" | "tree">("edit");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const copiedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasContent = text.trim().length > 0;
@@ -40,6 +49,15 @@ export function JsonFormatter({ labels }: { labels: JsonFormatterLabels }) {
   const errorId = feedback?.type === "invalid" || feedback?.type === "copy-error"
     ? "json-formatter-error"
     : undefined;
+
+  const parsedForTree = useMemo(() => {
+    if (isBlankJsonInput(text)) return null;
+    try {
+      return { value: JSON.parse(text) as unknown };
+    } catch {
+      return null;
+    }
+  }, [text]);
 
   useEffect(() => () => {
     if (copiedTimerRef.current) clearTimeout(copiedTimerRef.current);
@@ -96,25 +114,54 @@ export function JsonFormatter({ labels }: { labels: JsonFormatterLabels }) {
       <p id="json-formatter-description" className="mt-1 text-sm leading-6 text-[var(--text-muted)]">
         {labels.inputDescription}
       </p>
-      <textarea
-        ref={textareaRef}
-        value={text}
-        onChange={(event) => {
-          clearCopiedTimer();
-          setText(event.target.value);
-          setFeedback(null);
-        }}
-        aria-label={labels.inputLabel}
-        aria-describedby={["json-formatter-description", errorId].filter(Boolean).join(" ")}
-        aria-invalid={feedback?.type === "invalid" ? true : undefined}
-        placeholder={labels.placeholder}
-        spellCheck={false}
-        className="mt-4 min-h-72 w-full resize-y rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 font-mono text-sm leading-6 text-[var(--foreground)] outline-none transition focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)]"
-      />
+
+      <div role="group" aria-label={labels.viewModeLabel} className="mt-4 grid grid-cols-2 gap-2 rounded-xl bg-[var(--surface-muted)] p-1 sm:inline-grid sm:w-auto">
+        {(["edit", "tree"] as const).map((mode) => (
+          <button
+            key={mode}
+            type="button"
+            aria-pressed={viewMode === mode}
+            onClick={() => setViewMode(mode)}
+            className={`min-h-10 rounded-lg px-4 text-sm font-semibold outline-none focus:ring-4 focus:ring-[var(--focus-ring)] ${viewMode === mode ? "bg-[var(--surface)] text-[var(--primary)] shadow-sm" : "text-[var(--text-muted)] hover:text-[var(--foreground)]"}`}
+          >
+            {mode === "edit" ? labels.viewEdit : labels.viewTree}
+          </button>
+        ))}
+      </div>
+
+      {viewMode === "edit" ? (
+        <textarea
+          ref={textareaRef}
+          value={text}
+          onChange={(event) => {
+            clearCopiedTimer();
+            setText(event.target.value);
+            setFeedback(null);
+          }}
+          aria-label={labels.inputLabel}
+          aria-describedby={["json-formatter-description", errorId].filter(Boolean).join(" ")}
+          aria-invalid={feedback?.type === "invalid" ? true : undefined}
+          placeholder={labels.placeholder}
+          spellCheck={false}
+          className="mt-4 min-h-72 w-full resize-y rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 font-mono text-sm leading-6 text-[var(--foreground)] outline-none transition focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--focus-ring)]"
+        />
+      ) : parsedForTree ? (
+        <div className="mt-4">
+          <JsonTreeView value={parsedForTree.value} labels={labels.tree} />
+        </div>
+      ) : (
+        <p className="mt-4 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] p-4 text-sm leading-6 text-[var(--text-muted)]">
+          {labels.treeInvalid}
+        </p>
+      )}
 
       <div className="mt-4 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
-        <Button onClick={() => runTransform("format")} disabled={!hasContent}>{labels.format}</Button>
-        <Button variant="secondary" onClick={() => runTransform("minify")} disabled={!hasContent}>{labels.minify}</Button>
+        {viewMode === "edit" ? (
+          <>
+            <Button onClick={() => runTransform("format")} disabled={!hasContent}>{labels.format}</Button>
+            <Button variant="secondary" onClick={() => runTransform("minify")} disabled={!hasContent}>{labels.minify}</Button>
+          </>
+        ) : null}
         <Button variant="secondary" onClick={copyText} disabled={!hasContent}>{labels.copy}</Button>
         <Button variant="secondary" onClick={clearText} disabled={!hasAnyText}>{labels.clear}</Button>
       </div>

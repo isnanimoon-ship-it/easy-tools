@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { Clock, Copy } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { countText } from "@/lib/tools/word-counter/count-text";
+import { countText, estimateReadingTime } from "@/lib/tools/word-counter/count-text";
 
 export type WordCounterLabels = {
   inputLabel: string;
@@ -15,6 +16,11 @@ export type WordCounterLabels = {
   charactersWithoutWhitespace: string;
   words: string;
   lines: string;
+  readingTimeMinutes: string;
+  readingTimeSeconds: string;
+  copyResults: string;
+  copied: string;
+  copyError: string;
 };
 
 type WordCounterProps = {
@@ -24,9 +30,23 @@ type WordCounterProps = {
 
 export function WordCounter({ locale, labels }: WordCounterProps) {
   const [text, setText] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const counts = useMemo(() => countText(text, locale), [locale, text]);
+  const readingTime = useMemo(() => estimateReadingTime(counts, locale), [counts, locale]);
   const numberFormatter = useMemo(() => new Intl.NumberFormat(locale), [locale]);
+
+  useEffect(() => () => {
+    if (copyTimer.current) clearTimeout(copyTimer.current);
+  }, []);
+
+  const readingTimeText = readingTime
+    ? readingTime.unit === "minutes"
+      ? labels.readingTimeMinutes.replace("__MINUTES__", numberFormatter.format(readingTime.value))
+      : labels.readingTimeSeconds.replace("__SECONDS__", numberFormatter.format(readingTime.value))
+    : null;
 
   const metrics = [
     { label: labels.characters, value: counts.characters, testId: "characters" },
@@ -42,6 +62,21 @@ export function WordCounter({ locale, labels }: WordCounterProps) {
   function reset() {
     setText("");
     inputRef.current?.focus();
+  }
+
+  async function copyResults() {
+    if (copyTimer.current) clearTimeout(copyTimer.current);
+    setCopyFailed(false);
+    const lines = metrics.map((metric) => `${metric.label}: ${numberFormatter.format(metric.value)}`);
+    if (readingTimeText) lines.push(`${readingTimeText}`);
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+      await navigator.clipboard.writeText(lines.join("\n"));
+      setCopied(true);
+      copyTimer.current = setTimeout(() => setCopied(false), 1600);
+    } catch {
+      setCopyFailed(true);
+    }
   }
 
   return (
@@ -81,9 +116,31 @@ export function WordCounter({ locale, labels }: WordCounterProps) {
       </section>
 
       <section aria-labelledby="word-counter-results-heading">
-        <h2 id="word-counter-results-heading" className="text-xl font-bold text-[var(--foreground)]">
-          {labels.resultsLabel}
-        </h2>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <h2 id="word-counter-results-heading" className="text-xl font-bold text-[var(--foreground)]">
+              {labels.resultsLabel}
+            </h2>
+            {readingTimeText ? (
+              <p
+                data-testid="reading-time"
+                className="flex items-center gap-1.5 text-sm font-semibold text-[var(--text-muted)]"
+              >
+                <Clock aria-hidden="true" size={16} />
+                {readingTimeText}
+              </p>
+            ) : null}
+          </div>
+          <Button variant="secondary" disabled={!text} onClick={copyResults}>
+            <Copy aria-hidden="true" size={17} />
+            {copied ? labels.copied : labels.copyResults}
+          </Button>
+        </div>
+        {copyFailed ? (
+          <p id="word-counter-copy-error" role="alert" className="mt-2 text-sm font-semibold text-[var(--error-fg)]">
+            {labels.copyError}
+          </p>
+        ) : null}
         <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {metrics.map((metric) => (
             <div

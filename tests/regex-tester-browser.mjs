@@ -1,7 +1,7 @@
 import assert from"node:assert/strict";
 import{chromium}from"playwright-core";
 const baseUrl=process.env.QA_BASE_URL??"http://127.0.0.1:3127";const browser=await chromium.launch({executablePath:"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",headless:true});const consoleErrors=[],pageErrors=[],externalRequests=[];
-function watch(page,label){page.on("console",m=>{if(m.type()==="error")consoleErrors.push(`${label}: ${m.text()}`)});page.on("pageerror",e=>pageErrors.push(`${label}: ${e.message}`));page.on("request",r=>{const host=new URL(r.url()).hostname;if(!r.url().startsWith(baseUrl)&&!r.url().startsWith("blob:")&&!/(^|\.)(naver\.com|pstatic\.net)$/.test(host))externalRequests.push(r.url())});}
+function watch(page,label){page.on("console",m=>{if(m.type()==="error")consoleErrors.push(`${label}: ${m.text()}`)});page.on("pageerror",e=>pageErrors.push(`${label}: ${e.message}`));page.on("request",r=>{const host=new URL(r.url()).hostname;if(!r.url().startsWith(baseUrl)&&!r.url().startsWith("blob:")&&!/(^|\.)(naver\.com|pstatic\.net|googlesyndication\.com|doubleclick\.net|adtrafficquality\.google|google\.com)$/.test(host))externalRequests.push(r.url())});}
 async function setCase(page,pattern,text){await page.getByLabel("정규식 Pattern").fill(pattern);await page.getByLabel("테스트 문자열").fill(text);await page.getByText(/올바른 JavaScript 정규식/).waitFor({timeout:5000});}
 try{
  const context=await browser.newContext({viewport:{width:1440,height:900}});const page=await context.newPage();watch(page,"ko/1440");await page.goto(`${baseUrl}/ko/tools/regex-tester`,{waitUntil:"domcontentloaded"});

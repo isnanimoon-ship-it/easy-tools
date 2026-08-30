@@ -89,7 +89,8 @@
       "output": { "label": "整理後のテキスト", "overwriteNotice": "結果は直接編集できますが、入力やオプションを変更すると新しい結果で上書きされます。", "newline": "改行コード" },
       "stats": { "label": "統計", "originalLines": "元の行数", "resultLines": "結果の行数", "removedLines": "削除された行数", "originalChars": "元の文字数", "resultChars": "結果の文字数", "uniqueLines": "重複のない行", "duplicateLines": "重複行" },
       "whitespace": { "title": "空白・改行の整理", "collapseSpaces": "連続する空白を1つにまとめる", "trimLines": "各行の前後の空白を削除", "tabToSpaces": "タブを空白に変換", "normalizeSpecialSpaces": "特殊な空白(全角スペース・NBSP)を通常の空白に変換", "blankLines": { "title": "空行の処理", "keep": "維持", "collapse": "連続する空行を1つにまとめる", "remove": "すべての空行を削除" }, "mergeToOneLine": "すべての行を1行にまとめる" },
-      "duplicate": { "title": "重複行の削除", "disabledByMerge": "「1行にまとめる」が有効な場合、重複削除は適用されません。", "ignoreCase": "大文字・小文字を区別しない", "ignoreSurroundingWhitespace": "前後の空白を無視", "ignoreInnerWhitespaceDiff": "行内部の空白差を無視", "unicodeNormalize": "Unicode正規化(NFC)後に比較", "keep": { "title": "残す行", "first": "最初に出現した行", "last": "最後に出現した行" }, "resultType": { "title": "結果の種類", "unique": "重複を除いたすべて", "duplicatesOnly": "重複していた行のみ", "onceOnly": "1回だけ出現した行のみ" } }
+      "duplicate": { "title": "重複行の削除", "disabledByMerge": "「1行にまとめる」が有効な場合、重複削除は適用されません。", "ignoreCase": "大文字・小文字を区別しない", "ignoreSurroundingWhitespace": "前後の空白を無視", "ignoreInnerWhitespaceDiff": "行内部の空白差を無視", "unicodeNormalize": "Unicode正規化(NFC)後に比較", "keep": { "title": "残す行", "first": "最初に出現した行", "last": "最後に出現した行" }, "resultType": { "title": "結果の種類", "unique": "重複を除いたすべて", "duplicatesOnly": "重複していた行のみ", "onceOnly": "1回だけ出現した行のみ" } },
+      "regexRule": { "title": "正規表現置換(上級者向け)", "help": "パターンに一致する部分を別の値に置き換えるか削除します。他のオプションより先に適用されます。正規表現が分からない場合は使わなくても構いません。", "pattern": "検索パターン", "patternPlaceholder": "例: ^#.*$", "replacement": "置換後の文字列", "replacementPlaceholder": "空欄で削除", "ignoreCase": "大文字・小文字を区別しない", "invalidPattern": "正規表現が正しくありません: {message}" }
     },
     "koreanInitialConverter": {
       "metadata": { "title": "無料ハングル初声変換ツール", "description": "ハングルのテキストを初声だけに即座に変換します。英数字・記号・絵文字はそのまま維持され、ブラウザ内のみで処理されます。" },
@@ -153,7 +154,7 @@
     "regexTester": {
       "metadata": { "title": "無料JavaScript正規表現テスター", "description": "JavaScript正規表現のフラグ、キャプチャグループ、名前付きグループ、置換をブラウザーで確認できます。" },
       "title": "正規表現テスター", "description": "JavaScript正規表現をリアルタイムで検証し、一致位置、キャプチャグループ、置換結果を確認できます。",
-      "fields": { "pattern": "正規表現パターン", "patternHelp": "前後の / を付けずパターンだけ入力してください。バックスラッシュはそのままJavaScript RegExpへ渡されます。", "flags": "フラグ", "test": "テスト文字列", "testHelp": "複数行、日本語、韓国語、Emojiに対応します。IndexはJavaScript UTF-16位置です。", "replacement": "置換文字列", "replacementHelp": "$&, $1, $2, $<name>, $$などJavaScript置換構文を使用できます。" },
+      "fields": { "pattern": "正規表現パターン", "patternHelp": "前後の / を付けずパターンだけ入力してください。バックスラッシュはそのままJavaScript RegExpへ渡されます。", "flags": "フラグ", "test": "テスト文字列", "testHelp": "複数行、日本語、韓国語、Emojiに対応します。IndexはJavaScript UTF-16位置です。", "replacement": "置換文字列", "replacementHelp": "$&, $1, $2, $'<name>', $$などJavaScript置換構文を使用できます。" },
       "flags": { "g": "すべての一致を検索", "i": "大文字小文字を区別しない", "m": "^と$を行単位で適用", "s": ".に改行を含める", "u": "Unicodeコードポイントモード", "y": "現在位置からsticky一致" },
       "status": { "valid": "有効なJavaScript正規表現", "running": "安全なWorkerで実行中…", "noMatch": "一致する文字列はありません。", "matches": "Matches", "firstOnly": "gがない場合、JavaScriptの動作どおり最初の一致のみ表示します。", "global": "gが有効なため、すべての一致を検索しました。" },
       "preview": { "title": "一致プレビュー", "empty": "パターンとテスト文字列を入力すると一致位置が表示されます。", "limit": "性能のため最初の1,000件だけ強調表示します。" },
@@ -162,7 +163,7 @@
       "actions": { "run": "今すぐ実行", "clear": "クリア", "copyPattern": "パターンをコピー", "copyLiteral": "正規表現全体をコピー", "copyReplacement": "置換結果をコピー", "copied": "コピー済み" },
       "examples": { "title": "正規表現の例", "hint": "簡単な形式例であり完全な検証を保証しません。テスト文字列は変更しません。", "email": "メール", "number": "数字", "date": "日付", "url": "URL", "phone": "電話番号" },
       "errors": { "patternLong": "パターンは10,000文字以内にしてください。", "textLong": "テスト文字列は500,000文字以内にしてください。", "replacementLong": "置換文字列は100,000文字以内にしてください。", "resultLarge": "置換結果が大きすぎるためプレビューとコピーを省略しました。", "timeout": "正規表現の実行時間が長すぎます。パターンを簡単にするか文字列を短くしてください。", "worker": "正規表現Workerを開始できません。最新ブラウザーで再試行してください。", "copy": "コピーできませんでした。権限を確認してください。" },
-      "reference": { "title": "JavaScript正規表現クイックリファレンス", "description": "現在のブラウザーのJavaScript RegExp構文が基準です。", "characters": { "title": "文字クラス", "items": ". 任意の文字\n\\d 数字 · \\w 単語文字\n\\s 空白 · [abc] 集合" }, "quantifiers": { "title": "量指定子", "items": "* 0回以上 · + 1回以上\n? 0または1回\n{n} n回 · {n,m} 範囲" }, "anchors": { "title": "アンカー", "items": "^ 先頭 · $ 末尾\n\\b 単語境界 · \\B 非境界" }, "groups": { "title": "グループ", "items": "(...) キャプチャ\n(?:...) 非キャプチャ\n(?<name>...) 名前付き" }, "lookaround": { "title": "Lookaround", "items": "(?=...) 肯定先読み\n(?!...) 否定先読み\n(?<=...) 肯定後読み" }, "escape": { "title": "エスケープ", "items": "\\. ドット · \\\\ バックスラッシュ\n\\t タブ · \\n 改行" } },
+      "reference": { "title": "JavaScript正規表現クイックリファレンス", "description": "現在のブラウザーのJavaScript RegExp構文が基準です。", "characters": { "title": "文字クラス", "items": ". 任意の文字\n\\d 数字 · \\w 単語文字\n\\s 空白 · [abc] 集合" }, "quantifiers": { "title": "量指定子", "items": "* 0回以上 · + 1回以上\n? 0または1回\n'{n}' n回 · '{n,m}' 範囲" }, "anchors": { "title": "アンカー", "items": "^ 先頭 · $ 末尾\n\\b 単語境界 · \\B 非境界" }, "groups": { "title": "グループ", "items": "(...) キャプチャ\n(?:...) 非キャプチャ\n(?'<name>'...) 名前付き" }, "lookaround": { "title": "Lookaround", "items": "(?=...) 肯定先読み\n(?!...) 否定先読み\n(?<=...) 肯定後読み" }, "escape": { "title": "エスケープ", "items": "\\. ドット · \\\\ バックスラッシュ\n\\t タブ · \\n 改行" } },
       "privacy": "プライバシー：パターン、テスト文字列、置換結果はブラウザーWorker内だけで処理され、送信・保存されません。"
     },
     "imageCompressor": {
@@ -170,13 +171,13 @@
       "title": "画像ファイルサイズを小さくする", "description": "JPG、PNG、WebPを品質または目標容量で圧縮し、結果を比較してダウンロードできます。",
       "upload": { "title": "画像をアップロード", "help": "JPG、PNG、WebPを1枚選択またはドロップしてください。最大25MB、2400万ピクセルです。", "drop": "ここに画像をドロップしてください。" },
       "actions": { "choose": "画像を選択", "change": "画像を変更", "clear": "クリア", "compress": "圧縮する", "download": "圧縮画像をダウンロード" },
-      "status": { "loading": "画像を確認中…", "compressing": "画像を圧縮中…", "progress": "最適な品質を検索中 · {current}/{max}" },
+      "status": { "loading": "画像を確認中…", "compressing": "画像を圧縮中…", "progress": "最適な品質を検索中 · __CURRENT__/__MAX__" },
       "info": { "title": "元画像", "name": "ファイル名", "format": "形式", "dimensions": "画像サイズ", "size": "元の容量" },
       "settings": { "title": "圧縮設定", "mode": "圧縮方式", "qualityMode": "品質基準", "targetMode": "目標容量", "quality": "品質", "target": "クイック目標", "customTarget": "直接入力", "output": "出力形式", "original": "元の形式を維持", "maxWidth": "最大横幅", "keepSize": "元のサイズを維持" },
       "formats": { "jpeg": "JPEG", "png": "PNG", "webp": "WebP" },
       "notices": { "png": "PNGは品質設定だけでは小さくなりにくい場合があります。WebPまたはJPEGも検討してください。", "jpeg": "JPEGは透明度を保持できないため、透明部分は白背景になります。", "metadata": "圧縮時に位置情報や撮影情報などのメタデータが削除される場合があります。" },
       "preview": { "original": "元画像プレビュー", "result": "圧縮結果プレビュー", "empty": "設定後の圧縮結果がここに表示されます。" },
-      "result": { "title": "容量比較", "size": "結果容量", "saved": "削減", "saving": "元画像より容量が小さくなりました。", "larger": "元画像より{size}大きくなりました。元画像の使用も検討してください。", "same": "容量は変わりませんでした。", "targetMet": "目標容量以下に圧縮しました。", "targetMissed": "現在の解像度では目標達成が困難です。最大横幅を小さくするか形式を変更してください。", "quality": "適用品質" },
+      "result": { "title": "容量比較", "size": "結果容量", "saved": "削減", "saving": "元画像より容量が小さくなりました。", "larger": "元画像より__SIZE__大きくなりました。元画像の使用も検討してください。", "same": "容量は変わりませんでした。", "targetMet": "目標容量以下に圧縮しました。", "targetMissed": "現在の解像度では目標達成が困難です。最大横幅を小さくするか形式を変更してください。", "quality": "適用品質" },
       "errors": { "multiple": "画像は1枚ずつアップロードしてください。", "unsupported": "JPG、PNG、WebP画像を選択してください。", "fileLarge": "25MBを超えています。小さい画像を選択してください。", "signature": "ファイル内容と画像形式が一致しません。", "decode": "画像を開けません。ファイルが破損している可能性があります。", "dimensions": "2400万ピクセルまたは一辺12000pxの制限を超えています。", "encoder": "このブラウザーは選択した出力形式に対応していません。", "encode": "画像を圧縮できませんでした。設定を変更して再試行してください。", "target": "10～10240KBの整数を入力してください。", "unreachable": "現在の解像度では目標容量に到達できません。", "download": "画像をダウンロードできませんでした。再試行してください。" },
       "privacy": { "notice": "プライバシー：画像はブラウザー内で処理され、サーバーへ送信・保存されません。", "title": "画像は外部へ送信されません", "text": "元画像と圧縮結果はこのタブの一時メモリのみで処理され、クリアまたは終了時に解放されます。" },
       "guide": { "qualityTitle": "品質と容量のバランス", "qualityText": "品質が高いほど鮮明ですがファイルは大きくなります。写真は80%から比較してください。", "targetTitle": "指定KB以内にする", "targetText": "100KB、200KB、500KB、1MBから選び、目標以下で可能な限り高い品質を探します。" }
@@ -277,6 +278,25 @@
       "input": { "label": "JSONエディター", "description": "JSONを入力または貼り付けて、操作を選択してください。", "placeholder": "ここにJSONを貼り付けてください。" },
       "actions": { "format": "整形", "minify": "圧縮", "copy": "コピー", "clear": "クリア", "copied": "クリップボードにコピーしました。" },
       "error": { "invalid": "有効なJSONではありません。", "guidance": "引用符、カンマ、コロン、中括弧、角括弧を確認してください。", "position": "{line}行 {column}列", "copy": "コピーできませんでした。クリップボードの権限を確認して再試行してください。" },
+      "view": {
+        "label": "表示モード",
+        "edit": "編集",
+        "treeTab": "ツリー表示",
+        "treeInvalid": "有効なJSONを入力するとツリーで表示できます。",
+        "tree": {
+          "expandAll": "すべて展開",
+          "collapseAll": "すべて折りたたむ",
+          "expandNode": "展開",
+          "collapseNode": "折りたたむ",
+          "searchLabel": "キーを検索",
+          "searchPlaceholder": "キーを検索",
+          "matchCount": "__INDEX__ / __TOTAL__件",
+          "noMatches": "一致するキーがありません。",
+          "prevMatch": "前の一致",
+          "nextMatch": "次の一致",
+          "itemCount": "__COUNT__件"
+        }
+      },
       "guide": { "title": "使い方", "description": "整形は2スペースのインデントを追加し、圧縮は文字列外の不要な空白のみを削除します。" },
       "privacy": { "title": "ブラウザ内だけで処理", "description": "入力したJSONはサーバーへ送信、保存されません。" }
     },
@@ -310,6 +330,15 @@
         "charactersWithoutWhitespace": "空白を除く",
         "words": "単語数",
         "lines": "行数"
+      },
+      "readingTime": {
+        "minutes": "約__MINUTES__分で読了",
+        "seconds": "約__SECONDS__秒で読了"
+      },
+      "actions": {
+        "copyResults": "結果をコピー",
+        "copied": "コピーしました",
+        "copyError": "結果をコピーできませんでした。クリップボードの権限を確認してください。"
       },
       "guide": {
         "title": "カウント方法",

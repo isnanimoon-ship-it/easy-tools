@@ -17,6 +17,8 @@ const inputNames = {
   ja: "カウントするテキスト",
 };
 const resetNames = { ko: "초기화", en: "Reset", ja: "リセット" };
+const copyNames = { ko: "결과 복사", en: "Copy results", ja: "結果をコピー" };
+const copiedNames = { ko: "복사됨", en: "Copied", ja: "コピーしました" };
 
 function metricNumber(page, testId) {
   return page
@@ -84,8 +86,11 @@ try {
 
       const input = page.getByRole("textbox", { name: inputNames[locale] });
       const reset = page.getByRole("button", { name: resetNames[locale] });
+      const copyButton = page.getByRole("button", { name: copyNames[locale] });
       assert.equal(await input.count(), 1);
       assert.equal(await reset.isDisabled(), true);
+      assert.equal(await copyButton.isDisabled(), true);
+      assert.equal(await page.getByTestId("reading-time").count(), 0);
       await expectCounts(page, {
         characters: 0,
         charactersWithoutWhitespace: 0,
@@ -95,6 +100,8 @@ try {
 
       await input.fill("QA_PRIVATE_TEXT_7f3c Hello world");
       assert.equal(await reset.isEnabled(), true);
+      assert.equal(await copyButton.isEnabled(), true);
+      assert.equal(await page.getByTestId("reading-time").count(), 1);
       await reset.press("Enter");
       await expectCounts(page, {
         characters: 0,
@@ -102,6 +109,8 @@ try {
         words: 0,
         lines: 0,
       });
+      assert.equal(await copyButton.isDisabled(), true);
+      assert.equal(await page.getByTestId("reading-time").count(), 0);
       assert.equal(await input.evaluate((element) => element === document.activeElement), true);
 
       const dimensions = await page.evaluate(() => ({
@@ -135,6 +144,31 @@ try {
           ).filter((part) => part.isWordLike).length,
         "今日は晴れです");
         assert.equal(await metricNumber(page, "words"), expectedJapaneseWords);
+
+        await input.fill("가".repeat(35));
+        assert.equal(await page.getByTestId("reading-time").textContent(), "약 6초 읽기");
+        await input.fill("가".repeat(350));
+        assert.equal(await page.getByTestId("reading-time").textContent(), "약 1분 읽기");
+
+        const wordsAtThreshold = await metricNumber(page, "words");
+        await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: baseUrl });
+        await copyButton.click();
+        assert.equal(
+          (await page.evaluate(() => navigator.clipboard.readText())).replace(/\r\n/g, "\n"),
+          `전체 글자: 350\n공백 제외: 350\n단어: ${wordsAtThreshold}\n줄: 1\n약 1분 읽기`,
+        );
+        assert.equal(await page.getByRole("button", { name: copiedNames.ko }).count(), 1);
+        await page.waitForTimeout(1700);
+        assert.equal(await page.getByRole("button", { name: copyNames.ko }).count(), 1);
+
+        await page.evaluate(() =>
+          Object.defineProperty(navigator, "clipboard", {
+            configurable: true,
+            value: { writeText: () => Promise.reject(new Error("denied")) },
+          }),
+        );
+        await copyButton.click();
+        assert.equal(await page.locator("#word-counter-copy-error").count(), 1);
 
         performanceMs = await page.evaluate(async () => {
           const textarea = document.querySelector("#word-counter-input");

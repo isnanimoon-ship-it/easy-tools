@@ -23,9 +23,17 @@ export type DuplicateOptions = {
   resultType: DuplicateResultType;
 };
 
+export type RegexRuleOptions = {
+  enabled: boolean;
+  pattern: string;
+  replacement: string;
+  ignoreCase: boolean;
+};
+
 export type TextCleanerOptions = {
   whitespace: WhitespaceOptions;
   duplicate: DuplicateOptions;
+  regexRule: RegexRuleOptions;
 };
 
 export type LineRecord = {
@@ -49,6 +57,7 @@ export type CleanResult = {
   text: string;
   stats: CleanStats;
   mergedToOneLine: boolean;
+  regexError: string | null;
 };
 
 export const DEFAULT_OPTIONS: TextCleanerOptions = {
@@ -69,5 +78,11 @@ export const DEFAULT_OPTIONS: TextCleanerOptions = {
     unicodeNormalize: false,
     keep: "first",
     resultType: "unique",
+  },
+  regexRule: {
+    enabled: false,
+    pattern: "",
+    replacement: "",
+    ignoreCase: false,
   },
 };

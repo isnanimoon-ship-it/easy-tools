@@ -27,6 +27,15 @@ export default async function JsonFormatterPage({ params }: PageProps) {
     inputLabel: t("input.label"), inputDescription: t("input.description"), placeholder: t("input.placeholder"),
     format: t("actions.format"), minify: t("actions.minify"), copy: t("actions.copy"), clear: t("actions.clear"), copied: t("actions.copied"),
     invalid: t("error.invalid"), guidance: t("error.guidance"), position: t.raw("error.position"), copyError: t("error.copy"),
+    viewEdit: t("view.edit"), viewTree: t("view.treeTab"), viewModeLabel: t("view.label"), treeInvalid: t("view.treeInvalid"),
+    tree: {
+      expandAll: t("view.tree.expandAll"), collapseAll: t("view.tree.collapseAll"),
+      expandNode: t("view.tree.expandNode"), collapseNode: t("view.tree.collapseNode"),
+      searchLabel: t("view.tree.searchLabel"), searchPlaceholder: t("view.tree.searchPlaceholder"),
+      matchCount: t.raw("view.tree.matchCount"), noMatches: t("view.tree.noMatches"),
+      prevMatch: t("view.tree.prevMatch"), nextMatch: t("view.tree.nextMatch"),
+      itemCount: t.raw("view.tree.itemCount"),
+    },
   };
 
   return <>

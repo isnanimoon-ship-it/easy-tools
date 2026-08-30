@@ -1,4 +1,4 @@
-import { DEFAULT_OPTIONS, type TextCleanerOptions } from "./types";
+import { DEFAULT_OPTIONS, type RegexRuleOptions, type TextCleanerOptions } from "./types";
 
 export type PresetId = "basic" | "removeBlank" | "removeDuplicate" | "oneLine" | "full";
 
@@ -10,15 +10,19 @@ export const PRESET_IDS: PresetId[] = [
   "full",
 ];
 
-function cloneDefaults(): TextCleanerOptions {
+// Presets only ever describe a whitespace/duplicate strategy — the regex
+// rule is an independent, orthogonal step, so clicking a preset must not
+// silently discard whatever custom rule the user already set up.
+function cloneDefaults(regexRule: RegexRuleOptions): TextCleanerOptions {
   return {
     whitespace: { ...DEFAULT_OPTIONS.whitespace },
     duplicate: { ...DEFAULT_OPTIONS.duplicate },
+    regexRule: { ...regexRule },
   };
 }
 
-export function buildPresetOptions(id: PresetId): TextCleanerOptions {
-  const options = cloneDefaults();
+export function buildPresetOptions(id: PresetId, regexRule: RegexRuleOptions = DEFAULT_OPTIONS.regexRule): TextCleanerOptions {
+  const options = cloneDefaults(regexRule);
   switch (id) {
     case "basic":
       options.whitespace.collapseSpaces = true;

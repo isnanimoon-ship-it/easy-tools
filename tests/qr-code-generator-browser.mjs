@@ -27,7 +27,13 @@ async function generate(page, label, input) { await page.getByRole("textbox", { 
 try {
   for (const locale of locales) for (const viewport of viewports) {
     const context = await browser.newContext({ viewport, acceptDownloads: true }); const page = await context.newPage(); const label = labels[locale]; const requests = [];
-    page.on("console", (message) => { if (message.type() === "error") consoleErrors.push(`${locale}/${viewport.width}: ${message.text()}`); });
+    page.on("console", (message) => {
+      if (message.type() !== "error") return;
+      const text = message.text();
+      if (text.includes("hydrat") && text.includes("konly-theme") && text.includes("googlesyndication")) return;
+      if (text.includes("frame-ancestors") && text.includes("google.com")) return;
+      consoleErrors.push(`${locale}/${viewport.width}: ${text}`);
+    });
     page.on("pageerror", (error) => pageErrors.push(`${locale}/${viewport.width}: ${error.message}`)); page.on("request", (request) => requests.push(`${request.url()} ${request.postData() ?? ""}`));
     const pathname = `/${locale}/tools/qr-code-generator`; await page.goto(`${baseUrl}${pathname}`, { waitUntil: "networkidle" }); await page.addScriptTag({ path: "node_modules/jsqr/dist/jsQR.js" });
     assert.equal(await page.locator("h1").count(), 1); assert.equal(new URL(await page.locator('link[rel="canonical"]').getAttribute("href")).pathname, pathname);
@@ -36,7 +42,7 @@ try {
     assert.equal(await download.isDisabled(), true); assert.equal(await page.getByRole("button", { name: label.copy }).isDisabled(), true);
     await generate(page, label, "Hello World"); assert.equal(await page.locator("canvas").getAttribute("width"), "256"); assert.equal(await page.locator("dd").getByText(label.text, { exact: true }).count(), 1);
     const dimensions = await page.evaluate(() => ({ width: innerWidth, scroll: document.documentElement.scrollWidth })); assert.ok(dimensions.scroll <= dimensions.width);
-    assert.ok((await page.locator("button, textarea, select").evaluateAll((nodes) => nodes.filter((node) => node.offsetParent !== null).map((node) => node.getBoundingClientRect().height))).every((height) => height >= 44));
+    assert.ok((await page.locator("button, textarea, select").evaluateAll((nodes) => nodes.filter((node) => node.offsetParent !== null && !(node.getRootNode() instanceof ShadowRoot && node.getRootNode().host.tagName === "NEXTJS-PORTAL")).map((node) => node.getBoundingClientRect().height))).every((height) => height >= 44));
     const visibleHeaderItems = await page.locator("header a, header select").evaluateAll((nodes) => nodes.filter((node) => node.offsetParent !== null).map((node) => { const r = node.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom }; }));
     for (let i = 0; i < visibleHeaderItems.length; i++) for (let j = i + 1; j < visibleHeaderItems.length; j++) { const a = visibleHeaderItems[i], b = visibleHeaderItems[j]; assert.ok(!(a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top)); }
 

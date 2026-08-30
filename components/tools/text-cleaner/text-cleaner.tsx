@@ -27,6 +27,7 @@ function cloneOptions(options: TextCleanerOptions): TextCleanerOptions {
   return {
     whitespace: { ...options.whitespace },
     duplicate: { ...options.duplicate },
+    regexRule: { ...options.regexRule },
   };
 }
 
@@ -76,6 +77,7 @@ export function TextCleaner() {
     setOptions((prev) => ({
       whitespace: { ...prev.whitespace, ...patch },
       duplicate: prev.duplicate,
+      regexRule: prev.regexRule,
     }));
   }
   function updateDuplicate(patch: Partial<TextCleanerOptions["duplicate"]>) {
@@ -83,11 +85,22 @@ export function TextCleaner() {
     setOptions((prev) => ({
       whitespace: prev.whitespace,
       duplicate: { ...prev.duplicate, ...patch },
+      regexRule: prev.regexRule,
+    }));
+  }
+  // The regex rule is independent of the whitespace/duplicate presets, so
+  // changing it does not clear the active preset badge, and applying a
+  // preset does not discard whatever custom rule the user already set up.
+  function updateRegexRule(patch: Partial<TextCleanerOptions["regexRule"]>) {
+    setOptions((prev) => ({
+      whitespace: prev.whitespace,
+      duplicate: prev.duplicate,
+      regexRule: { ...prev.regexRule, ...patch },
     }));
   }
   function applyPreset(id: PresetId) {
     setSelectedPreset(id);
-    setOptions(buildPresetOptions(id));
+    setOptions(buildPresetOptions(id, options.regexRule));
   }
   function resetAll() {
     setInput("");
@@ -380,6 +393,52 @@ export function TextCleaner() {
                     ))}
                   </select>
                 </label>
+              </div>
+            ) : null}
+          </section>
+
+          <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm">
+            <Checkbox
+              checked={options.regexRule.enabled}
+              onChange={(checked) => updateRegexRule({ enabled: checked })}
+              label={t("regexRule.title")}
+              bold
+            />
+            {options.regexRule.enabled ? (
+              <div className="mt-3 space-y-3 text-sm">
+                <p className="text-xs text-[var(--text-muted)]">{t("regexRule.help")}</p>
+                <label className="block">
+                  <span className="font-semibold text-[var(--foreground)]">{t("regexRule.pattern")}</span>
+                  <input
+                    type="text"
+                    value={options.regexRule.pattern}
+                    onChange={(event) => updateRegexRule({ pattern: event.target.value })}
+                    placeholder={t("regexRule.patternPlaceholder")}
+                    spellCheck={false}
+                    className="mt-1 min-h-9 w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] px-2 py-1 font-mono text-xs"
+                  />
+                </label>
+                <label className="block">
+                  <span className="font-semibold text-[var(--foreground)]">{t("regexRule.replacement")}</span>
+                  <input
+                    type="text"
+                    value={options.regexRule.replacement}
+                    onChange={(event) => updateRegexRule({ replacement: event.target.value })}
+                    placeholder={t("regexRule.replacementPlaceholder")}
+                    spellCheck={false}
+                    className="mt-1 min-h-9 w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] px-2 py-1 font-mono text-xs"
+                  />
+                </label>
+                <Checkbox
+                  checked={options.regexRule.ignoreCase}
+                  onChange={(checked) => updateRegexRule({ ignoreCase: checked })}
+                  label={t("regexRule.ignoreCase")}
+                />
+                {result?.regexError ? (
+                  <p role="alert" className="rounded-lg bg-[var(--error-bg)] p-2 text-xs font-semibold text-[var(--error-fg)]">
+                    {t("regexRule.invalidPattern", { message: result.regexError })}
+                  </p>
+                ) : null}
               </div>
             ) : null}
           </section>

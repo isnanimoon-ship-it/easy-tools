@@ -155,6 +155,39 @@ try {
   await page.waitForTimeout(700);
   await page.getByText("입력이 커서 처리 속도가 느려질 수 있습니다.").waitFor();
 
+  // Regex rule (idea #2): off by default, must not disturb the existing
+  // flow when untouched; applies before other options when enabled; shows
+  // an inline error (not a crash) for an invalid pattern; a preset click
+  // must not silently discard a rule the user already set up.
+  await page.getByRole("button", { name: "초기화" }).click();
+  assert.equal(await page.getByLabel("정규식 치환(고급)", { exact: true }).isChecked(), false, "regex rule is off by default");
+  assert.equal(await page.getByLabel("찾을 패턴").count(), 0, "advanced fields stay collapsed until enabled");
+
+  await input.fill("#comment\nkeep me\n#also skip");
+  await page.waitForTimeout(400);
+  assert.equal(await output.inputValue(), "#comment\nkeep me\n#also skip", "disabled rule must not alter output");
+
+  await page.getByLabel("정규식 치환(고급)", { exact: true }).click();
+  await page.getByLabel("찾을 패턴").fill("^#.*$\\n?");
+  await page.getByRole("radio", { name: "모든 빈 줄 제거" }).click();
+  await page.waitForTimeout(400);
+  assert.equal(await output.inputValue(), "keep me", "regex removes matching lines before the rest of the pipeline runs");
+
+  await page.getByLabel("찾을 패턴").fill("(unterminated");
+  await page.waitForTimeout(400);
+  await page.getByRole("alert").getByText("정규식이 올바르지 않습니다", { exact: false }).waitFor();
+  // Invalid pattern falls back to a no-op for the regex step (not a crash,
+  // and not silently keeping a stale previous result) — the rest of the
+  // pipeline still runs on the unfiltered text, so the comment lines reappear.
+  assert.equal(await output.inputValue(), "#comment\nkeep me\n#also skip", "invalid pattern falls back to leaving text unfiltered, with a clear inline error");
+
+  await page.getByLabel("찾을 패턴").fill("^#.*$\\n?");
+  await page.waitForTimeout(400);
+  await page.getByRole("button", { name: "빈 줄 제거" }).click(); // a preset click
+  await page.waitForTimeout(400);
+  assert.equal(await page.getByLabel("정규식 치환(고급)", { exact: true }).isChecked(), true, "preset must not silently disable the user's regex rule");
+  assert.equal(await page.getByLabel("찾을 패턴").inputValue(), "^#.*$\\n?", "preset must not clear the pattern the user typed");
+
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true);
   await context.close();
 

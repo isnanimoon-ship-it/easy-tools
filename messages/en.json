@@ -89,7 +89,8 @@
       "output": { "label": "Cleaned text", "overwriteNotice": "You can edit the result directly, but it will be overwritten if you change the input or options.", "newline": "Line ending" },
       "stats": { "label": "Stats", "originalLines": "Original lines", "resultLines": "Result lines", "removedLines": "Removed lines", "originalChars": "Original characters", "resultChars": "Result characters", "uniqueLines": "Unique lines", "duplicateLines": "Duplicate lines" },
       "whitespace": { "title": "Whitespace & line breaks", "collapseSpaces": "Collapse consecutive spaces to one", "trimLines": "Trim leading/trailing whitespace per line", "tabToSpaces": "Convert tabs to spaces", "normalizeSpecialSpaces": "Convert special spaces (NBSP, full-width) to a regular space", "blankLines": { "title": "Blank lines", "keep": "Keep", "collapse": "Collapse consecutive blank lines to one", "remove": "Remove all blank lines" }, "mergeToOneLine": "Merge all lines into one line" },
-      "duplicate": { "title": "Remove duplicate lines", "disabledByMerge": "Duplicate removal has no effect while merge-to-one-line is on.", "ignoreCase": "Ignore case", "ignoreSurroundingWhitespace": "Ignore surrounding whitespace", "ignoreInnerWhitespaceDiff": "Ignore inner whitespace differences", "unicodeNormalize": "Compare after Unicode normalization (NFC)", "keep": { "title": "Keep", "first": "First occurrence", "last": "Last occurrence" }, "resultType": { "title": "Result type", "unique": "All, deduplicated", "duplicatesOnly": "Only lines that had duplicates", "onceOnly": "Only lines that appeared once" } }
+      "duplicate": { "title": "Remove duplicate lines", "disabledByMerge": "Duplicate removal has no effect while merge-to-one-line is on.", "ignoreCase": "Ignore case", "ignoreSurroundingWhitespace": "Ignore surrounding whitespace", "ignoreInnerWhitespaceDiff": "Ignore inner whitespace differences", "unicodeNormalize": "Compare after Unicode normalization (NFC)", "keep": { "title": "Keep", "first": "First occurrence", "last": "Last occurrence" }, "resultType": { "title": "Result type", "unique": "All, deduplicated", "duplicatesOnly": "Only lines that had duplicates", "onceOnly": "Only lines that appeared once" } },
+      "regexRule": { "title": "Regex replace (advanced)", "help": "Replaces or removes anything matching the pattern, before any other option runs. Skip this if you don''t know regular expressions.", "pattern": "Find pattern", "patternPlaceholder": "e.g. ^#.*$", "replacement": "Replace with", "replacementPlaceholder": "Leave empty to remove", "ignoreCase": "Ignore case", "invalidPattern": "Invalid regular expression: {message}" }
     },
     "koreanInitialConverter": {
       "metadata": { "title": "Free Korean Initial Consonant Converter", "description": "Convert Korean text into just its initial consonants instantly. Letters, numbers, punctuation, and emoji stay unchanged. Processed entirely in your browser." },
@@ -153,7 +154,7 @@
     "regexTester": {
       "metadata": { "title": "Free JavaScript Regex Tester", "description": "Test JavaScript regular expressions, flags, capture groups, named groups, and replacements safely in your browser." },
       "title": "Regex Tester", "description": "Validate JavaScript regular expressions and inspect match positions, capture groups, and replacement results in real time.",
-      "fields": { "pattern": "Regular expression pattern", "patternHelp": "Enter only the pattern without surrounding slashes. Backslashes are passed directly to JavaScript RegExp.", "flags": "Flags", "test": "Test string", "testHelp": "Supports multiple lines, Korean, Japanese, and Emoji. Indexes use JavaScript UTF-16 positions.", "replacement": "Replacement", "replacementHelp": "Use JavaScript tokens such as $&, $1, $2, $<name>, and $$." },
+      "fields": { "pattern": "Regular expression pattern", "patternHelp": "Enter only the pattern without surrounding slashes. Backslashes are passed directly to JavaScript RegExp.", "flags": "Flags", "test": "Test string", "testHelp": "Supports multiple lines, Korean, Japanese, and Emoji. Indexes use JavaScript UTF-16 positions.", "replacement": "Replacement", "replacementHelp": "Use JavaScript tokens such as $&, $1, $2, $'<name>', and $$." },
       "flags": { "g": "Find all matches", "i": "Ignore letter case", "m": "Apply ^ and $ per line", "s": "Let . include newlines", "u": "Unicode code point mode", "y": "Sticky match at current position" },
       "status": { "valid": "Valid JavaScript regular expression", "running": "Running safely in a Worker…", "noMatch": "No matches found.", "matches": "Matches", "firstOnly": "Without g, JavaScript returns only the first match.", "global": "The g flag is enabled, so all matches were collected." },
       "preview": { "title": "Match preview", "empty": "Enter a pattern and test string to highlight matches.", "limit": "Only the first 1,000 matches are highlighted for performance." },
@@ -162,7 +163,7 @@
       "actions": { "run": "Run now", "clear": "Clear", "copyPattern": "Copy pattern", "copyLiteral": "Copy full regex", "copyReplacement": "Copy replacement", "copied": "Copied" },
       "examples": { "title": "Regex examples", "hint": "These are simple format examples, not complete validators. Your test string is preserved.", "email": "Email", "number": "Numbers", "date": "Date", "url": "URL", "phone": "Phone" },
       "errors": { "patternLong": "Keep the pattern at 10,000 characters or fewer.", "textLong": "Keep the test string at 500,000 characters or fewer.", "replacementLong": "Keep the replacement at 100,000 characters or fewer.", "resultLarge": "The replacement result is too large to preview or copy.", "timeout": "The regex took too long. Simplify the pattern or shorten the test string.", "worker": "The regex Worker could not start. Try again in an up-to-date browser.", "copy": "Could not copy. Check clipboard permission." },
-      "reference": { "title": "JavaScript regex quick reference", "description": "Based on the current browser's JavaScript RegExp syntax.", "characters": { "title": "Character classes", "items": ". any character\n\\d digit · \\w word character\n\\s whitespace · [abc] set" }, "quantifiers": { "title": "Quantifiers", "items": "* zero or more · + one or more\n? zero or one\n{n} exactly n · {n,m} range" }, "anchors": { "title": "Anchors", "items": "^ start · $ end\n\\b word boundary · \\B non-boundary" }, "groups": { "title": "Groups", "items": "(...) capturing\n(?:...) non-capturing\n(?<name>...) named" }, "lookaround": { "title": "Lookaround", "items": "(?=...) positive ahead\n(?!...) negative ahead\n(?<=...) positive behind" }, "escape": { "title": "Escape", "items": "\\. dot · \\\\ backslash\n\\t tab · \\n newline" } },
+      "reference": { "title": "JavaScript regex quick reference", "description": "Based on the current browser's JavaScript RegExp syntax.", "characters": { "title": "Character classes", "items": ". any character\n\\d digit · \\w word character\n\\s whitespace · [abc] set" }, "quantifiers": { "title": "Quantifiers", "items": "* zero or more · + one or more\n? zero or one\n'{n}' exactly n · '{n,m}' range" }, "anchors": { "title": "Anchors", "items": "^ start · $ end\n\\b word boundary · \\B non-boundary" }, "groups": { "title": "Groups", "items": "(...) capturing\n(?:...) non-capturing\n(?'<name>'...) named" }, "lookaround": { "title": "Lookaround", "items": "(?=...) positive ahead\n(?!...) negative ahead\n(?<=...) positive behind" }, "escape": { "title": "Escape", "items": "\\. dot · \\\\ backslash\n\\t tab · \\n newline" } },
       "privacy": "Privacy: your pattern, test string, and replacement are processed only inside a browser Worker and are never uploaded or stored."
     },
     "imageCompressor": {
@@ -170,13 +171,13 @@
       "title": "Reduce image file size", "description": "Compress JPG, PNG, and WebP photos by quality or target size, compare the result, and download it.",
       "upload": { "title": "Upload an image", "help": "Choose or drop one JPG, PNG, or WebP image. Up to 25MB and 24 million pixels.", "drop": "Drop the image here." },
       "actions": { "choose": "Choose image", "change": "Change image", "clear": "Clear", "compress": "Compress now", "download": "Download compressed image" },
-      "status": { "loading": "Checking the image…", "compressing": "Compressing image…", "progress": "Finding the best quality · {current}/{max}" },
+      "status": { "loading": "Checking the image…", "compressing": "Compressing image…", "progress": "Finding the best quality · __CURRENT__/__MAX__" },
       "info": { "title": "Original image", "name": "File name", "format": "Format", "dimensions": "Dimensions", "size": "Original size" },
       "settings": { "title": "Compression settings", "mode": "Compression mode", "qualityMode": "By quality", "targetMode": "Target file size", "quality": "Quality", "target": "Quick target", "customTarget": "Custom target", "output": "Output format", "original": "Keep original format", "maxWidth": "Maximum width", "keepSize": "Keep original dimensions" },
       "formats": { "jpeg": "JPEG", "png": "PNG", "webp": "WebP" },
       "notices": { "png": "PNG output may not shrink much with a quality setting. Consider WebP or JPEG for a smaller file.", "jpeg": "JPEG has no transparency, so transparent areas will use a white background.", "metadata": "Location, camera, and other image metadata may be removed during compression." },
       "preview": { "original": "Original preview", "result": "Compressed preview", "empty": "The compressed result will appear here after you choose settings." },
-      "result": { "title": "File size comparison", "size": "Result size", "saved": "Reduction", "saving": "The result is smaller than the original.", "larger": "The result is {size} larger than the original. Consider keeping the original.", "same": "The file size did not change.", "targetMet": "The image is at or below your target size.", "targetMissed": "This target is difficult at the current dimensions. Reduce maximum width or change the output format.", "quality": "Applied quality" },
+      "result": { "title": "File size comparison", "size": "Result size", "saved": "Reduction", "saving": "The result is smaller than the original.", "larger": "The result is __SIZE__ larger than the original. Consider keeping the original.", "same": "The file size did not change.", "targetMet": "The image is at or below your target size.", "targetMissed": "This target is difficult at the current dimensions. Reduce maximum width or change the output format.", "quality": "Applied quality" },
       "errors": { "multiple": "Upload one image at a time.", "unsupported": "Choose a JPG, PNG, or WebP image.", "fileLarge": "The file is larger than 25MB. Choose a smaller image.", "signature": "The file contents do not match its image format.", "decode": "The image could not be opened. It may be damaged.", "dimensions": "The image exceeds 24 million pixels or 12,000px on one side.", "encoder": "This browser does not support the selected output format.", "encode": "The image could not be compressed. Change the settings and try again.", "target": "Enter a whole number from 10 through 10240KB.", "unreachable": "The target cannot be reached at the current dimensions.", "download": "The image could not be downloaded. Try again." },
       "privacy": { "notice": "Privacy: your image is processed in this browser and is never uploaded or stored.", "title": "Your image stays on this device", "text": "The original and compressed result only use temporary memory in this tab and are released when you clear or close it." },
       "guide": { "qualityTitle": "Balance quality and size", "qualityText": "Higher quality usually looks sharper but creates a larger file. Start around 80% for photos.", "targetTitle": "Fit a specific KB limit", "targetText": "Choose 100KB, 200KB, 500KB, or 1MB to find the highest tested quality below your target." }
@@ -277,6 +278,25 @@
       "input": { "label": "JSON editor", "description": "Paste or enter JSON, then choose an action.", "placeholder": "Paste JSON here." },
       "actions": { "format": "Format", "minify": "Minify", "copy": "Copy", "clear": "Clear", "copied": "Copied to clipboard." },
       "error": { "invalid": "This is not valid JSON.", "guidance": "Check quotation marks, commas, colons, braces, and brackets.", "position": "Line {line}, column {column}", "copy": "Could not copy. Check clipboard permission and try again." },
+      "view": {
+        "label": "View mode",
+        "edit": "Edit",
+        "treeTab": "Tree view",
+        "treeInvalid": "Enter valid JSON to see it as a tree.",
+        "tree": {
+          "expandAll": "Expand all",
+          "collapseAll": "Collapse all",
+          "expandNode": "Expand",
+          "collapseNode": "Collapse",
+          "searchLabel": "Search keys",
+          "searchPlaceholder": "Search keys",
+          "matchCount": "__INDEX__ of __TOTAL__",
+          "noMatches": "No matching keys.",
+          "prevMatch": "Previous match",
+          "nextMatch": "Next match",
+          "itemCount": "__COUNT__ items"
+        }
+      },
       "guide": { "title": "How it works", "description": "Format adds two-space indentation. Minify removes only unnecessary whitespace outside strings." },
       "privacy": { "title": "Processed only in your browser", "description": "Your JSON is not sent to a server or stored." }
     },
@@ -310,6 +330,15 @@
         "charactersWithoutWhitespace": "Without whitespace",
         "words": "Words",
         "lines": "Lines"
+      },
+      "readingTime": {
+        "minutes": "About __MINUTES__ min read",
+        "seconds": "About __SECONDS__ sec read"
+      },
+      "actions": {
+        "copyResults": "Copy results",
+        "copied": "Copied",
+        "copyError": "Could not copy the results. Check clipboard permissions."
       },
       "guide": {
         "title": "How counting works",

@@ -5,6 +5,14 @@ export type TextCounts = {
   lines: number;
 };
 
+export type ReadingTime = { unit: "seconds" | "minutes"; value: number };
+
+const READING_SPEEDS: Record<string, { unit: "words" | "charactersWithoutWhitespace"; perMinute: number }> = {
+  ko: { unit: "charactersWithoutWhitespace", perMinute: 350 },
+  ja: { unit: "charactersWithoutWhitespace", perMinute: 400 },
+};
+const DEFAULT_READING_SPEED = { unit: "words" as const, perMinute: 200 };
+
 const graphemeSegmenters = new Map<string, Intl.Segmenter>();
 const wordSegmenters = new Map<string, Intl.Segmenter>();
 
@@ -65,4 +73,18 @@ export function countText(text: string, locale: string): TextCounts {
     words: countWords(normalizedText, locale),
     lines: normalizedText.split("\n").length,
   };
+}
+
+export function estimateReadingTime(counts: TextCounts, locale: string): ReadingTime | null {
+  const speed = READING_SPEEDS[locale.split("-")[0]] ?? DEFAULT_READING_SPEED;
+  const amount = speed.unit === "words" ? counts.words : counts.charactersWithoutWhitespace;
+
+  if (amount === 0) {
+    return null;
+  }
+
+  const totalSeconds = Math.max(1, Math.round((amount / speed.perMinute) * 60));
+  return totalSeconds < 60
+    ? { unit: "seconds", value: totalSeconds }
+    : { unit: "minutes", value: Math.max(1, Math.round(totalSeconds / 60)) };
 }
