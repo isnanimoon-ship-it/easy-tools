@@ -69,20 +69,20 @@ try {
   );
 
   // --- Site name reflected in HTML + manifest ----------------------------
-  await page.getByLabel("사이트 이름").fill("Coddy");
+  await page.getByLabel("사이트 이름").fill("MySite");
   await page.waitForFunction(
-    () => document.body.innerText.includes('content="Coddy"'),
+    () => document.body.innerText.includes('content="MySite"'),
     undefined,
     { timeout: 3000 },
   );
-  const manifestBlock = await page.getByText('"name": "Coddy"', { exact: false }).innerText();
-  assert.match(manifestBlock, /"short_name": "Coddy"/);
+  const manifestBlock = await page.getByText('"name": "MySite"', { exact: false }).innerText();
+  assert.match(manifestBlock, /"short_name": "MySite"/);
 
   // --- Copy HTML code -----------------------------------------------------
   await page.getByRole("button", { name: "HTML 코드 복사" }).click();
   const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
   assert.match(clipboardText, /<link rel="icon" href="\/favicon\.ico" sizes="any" \/>/);
-  assert.match(clipboardText, /application-name" content="Coddy"/);
+  assert.match(clipboardText, /application-name" content="MySite"/);
   await page.getByRole("button", { name: "복사되었습니다" }).waitFor();
 
   // --- Emoji source ---------------------------------------------------
@@ -208,7 +208,7 @@ try {
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "ZIP 다운로드" }).click();
   const download = await downloadPromise;
-  assert.equal(download.suggestedFilename(), "coddy-favicon-package.zip");
+  assert.equal(download.suggestedFilename(), "mysite-favicon-package.zip");
   const stream = await download.createReadStream();
   const chunks = [];
   for await (const chunk of stream) chunks.push(chunk);
@@ -247,8 +247,8 @@ try {
 
   // site.webmanifest content.
   const manifest = JSON.parse(strFromU8(files["site.webmanifest"]));
-  assert.equal(manifest.name, "Coddy");
-  assert.equal(manifest.short_name, "Coddy");
+  assert.equal(manifest.name, "MySite");
+  assert.equal(manifest.short_name, "MySite");
   assert.equal(manifest.display, "standalone");
   assert.deepEqual(manifest.icons.map((i) => i.sizes), ["192x192", "512x512"]);
 

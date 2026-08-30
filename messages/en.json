@@ -159,7 +159,7 @@
       "image": { "help": "Choose or drop a PNG, JPG, or still WebP image.", "drop": "Drop the image here.", "choose": "Choose image", "zoom": "Zoom", "background": "Background", "transparent": "Transparent", "solidColor": "Solid color", "detailNotice": "Images with thin lines or fine detail may not be visible at small sizes. Use as simple an image as possible." },
       "errors": { "unsupported-type": "Choose a PNG, JPG, or still WebP image.", "file-too-large": "The file must be 25MB or smaller.", "animated-image": "Animated WebP is not supported. Please convert it to a still image.", "dimension-limit": "The image exceeds 40 megapixels or the 16,384px side limit.", "decode-failed": "Couldn't read the image. The file may be corrupted.", "multiple-files": "Choose only one image." },
       "colors": { "background": "Background color", "foreground": "Text color" },
-      "siteName": { "label": "Site name", "placeholder": "e.g. Coddy" },
+      "siteName": { "label": "Site name", "placeholder": "e.g. MySite" },
       "actions": { "reset": "Reset", "generating": "Generating...", "downloadZip": "Download ZIP", "copyHtml": "Copy HTML code", "copied": "Copied" },
       "preview": { "title": "Preview", "lowContrast": "The background and text colors have low contrast and may be hard to see at small sizes.", "empty": "Upload an image to see the preview." },
       "context": { "title": "In-context preview", "tabPlaceholder": "My Site", "iosLabel": "iOS Home Screen", "androidLabel": "Android App Icon" },

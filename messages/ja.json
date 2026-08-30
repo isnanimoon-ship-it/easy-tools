@@ -159,7 +159,7 @@
       "image": { "help": "PNG、JPG、静止WebP画像を選択またはドロップしてください。", "drop": "ここに画像をドロップしてください。", "choose": "画像を選択", "zoom": "拡大・縮小", "background": "背景", "transparent": "透明", "solidColor": "単色", "detailNotice": "線が細かったり、細部が多い画像は小さいサイズで見えにくくなることがあります。できるだけシンプルな画像を使用してください。" },
       "errors": { "unsupported-type": "PNG、JPG、または静止WebP画像を選択してください。", "file-too-large": "ファイルは25MB以下にしてください。", "animated-image": "アニメーションWebPはサポートされていません。静止画像に変換してください。", "dimension-limit": "画像が4,000万画素または最大辺16,384pxの制限を超えています。", "decode-failed": "画像を読み込めません。ファイルが破損している可能性があります。", "multiple-files": "画像は1枚だけ選択してください。" },
       "colors": { "background": "背景色", "foreground": "文字色" },
-      "siteName": { "label": "サイト名", "placeholder": "例: Coddy" },
+      "siteName": { "label": "サイト名", "placeholder": "例: マイサイト" },
       "actions": { "reset": "リセット", "generating": "生成中...", "downloadZip": "ZIPをダウンロード", "copyHtml": "HTMLコードをコピー", "copied": "コピーしました" },
       "preview": { "title": "プレビュー", "lowContrast": "背景色と文字色のコントラストが低く、小さいサイズで見えにくい場合があります。", "empty": "画像をアップロードするとプレビューが表示されます。" },
       "context": { "title": "実使用イメージ", "tabPlaceholder": "マイサイト", "iosLabel": "iOSホーム画面", "androidLabel": "Androidアプリアイコン" },

@@ -152,9 +152,9 @@ describe("manifest — SPEC decision 7/8", () => {
     expect(resolveSiteName("   ")).toBe("My Website");
   });
   it("keeps a short site name for both name and short_name", () => {
-    const manifest = JSON.parse(buildManifest({ siteName: "Coddy", themeColor: "#5B8DEF" }));
-    expect(manifest.name).toBe("Coddy");
-    expect(manifest.short_name).toBe("Coddy");
+    const manifest = JSON.parse(buildManifest({ siteName: "MySite", themeColor: "#5B8DEF" }));
+    expect(manifest.name).toBe("MySite");
+    expect(manifest.short_name).toBe("MySite");
   });
   it("truncates short_name to 12 characters for a long site name", () => {
     const manifest = JSON.parse(buildManifest({ siteName: "A Very Long Website Name", themeColor: "#000000" }));
@@ -183,8 +183,8 @@ describe("manifest — SPEC decision 7/8", () => {
     expect(html).not.toContain("application-name");
   });
   it("includes the application-name meta tag when a site name is given", () => {
-    const html = buildHtmlSnippet({ siteName: "Coddy", themeColor: "#000000" });
-    expect(html).toContain('<meta name="application-name" content="Coddy" />');
+    const html = buildHtmlSnippet({ siteName: "MySite", themeColor: "#000000" });
+    expect(html).toContain('<meta name="application-name" content="MySite" />');
   });
   it("always includes the required link tags and theme-color", () => {
     const html = buildHtmlSnippet({ siteName: "X", themeColor: "#5B8DEF" });
@@ -200,7 +200,7 @@ describe("manifest — SPEC decision 7/8", () => {
   });
 
   it("builds a slugified zip filename from the site name", () => {
-    expect(buildZipFilename("Coddy")).toBe("coddy-favicon-package.zip");
+    expect(buildZipFilename("MySite")).toBe("mysite-favicon-package.zip");
     expect(buildZipFilename("My Cool Site!")).toBe("my-cool-site-favicon-package.zip");
   });
   it("falls back to a generic zip filename when the site name is empty", () => {
