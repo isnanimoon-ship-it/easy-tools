@@ -54,6 +54,34 @@
       "sqlFormatter": { "title": "SQL Formatter", "description": "Format SQL queries in your browser with MySQL, PostgreSQL, SQL Server, Oracle, and SQLite syntax in mind." }
     }
   },
+  "Privacy": {
+    "metadata": { "title": "Privacy Policy", "description": "How Easy Tools handles your information, and which cookies it uses for ads and visitor analytics." },
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: August 31, 2026",
+    "intro": "Thank you for using Easy Tools (the \"Site\"). This Privacy Policy explains what information is processed, and how, when you use the Site.",
+    "sections": {
+      "principle": { "title": "Core principle: processing stays in your browser", "body": "Most tools on this Site process the text or files you enter entirely inside your browser and never send them to a server. Each tool page also states its own processing method near the bottom." },
+      "dataCollected": { "title": "Information we collect directly", "body": "The Site has no sign-up or login feature, and does not store or collect what you type into a tool. As an exception, the IP Info tool sends the IP address you look up to an external lookup service; this is disclosed separately on that tool's page." },
+      "ads": { "title": "Ads and cookies (Google AdSense)", "body": "The Site displays ads through Google AdSense. Google and third-party ad partners may use cookies to serve ads based on a user's prior visits to this or other websites.", "optOutLink": "Opt out of personalized ads in Google Ads Settings", "policyLink": "See Google's policy on ad cookies" },
+      "analytics": { "title": "Visitor analytics (Naver Web Log Analysis)", "body": "The Site uses the Naver Web Log Analysis service to collect statistics such as visitor counts and page views. This information is used only to understand how the Site is used." },
+      "thirdParty": { "title": "Third-party services in use", "items": ["Google AdSense — serves ads", "Naver Web Log Analysis — visitor statistics"] },
+      "cookies": { "title": "Managing cookies", "body": "Most web browsers accept cookies by default, but you can block or delete them in your browser settings. Blocking cookies may prevent some features from working correctly." },
+      "children": { "title": "Children's privacy", "body": "The Site is not directed at children under 13, and we do not knowingly collect personal information from children." },
+      "changes": { "title": "Changes to this policy", "body": "This policy may be updated to reflect changes in law or in the Site's services. Any changes will be posted on this page." },
+      "contact": { "title": "Contact", "body": "If you have questions about how your information is handled, please contact us at the email below.", "email": "isnanik@daum.net" }
+    }
+  },
+  "Contact": {
+    "metadata": { "title": "Contact", "description": "Let us know about a bug you found or a feature you'd like to see in Easy Tools." },
+    "title": "Contact",
+    "intro": "Have a question or run into something confusing while using Easy Tools? Feel free to reach out at the email below.",
+    "sections": {
+      "email": { "title": "Email us", "body": "Send your message to the address below and we'll get back to you after reviewing it.", "email": "isnanik@daum.net" },
+      "bugReport": { "title": "Found a bug?", "body": "Including the following helps us find and fix it faster.", "items": ["Which tool it happened in (e.g. Image Compressor, SQL Formatter)", "Your browser and operating system (e.g. Chrome, Windows 11)", "The steps that led to the problem", "A screenshot or screen recording, if possible"] },
+      "featureRequest": { "title": "Want to suggest a new feature?", "body": "Describing the problem you're trying to solve and how you'd use the feature helps a lot when we review it. We can't build every suggestion, but we read every one." },
+      "responseTime": { "body": "Easy Tools is run by a single person, so replies may take a little while — thanks for your patience. We'll review every message as quickly as we can." }
+    }
+  },
   "Tools": {
     "privacyRedactor": {
       "metadata": { "title": "Free Online Image Masking Tool", "description": "Select the parts of a photo or screenshot you want to hide, mask them with a solid block or pixelation, and download — processed entirely in your browser." },
