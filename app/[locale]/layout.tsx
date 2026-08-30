@@ -72,7 +72,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{__html:THEME_BOOTSTRAP}}/></head>
+      <head>
+        <script dangerouslySetInnerHTML={{__html:THEME_BOOTSTRAP}}/>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7746620546474816" crossOrigin="anonymous"/>
+      </head>
       <body className="flex min-h-screen flex-col antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
         <NaverWcs />
