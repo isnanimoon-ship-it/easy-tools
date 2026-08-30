@@ -9,7 +9,7 @@
     "skipToContent": "본문으로 바로가기",
     "status": "준비 중",
     "theme": { "enableDark": "다크 모드 켜기", "enableLight": "라이트 모드 켜기" },
-    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 변환기", "urlEncoderDecoder": "URL 인코더", "youtubeThumbnailDownloader": "유튜브 썸네일", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 압축기", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기" },
+    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 인코더/디코더", "urlEncoderDecoder": "URL 인코더/디코더", "youtubeThumbnailDownloader": "유튜브 썸네일 추출기", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 용량 줄이기", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기", "sqlFormatter": "SQL 포맷터" },
     "footer": "© {year} 간편도구. 누구나 간편하게.",
     "result": "결과",
     "copy": "복사",
@@ -34,15 +34,15 @@
       "open": "도구 열기",
       "wordCounter": { "title": "글자수 계산기", "description": "전체 글자, 공백 제외 글자, 단어와 줄 수를 실시간으로 계산합니다." },
       "jsonFormatter": { "title": "JSON 포맷터", "description": "JSON을 읽기 쉽게 정리하거나 불필요한 공백을 제거해 압축합니다." },
-      "passwordGenerator": { "title": "비밀번호 생성기", "description": "길이와 문자 유형을 선택해 안전한 무작위 비밀번호를 만듭니다." },
-      "base64Converter": { "title": "Base64 변환기", "description": "문자 인코딩을 선택해 텍스트와 Base64를 서로 변환합니다." },
+      "passwordGenerator": { "title": "비밀번호 생성기", "description": "길이와 문자 유형을 선택하거나, 기억하기 쉬운 단어 조합으로 안전한 비밀번호를 만듭니다." },
+      "base64Converter": { "title": "Base64 인코더/디코더", "description": "문자 인코딩을 선택해 텍스트와 Base64를 서로 변환합니다." },
       "urlEncoderDecoder": { "title": "URL 인코더/디코더", "description": "전체 URL 또는 구성요소를 UTF-8 Percent Encoding으로 변환합니다." },
       "youtubeThumbnailDownloader": { "title": "유튜브 썸네일 추출기", "description": "YouTube 영상 주소에서 실제 사용 가능한 썸네일을 해상도별로 확인하고 저장합니다." },
       "qrCodeGenerator": { "title": "QR 코드 생성기", "description": "텍스트나 URL을 브라우저에서 QR 코드로 만들고 PNG로 저장합니다." },
       "ipInfo": { "title": "IP 정보 확인", "description": "현재 공인 IP와 국가, 지역, ISP, ASN 등 기본 네트워크 정보를 확인합니다." },
       "imageColorPicker": { "title": "이미지 색상 추출기", "description": "이미지를 올리고 정확한 픽셀 색상을 HEX, RGB, HSL, HSV, CMYK로 확인합니다." },
-      "imageCompressor": { "title": "이미지 압축기", "description": "JPG, PNG, WebP 사진을 원하는 품질이나 목표 용량으로 브라우저에서 줄입니다." },
-      "screenshotStitcher": { "title": "스크린샷 자동 이어붙이기", "description": "연속 스크린샷의 겹치는 영역을 찾아 중복 없이 하나의 긴 PNG로 합칩니다." },
+      "imageCompressor": { "title": "이미지 용량 줄이기", "description": "JPG, PNG, WebP 사진을 원하는 품질이나 목표 용량으로 브라우저에서 줄입니다." },
+      "screenshotStitcher": { "title": "스크린샷 이어붙이기", "description": "연속 스크린샷의 겹치는 영역을 찾아 중복 없이 하나의 긴 PNG로 합칩니다." },
       "privacyRedactor": { "title": "이미지 마스킹 도구", "description": "사진이나 스크린샷에서 가리고 싶은 부분을 직접 선택해 마스킹한 PNG로 저장합니다." },
       "screenshotStatusbarRemover": { "title": "스크린샷 상태바 제거", "description": "스마트폰 스크린샷 상단의 시간·배터리·통신 상태바를 감지해 제거하고 다운로드합니다." },
       "regexTester": { "title": "정규식 테스터", "description": "JavaScript 정규식을 실행해 매치, 캡처 그룹과 문자열 치환 결과를 확인합니다." },
@@ -50,7 +50,8 @@
       "textCleaner": { "title": "텍스트 정리기", "description": "여러 줄의 공백과 빈 줄을 정리하고 중복된 줄을 제거합니다." },
       "koreanInitialConverter": { "title": "한글 초성 변환기", "description": "한글 텍스트를 입력하면 각 음절의 초성만 즉시 추출합니다." },
       "jwtDecoder": { "title": "JWT 디코더", "description": "JWT를 붙여넣으면 Header와 Payload를 브라우저에서 즉시 확인합니다." },
-      "faviconGenerator": { "title": "파비콘 생성기", "description": "텍스트, 이모지, 이미지로 웹사이트용 파비콘 세트를 생성합니다." }
+      "faviconGenerator": { "title": "파비콘 생성기", "description": "텍스트, 이모지, 이미지로 웹사이트용 파비콘 세트를 생성합니다." },
+      "sqlFormatter": { "title": "SQL 포맷터", "description": "MySQL, PostgreSQL, SQL Server, Oracle, SQLite 문법을 고려해 SQL 쿼리를 브라우저에서 정렬합니다." }
     }
   },
   "Tools": {
@@ -108,6 +109,7 @@
       "title": "JWT 디코더", "description": "JWT를 입력하면 Header와 Payload를 브라우저에서 바로 확인할 수 있습니다. 디코딩은 서명 검증이 아닙니다.",
       "input": { "label": "JWT 입력", "placeholder": "JWT 토큰을 붙여넣으세요" },
       "actions": { "loadSample": "예제 JWT 불러오기", "reset": "초기화", "copyJwt": "JWT 전체 복사", "copied": "복사되었습니다", "copyHeader": "Header 복사", "copyPayload": "Payload 복사" },
+      "tree": { "expandNode": "펼치기", "collapseNode": "접기", "copyValue": "값 복사", "copied": "복사됨" },
       "errors": { "tooLarge": "너무 긴 토큰입니다.", "tooFewSegments": "JWT는 일반적으로 3개의 영역으로 구성됩니다.", "jwe": "암호화된 JWE 형식으로 보입니다. 현재 JWT 디코더에서는 지원하지 않습니다.", "unsupportedSegments": "지원하지 않는 토큰 형식입니다({count}개 영역 감지됨)." },
       "status": { "title": "토큰 상태", "structureLabel": "구조", "structureOk": "정상적인 3-part JWT 형식", "payloadLabel": "Payload", "payloadOk": "JSON decode 성공", "payloadFail": "JSON decode 실패", "expirationLabel": "만료", "expirationNone": "exp 없음", "expirationInvalid": "exp 값이 올바르지 않음", "expirationNotExpired": "아직 만료되지 않음", "expirationExpired": "만료됨", "signatureLabel": "Signature", "signatureNotVerified": "검증하지 않음" },
       "security": { "notice": "JWT를 디코딩하는 것은 서명을 검증하는 것이 아닙니다. Header와 Payload는 누구나 디코딩할 수 있으며, 디코딩된 내용이 신뢰할 수 있다는 의미는 아닙니다." },
@@ -122,6 +124,7 @@
       "metadata": { "title": "무료 파비콘 생성기 · favicon.ico 만들기", "description": "텍스트, 이모지, 이미지로 브라우저 탭·북마크·iOS·Android용 파비콘 세트를 브라우저에서 바로 만드세요. favicon.ico, PNG, site.webmanifest, HTML 코드까지 한 번에 다운로드합니다." },
       "title": "파비콘 생성기", "description": "텍스트, 이모지, 이미지로 웹사이트용 파비콘 세트를 생성합니다.",
       "tabs": { "label": "소스 선택", "text": "텍스트", "emoji": "이모지", "image": "이미지", "shape": "도형" },
+      "presets": { "title": "빠른 시작 스타일", "help": "클릭하면 현재 입력한 텍스트·이모지를 유지한 채 배경·도형 스타일만 적용합니다.", "names": { "ocean": "오션", "sunset": "선셋", "forest": "포레스트", "grape": "그레이프", "charcoal": "차콜", "outline": "아웃라인", "rose": "로즈", "amber": "앰버" } },
       "text": { "label": "텍스트 (1~3자 권장)", "bold": "굵게", "tooLong": "짧은 텍스트(1~3자)를 권장합니다. 길어질수록 글자가 작아집니다." },
       "emoji": { "label": "이모지", "presets": "자주 쓰는 이모지", "platformNotice": "실제 표시 모양은 사용자의 운영체제·브라우저에 따라 달라질 수 있습니다." },
       "shape": { "kind": "도형 모양", "kinds": { "square": "사각형", "rounded": "라운드 사각형", "circle": "원형" }, "radius": "모서리 둥글기", "border": "테두리 사용", "borderColor": "테두리 색", "borderWidth": "두께", "content": "내부 표시", "contentTypes": { "none": "없음", "text": "텍스트", "emoji": "이모지" }, "contentText": "텍스트 (1~3자 권장)", "contentEmoji": "이모지" },
@@ -138,9 +141,33 @@
       "readme": { "body": "파비콘 세트 사용 안내\n\n1. 이 압축 파일의 내용을 웹사이트 public 루트에 업로드하세요.\n2. 아래 HTML 코드를 '<head>'에 붙여넣으세요.\n3. 브라우저 캐시 때문에 변경 반영이 늦을 수 있습니다.\n\n{html}" },
       "privacy": "업로드한 이미지는 브라우저에서만 처리되며 서버로 전송되지 않습니다."
     },
+    "sqlFormatter": {
+      "metadata": { "title": "무료 SQL 포맷터 · SQL Beautifier", "description": "MySQL, PostgreSQL, SQL Server, Oracle, SQLite 문법을 고려해 SQL 쿼리를 브라우저에서 정렬하고 압축하세요." },
+      "title": "SQL 포맷터", "description": "가독성이 낮은 SQL을 선택한 DBMS 문법 기준으로 분석해 읽기 쉬운 형태로 정렬합니다.",
+      "input": { "label": "SQL 입력", "help": "여러 SQL 문을 세미콜론으로 구분해 입력할 수 있습니다.", "placeholder": "SELECT a,b,c FROM users WHERE a=1 AND b=2;" },
+      "options": {
+        "dialect": { "label": "DBMS", "sql": "Generic SQL", "mysql": "MySQL", "postgresql": "PostgreSQL", "tsql": "SQL Server (T-SQL)", "plsql": "Oracle (PL/SQL)", "sqlite": "SQLite" },
+        "keywordCase": { "label": "키워드 대소문자", "upper": "UPPERCASE", "lower": "lowercase", "preserve": "원본 유지" },
+        "indent": { "label": "들여쓰기", "two": "2 spaces", "four": "4 spaces", "tab": "Tab" },
+        "logicalOperator": { "label": "AND/OR 줄바꿈", "before": "새 줄로 시작", "after": "이전 줄 끝에 유지" },
+        "commaStyle": { "label": "쉼표 위치", "trailing": "Trailing(뒤)", "leading": "Leading(앞)" }
+      },
+      "actions": { "format": "정렬", "minify": "압축", "clear": "초기화", "copy": "결과 복사", "copied": "복사되었습니다.", "download": "SQL 파일 다운로드", "downloaded": "formatted.sql을 저장했습니다.", "retryGeneric": "Generic SQL로 다시 시도" },
+      "result": { "label": "정렬 결과", "empty": "SQL을 입력하고 정렬 또는 압축을 실행하면 결과가 여기에 표시됩니다.", "running": "SQL을 분석하는 중…" },
+      "examples": { "title": "샘플 SQL", "hint": "선택한 DBMS에 맞는 샘플 쿼리를 불러옵니다." },
+      "errors": {
+        "inputTooLong": "SQL이 너무 깁니다. 300,000자 이하로 입력하세요.",
+        "parseError": "선택한 DBMS 문법으로 SQL을 분석하지 못했습니다. 이 도구는 완전한 데이터베이스 실행 오류 검사기가 아니며, 지원하지 않는 문법이거나 SQL에 오류가 있을 수 있습니다.",
+        "workerError": "SQL 분석 기능을 시작하지 못했습니다. 최신 브라우저에서 다시 시도하세요.",
+        "copyFailed": "결과를 복사하지 못했습니다. 클립보드 권한을 확인하세요.",
+        "downloadFailed": "SQL 파일을 저장하지 못했습니다. 브라우저 설정을 확인하고 다시 시도하세요."
+      },
+      "guide": { "title": "사용 방법", "description": "DBMS와 옵션을 선택한 뒤 SQL을 입력하고 정렬을 실행하세요. 이 도구는 SQL을 실행하지 않으며 완전한 문법 검증을 보장하지 않습니다." },
+      "privacy": { "title": "브라우저에서만 처리", "description": "입력한 SQL은 브라우저에서 처리되며 서버로 전송하거나 저장하지 않습니다." }
+    },
     "screenshotStitcher": {
-      "metadata": { "title": "무료 스크린샷 자동 이어붙이기", "description": "여러 스크린샷의 겹치는 부분을 브라우저에서 자동으로 찾아 하나의 긴 PNG로 합치세요." },
-      "title": "스크린샷 자동 이어붙이기", "description": "연속으로 찍은 이미지의 겹치는 부분을 자동으로 찾아 중복을 제거하고 긴 스크린샷으로 만드세요.",
+      "metadata": { "title": "무료 스크린샷 이어붙이기", "description": "여러 스크린샷의 겹치는 부분을 브라우저에서 자동으로 찾아 하나의 긴 PNG로 합치세요." },
+      "title": "스크린샷 이어붙이기", "description": "연속으로 찍은 이미지의 겹치는 부분을 자동으로 찾아 중복을 제거하고 긴 스크린샷으로 만드세요.",
       "upload": { "title": "스크린샷 추가", "help": "PNG, JPG, WebP 파일을 여러 장 선택하거나 여기에 놓으세요.", "dropActive": "여기에 이미지를 놓으세요.", "limit": "2~20장 · 파일당 20MB · 전체 100MB" },
       "actions": { "choose": "이미지 선택", "add": "이미지 추가", "clear": "전체 초기화", "up": "위로 이동", "down": "아래로 이동", "remove": "이미지 삭제", "analyze": "겹침 자동 찾기", "reanalyze": "제외 범위로 다시 분석", "cancel": "취소", "confirm": "이 연결 확인", "compose": "긴 이미지 만들기", "download": "PNG 다운로드" },
       "status": { "loading": "이미지를 확인하는 중…", "needTwo": "자동 분석하려면 이미지를 2장 이상 추가하세요.", "analyzing": "이미지 연결을 분석하는 중 · {current}/{total}", "composing": "원본 해상도로 긴 이미지를 만드는 중…" },
@@ -163,6 +190,7 @@
       "actions": { "run": "지금 실행", "clear": "초기화", "copyPattern": "Pattern 복사", "copyLiteral": "전체 정규식 복사", "copyReplacement": "치환 결과 복사", "copied": "복사됨" },
       "examples": { "title": "정규식 예제", "hint": "간단한 형식 예제이며 완전한 유효성 검사를 보장하지 않습니다. 테스트 문자열은 변경하지 않습니다.", "email": "이메일", "number": "숫자", "date": "날짜", "url": "URL", "phone": "휴대전화" },
       "errors": { "patternLong": "Pattern은 10,000자 이하로 입력하세요.", "textLong": "테스트 문자열은 500,000자 이하로 입력하세요.", "replacementLong": "치환 문자열은 100,000자 이하로 입력하세요.", "resultLarge": "치환 결과가 너무 커 미리보기와 복사를 생략했습니다.", "timeout": "정규식 실행 시간이 너무 깁니다. Pattern을 단순화하거나 테스트 문자열을 줄이세요.", "worker": "정규식 실행 Worker를 시작하지 못했습니다. 최신 브라우저에서 다시 시도하세요.", "copy": "클립보드에 복사하지 못했습니다. 권한을 확인하세요." },
+      "batch": { "title": "여러 테스트 케이스", "help": "여러 문자열을 한 번에 등록해 같은 Pattern으로 매치 여부와 캡처 그룹을 비교하세요.", "addRow": "케이스 추가", "removeRow": "케이스 삭제", "placeholder": "테스트할 문자열", "matched": "매치됨", "notMatched": "매치 안 됨", "matchCount": "__COUNT__건", "captures": "Capture Groups", "timeout": "실행 시간이 너무 깁니다.", "empty": "아직 추가한 테스트 케이스가 없습니다." },
       "reference": { "title": "JavaScript 정규식 빠른 참고", "description": "현재 브라우저의 JavaScript RegExp 문법을 기준으로 합니다.", "characters": { "title": "문자 클래스", "items": ". 임의 문자\n\\d 숫자 · \\w 단어 문자\n\\s 공백 · [abc] 문자 집합" }, "quantifiers": { "title": "수량자", "items": "* 0회 이상 · + 1회 이상\n? 0 또는 1회\n'{n}' 정확히 n회 · '{n,m}' 범위" }, "anchors": { "title": "앵커", "items": "^ 시작 · $ 끝\n\\b 단어 경계 · \\B 비경계" }, "groups": { "title": "그룹", "items": "(...) 캡처\n(?:...) 비캡처\n(?'<name>'...) 이름 있는 캡처" }, "lookaround": { "title": "Lookaround", "items": "(?=...) 긍정 전방\n(?!...) 부정 전방\n(?<=...) 긍정 후방" }, "escape": { "title": "Escape", "items": "\\. 마침표 · \\\\ 역슬래시\n\\t 탭 · \\n 줄바꿈" } },
       "privacy": "개인정보 보호: Pattern, 테스트 문자열과 치환 결과는 이 브라우저의 Worker에서만 처리되며 서버로 전송되거나 저장되지 않습니다."
     },
@@ -178,9 +206,10 @@
       "notices": { "png": "PNG 출력은 품질 값으로 용량이 크게 줄지 않을 수 있습니다. 더 작은 파일은 WebP 또는 JPEG를 고려하세요.", "jpeg": "JPEG는 투명도를 지원하지 않아 투명 영역에 흰색 배경이 적용됩니다.", "metadata": "압축 과정에서 위치·촬영 정보 등 일부 이미지 메타데이터가 제거될 수 있습니다." },
       "preview": { "original": "원본 미리보기", "result": "압축 결과 미리보기", "empty": "설정을 선택하면 압축 결과가 여기에 표시됩니다." },
       "result": { "title": "용량 비교", "size": "결과 용량", "saved": "감소", "saving": "원본보다 용량이 줄었습니다.", "larger": "원본보다 __SIZE__ 커졌습니다. 원본 사용을 고려하세요.", "same": "용량 변화가 없습니다.", "targetMet": "선택한 목표 용량 이하로 압축했습니다.", "targetMissed": "현재 해상도에서는 목표 용량에 도달하기 어렵습니다. 최대 가로 크기를 줄이거나 출력 형식을 바꿔 보세요.", "quality": "적용 품질" },
-      "errors": { "multiple": "이미지는 한 번에 한 개만 올려 주세요.", "unsupported": "JPG, PNG 또는 WebP 이미지를 선택하세요.", "fileLarge": "파일이 25MB보다 큽니다. 더 작은 이미지를 선택하세요.", "signature": "파일 내용이 표시된 이미지 형식과 일치하지 않습니다.", "decode": "이미지를 불러올 수 없습니다. 파일이 손상되었을 수 있습니다.", "dimensions": "이미지가 2,400만 픽셀 또는 한 변 12,000px 제한을 초과합니다.", "encoder": "이 브라우저는 선택한 출력 형식을 지원하지 않습니다.", "encode": "이미지를 압축하지 못했습니다. 설정을 바꾸고 다시 시도하세요.", "target": "목표 용량은 10~10240KB 사이의 정수로 입력하세요.", "unreachable": "현재 해상도에서는 목표 용량에 도달하기 어렵습니다.", "download": "이미지를 다운로드하지 못했습니다. 다시 시도하세요." },
+      "errors": { "multiple": "이미지는 한 번에 한 개만 올려 주세요.", "unsupported": "JPG, PNG 또는 WebP 이미지를 선택하세요.", "fileLarge": "파일이 25MB보다 큽니다. 더 작은 이미지를 선택하세요.", "signature": "파일 내용이 표시된 이미지 형식과 일치하지 않습니다.", "decode": "이미지를 불러올 수 없습니다. 파일이 손상되었을 수 있습니다.", "dimensions": "이미지가 2,400만 픽셀 또는 한 변 12,000px 제한을 초과합니다.", "encoder": "이 브라우저는 선택한 출력 형식을 지원하지 않습니다.", "encode": "이미지를 압축하지 못했습니다. 설정을 바꾸고 다시 시도하세요.", "target": "목표 용량은 10~10240KB 사이의 정수로 입력하세요.", "unreachable": "현재 해상도에서는 목표 용량에 도달하기 어렵습니다.", "download": "이미지를 다운로드하지 못했습니다. 다시 시도하세요.", "tooManyFiles": "한 번에 최대 50장까지 선택할 수 있습니다.", "zipFailed": "ZIP 파일을 만들지 못했습니다. 다시 시도하세요." },
       "privacy": { "notice": "개인정보 보호: 이미지는 브라우저에서 직접 처리되며 서버에 업로드되거나 저장되지 않습니다.", "title": "이미지는 외부로 전송되지 않습니다", "text": "원본과 압축 결과는 현재 탭의 임시 메모리에서만 처리됩니다. 초기화하거나 페이지를 닫으면 임시 데이터를 해제합니다." },
-      "guide": { "qualityTitle": "품질과 용량의 균형", "qualityText": "품질 수치가 높을수록 선명하지만 파일이 커질 수 있습니다. 일반 사진은 80%부터 비교해 보세요.", "targetTitle": "원하는 KB에 맞추기", "targetText": "100KB, 200KB, 500KB 또는 1MB를 선택하면 가능한 높은 품질에서 목표 이하를 찾습니다." }
+      "guide": { "qualityTitle": "품질과 용량의 균형", "qualityText": "품질 수치가 높을수록 선명하지만 파일이 커질 수 있습니다. 일반 사진은 80%부터 비교해 보세요.", "targetTitle": "원하는 KB에 맞추기", "targetText": "100KB, 200KB, 500KB 또는 1MB를 선택하면 가능한 높은 품질에서 목표 이하를 찾습니다." },
+      "batch": { "tabSingle": "단일 이미지", "tabBatch": "여러 이미지 (ZIP)", "title": "여러 이미지 업로드", "help": "JPG, PNG, WebP 여러 장을 선택하거나 놓으세요. 한 번에 최대 50장까지 가능합니다.", "choose": "이미지 여러 장 선택", "reselect": "다시 선택", "clear": "초기화", "columnFile": "파일명", "columnSize": "원본 용량", "columnStatus": "상태", "columnResult": "결과", "statusPending": "대기 중", "statusProcessing": "압축 중", "statusDone": "완료", "statusError": "실패", "run": "일괄 압축 시작", "running": "압축 중 · __CURRENT__/__TOTAL__", "downloadZip": "ZIP으로 다운로드", "zipping": "압축 파일을 만드는 중…", "summary": "총 __TOTAL__장 중 __DONE__장 압축 완료 · __SAVED__ 절약" }
     },
     "imageColorPicker": {
       "metadata": { "title": "무료 이미지 색상 추출기", "description": "PNG, JPEG, WebP 이미지의 정확한 픽셀 색상을 브라우저에서 안전하게 추출하세요." },
@@ -217,8 +246,27 @@
       "metadata": { "title": "무료 QR 코드 생성기", "description": "텍스트와 URL을 서버 전송 없이 QR 코드로 만들고 원하는 크기의 PNG로 저장하세요." },
       "title": "QR 코드 생성기", "description": "텍스트나 URL을 입력하면 브라우저에서 QR 코드를 자동으로 만들고 PNG로 저장합니다.",
       "input": { "label": "QR 코드에 넣을 내용", "help": "텍스트, URL, 한글, 일본어, Emoji와 여러 줄을 입력할 수 있습니다. 입력 내용은 그대로 인코딩됩니다.", "placeholder": "텍스트 또는 https://example.com" },
-      "preview": { "title": "QR 코드 미리보기", "empty": "내용을 입력하면 QR 코드가 여기에 표시됩니다.", "processing": "QR 코드를 생성하는 중…", "canvasLabel": "입력 내용으로 생성된 QR 코드", "size": "크기", "level": "오류 복원", "margin": "Quiet Zone", "type": "입력 유형", "types": { "text": "텍스트", "url": "URL" } },
+      "preview": { "title": "QR 코드 미리보기", "empty": "내용을 입력하면 QR 코드가 여기에 표시됩니다.", "processing": "QR 코드를 생성하는 중…", "canvasLabel": "입력 내용으로 생성된 QR 코드", "size": "크기", "level": "오류 복원", "margin": "Quiet Zone", "type": "입력 유형", "types": { "text": "텍스트", "url": "URL" }, "effectiveLevel": "실제 적용 수준(로고로 자동 상향)" },
       "options": { "title": "QR 코드 옵션", "size": { "label": "출력 크기", "help": "PNG의 실제 가로·세로 크기입니다." }, "level": { "label": "오류 복원 수준", "help": "높을수록 손상에 강하지만 담을 수 있는 데이터는 줄어듭니다.", "L": "L - 낮음 · 약 7%", "M": "M - 보통 · 약 15%", "Q": "Q - 높음 · 약 25%", "H": "H - 매우 높음 · 약 30%" }, "margin": { "label": "Quiet Zone 여백", "help": "인식을 돕는 QR 코드 바깥쪽 흰색 여백입니다.", "4": "4 modules - 기본", "6": "6 modules", "8": "8 modules" } },
+      "source": {
+        "label": "소스 유형",
+        "types": { "text": "텍스트 또는 URL", "wifi": "Wi-Fi", "contact": "연락처(vCard)", "email": "이메일", "phone": "전화", "sms": "SMS", "location": "위치" },
+        "payloadPreview": "생성된 내용",
+        "wifi": { "ssid": "네트워크 이름(SSID)", "ssidPlaceholder": "MyWiFi", "password": "비밀번호", "security": "보안 유형", "securityOptions": { "WPA": "WPA/WPA2", "WEP": "WEP", "nopass": "없음(공개 네트워크)" }, "hidden": "숨겨진 네트워크" },
+        "contact": { "firstName": "이름", "lastName": "성", "phone": "전화번호", "email": "이메일" },
+        "email": { "address": "받는 사람 이메일", "subject": "제목", "body": "본문" },
+        "phone": { "number": "전화번호" },
+        "sms": { "number": "전화번호", "message": "메시지" },
+        "location": { "latitude": "위도", "longitude": "경도" }
+      },
+      "logo": {
+        "title": "중앙 로고",
+        "upload": "로고 업로드",
+        "remove": "로고 제거",
+        "help": "QR 코드 중앙에 로고를 합성합니다. 스캔 가능성을 유지하기 위해 오류 복원 수준이 자동으로 Q 이상으로 상향됩니다.",
+        "boosted": "스캔 가능성을 위해 오류 복원 수준이 자동으로 상향되었습니다.",
+        "errors": { "unsupportedType": "이미지 파일을 선택하세요.", "fileTooLarge": "이미지 용량이 너무 큽니다. 5MB 이하 파일을 사용하세요." }
+      },
       "actions": { "download": "PNG 다운로드", "copyInput": "입력값 복사", "clear": "초기화", "downloaded": "qr-code.png를 저장했습니다.", "copied": "입력값을 복사했습니다." },
       "warning": { "density": "데이터가 길어 실제 환경에서 스캔하기 어려울 수 있습니다. 더 큰 크기나 낮은 오류 복원 수준을 고려하세요." },
       "errors": { "capacity": "현재 오류 복원 수준에서는 데이터가 너무 깁니다. 내용을 줄이거나 더 낮은 수준을 선택하세요.", "size": "이 데이터에는 선택한 크기가 너무 작습니다. 더 큰 출력 크기를 선택하세요.", "generation": "QR 코드를 생성하지 못했습니다. 입력과 옵션을 확인한 뒤 다시 시도하세요.", "download": "PNG를 저장하지 못했습니다. 브라우저 설정을 확인하고 다시 시도하세요.", "copy": "입력값을 복사하지 못했습니다. 클립보드 권한을 확인하세요." },
@@ -244,6 +292,13 @@
     "urlEncoderDecoder": {
       "metadata": { "title": "URL 인코더/디코더", "description": "전체 URL과 URL 구성요소를 UTF-8 Percent Encoding으로 안전하게 인코딩하고 디코딩하세요." },
       "title": "URL 인코더/디코더", "description": "URL 전체 또는 Query Parameter 값을 UTF-8 Percent Encoding으로 변환하고 원문으로 복원합니다.",
+      "view": { "label": "보기 방식", "text": "텍스트 변환", "query": "Query String 편집기" },
+      "query": {
+        "input": { "label": "URL 또는 Query String 입력", "placeholder": "https://example.com/search?q=hello&page=2" },
+        "actions": { "parse": "분해", "copy": "결과 복사", "copied": "결과를 복사했습니다.", "copyError": "복사하지 못했습니다. 클립보드 권한을 확인하세요.", "clear": "초기화" },
+        "table": { "keyLabel": "키", "keyPlaceholder": "키", "valueLabel": "값", "valuePlaceholder": "값", "removeRow": "행 삭제", "addRow": "행 추가", "empty": "URL이나 Query String을 입력하고 분해 버튼을 누르세요." },
+        "output": { "label": "재구성된 결과", "empty": "결과가 여기에 표시됩니다." }
+      },
       "mode": { "label": "변환 모드", "encode": "Encode 모드", "decode": "Decode 모드" },
       "encodingType": { "label": "인코딩 방식", "component": "URL 구성요소", "fullUrl": "URL 전체", "componentHelp": "Query Parameter 값처럼 예약 문자까지 인코딩합니다.", "fullUrlHelp": "주소의 /, ?, =, & 같은 구조 문자를 유지합니다." },
       "plusHelp": "기본 Decode에서는 +를 공백으로 바꾸지 않고 + 문자 그대로 유지합니다.",
@@ -264,15 +319,17 @@
       "guide":{"title":"문자 인코딩 안내","description":"Base64는 암호화가 아닙니다. Auto Encode는 UTF-8을 사용하며 legacy Decode가 모호하면 인코딩을 직접 선택해야 합니다."},"privacy":{"title":"브라우저에서만 처리","description":"입력과 결과는 서버로 전송하거나 저장하지 않습니다."}
     },
     "passwordGenerator": {
-      "metadata": { "title": "안전한 비밀번호 생성기", "description": "브라우저에서 길이와 문자 유형을 선택해 안전한 무작위 비밀번호를 생성하세요." },
-      "title": "비밀번호 생성기", "description": "원하는 길이와 문자 유형을 선택하면 브라우저의 보안 난수로 비밀번호를 만듭니다.",
+      "metadata": { "title": "안전한 비밀번호 생성기", "description": "브라우저에서 길이와 문자 유형을 선택하거나 기억하기 쉬운 단어 조합으로 안전한 비밀번호를 생성하세요." },
+      "title": "비밀번호 생성기", "description": "무작위 문자 또는 단어 조합 중 원하는 방식을 선택하면 브라우저의 보안 난수로 비밀번호를 만듭니다.",
+      "mode": { "label": "생성 방식", "characters": "무작위 문자", "passphrase": "단어 조합" },
       "settings": { "lengthGroup": "비밀번호 길이", "rangeLabel": "슬라이더로 길이 선택", "numberLabel": "길이 직접 입력", "characterTypes": "포함할 문자 유형", "uppercase": "대문자 (A–Z)", "lowercase": "소문자 (a–z)", "numbers": "숫자 (0–9)", "symbols": "특수문자" },
+      "passphrase": { "wordCountGroup": "단어 개수", "wordCountRangeLabel": "슬라이더로 단어 개수 선택", "wordCountNumberLabel": "단어 개수 직접 입력", "optionsGroup": "단어 조합 옵션", "separatorLabel": "구분자", "separators": { "hyphen": "하이픈 (-)", "underscore": "밑줄 (_)", "period": "마침표 (.)", "space": "공백", "none": "구분자 없음" }, "capitalize": "각 단어 첫 글자를 대문자로", "includeNumber": "숫자 하나 추가" },
       "actions": { "generate": "비밀번호 생성", "copy": "결과 복사", "copied": "비밀번호를 클립보드에 복사했습니다." },
       "result": { "label": "생성 결과", "empty": "설정을 확인한 뒤 비밀번호를 생성하세요." },
       "strength": { "label": "비밀번호 강도", "weak": "약함", "medium": "보통", "strong": "강함", "weakDescription": "더 긴 길이나 다양한 문자 유형을 선택하는 것이 좋습니다.", "mediumDescription": "일반적인 용도에 적절하지만 길이를 늘리면 더 안전합니다.", "strongDescription": "길이와 문자 유형을 기준으로 높은 추정 강도를 가집니다.", "notice": "강도는 추정치이며 특정 서비스 정책이나 절대적인 안전을 보장하지 않습니다." },
-      "error": { "allDisabled": "문자 유형을 하나 이상 선택하세요.", "length": "길이는 8부터 128 사이의 정수로 입력하세요.", "random": "안전한 난수를 사용할 수 없습니다. 최신 브라우저에서 다시 시도하세요.", "copy": "복사하지 못했습니다. 클립보드 권한을 확인한 뒤 다시 시도하세요." },
-      "guide": { "title": "사용 방법", "description": "길이와 포함할 문자 유형을 선택하고 생성하세요. 선택한 각 문자 유형이 결과에 최소 한 번 포함됩니다." },
-      "privacy": { "title": "브라우저에서 안전하게 생성", "description": "설정과 생성 결과는 서버로 전송하거나 저장하지 않습니다." }
+      "error": { "allDisabled": "문자 유형을 하나 이상 선택하세요.", "length": "길이는 8부터 128 사이의 정수로 입력하세요.", "wordCount": "단어 개수는 3부터 6 사이의 정수로 입력하세요.", "random": "안전한 난수를 사용할 수 없습니다. 최신 브라우저에서 다시 시도하세요.", "copy": "복사하지 못했습니다. 클립보드 권한을 확인한 뒤 다시 시도하세요." },
+      "guide": { "title": "사용 방법", "description": "무작위 문자 또는 단어 조합 방식을 선택하고 옵션을 설정한 뒤 생성하세요. 문자 방식은 선택한 각 문자 유형이 최소 한 번 포함되고, 단어 조합 방식은 EFF의 공개 영단어 목록(7,776개)에서 매번 독립적으로 단어를 뽑습니다." },
+      "privacy": { "title": "브라우저에서 안전하게 생성", "description": "설정과 생성 결과는 서버로 전송하거나 저장하지 않습니다. 단어 조합에 쓰이는 단어 목록도 정적 파일로 브라우저에 포함되어 있습니다." }
     },
     "jsonFormatter": {
       "metadata": { "title": "JSON 포맷터", "description": "브라우저에서 JSON을 안전하게 정리하고 압축하고 복사하세요." },
@@ -307,7 +364,8 @@
       "metadata":{"title":"Cron 표현식 생성기·해석기","description":"Linux 5필드 Cron 표현식을 만들고 검증하며 시간대별 다음 실행 시간을 확인하세요."},"title":"Cron 표현식 생성기","description":"실행 주기를 선택해 5필드 Cron을 만들거나 기존 표현식을 해석하고 다음 실행 시간을 확인합니다.",
       "mode":{"label":"입력 방식","generator":"간편 생성기","direct":"직접 입력"},"presets":{"title":"자주 쓰는 Preset","everyMinute":"매분","every5Minutes":"5분마다","every10Minutes":"10분마다","every30Minutes":"30분마다","hourly":"매시간","midnight":"매일 자정","daily9":"매일 오전 9시","monday9":"매주 월요일 오전 9시","monthlyFirst":"매월 1일 자정","weekdays9":"평일 오전 9시"},
       "generator":{"frequency":"실행 주기","interval":"간격","hour":"시 (0–23)","minute":"분 (0–59)","weekdays":"요일","dates":"날짜","months":"월","monthLabel":"{month}월"},"modes":{"every-minute":"매분","every-n-minutes":"매 N분","hourly":"매시간","every-n-hours":"매 N시간","daily":"매일","weekly":"매주·특정 요일","monthly":"매월·특정 날짜","specific-date":"특정 월과 날짜"},"weekdays":{"0":"일","1":"월","2":"화","3":"수","4":"목","5":"금","6":"토"},"weekdayNames":{"0":"일요일","1":"월요일","2":"화요일","3":"수요일","4":"목요일","5":"금요일","6":"토요일"},
-      "direct":{"label":"Cron 표현식","help":"분 시 일 월 요일 순서의 숫자형 5필드와 *, 쉼표, 하이픈, 슬래시를 지원합니다."},"result":{"title":"Cron 결과","empty":"표현식을 입력하세요."},"status":{"valid":"유효한 5필드 Cron 표현식입니다.","empty":"표현식을 입력하면 검증 결과가 표시됩니다."},"actions":{"copyCron":"Cron 복사","copyDescription":"설명 복사","copied":"복사됨","clear":"초기화"},
+      "direct":{"label":"Cron 표현식","help":"분 시 일 월 요일 순서의 숫자형 5필드와 *, 쉼표, 하이픈, 슬래시를 지원합니다."},"result":{"title":"Cron 결과","empty":"표현식을 입력하세요."},"status":{"valid":"유효한 5필드 Cron 표현식입니다.","empty":"표현식을 입력하면 검증 결과가 표시됩니다."},"actions":{"copyCron":"Cron 복사","copyDescription":"설명 복사","copyCrontab":"Crontab 줄 복사","copied":"복사됨","clear":"초기화"},
+      "crontabLine":{"label":"명령어 (선택)","help":"crontab에 그대로 붙여넣을 수 있는 전체 줄을 만듭니다. 이 도구는 명령어를 실행하지 않으며, crontab이 특별하게 해석하는 % 문자는 자동으로 \\%로 이스케이프합니다.","placeholder":"/usr/bin/backup.sh --mode=daily","resultLabel":"Crontab 전체 줄"},
       "descriptionTitle":"사람이 읽는 설명","descriptions":{"everyMinute":"매분 실행","everyNMinutes":"{n}분마다 실행","hourlyAt":"매시간 {m}분에 실행","everyNHours":"{n}시간마다 {m}분에 실행","dailyAt":"매일 {time}에 실행","weeklyAt":"매주 {days} {time}에 실행","monthlyAt":"매월 {dates}일 {time}에 실행","specificDate":"{months}월 {dates}일 {time}에 실행","custom":"사용자 지정 일정입니다. 아래 필드 의미와 다음 실행 시간을 확인하세요.","orSuffix":"Day of Month와 Day of Week 중 하나가 일치할 때 실행합니다(OR)."},
       "fields":{"title":"필드별 의미","minute":"Minute","hour":"Hour","dayOfMonth":"Day of Month","month":"Month","dayOfWeek":"Day of Week"},"warnings":{"domDowOr":"Day of Month와 Day of Week가 모두 지정되었습니다. 이 도구는 Unix/Vixie 규칙에 따라 둘 중 하나가 일치하면 실행합니다(OR)."},
       "timezone":{"label":"시간대","browser":"브라우저 시간대 · {zone}","warning":"Cron 표현식 자체에는 시간대가 포함되지 않습니다. 실제 실행 시간은 서버나 서비스의 시간대 설정에 따라 달라질 수 있습니다."},"next":{"title":"다음 실행 예정 시간","count":"표시 횟수","empty":"유효한 표현식의 다음 실행 시간이 여기에 표시됩니다."},

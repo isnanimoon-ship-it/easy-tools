@@ -63,3 +63,6 @@ export function nextRuns(expression:string,timeZone:string,count:number,referenc
 export function formatRun(date:Date,timeZone:string,locale:string):string{return new Intl.DateTimeFormat(locale,{timeZone,year:"numeric",month:"2-digit",day:"2-digit",weekday:"short",hour:"2-digit",minute:"2-digit",hourCycle:"h23",timeZoneName:"short"}).format(date);}
 
 export const PRESETS=["* * * * *","*/5 * * * *","*/10 * * * *","*/30 * * * *","0 * * * *","0 0 * * *","0 9 * * *","0 9 * * 1","0 0 1 * *","0 9 * * 1-5"] as const;
+
+export function escapeCrontabPercent(command:string):string{return command.replace(/%/g,"\\%")}
+export function buildCrontabLine(expression:string,command:string):string{return `${expression} ${escapeCrontabPercent(command)}`}

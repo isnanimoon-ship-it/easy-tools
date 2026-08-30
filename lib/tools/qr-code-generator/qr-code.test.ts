@@ -1,7 +1,7 @@
 import QRCode from "qrcode";
 import jsQR from "jsqr";
 import { describe, expect, it } from "vitest";
-import { calculateModulePixels, classifyGenerationError, detectInputType, shouldWarnForDensity } from "./qr-code";
+import { calculateModulePixels, classifyGenerationError, compositeLogo, detectInputType, effectiveLevelForLogo, shouldWarnForDensity } from "./qr-code";
 
 describe("QR domain rules", () => {
   it.each([["https://example.com", "url"], ["http://example.com/a?q=1", "url"], ["example.com", "text"], ["Hello", "text"], ["mailto:a@example.com", "text"]])("classifies %s without normalization", (input, expected) => expect(detectInputType(input)).toBe(expected));
@@ -13,6 +13,33 @@ describe("QR domain rules", () => {
   });
   it("normalizes capacity errors without leaking exception text", () => {
     expect(classifyGenerationError(new Error("The amount of data is too big"))).toBe("capacity-exceeded"); expect(classifyGenerationError(new Error("canvas failed"))).toBe("generation-failed");
+  });
+});
+
+describe("effectiveLevelForLogo", () => {
+  it("leaves the level unchanged when there is no logo", () => {
+    for (const level of ["L", "M", "Q", "H"] as const) expect(effectiveLevelForLogo(level, false)).toBe(level);
+  });
+
+  it("raises L and M up to Q when a logo is present", () => {
+    expect(effectiveLevelForLogo("L", true)).toBe("Q");
+    expect(effectiveLevelForLogo("M", true)).toBe("Q");
+  });
+
+  it("keeps Q and H unchanged when a logo is present", () => {
+    expect(effectiveLevelForLogo("Q", true)).toBe("Q");
+    expect(effectiveLevelForLogo("H", true)).toBe("H");
+  });
+});
+
+describe("compositeLogo", () => {
+  // jsdom has no Canvas 2D rendering backend in this project, so actual pixel output
+  // (white backdrop + centered logo) is verified in the browser QA script instead.
+  it("does nothing when the canvas has no 2d context", () => {
+    const canvas = document.createElement("canvas");
+    const original = canvas.getContext.bind(canvas);
+    canvas.getContext = ((id: string) => (id === "2d" ? null : original(id))) as typeof canvas.getContext;
+    expect(() => compositeLogo(canvas, { image: canvas, sizeRatio: 0.2 })).not.toThrow();
   });
 });
 

@@ -223,6 +223,33 @@ try {
   const copiedPayload = await page.evaluate(() => navigator.clipboard.readText());
   assert.match(copiedPayload, /"sub": "1234567890"/);
 
+  // Per-claim copy and fold/unfold on the payload tree view (IDEAS.md #10).
+  const payloadSection = page.locator("#jwt-payload-heading").locator("xpath=ancestor::section[1]");
+  const subRow = payloadSection.locator("div").filter({ hasText: '"sub": "1234567890"' }).last();
+  await subRow.getByRole("button", { name: "값 복사" }).click();
+  assert.equal(
+    await page.evaluate(() => navigator.clipboard.readText()),
+    "1234567890",
+    "per-claim copy of a string value strips the surrounding quotes",
+  );
+
+  const metaRow = payloadSection.locator("div").filter({ hasText: '"meta": {' }).last();
+  await metaRow.getByRole("button", { name: "값 복사" }).click();
+  const copiedMeta = (await page.evaluate(() => navigator.clipboard.readText())).replace(/\r\n/g, "\n");
+  assert.equal(copiedMeta, JSON.stringify({ level: 2 }, null, 2), "per-claim copy of an object claim pretty-prints just that subtree");
+
+  await metaRow.getByRole("button", { name: "접기" }).click();
+  await page.waitForFunction(
+    () => !document.querySelector("#jwt-payload-heading")?.closest("section")?.innerText.includes('"level": 2'),
+    { timeout: 3000 },
+  );
+  assert.match(await sectionText("jwt-payload-heading"), /"meta": \{ …1 \}/, "collapsed container shows a child count placeholder");
+  await metaRow.getByRole("button", { name: "펼치기" }).click();
+  await page.waitForFunction(
+    () => document.querySelector("#jwt-payload-heading")?.closest("section")?.innerText.includes('"level": 2'),
+    { timeout: 3000 },
+  );
+
   // Reset clears everything.
   await page.getByRole("button", { name: "초기화" }).click();
   assert.equal(await input.inputValue(), "");
@@ -289,6 +316,8 @@ try {
         tooLargeInput: true,
         xssInert: true,
         copyJwtHeaderPayload: true,
+        claimTreeCopy: true,
+        claimTreeFold: true,
         reset: true,
         sampleJwtAlwaysValid: true,
         noClientStorage: true,

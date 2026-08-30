@@ -7,7 +7,8 @@ const chromePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const locales = ["ko", "en", "ja"];
 const viewports = [{ width: 320, height: 800 }, { width: 375, height: 812 }, { width: 768, height: 1024 }, { width: 1280, height: 900 }];
 const labels = {
-  ko: { range: "슬라이더로 길이 선택", number: "길이 직접 입력", types: ["대문자 (A–Z)", "소문자 (a–z)", "숫자 (0–9)", "특수문자"], generate: "비밀번호 생성", copy: "결과 복사", nav: "비밀번호 생성기", allDisabled: "문자 유형을 하나 이상 선택하세요.", random: "안전한 난수를 사용할 수 없습니다." },
+  ko: { range: "슬라이더로 길이 선택", number: "길이 직접 입력", types: ["대문자 (A–Z)", "소문자 (a–z)", "숫자 (0–9)", "특수문자"], generate: "비밀번호 생성", copy: "결과 복사", nav: "비밀번호 생성기", allDisabled: "문자 유형을 하나 이상 선택하세요.", random: "안전한 난수를 사용할 수 없습니다.",
+    passphraseTab: "단어 조합", charactersTab: "무작위 문자", wordCountNumber: "단어 개수 직접 입력", separator: "구분자", capitalize: "각 단어 첫 글자를 대문자로", includeNumber: "숫자 하나 추가", wordCountError: "단어 개수는 3부터 6 사이의 정수로 입력하세요." },
   en: { range: "Choose length with slider", number: "Enter exact length", types: ["Uppercase (A–Z)", "Lowercase (a–z)", "Numbers (0–9)", "Special characters"], generate: "Generate password", copy: "Copy result", nav: "Password Generator", allDisabled: "Select at least one character type.", random: "Secure randomness is unavailable." },
   ja: { range: "スライダーで長さを選択", number: "長さを直接入力", types: ["大文字 (A–Z)", "小文字 (a–z)", "数字 (0–9)", "特殊文字"], generate: "パスワードを生成", copy: "結果をコピー", nav: "パスワード生成", allDisabled: "文字種を1つ以上選択してください。", random: "安全な乱数を利用できません。" },
 };
@@ -28,10 +29,16 @@ try {
       page.on("console", (message) => {
         if (message.type() !== "error") return;
         const text = message.text();
+        const sourceUrl = message.location().url ?? "";
         if (text.includes("hydrat") && text.includes("konly-theme") && text.includes("googlesyndication")) return;
         // Also dev-only: a report-only CSP notice about framing google.com fires sporadically.
         if (text.includes("frame-ancestors") && text.includes("google.com")) return;
-        consoleErrors.push(`${locale}/${viewport.width}: ${text}`);
+        // Google's ad-quality beacon and Next.js's own background RSC prefetch are expected to fail
+        // during the offline-mode test below — neither is this tool's own network activity (other QA
+        // scripts in this project already allowlist adtrafficquality.google as known third-party noise).
+        if (text.includes("ERR_INTERNET_DISCONNECTED") && sourceUrl.includes("adtrafficquality.google")) return;
+        if (text.includes("ERR_INTERNET_DISCONNECTED") && sourceUrl.includes("_rsc=")) return;
+        consoleErrors.push(`${locale}/${viewport.width}: ${text} [${sourceUrl}]`);
       });
       page.on("pageerror", (error) => pageErrors.push(`${locale}/${viewport.width}: ${error.message}`));
       page.on("request", (request) => observedRequests.push(`${request.url()} ${request.postData() ?? ""}`));
@@ -123,6 +130,47 @@ try {
         assert.equal(await page.locator("#password-generator-error").count(), 1);
         assert.equal(await page.locator("output").textContent(), password);
 
+        // --- Passphrase mode (IDEAS.md #17): EFF word list, options, and privacy ---
+        // Reload first: the previous step replaced navigator.clipboard with an always-rejecting
+        // stub, and a fresh document is the only way to get the real clipboard implementation back.
+        await page.reload({ waitUntil: "networkidle" });
+        await page.getByRole("tab", { name: labels.ko.passphraseTab }).click();
+        const wordCountNumber = page.getByRole("spinbutton", { name: labels.ko.wordCountNumber });
+        assert.equal(await wordCountNumber.inputValue(), "4", "defaults to 4 words");
+        await generate.click();
+        const defaultPassphrase = await page.locator("output").textContent();
+        const defaultWords = defaultPassphrase.split("-");
+        assert.equal(defaultWords.length, 4, "default separator is a hyphen joining 4 words");
+        assert.match(defaultPassphrase, /\d/, "a number is included by default");
+        for (const word of defaultWords) assert.match(word.replace(/\d+$/, ""), /^[A-Z]/, "each word is capitalized by default");
+
+        await wordCountNumber.fill("6");
+        await page.getByRole("combobox", { name: labels.ko.separator }).selectOption("underscore");
+        await page.getByRole("checkbox", { name: labels.ko.capitalize }).uncheck();
+        await page.getByRole("checkbox", { name: labels.ko.includeNumber }).uncheck();
+        await generate.click();
+        const customPassphrase = await page.locator("output").textContent();
+        assert.equal(customPassphrase.split("_").length, 6, "word count and separator options apply");
+        assert.equal(/\d/.test(customPassphrase), false, "no number once includeNumber is unchecked");
+        assert.equal(/[A-Z]/.test(customPassphrase), false, "no capitals once capitalize is unchecked");
+
+        await wordCountNumber.fill("20");
+        await wordCountNumber.blur();
+        assert.equal(await wordCountNumber.inputValue(), "6", "out-of-range word count clamps to the 3-6 limit");
+        await wordCountNumber.fill("");
+        await generate.click();
+        assert.ok((await page.locator("#password-generator-error").textContent()).includes(labels.ko.wordCountError));
+
+        await wordCountNumber.fill("4");
+        await wordCountNumber.blur();
+        await generate.click();
+        const passphraseToCopy = await page.locator("output").textContent();
+        assert.equal(observedRequests.some((request) => request.includes(passphraseToCopy)), false, "generated passphrase must never appear in a network request");
+        await copy.click();
+        assert.equal(await page.evaluate(() => navigator.clipboard.readText()), passphraseToCopy);
+        const passphraseStorage = await page.evaluate(() => ({ local: Object.values(localStorage), session: Object.values(sessionStorage), cookies: document.cookie }));
+        assert.equal(JSON.stringify(passphraseStorage).includes(passphraseToCopy), false);
+
         await page.reload({ waitUntil: "networkidle" });
         await page.evaluate(() => Object.defineProperty(crypto, "getRandomValues", { configurable: true, value: () => { throw new Error("unavailable"); } }));
         await page.getByRole("button", { name: labels.ko.generate }).click();
@@ -145,6 +193,13 @@ try {
         const offlineCopy = page.getByRole("button", { name: labels.ko.copy });
         await offlineCopy.focus();
         await offlineCopy.press("Enter");
+
+        // Passphrase mode must also work fully offline: the EFF word list is a bundled
+        // static asset, never fetched at generation time.
+        await page.getByRole("tab", { name: labels.ko.passphraseTab }).click();
+        await offlineGenerate.click();
+        assert.equal((await page.locator("output").textContent()).split("-").length, 4, "passphrase mode generates offline from the bundled word list");
+
         await context.setOffline(false);
         await page.screenshot({ path: "artifacts/password-generator-375.png", fullPage: true });
       }
@@ -171,5 +226,5 @@ try {
   assert.deepEqual(consoleErrors, []);
   assert.deepEqual(pageErrors, []);
   assert.deepEqual(leakedRequests, []);
-  process.stdout.write(JSON.stringify({ locales, viewports: viewports.map(({ width, height }) => `${width}x${height}`), consoleErrors: 0, pageErrors: 0, leakedRequests: 0, performanceMs }, null, 2));
+  process.stdout.write(JSON.stringify({ locales, viewports: viewports.map(({ width, height }) => `${width}x${height}`), passphraseMode: "PASS", consoleErrors: 0, pageErrors: 0, leakedRequests: 0, performanceMs }, null, 2));
 } finally { await browser.close(); }

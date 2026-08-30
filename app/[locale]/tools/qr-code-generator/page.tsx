@@ -22,9 +22,22 @@ export default async function Page({ params }: PageProps) {
     inputLabel: t("input.label"), inputHelp: t("input.help"), placeholder: t("input.placeholder"), previewTitle: t("preview.title"), empty: t("preview.empty"), processing: t("preview.processing"), canvasLabel: t("preview.canvasLabel"),
     optionsTitle: t("options.title"), sizeLabel: t("options.size.label"), sizeHelp: t("options.size.help"), levelLabel: t("options.level.label"), levelHelp: t("options.level.help"), marginLabel: t("options.margin.label"), marginHelp: t("options.margin.help"),
     levels: { L: t("options.level.L"), M: t("options.level.M"), Q: t("options.level.Q"), H: t("options.level.H") }, margins: { 4: t("options.margin.4"), 6: t("options.margin.6"), 8: t("options.margin.8") },
-    currentSize: t("preview.size"), currentLevel: t("preview.level"), currentMargin: t("preview.margin"), inputType: t("preview.type"), inputTypes: { text: t("preview.types.text"), url: t("preview.types.url") },
+    currentSize: t("preview.size"), currentLevel: t("preview.level"), currentMargin: t("preview.margin"), inputType: t("preview.type"), inputTypes: { text: t("preview.types.text"), url: t("preview.types.url") }, effectiveLevel: t("preview.effectiveLevel"),
     download: t("actions.download"), copyInput: t("actions.copyInput"), clear: t("actions.clear"), downloaded: t("actions.downloaded"), copied: t("actions.copied"), densityWarning: t("warning.density"),
     errors: { "capacity-exceeded": t("errors.capacity"), "size-too-small": t("errors.size"), "generation-failed": t("errors.generation"), "download-failed": t("errors.download"), "copy-failed": t("errors.copy") },
+    sourceTypeLabel: t("source.label"),
+    sourceTypes: { text: t("source.types.text"), wifi: t("source.types.wifi"), contact: t("source.types.contact"), email: t("source.types.email"), phone: t("source.types.phone"), sms: t("source.types.sms"), location: t("source.types.location") },
+    payloadPreviewLabel: t("source.payloadPreview"),
+    wifi: { ssid: t("source.wifi.ssid"), ssidPlaceholder: t("source.wifi.ssidPlaceholder"), password: t("source.wifi.password"), security: t("source.wifi.security"), securityOptions: { WPA: t("source.wifi.securityOptions.WPA"), WEP: t("source.wifi.securityOptions.WEP"), nopass: t("source.wifi.securityOptions.nopass") }, hidden: t("source.wifi.hidden") },
+    contact: { firstName: t("source.contact.firstName"), lastName: t("source.contact.lastName"), phone: t("source.contact.phone"), email: t("source.contact.email") },
+    email: { address: t("source.email.address"), subject: t("source.email.subject"), body: t("source.email.body") },
+    phone: { number: t("source.phone.number") },
+    sms: { number: t("source.sms.number"), message: t("source.sms.message") },
+    location: { latitude: t("source.location.latitude"), longitude: t("source.location.longitude") },
+    logo: {
+      title: t("logo.title"), upload: t("logo.upload"), remove: t("logo.remove"), help: t("logo.help"), boosted: t("logo.boosted"),
+      errors: { "unsupported-type": t("logo.errors.unsupportedType"), "file-too-large": t("logo.errors.fileTooLarge") },
+    },
   };
   return <>
     <section className="border-b border-[var(--border)] bg-[var(--surface)]"><Container className="py-10 sm:py-14"><div className="max-w-4xl"><h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-[var(--text-muted)]">{t("description")}</p></div></Container></section>

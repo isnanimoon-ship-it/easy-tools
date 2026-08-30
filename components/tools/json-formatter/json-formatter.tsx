@@ -122,7 +122,7 @@ export function JsonFormatter({ labels }: { labels: JsonFormatterLabels }) {
             type="button"
             aria-pressed={viewMode === mode}
             onClick={() => setViewMode(mode)}
-            className={`min-h-10 rounded-lg px-4 text-sm font-semibold outline-none focus:ring-4 focus:ring-[var(--focus-ring)] ${viewMode === mode ? "bg-[var(--surface)] text-[var(--primary)] shadow-sm" : "text-[var(--text-muted)] hover:text-[var(--foreground)]"}`}
+            className={`min-h-11 rounded-lg px-4 text-sm font-semibold outline-none focus:ring-4 focus:ring-[var(--focus-ring)] ${viewMode === mode ? "bg-[var(--surface)] text-[var(--primary)] shadow-sm" : "text-[var(--text-muted)] hover:text-[var(--foreground)]"}`}
           >
             {mode === "edit" ? labels.viewEdit : labels.viewTree}
           </button>

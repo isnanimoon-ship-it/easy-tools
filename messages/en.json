@@ -9,7 +9,7 @@
     "skipToContent": "Skip to main content",
     "status": "Coming soon",
     "theme": { "enableDark": "Enable dark mode", "enableLight": "Enable light mode" },
-    "toolsNav": { "label": "Tools menu", "mobileLabel": "Mobile tools menu", "open": "Tools", "all": "All tools", "categories": { "text": "Text", "developer": "Developer", "media": "Images & Media", "other": "More tools" }, "wordCounter": "Word Counter", "jsonFormatter": "JSON Formatter", "passwordGenerator": "Password Generator", "base64Converter": "Base64 Converter", "urlEncoderDecoder": "URL Encoder", "youtubeThumbnailDownloader": "YouTube Thumbnails", "qrCodeGenerator": "QR Generator", "ipInfo": "IP Lookup", "imageColorPicker": "Image Color Picker", "imageCompressor": "Image Compressor", "screenshotStitcher": "Screenshot Stitcher", "privacyRedactor": "Image Masking", "screenshotStatusbarRemover": "Status Bar Remover", "regexTester": "Regex Tester", "cronExpressionGenerator": "Cron Generator", "textCleaner": "Text Cleaner", "koreanInitialConverter": "Initial Consonant Converter", "jwtDecoder": "JWT Decoder", "faviconGenerator": "Favicon Generator" },
+    "toolsNav": { "label": "Tools menu", "mobileLabel": "Mobile tools menu", "open": "Tools", "all": "All tools", "categories": { "text": "Text", "developer": "Developer", "media": "Images & Media", "other": "More tools" }, "wordCounter": "Word Counter", "jsonFormatter": "JSON Formatter", "passwordGenerator": "Password Generator", "base64Converter": "Base64 Encoder/Decoder", "urlEncoderDecoder": "URL Encoder/Decoder", "youtubeThumbnailDownloader": "YouTube Thumbnail Downloader", "qrCodeGenerator": "QR Generator", "ipInfo": "IP Lookup", "imageColorPicker": "Image Color Picker", "imageCompressor": "Reduce image file size", "screenshotStitcher": "Screenshot Stitcher", "privacyRedactor": "Image Masking", "screenshotStatusbarRemover": "Status Bar Remover", "regexTester": "Regex Tester", "cronExpressionGenerator": "Cron Generator", "textCleaner": "Text Cleaner", "koreanInitialConverter": "Initial Consonant Converter", "jwtDecoder": "JWT Decoder", "faviconGenerator": "Favicon Generator", "sqlFormatter": "SQL Formatter" },
     "footer": "© {year} Easy Tools. Simple tools for everyone.",
     "result": "Result",
     "copy": "Copy",
@@ -34,14 +34,14 @@
       "open": "Open tool",
       "wordCounter": { "title": "Word Counter", "description": "Count characters, non-whitespace characters, words, and lines instantly." },
       "jsonFormatter": { "title": "JSON Formatter", "description": "Format JSON for readability or remove unnecessary whitespace to minify it." },
-      "passwordGenerator": { "title": "Password Generator", "description": "Choose a length and character types to create a secure random password." },
-      "base64Converter": { "title": "Base64 Converter", "description": "Choose a character encoding to convert between text and Base64." },
+      "passwordGenerator": { "title": "Password Generator", "description": "Choose a length and character types, or build an easy-to-remember passphrase, for a secure password." },
+      "base64Converter": { "title": "Base64 Encoder/Decoder", "description": "Choose a character encoding to convert between text and Base64." },
       "urlEncoderDecoder": { "title": "URL Encoder/Decoder", "description": "Convert a full URL or component with UTF-8 percent encoding." },
       "youtubeThumbnailDownloader": { "title": "YouTube Thumbnail Downloader", "description": "Find and save the thumbnail sizes that are actually available for a YouTube video." },
       "qrCodeGenerator": { "title": "QR Code Generator", "description": "Turn text or a URL into a QR code in your browser and save it as PNG." },
       "ipInfo": { "title": "IP Address Lookup", "description": "Check your public IP, country, region, ISP, ASN, and basic network information." },
       "imageColorPicker": { "title": "Image Color Picker", "description": "Upload an image and read the exact pixel color as HEX, RGB, HSL, HSV, and CMYK." },
-      "imageCompressor": { "title": "Image Compressor", "description": "Reduce JPG, PNG, and WebP images by quality or target file size in your browser." },
+      "imageCompressor": { "title": "Reduce image file size", "description": "Reduce JPG, PNG, and WebP images by quality or target file size in your browser." },
       "screenshotStitcher": { "title": "Screenshot Stitcher", "description": "Detect overlaps in consecutive screenshots and merge them into one long PNG." },
       "privacyRedactor": { "title": "Image Masking Tool", "description": "Select the parts of a photo or screenshot you want to hide and export a masked PNG." },
       "screenshotStatusbarRemover": { "title": "Screenshot Status Bar Remover", "description": "Detect and remove the time/battery/carrier status bar from a phone screenshot and download the result." },
@@ -50,7 +50,8 @@
       "textCleaner": { "title": "Text Cleaner", "description": "Clean up whitespace and blank lines across multiple lines, and remove duplicate lines." },
       "koreanInitialConverter": { "title": "Korean Initial Consonant Converter", "description": "Extract just the initial consonants from Korean text instantly." },
       "jwtDecoder": { "title": "JWT Decoder", "description": "Paste a JWT to instantly inspect its Header and Payload in your browser." },
-      "faviconGenerator": { "title": "Favicon Generator", "description": "Create a favicon set for your website using text, emoji, or an image." }
+      "faviconGenerator": { "title": "Favicon Generator", "description": "Create a favicon set for your website using text, emoji, or an image." },
+      "sqlFormatter": { "title": "SQL Formatter", "description": "Format SQL queries in your browser with MySQL, PostgreSQL, SQL Server, Oracle, and SQLite syntax in mind." }
     }
   },
   "Tools": {
@@ -108,6 +109,7 @@
       "title": "JWT Decoder", "description": "Enter a JWT and instantly inspect its Header and Payload in your browser. Decoding is not signature verification.",
       "input": { "label": "JWT input", "placeholder": "Paste a JWT token" },
       "actions": { "loadSample": "Load sample JWT", "reset": "Reset", "copyJwt": "Copy full JWT", "copied": "Copied", "copyHeader": "Copy Header", "copyPayload": "Copy Payload" },
+      "tree": { "expandNode": "Expand", "collapseNode": "Collapse", "copyValue": "Copy value", "copied": "Copied" },
       "errors": { "tooLarge": "The token is too long.", "tooFewSegments": "A JWT is usually made up of 3 parts.", "jwe": "This looks like an encrypted JWE token. The current JWT decoder does not support it.", "unsupportedSegments": "Unsupported token format ({count} parts detected)." },
       "status": { "title": "Token Status", "structureLabel": "Structure", "structureOk": "Valid 3-part JWT format", "payloadLabel": "Payload", "payloadOk": "JSON decode succeeded", "payloadFail": "JSON decode failed", "expirationLabel": "Expiration", "expirationNone": "No exp claim", "expirationInvalid": "exp value is invalid", "expirationNotExpired": "Not expired yet", "expirationExpired": "Expired", "signatureLabel": "Signature", "signatureNotVerified": "Not verified" },
       "security": { "notice": "Decoding a JWT is not the same as verifying its signature. Anyone can decode the Header and Payload — decoded content is not necessarily trustworthy." },
@@ -122,6 +124,7 @@
       "metadata": { "title": "Free Favicon Generator · Make favicon.ico", "description": "Create a favicon set for browser tabs, bookmarks, iOS, and Android right in your browser using text, emoji, or an image. Download favicon.ico, PNG files, site.webmanifest, and the HTML code all at once." },
       "title": "Favicon Generator", "description": "Create a favicon set for your website using text, emoji, or an image.",
       "tabs": { "label": "Source", "text": "Text", "emoji": "Emoji", "image": "Image", "shape": "Shape" },
+      "presets": { "title": "Quick-start styles", "help": "Click one to apply a background/shape style while keeping the text or emoji you already entered.", "names": { "ocean": "Ocean", "sunset": "Sunset", "forest": "Forest", "grape": "Grape", "charcoal": "Charcoal", "outline": "Outline", "rose": "Rose", "amber": "Amber" } },
       "text": { "label": "Text (1-3 characters recommended)", "bold": "Bold", "tooLong": "Short text (1-3 characters) is recommended. Longer text will shrink the font size." },
       "emoji": { "label": "Emoji", "presets": "Common emoji", "platformNotice": "The actual appearance may vary depending on the user's OS and browser." },
       "shape": { "kind": "Shape", "kinds": { "square": "Square", "rounded": "Rounded square", "circle": "Circle" }, "radius": "Corner radius", "border": "Use border", "borderColor": "Border color", "borderWidth": "Width", "content": "Content", "contentTypes": { "none": "None", "text": "Text", "emoji": "Emoji" }, "contentText": "Text (1-3 characters recommended)", "contentEmoji": "Emoji" },
@@ -138,9 +141,33 @@
       "readme": { "body": "Favicon package instructions\n\n1. Upload the contents of this zip to your website''s public root.\n2. Paste the HTML code below into your '<head>'.\n3. Browser caching may delay the change from showing up.\n\n{html}" },
       "privacy": "The image you upload is processed only in your browser and is never sent to a server."
     },
+    "sqlFormatter": {
+      "metadata": { "title": "Free SQL Formatter / SQL Beautifier", "description": "Format and minify SQL queries in your browser with MySQL, PostgreSQL, SQL Server, Oracle, and SQLite syntax in mind." },
+      "title": "SQL Formatter", "description": "Analyzes hard-to-read SQL against your chosen DBMS syntax and rearranges it into a readable form.",
+      "input": { "label": "SQL input", "help": "You can enter multiple SQL statements separated by semicolons.", "placeholder": "SELECT a,b,c FROM users WHERE a=1 AND b=2;" },
+      "options": {
+        "dialect": { "label": "DBMS", "sql": "Generic SQL", "mysql": "MySQL", "postgresql": "PostgreSQL", "tsql": "SQL Server (T-SQL)", "plsql": "Oracle (PL/SQL)", "sqlite": "SQLite" },
+        "keywordCase": { "label": "Keyword case", "upper": "UPPERCASE", "lower": "lowercase", "preserve": "Preserve" },
+        "indent": { "label": "Indent", "two": "2 spaces", "four": "4 spaces", "tab": "Tab" },
+        "logicalOperator": { "label": "AND/OR line break", "before": "Start of new line", "after": "End of previous line" },
+        "commaStyle": { "label": "Comma style", "trailing": "Trailing", "leading": "Leading" }
+      },
+      "actions": { "format": "Format", "minify": "Minify", "clear": "Clear", "copy": "Copy result", "copied": "Copied.", "download": "Download SQL file", "downloaded": "Saved formatted.sql.", "retryGeneric": "Retry as Generic SQL" },
+      "result": { "label": "Formatted result", "empty": "Enter SQL and run Format or Minify to see the result here.", "running": "Analyzing SQL…" },
+      "examples": { "title": "Sample SQL", "hint": "Loads a sample query for the selected DBMS." },
+      "errors": {
+        "inputTooLong": "The SQL is too long. Keep it under 300,000 characters.",
+        "parseError": "Could not analyze this SQL using the selected DBMS syntax. This tool is not a full database execution error checker — the syntax may be unsupported, or the SQL may contain an error.",
+        "workerError": "Could not start the SQL analysis feature. Try again in an up-to-date browser.",
+        "copyFailed": "Could not copy the result. Check clipboard permission.",
+        "downloadFailed": "Could not save the SQL file. Check your browser settings and try again."
+      },
+      "guide": { "title": "How to use", "description": "Choose a DBMS and options, enter SQL, then run Format. This tool does not execute SQL and does not guarantee complete syntax validation." },
+      "privacy": { "title": "Processed only in your browser", "description": "Your SQL is processed in the browser and is not sent to a server or stored." }
+    },
     "screenshotStitcher": {
-      "metadata": { "title": "Free Automatic Screenshot Stitcher", "description": "Automatically detect overlaps and merge consecutive screenshots into one long PNG in your browser." },
-      "title": "Automatic Screenshot Stitcher", "description": "Find overlapping sections in consecutive captures, remove duplicates, and create one long screenshot.",
+      "metadata": { "title": "Free Screenshot Stitcher", "description": "Automatically detect overlaps and merge consecutive screenshots into one long PNG in your browser." },
+      "title": "Screenshot Stitcher", "description": "Find overlapping sections in consecutive captures, remove duplicates, and create one long screenshot.",
       "upload": { "title": "Add screenshots", "help": "Select multiple PNG, JPG, or WebP files, or drop them here.", "dropActive": "Drop the images here.", "limit": "2–20 images · 20 MB each · 100 MB total" },
       "actions": { "choose": "Choose images", "add": "Add images", "clear": "Clear all", "up": "Move up", "down": "Move down", "remove": "Remove image", "analyze": "Find overlaps", "reanalyze": "Analyze with exclusions", "cancel": "Cancel", "confirm": "Confirm this join", "compose": "Create long image", "download": "Download PNG" },
       "status": { "loading": "Checking images…", "needTwo": "Add at least two images to analyze overlaps.", "analyzing": "Analyzing image joins · {current}/{total}", "composing": "Creating the long image at original resolution…" },
@@ -163,6 +190,7 @@
       "actions": { "run": "Run now", "clear": "Clear", "copyPattern": "Copy pattern", "copyLiteral": "Copy full regex", "copyReplacement": "Copy replacement", "copied": "Copied" },
       "examples": { "title": "Regex examples", "hint": "These are simple format examples, not complete validators. Your test string is preserved.", "email": "Email", "number": "Numbers", "date": "Date", "url": "URL", "phone": "Phone" },
       "errors": { "patternLong": "Keep the pattern at 10,000 characters or fewer.", "textLong": "Keep the test string at 500,000 characters or fewer.", "replacementLong": "Keep the replacement at 100,000 characters or fewer.", "resultLarge": "The replacement result is too large to preview or copy.", "timeout": "The regex took too long. Simplify the pattern or shorten the test string.", "worker": "The regex Worker could not start. Try again in an up-to-date browser.", "copy": "Could not copy. Check clipboard permission." },
+      "batch": { "title": "Multiple test cases", "help": "Add several strings at once to compare matches and capture groups against the same pattern.", "addRow": "Add case", "removeRow": "Remove case", "placeholder": "String to test", "matched": "Matched", "notMatched": "Not matched", "matchCount": "__COUNT__ matches", "captures": "Capture Groups", "timeout": "This took too long to run.", "empty": "No test cases added yet." },
       "reference": { "title": "JavaScript regex quick reference", "description": "Based on the current browser's JavaScript RegExp syntax.", "characters": { "title": "Character classes", "items": ". any character\n\\d digit · \\w word character\n\\s whitespace · [abc] set" }, "quantifiers": { "title": "Quantifiers", "items": "* zero or more · + one or more\n? zero or one\n'{n}' exactly n · '{n,m}' range" }, "anchors": { "title": "Anchors", "items": "^ start · $ end\n\\b word boundary · \\B non-boundary" }, "groups": { "title": "Groups", "items": "(...) capturing\n(?:...) non-capturing\n(?'<name>'...) named" }, "lookaround": { "title": "Lookaround", "items": "(?=...) positive ahead\n(?!...) negative ahead\n(?<=...) positive behind" }, "escape": { "title": "Escape", "items": "\\. dot · \\\\ backslash\n\\t tab · \\n newline" } },
       "privacy": "Privacy: your pattern, test string, and replacement are processed only inside a browser Worker and are never uploaded or stored."
     },
@@ -178,9 +206,10 @@
       "notices": { "png": "PNG output may not shrink much with a quality setting. Consider WebP or JPEG for a smaller file.", "jpeg": "JPEG has no transparency, so transparent areas will use a white background.", "metadata": "Location, camera, and other image metadata may be removed during compression." },
       "preview": { "original": "Original preview", "result": "Compressed preview", "empty": "The compressed result will appear here after you choose settings." },
       "result": { "title": "File size comparison", "size": "Result size", "saved": "Reduction", "saving": "The result is smaller than the original.", "larger": "The result is __SIZE__ larger than the original. Consider keeping the original.", "same": "The file size did not change.", "targetMet": "The image is at or below your target size.", "targetMissed": "This target is difficult at the current dimensions. Reduce maximum width or change the output format.", "quality": "Applied quality" },
-      "errors": { "multiple": "Upload one image at a time.", "unsupported": "Choose a JPG, PNG, or WebP image.", "fileLarge": "The file is larger than 25MB. Choose a smaller image.", "signature": "The file contents do not match its image format.", "decode": "The image could not be opened. It may be damaged.", "dimensions": "The image exceeds 24 million pixels or 12,000px on one side.", "encoder": "This browser does not support the selected output format.", "encode": "The image could not be compressed. Change the settings and try again.", "target": "Enter a whole number from 10 through 10240KB.", "unreachable": "The target cannot be reached at the current dimensions.", "download": "The image could not be downloaded. Try again." },
+      "errors": { "multiple": "Upload one image at a time.", "unsupported": "Choose a JPG, PNG, or WebP image.", "fileLarge": "The file is larger than 25MB. Choose a smaller image.", "signature": "The file contents do not match its image format.", "decode": "The image could not be opened. It may be damaged.", "dimensions": "The image exceeds 24 million pixels or 12,000px on one side.", "encoder": "This browser does not support the selected output format.", "encode": "The image could not be compressed. Change the settings and try again.", "target": "Enter a whole number from 10 through 10240KB.", "unreachable": "The target cannot be reached at the current dimensions.", "download": "The image could not be downloaded. Try again.", "tooManyFiles": "You can select up to 50 images at a time.", "zipFailed": "Could not build the ZIP file. Try again." },
       "privacy": { "notice": "Privacy: your image is processed in this browser and is never uploaded or stored.", "title": "Your image stays on this device", "text": "The original and compressed result only use temporary memory in this tab and are released when you clear or close it." },
-      "guide": { "qualityTitle": "Balance quality and size", "qualityText": "Higher quality usually looks sharper but creates a larger file. Start around 80% for photos.", "targetTitle": "Fit a specific KB limit", "targetText": "Choose 100KB, 200KB, 500KB, or 1MB to find the highest tested quality below your target." }
+      "guide": { "qualityTitle": "Balance quality and size", "qualityText": "Higher quality usually looks sharper but creates a larger file. Start around 80% for photos.", "targetTitle": "Fit a specific KB limit", "targetText": "Choose 100KB, 200KB, 500KB, or 1MB to find the highest tested quality below your target." },
+      "batch": { "tabSingle": "Single image", "tabBatch": "Multiple images (ZIP)", "title": "Upload multiple images", "help": "Select or drop several JPG, PNG, or WebP files. Up to 50 at a time.", "choose": "Choose multiple images", "reselect": "Choose again", "clear": "Clear", "columnFile": "File", "columnSize": "Original size", "columnStatus": "Status", "columnResult": "Result", "statusPending": "Pending", "statusProcessing": "Compressing", "statusDone": "Done", "statusError": "Failed", "run": "Start batch compression", "running": "Compressing · __CURRENT__/__TOTAL__", "downloadZip": "Download as ZIP", "zipping": "Building the ZIP file…", "summary": "__DONE__ of __TOTAL__ images compressed · saved __SAVED__" }
     },
     "imageColorPicker": {
       "metadata": { "title": "Free Image Color Picker", "description": "Pick exact pixel colors from PNG, JPEG, and WebP images locally in your browser." },
@@ -217,8 +246,27 @@
       "metadata": { "title": "Free QR Code Generator", "description": "Create a QR code from text or a URL without sending it to a server, then download a PNG at your chosen size." },
       "title": "QR Code Generator", "description": "Enter text or a URL to create a QR code automatically in your browser and save it as PNG.",
       "input": { "label": "Content to encode", "help": "Enter text, a URL, Korean, Japanese, Emoji, or multiple lines. Your content is encoded exactly as entered.", "placeholder": "Text or https://example.com" },
-      "preview": { "title": "QR code preview", "empty": "Enter content to see a QR code here.", "processing": "Generating QR code…", "canvasLabel": "QR code generated from the input", "size": "Size", "level": "Error correction", "margin": "Quiet Zone", "type": "Input type", "types": { "text": "Text", "url": "URL" } },
+      "preview": { "title": "QR code preview", "empty": "Enter content to see a QR code here.", "processing": "Generating QR code…", "canvasLabel": "QR code generated from the input", "size": "Size", "level": "Error correction", "margin": "Quiet Zone", "type": "Input type", "types": { "text": "Text", "url": "URL" }, "effectiveLevel": "Applied level (auto-raised for logo)" },
       "options": { "title": "QR code options", "size": { "label": "Output size", "help": "The actual width and height of the PNG." }, "level": { "label": "Error correction level", "help": "Higher levels resist more damage but hold less data.", "L": "L - Low · about 7%", "M": "M - Medium · about 15%", "Q": "Q - High · about 25%", "H": "H - Very high · about 30%" }, "margin": { "label": "Quiet Zone margin", "help": "The white outer margin that helps scanners recognize the code.", "4": "4 modules - Default", "6": "6 modules", "8": "8 modules" } },
+      "source": {
+        "label": "Source type",
+        "types": { "text": "Text or URL", "wifi": "Wi-Fi", "contact": "Contact (vCard)", "email": "Email", "phone": "Phone", "sms": "SMS", "location": "Location" },
+        "payloadPreview": "Generated content",
+        "wifi": { "ssid": "Network name (SSID)", "ssidPlaceholder": "MyWiFi", "password": "Password", "security": "Security", "securityOptions": { "WPA": "WPA/WPA2", "WEP": "WEP", "nopass": "None (open network)" }, "hidden": "Hidden network" },
+        "contact": { "firstName": "First name", "lastName": "Last name", "phone": "Phone number", "email": "Email" },
+        "email": { "address": "Recipient email", "subject": "Subject", "body": "Body" },
+        "phone": { "number": "Phone number" },
+        "sms": { "number": "Phone number", "message": "Message" },
+        "location": { "latitude": "Latitude", "longitude": "Longitude" }
+      },
+      "logo": {
+        "title": "Center logo",
+        "upload": "Upload logo",
+        "remove": "Remove logo",
+        "help": "Composites a logo into the center of the QR code. Error correction is automatically raised to at least Q to keep it scannable.",
+        "boosted": "Error correction was automatically raised to keep the code scannable.",
+        "errors": { "unsupportedType": "Choose an image file.", "fileTooLarge": "The image is too large. Use a file under 5MB." }
+      },
       "actions": { "download": "Download PNG", "copyInput": "Copy input", "clear": "Clear", "downloaded": "Saved qr-code.png.", "copied": "Input copied." },
       "warning": { "density": "This data is long and may be harder to scan in real conditions. Consider a larger size or lower error correction level." },
       "errors": { "capacity": "The data is too long for this error correction level. Shorten it or choose a lower level.", "size": "The selected output size is too small for this data. Choose a larger size.", "generation": "The QR code could not be generated. Check the input and options, then try again.", "download": "The PNG could not be saved. Check your browser settings and try again.", "copy": "The input could not be copied. Check clipboard permission." },
@@ -244,6 +292,13 @@
     "urlEncoderDecoder": {
       "metadata": { "title": "URL Encoder/Decoder", "description": "Safely encode and decode full URLs and URL components with UTF-8 percent encoding." },
       "title": "URL Encoder/Decoder", "description": "Convert a full URL or query parameter value with UTF-8 percent encoding and restore the original text.",
+      "view": { "label": "View mode", "text": "Text conversion", "query": "Query string editor" },
+      "query": {
+        "input": { "label": "URL or query string", "placeholder": "https://example.com/search?q=hello&page=2" },
+        "actions": { "parse": "Parse", "copy": "Copy result", "copied": "Copied the result.", "copyError": "Could not copy. Check clipboard permissions.", "clear": "Clear" },
+        "table": { "keyLabel": "Key", "keyPlaceholder": "key", "valueLabel": "Value", "valuePlaceholder": "value", "removeRow": "Remove row", "addRow": "Add row", "empty": "Enter a URL or query string and click Parse." },
+        "output": { "label": "Reconstructed result", "empty": "The result appears here." }
+      },
       "mode": { "label": "Conversion mode", "encode": "Encode mode", "decode": "Decode mode" },
       "encodingType": { "label": "Encoding type", "component": "URL Component", "fullUrl": "Full URL", "componentHelp": "Encodes reserved characters for values such as query parameters.", "fullUrlHelp": "Keeps URL structure characters such as /, ?, =, and &." },
       "plusHelp": "Standard Decode keeps + as a literal plus character; it does not turn + into a space.",
@@ -261,15 +316,17 @@
       "errors":{"base64":"This is not valid Base64. Check the characters, length, and = padding at the end.","unrepresentable":"Some characters cannot be represented by the selected encoding. Choose UTF-8 or another encoding.","invalidBytes":"These bytes are not valid for the selected encoding. Check the encoding.","ambiguous":"The character encoding cannot be determined. Select it directly from the list.","load":"The character encoding support could not be loaded. Check your connection and try again.","copy":"Could not copy. Check clipboard permission."},"guide":{"title":"About character encoding","description":"Base64 is not encryption. Auto Encode uses UTF-8, and ambiguous legacy Decode requires a manual encoding choice."},"privacy":{"title":"Processed only in your browser","description":"Your input and result are never sent to a server or stored."}
     },
     "passwordGenerator": {
-      "metadata": { "title": "Secure Password Generator", "description": "Create a secure random password with your chosen length and character types in your browser." },
-      "title": "Password Generator", "description": "Choose a length and character types to create a password using secure browser randomness.",
+      "metadata": { "title": "Secure Password Generator", "description": "Create a secure password in your browser — choose a length and character types, or build an easy-to-remember passphrase." },
+      "title": "Password Generator", "description": "Choose random characters or a word-based passphrase, and generate it with secure browser randomness.",
+      "mode": { "label": "Generation mode", "characters": "Random characters", "passphrase": "Passphrase" },
       "settings": { "lengthGroup": "Password length", "rangeLabel": "Choose length with slider", "numberLabel": "Enter exact length", "characterTypes": "Character types to include", "uppercase": "Uppercase (A–Z)", "lowercase": "Lowercase (a–z)", "numbers": "Numbers (0–9)", "symbols": "Special characters" },
+      "passphrase": { "wordCountGroup": "Word count", "wordCountRangeLabel": "Choose word count with slider", "wordCountNumberLabel": "Enter exact word count", "optionsGroup": "Passphrase options", "separatorLabel": "Separator", "separators": { "hyphen": "Hyphen (-)", "underscore": "Underscore (_)", "period": "Period (.)", "space": "Space", "none": "No separator" }, "capitalize": "Capitalize the first letter of each word", "includeNumber": "Add one number" },
       "actions": { "generate": "Generate password", "copy": "Copy result", "copied": "Password copied to clipboard." },
       "result": { "label": "Generated password", "empty": "Review the settings, then generate a password." },
       "strength": { "label": "Password strength", "weak": "Weak", "medium": "Medium", "strong": "Strong", "weakDescription": "Consider using a longer length or more character types.", "mediumDescription": "Suitable for general use, but a longer password would be safer.", "strongDescription": "The selected length and character types provide high estimated strength.", "notice": "Strength is an estimate and does not guarantee a service policy or absolute security." },
-      "error": { "allDisabled": "Select at least one character type.", "length": "Enter a whole number from 8 through 128.", "random": "Secure randomness is unavailable. Try again in an up-to-date browser.", "copy": "Could not copy. Check clipboard permission and try again." },
-      "guide": { "title": "How to use", "description": "Choose a length and character types, then generate. Every selected character type appears at least once." },
-      "privacy": { "title": "Generated securely in your browser", "description": "Your settings and generated password are never sent to a server or stored." }
+      "error": { "allDisabled": "Select at least one character type.", "length": "Enter a whole number from 8 through 128.", "wordCount": "Enter a whole number from 3 through 6.", "random": "Secure randomness is unavailable. Try again in an up-to-date browser.", "copy": "Could not copy. Check clipboard permission and try again." },
+      "guide": { "title": "How to use", "description": "Choose random characters or a passphrase, set your options, then generate. The character mode includes every selected type at least once; the passphrase mode draws each word independently from the EFF's public word list (7,776 words)." },
+      "privacy": { "title": "Generated securely in your browser", "description": "Your settings and generated password are never sent to a server or stored. The passphrase word list is also bundled as a static file in your browser." }
     },
     "jsonFormatter": {
       "metadata": { "title": "JSON Formatter", "description": "Format, minify, and copy JSON safely in your browser." },
@@ -304,7 +361,8 @@
       "metadata":{"title":"Cron Expression Generator & Parser","description":"Build, validate, and explain Linux five-field Cron expressions and preview upcoming runs by timezone."},"title":"Cron Expression Generator","description":"Choose a schedule to build a five-field Cron expression, or parse an existing expression and preview its next runs.",
       "mode":{"label":"Input method","generator":"Visual generator","direct":"Direct input"},"presets":{"title":"Common presets","everyMinute":"Every minute","every5Minutes":"Every 5 minutes","every10Minutes":"Every 10 minutes","every30Minutes":"Every 30 minutes","hourly":"Hourly","midnight":"Daily at midnight","daily9":"Daily at 9 AM","monday9":"Monday at 9 AM","monthlyFirst":"First day monthly","weekdays9":"Weekdays at 9 AM"},
       "generator":{"frequency":"Frequency","interval":"Interval","hour":"Hour (0–23)","minute":"Minute (0–59)","weekdays":"Weekdays","dates":"Dates","months":"Months","monthLabel":"Month {month}"},"modes":{"every-minute":"Every minute","every-n-minutes":"Every N minutes","hourly":"Hourly","every-n-hours":"Every N hours","daily":"Daily","weekly":"Weekly / weekdays","monthly":"Monthly / dates","specific-date":"Specific months and dates"},"weekdays":{"0":"Sun","1":"Mon","2":"Tue","3":"Wed","4":"Thu","5":"Fri","6":"Sat"},"weekdayNames":{"0":"Sunday","1":"Monday","2":"Tuesday","3":"Wednesday","4":"Thursday","5":"Friday","6":"Saturday"},
-      "direct":{"label":"Cron expression","help":"Supports numeric Unix five-field Cron in minute hour day month weekday order, with *, comma, hyphen, and slash."},"result":{"title":"Cron result","empty":"Enter an expression."},"status":{"valid":"Valid five-field Cron expression.","empty":"Enter an expression to see validation."},"actions":{"copyCron":"Copy Cron","copyDescription":"Copy description","copied":"Copied","clear":"Reset"},
+      "direct":{"label":"Cron expression","help":"Supports numeric Unix five-field Cron in minute hour day month weekday order, with *, comma, hyphen, and slash."},"result":{"title":"Cron result","empty":"Enter an expression."},"status":{"valid":"Valid five-field Cron expression.","empty":"Enter an expression to see validation."},"actions":{"copyCron":"Copy Cron","copyDescription":"Copy description","copyCrontab":"Copy crontab line","copied":"Copied","clear":"Reset"},
+      "crontabLine":{"label":"Command (optional)","help":"Builds a full line you can paste directly into crontab. This tool never runs the command — any % character, which crontab treats specially, is automatically escaped as \\%.","placeholder":"/usr/bin/backup.sh --mode=daily","resultLabel":"Full crontab line"},
       "descriptionTitle":"Human-readable description","descriptions":{"everyMinute":"Run every minute","everyNMinutes":"Run every {n} minutes","hourlyAt":"Run at minute {m} of every hour","everyNHours":"Run every {n} hours at minute {m}","dailyAt":"Run daily at {time}","weeklyAt":"Run every {days} at {time}","monthlyAt":"Run on day {dates} of every month at {time}","specificDate":"Run in month {months} on day {dates} at {time}","custom":"Custom schedule. Review the field meanings and upcoming runs below.","orSuffix":"Runs when either Day of Month or Day of Week matches (OR)."},
       "fields":{"title":"Field breakdown","minute":"Minute","hour":"Hour","dayOfMonth":"Day of Month","month":"Month","dayOfWeek":"Day of Week"},"warnings":{"domDowOr":"Both Day of Month and Day of Week are restricted. Under Unix/Vixie rules, this runs when either field matches (OR)."},
       "timezone":{"label":"Timezone","browser":"Browser timezone · {zone}","warning":"A Cron expression does not normally contain a timezone. Actual execution depends on the timezone configured by your server or service."},"next":{"title":"Upcoming runs","count":"Number of runs","empty":"Upcoming runs for a valid expression appear here."},

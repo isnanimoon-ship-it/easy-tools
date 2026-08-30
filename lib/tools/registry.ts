@@ -4,6 +4,7 @@ import {
   Braces,
   CalendarClock,
   Crop,
+  Database,
   FileKey,
   FileText,
   Globe2,
@@ -57,6 +58,7 @@ export const TOOLS = [
   { path: "/tools/korean-initial-converter", translationKey: "koreanInitialConverter", category: "text", icon: Type, homeOrder: 17, menuOrder: 3 },
   { path: "/tools/jwt-decoder", translationKey: "jwtDecoder", category: "developer", icon: KeyRound, homeOrder: 18, menuOrder: 7 },
   { path: "/tools/favicon-generator", translationKey: "faviconGenerator", category: "media", icon: AppWindow, homeOrder: 19, menuOrder: 7 },
+  { path: "/tools/sql-formatter", translationKey: "sqlFormatter", category: "developer", icon: Database, homeOrder: 20, menuOrder: 8 },
 ] as const satisfies readonly ToolDefinition[];
 
 export type ToolPath = (typeof TOOLS)[number]["path"];

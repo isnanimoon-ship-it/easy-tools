@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Code2, Grid2X2, Images, Type } from "lucide-react";
+import { ChevronDown, Code2, Grid2X2, Images, MoreHorizontal, Type } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { TOOL_CATEGORY_KEYS, toolsInCategory, type ToolCategoryKey } from "@/lib/tools/registry";
 
-const categoryIcons = { text: Type, developer: Code2, media: Images, other: Grid2X2 } as const;
+const categoryIcons = { text: Type, developer: Code2, media: Images, other: MoreHorizontal } as const;
 const categories = TOOL_CATEGORY_KEYS.map(key => ({ key, icon: categoryIcons[key], tools: toolsInCategory(key) }));
 type MenuKey = (typeof categories)[number]["key"] | "all";
 

@@ -24,6 +24,7 @@ export default async function Page({ params }: PageProps) {
   setRequestLocale(locale);
   const t = await getTranslations("Tools.urlEncoderDecoder");
   const labels: UrlEncoderDecoderLabels = {
+    viewModeLabel: t("view.label"), viewText: t("view.text"), viewQuery: t("view.query"),
     modeLabel: t("mode.label"), encodeMode: t("mode.encode"), decodeMode: t("mode.decode"),
     typeLabel: t("encodingType.label"), componentType: t("encodingType.component"), fullUrlType: t("encodingType.fullUrl"),
     componentHelp: t("encodingType.componentHelp"), fullUrlHelp: t("encodingType.fullUrlHelp"), plusHelp: t("plusHelp"),
@@ -35,6 +36,15 @@ export default async function Page({ params }: PageProps) {
       "decode-component": t("operations.decodeComponent"), "decode-full-url": t("operations.decodeFullUrl"),
     },
     errors: { "invalid-percent-encoding": t("errors.percent"), "invalid-unicode": t("errors.unicode"), copy: t("errors.copy") },
+    query: {
+      inputLabel: t("query.input.label"), inputPlaceholder: t("query.input.placeholder"), parse: t("query.actions.parse"),
+      keyLabel: t("query.table.keyLabel"), keyPlaceholder: t("query.table.keyPlaceholder"),
+      valueLabel: t("query.table.valueLabel"), valuePlaceholder: t("query.table.valuePlaceholder"),
+      removeRow: t("query.table.removeRow"), addRow: t("query.table.addRow"), tableEmpty: t("query.table.empty"),
+      outputLabel: t("query.output.label"), outputEmpty: t("query.output.empty"),
+      copy: t("query.actions.copy"), copied: t("query.actions.copied"), copyError: t("query.actions.copyError"),
+      clear: t("query.actions.clear"),
+    },
   };
 
   return <>

@@ -4,10 +4,16 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { PasswordGenerator, type PasswordGeneratorLabels } from "./password-generator";
 
 const labels: PasswordGeneratorLabels = {
+  modeLabel: "Mode", modeCharacters: "Random characters", modePassphrase: "Passphrase",
   lengthGroup: "Password length", rangeLabel: "Slider", numberLabel: "Exact length", characterTypes: "Types",
-  uppercase: "Uppercase", lowercase: "Lowercase", numbers: "Numbers", symbols: "Symbols", generate: "Generate", resultLabel: "Result", emptyResult: "No result", copy: "Copy", copied: "Copied",
+  uppercase: "Uppercase", lowercase: "Lowercase", numbers: "Numbers", symbols: "Symbols",
+  wordCountGroup: "Word count", wordCountRangeLabel: "Word slider", wordCountNumberLabel: "Exact word count",
+  optionsGroup: "Passphrase options", separatorLabel: "Separator",
+  separators: { hyphen: "Hyphen", underscore: "Underscore", period: "Period", space: "Space", none: "None" },
+  capitalizeLabel: "Capitalize", includeNumberLabel: "Include number",
+  generate: "Generate", resultLabel: "Result", emptyResult: "No result", copy: "Copy", copied: "Copied",
   strengthLabel: "Strength", strength: { weak: "Weak", medium: "Medium", strong: "Strong" }, strengthDescription: { weak: "Weak help", medium: "Medium help", strong: "Strong help" }, strengthNotice: "Estimate only",
-  allDisabledError: "Select a type", lengthError: "Invalid length", randomError: "Random unavailable", copyError: "Copy failed",
+  allDisabledError: "Select a type", lengthError: "Invalid length", wordCountError: "Invalid word count", randomError: "Random unavailable", copyError: "Copy failed",
 };
 
 function checkbox(name: string) { return screen.getByRole("checkbox", { name }) as HTMLInputElement; }
@@ -91,5 +97,63 @@ describe("PasswordGenerator", () => {
     expect(screen.getByRole("alert").textContent).toContain("Random unavailable");
     expect(button("Copy").disabled).toBe(true);
     expect(consoleError).not.toHaveBeenCalled();
+  });
+
+  describe("passphrase mode", () => {
+    function switchToPassphrase() {
+      render(<PasswordGenerator labels={labels} />);
+      fireEvent.click(screen.getByRole("tab", { name: "Passphrase" }));
+    }
+
+    it("defaults to 4 words, capitalized, with a number, joined by hyphens", () => {
+      switchToPassphrase();
+      expect((screen.getByRole("spinbutton", { name: "Exact word count" }) as HTMLInputElement).value).toBe("4");
+      fireEvent.click(button("Generate"));
+      const words = generatedText().split("-");
+      expect(words).toHaveLength(4);
+      for (const word of words) expect(/^[A-Z]/.test(word.replace(/\d+$/, ""))).toBe(true);
+      expect(/\d/.test(generatedText())).toBe(true);
+    });
+
+    it("respects word count, separator, and toggling capitalize/number off", () => {
+      switchToPassphrase();
+      fireEvent.change(screen.getByRole("spinbutton", { name: "Exact word count" }), { target: { value: "6" } });
+      fireEvent.change(screen.getByRole("combobox", { name: "Separator" }), { target: { value: "underscore" } });
+      fireEvent.click(checkbox("Capitalize"));
+      fireEvent.click(checkbox("Include number"));
+      fireEvent.click(button("Generate"));
+      const text = generatedText();
+      expect(text.split("_")).toHaveLength(6);
+      expect(/\d/.test(text)).toBe(false);
+      expect(/[A-Z]/.test(text)).toBe(false);
+    });
+
+    it("clamps an out-of-range word count on blur and rejects an empty value", () => {
+      switchToPassphrase();
+      const number = screen.getByRole("spinbutton", { name: "Exact word count" }) as HTMLInputElement;
+      fireEvent.change(number, { target: { value: "20" } });
+      fireEvent.blur(number);
+      expect(number.value).toBe("6");
+      fireEvent.change(number, { target: { value: "" } });
+      fireEvent.click(button("Generate"));
+      expect(screen.getByRole("alert").textContent).toContain("Invalid word count");
+    });
+
+    it("shows a strength meter driven by the EFF word list size, not the character pool (4 words ~= 51.7 bits, Medium)", () => {
+      switchToPassphrase();
+      fireEvent.click(button("Generate"));
+      expect(screen.getByText("Medium")).toBeTruthy();
+      expect(screen.getByRole("meter", { name: "Strength: Medium" })).toBeTruthy();
+    });
+
+    it("clears stale results and switches controls back when returning to character mode", () => {
+      switchToPassphrase();
+      fireEvent.click(button("Generate"));
+      expect(generatedText().length).toBeGreaterThan(0);
+      fireEvent.click(screen.getByRole("tab", { name: "Random characters" }));
+      expect(screen.queryByRole("spinbutton", { name: "Exact word count" })).toBeNull();
+      expect(screen.getByRole("spinbutton", { name: "Exact length" })).toBeTruthy();
+      expect(button("Copy").disabled).toBe(true);
+    });
   });
 });

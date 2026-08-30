@@ -1,5 +1,5 @@
 import{describe,expect,it}from"vitest";
-import{DEFAULT_SETTINGS,describeCron,generateCron,nextRuns,settingsFromCron,validateCron,type DescriptionLabels}from"./cron";
+import{DEFAULT_SETTINGS,buildCrontabLine,describeCron,escapeCrontabPercent,generateCron,nextRuns,settingsFromCron,validateCron,type DescriptionLabels}from"./cron";
 const labels:DescriptionLabels={everyMinute:"every minute",everyNMinutes:n=>`every ${n} minutes`,hourlyAt:m=>`hourly ${m}`,everyNHours:(n,m)=>`${n} hours ${m}`,dailyAt:time=>`daily ${time}`,weeklyAt:(days,time)=>`${days} ${time}`,monthlyAt:(dates,time)=>`${dates} ${time}`,specificDate:(months,dates,time)=>`${months} ${dates} ${time}`,custom:"custom",orSuffix:"OR",weekdays:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]};
 describe("cron validation",()=>{
  it.each(["* * * * *","*/5 * * * *","0 * * * *","0 9 * * *","30 18 * * *","0 9 * * 1","0 9 * * 1-5","0 0 1 * *","0 0 1 1 *","0 9 1,15 * *","0 9 * 1,6,12 *","*/10 9-18 * * 1-5","1-10/2 * * * *"])("accepts %s",value=>expect(validateCron(value).valid).toBe(true));
@@ -19,4 +19,10 @@ describe("generation and next runs",()=>{
  it("uses OR for DOM and DOW",()=>expect(nextRuns("0 9 1 * 1","Asia/Seoul",3,new Date("2026-08-28T23:00:00Z")).map(d=>d.toISOString())).toEqual(["2026-08-31T00:00:00.000Z","2026-09-01T00:00:00.000Z","2026-09-07T00:00:00.000Z"]));
  it("caps requested runs at 20",()=>expect(nextRuns("* * * * *","UTC",100,new Date("2026-01-01T00:00:00Z"))).toHaveLength(20));
  it("handles a New York DST gap deterministically",()=>expect(nextRuns("30 2 * * *","America/New_York",3,new Date("2026-03-07T06:00:00Z")).map(date=>date.toISOString())).toEqual(["2026-03-07T07:30:00.000Z","2026-03-08T07:30:00.000Z","2026-03-09T06:30:00.000Z"]));
+});
+describe("crontab line",()=>{
+ it("leaves a command without % untouched",()=>expect(escapeCrontabPercent("/usr/bin/backup.sh --day=daily")).toBe("/usr/bin/backup.sh --day=daily"));
+ it("escapes a bare % used for strftime formatting",()=>expect(escapeCrontabPercent("/usr/bin/backup.sh $(date +%Y-%m-%d)")).toBe("/usr/bin/backup.sh $(date +\\%Y-\\%m-\\%d)"));
+ it("joins expression and escaped command with a single space",()=>expect(buildCrontabLine("0 9 * * *","/usr/bin/backup.sh")).toBe("0 9 * * * /usr/bin/backup.sh"));
+ it("escapes % inside the combined crontab line",()=>expect(buildCrontabLine("0 9 * * *","echo 50% done")).toBe("0 9 * * * echo 50\\% done"));
 });

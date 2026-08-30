@@ -1,6 +1,7 @@
 export const MAX_FILE_BYTES = 25 * 1024 * 1024;
 export const MAX_PIXELS = 24_000_000;
 export const MAX_DIMENSION = 12_000;
+export const MAX_BATCH_FILES = 50;
 export type ImageMime = "image/jpeg" | "image/png" | "image/webp";
 export type ValidationError = "unsupported-format" | "file-too-large" | "signature-mismatch";
 

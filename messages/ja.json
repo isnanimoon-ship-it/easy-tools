@@ -9,7 +9,7 @@
     "skipToContent": "本文へ移動",
     "status": "準備中",
     "theme": { "enableDark": "ダークモードをオン", "enableLight": "ライトモードをオン" },
-    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64変換", "urlEncoderDecoder": "URLエンコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像圧縮", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像マスキング", "screenshotStatusbarRemover": "ステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー", "koreanInitialConverter": "初声変換ツール", "jwtDecoder": "JWTデコーダー", "faviconGenerator": "ファビコンジェネレーター" },
+    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64エンコーダー/デコーダー", "urlEncoderDecoder": "URLエンコーダー/デコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル抽出", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像ファイルサイズを小さくする", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像マスキング", "screenshotStatusbarRemover": "ステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー", "koreanInitialConverter": "初声変換ツール", "jwtDecoder": "JWTデコーダー", "faviconGenerator": "ファビコンジェネレーター", "sqlFormatter": "SQLフォーマッター" },
     "footer": "© {year} かんたんツール。誰でもかんたんに。",
     "result": "結果",
     "copy": "コピー",
@@ -34,15 +34,15 @@
       "open": "ツールを開く",
       "wordCounter": { "title": "文字数カウンター", "description": "文字数、空白を除く文字数、単語数、行数をリアルタイムで計算します。" },
       "jsonFormatter": { "title": "JSONフォーマッター", "description": "JSONを読みやすく整形したり、不要な空白を削除して圧縮したりできます。" },
-      "passwordGenerator": { "title": "パスワード生成", "description": "長さと文字種を選んで、安全なランダムパスワードを作成します。" },
-      "base64Converter": { "title": "Base64変換", "description": "文字エンコーディングを選んでテキストとBase64を相互変換します。" },
+      "passwordGenerator": { "title": "パスワード生成", "description": "長さと文字種を選ぶか、覚えやすい単語の組み合わせで安全なパスワードを作成します。" },
+      "base64Converter": { "title": "Base64エンコーダー/デコーダー", "description": "文字エンコーディングを選んでテキストとBase64を相互変換します。" },
       "urlEncoderDecoder": { "title": "URLエンコーダー/デコーダー", "description": "URL全体または構成要素をUTF-8パーセントエンコーディングで変換します。" },
       "youtubeThumbnailDownloader": { "title": "YouTubeサムネイル抽出", "description": "YouTube動画で実際に利用できるサムネイルを解像度別に確認して保存します。" },
       "qrCodeGenerator": { "title": "QRコード生成", "description": "テキストやURLをブラウザでQRコードにしてPNGで保存します。" },
       "ipInfo": { "title": "IPアドレス情報", "description": "現在のグローバルIP、国、地域、ISP、ASNなどの基本情報を確認します。" },
       "imageColorPicker": { "title": "画像カラーピッカー", "description": "画像をアップロードし、正確なピクセル色をHEX、RGB、HSL、HSV、CMYKで確認します。" },
-      "imageCompressor": { "title": "画像圧縮", "description": "JPG、PNG、WebPを品質または目標サイズでブラウザー内圧縮します。" },
-      "screenshotStitcher": { "title": "スクリーンショット自動結合", "description": "連続画像の重複部分を検出し、1枚の長いPNGに結合します。" },
+      "imageCompressor": { "title": "画像ファイルサイズを小さくする", "description": "JPG、PNG、WebPを品質または目標サイズでブラウザー内圧縮します。" },
+      "screenshotStitcher": { "title": "スクリーンショット結合", "description": "連続画像の重複部分を検出し、1枚の長いPNGに結合します。" },
       "privacyRedactor": { "title": "画像マスキングツール", "description": "写真やスクリーンショットで隠したい部分を選び、マスキングしたPNGを保存します。" },
       "screenshotStatusbarRemover": { "title": "スクリーンショットのステータスバー削除", "description": "スマホのスクリーンショット上部の時刻・バッテリー・通信状態バーを検出して削除し、ダウンロードします。" },
       "regexTester": { "title": "正規表現テスター", "description": "JavaScript正規表現の一致、キャプチャグループ、置換結果を確認します。" },
@@ -50,7 +50,8 @@
       "textCleaner": { "title": "テキストクリーナー", "description": "複数行の空白と空行を整理し、重複行を削除します。" },
       "koreanInitialConverter": { "title": "ハングル初声変換ツール", "description": "ハングルの文章を入力すると各音節の初声だけを即座に抽出します。" },
       "jwtDecoder": { "title": "JWTデコーダー", "description": "JWTを貼り付けるとHeaderとPayloadをブラウザ内ですぐに確認できます。" },
-      "faviconGenerator": { "title": "ファビコンジェネレーター", "description": "テキスト、絵文字、画像でウェブサイト用のファビコンセットを生成します。" }
+      "faviconGenerator": { "title": "ファビコンジェネレーター", "description": "テキスト、絵文字、画像でウェブサイト用のファビコンセットを生成します。" },
+      "sqlFormatter": { "title": "SQLフォーマッター", "description": "MySQL、PostgreSQL、SQL Server、Oracle、SQLiteの文法を考慮してSQLクエリをブラウザで整形します。" }
     }
   },
   "Tools": {
@@ -108,6 +109,7 @@
       "title": "JWTデコーダー", "description": "JWTを入力するとHeaderとPayloadをブラウザ内ですぐに確認できます。デコードは署名検証ではありません。",
       "input": { "label": "JWT入力", "placeholder": "JWTトークンを貼り付けてください" },
       "actions": { "loadSample": "サンプルJWTを読み込む", "reset": "リセット", "copyJwt": "JWT全体をコピー", "copied": "コピーしました", "copyHeader": "Headerをコピー", "copyPayload": "Payloadをコピー" },
+      "tree": { "expandNode": "展開", "collapseNode": "折りたたむ", "copyValue": "値をコピー", "copied": "コピー済み" },
       "errors": { "tooLarge": "トークンが長すぎます。", "tooFewSegments": "JWTは通常3つの部分で構成されます。", "jwe": "暗号化されたJWE形式のようです。現在のJWTデコーダーではサポートしていません。", "unsupportedSegments": "サポートされていないトークン形式です({count}個のセグメントを検出)。" },
       "status": { "title": "トークンステータス", "structureLabel": "構造", "structureOk": "正常な3-part JWT形式", "payloadLabel": "Payload", "payloadOk": "JSONデコード成功", "payloadFail": "JSONデコード失敗", "expirationLabel": "有効期限", "expirationNone": "expなし", "expirationInvalid": "exp値が正しくありません", "expirationNotExpired": "まだ有効期限内です", "expirationExpired": "期限切れです", "signatureLabel": "Signature", "signatureNotVerified": "検証していません" },
       "security": { "notice": "JWTをデコードすることは署名を検証することではありません。HeaderとPayloadは誰でもデコードでき、デコードされた内容が信頼できるという意味ではありません。" },
@@ -122,6 +124,7 @@
       "metadata": { "title": "無料ファビコンジェネレーター・favicon.ico作成", "description": "テキスト・絵文字・画像からブラウザタブ・ブックマーク・iOS・Android用のファビコンセットをブラウザ内で作成します。favicon.ico、PNG、site.webmanifest、HTMLコードを一括でダウンロードできます。" },
       "title": "ファビコンジェネレーター", "description": "テキスト、絵文字、画像でウェブサイト用のファビコンセットを生成します。",
       "tabs": { "label": "ソース選択", "text": "テキスト", "emoji": "絵文字", "image": "画像", "shape": "図形" },
+      "presets": { "title": "クイックスタートスタイル", "help": "クリックすると、入力済みのテキスト・絵文字を保持したまま背景・図形のスタイルだけを適用します。", "names": { "ocean": "オーシャン", "sunset": "サンセット", "forest": "フォレスト", "grape": "グレープ", "charcoal": "チャコール", "outline": "アウトライン", "rose": "ローズ", "amber": "アンバー" } },
       "text": { "label": "テキスト(1~3文字推奨)", "bold": "太字", "tooLong": "短いテキスト(1~3文字)を推奨します。長くなるほど文字が小さくなります。" },
       "emoji": { "label": "絵文字", "presets": "よく使う絵文字", "platformNotice": "実際の表示はユーザーのOS・ブラウザによって異なる場合があります。" },
       "shape": { "kind": "図形の種類", "kinds": { "square": "四角形", "rounded": "角丸四角形", "circle": "円形" }, "radius": "角の丸み", "border": "枠線を使用", "borderColor": "枠線の色", "borderWidth": "太さ", "content": "内部表示", "contentTypes": { "none": "なし", "text": "テキスト", "emoji": "絵文字" }, "contentText": "テキスト(1~3文字推奨)", "contentEmoji": "絵文字" },
@@ -138,9 +141,33 @@
       "readme": { "body": "ファビコンセット利用案内\n\n1. この圧縮ファイルの内容をウェブサイトのpublicルートにアップロードしてください。\n2. 以下のHTMLコードを'<head>'に貼り付けてください。\n3. ブラウザキャッシュにより反映が遅れる場合があります。\n\n{html}" },
       "privacy": "アップロードした画像はブラウザ内でのみ処理され、サーバーには送信されません。"
     },
+    "sqlFormatter": {
+      "metadata": { "title": "無料SQLフォーマッター・SQL Beautifier", "description": "MySQL、PostgreSQL、SQL Server、Oracle、SQLiteの文法を考慮してSQLクエリをブラウザで整形・圧縮します。" },
+      "title": "SQLフォーマッター", "description": "読みにくいSQLを選択したDBMSの文法で解析し、読みやすい形に整形します。",
+      "input": { "label": "SQL入力", "help": "セミコロンで区切って複数のSQL文を入力できます。", "placeholder": "SELECT a,b,c FROM users WHERE a=1 AND b=2;" },
+      "options": {
+        "dialect": { "label": "DBMS", "sql": "Generic SQL", "mysql": "MySQL", "postgresql": "PostgreSQL", "tsql": "SQL Server (T-SQL)", "plsql": "Oracle (PL/SQL)", "sqlite": "SQLite" },
+        "keywordCase": { "label": "キーワードの大文字小文字", "upper": "UPPERCASE", "lower": "lowercase", "preserve": "元のまま" },
+        "indent": { "label": "インデント", "two": "2 spaces", "four": "4 spaces", "tab": "Tab" },
+        "logicalOperator": { "label": "AND/ORの改行", "before": "新しい行の先頭", "after": "前の行の末尾" },
+        "commaStyle": { "label": "カンマの位置", "trailing": "Trailing(後ろ)", "leading": "Leading(前)" }
+      },
+      "actions": { "format": "整形", "minify": "圧縮", "clear": "クリア", "copy": "結果をコピー", "copied": "コピーしました。", "download": "SQLファイルをダウンロード", "downloaded": "formatted.sqlを保存しました。", "retryGeneric": "Generic SQLで再試行" },
+      "result": { "label": "整形結果", "empty": "SQLを入力して整形または圧縮を実行すると、ここに結果が表示されます。", "running": "SQLを解析中…" },
+      "examples": { "title": "サンプルSQL", "hint": "選択したDBMSに合わせたサンプルクエリを読み込みます。" },
+      "errors": {
+        "inputTooLong": "SQLが長すぎます。300,000文字以内で入力してください。",
+        "parseError": "選択したDBMSの文法でSQLを解析できませんでした。このツールは完全なデータベース実行エラー検査ツールではありません。対応していない文法か、SQLに誤りがある可能性があります。",
+        "workerError": "SQL解析機能を開始できませんでした。最新のブラウザで再試行してください。",
+        "copyFailed": "結果をコピーできませんでした。クリップボードの権限を確認してください。",
+        "downloadFailed": "SQLファイルを保存できませんでした。ブラウザの設定を確認して再試行してください。"
+      },
+      "guide": { "title": "使い方", "description": "DBMSとオプションを選択し、SQLを入力して整形を実行してください。このツールはSQLを実行せず、完全な文法検証も保証しません。" },
+      "privacy": { "title": "ブラウザ内だけで処理", "description": "入力したSQLはブラウザで処理され、サーバーへ送信・保存されません。" }
+    },
     "screenshotStitcher": {
-      "metadata": { "title": "無料スクリーンショット自動結合", "description": "連続スクリーンショットの重複部分をブラウザーで検出し、1枚の長いPNGに結合します。" },
-      "title": "スクリーンショット自動結合", "description": "連続キャプチャの重複部分を見つけて削除し、1枚の長いスクリーンショットを作成します。",
+      "metadata": { "title": "無料スクリーンショット結合", "description": "連続スクリーンショットの重複部分をブラウザーで検出し、1枚の長いPNGに結合します。" },
+      "title": "スクリーンショット結合", "description": "連続キャプチャの重複部分を見つけて削除し、1枚の長いスクリーンショットを作成します。",
       "upload": { "title": "スクリーンショットを追加", "help": "複数のPNG、JPG、WebPを選択するか、ここにドロップしてください。", "dropActive": "ここに画像をドロップしてください。", "limit": "2～20枚 · 1ファイル20MB · 合計100MB" },
       "actions": { "choose": "画像を選択", "add": "画像を追加", "clear": "すべてクリア", "up": "上へ移動", "down": "下へ移動", "remove": "画像を削除", "analyze": "重複を自動検出", "reanalyze": "除外範囲で再解析", "cancel": "キャンセル", "confirm": "この接続を確認", "compose": "長い画像を作成", "download": "PNGをダウンロード" },
       "status": { "loading": "画像を確認中…", "needTwo": "解析するには画像を2枚以上追加してください。", "analyzing": "画像の接続を解析中 · {current}/{total}", "composing": "元の解像度で長い画像を作成中…" },
@@ -163,6 +190,7 @@
       "actions": { "run": "今すぐ実行", "clear": "クリア", "copyPattern": "パターンをコピー", "copyLiteral": "正規表現全体をコピー", "copyReplacement": "置換結果をコピー", "copied": "コピー済み" },
       "examples": { "title": "正規表現の例", "hint": "簡単な形式例であり完全な検証を保証しません。テスト文字列は変更しません。", "email": "メール", "number": "数字", "date": "日付", "url": "URL", "phone": "電話番号" },
       "errors": { "patternLong": "パターンは10,000文字以内にしてください。", "textLong": "テスト文字列は500,000文字以内にしてください。", "replacementLong": "置換文字列は100,000文字以内にしてください。", "resultLarge": "置換結果が大きすぎるためプレビューとコピーを省略しました。", "timeout": "正規表現の実行時間が長すぎます。パターンを簡単にするか文字列を短くしてください。", "worker": "正規表現Workerを開始できません。最新ブラウザーで再試行してください。", "copy": "コピーできませんでした。権限を確認してください。" },
+      "batch": { "title": "複数のテストケース", "help": "複数の文字列をまとめて登録し、同じパターンで一致状況とキャプチャグループを比較できます。", "addRow": "ケースを追加", "removeRow": "ケースを削除", "placeholder": "テストする文字列", "matched": "一致しました", "notMatched": "一致しません", "matchCount": "__COUNT__件", "captures": "Capture Groups", "timeout": "実行時間が長すぎます。", "empty": "まだテストケースが追加されていません。" },
       "reference": { "title": "JavaScript正規表現クイックリファレンス", "description": "現在のブラウザーのJavaScript RegExp構文が基準です。", "characters": { "title": "文字クラス", "items": ". 任意の文字\n\\d 数字 · \\w 単語文字\n\\s 空白 · [abc] 集合" }, "quantifiers": { "title": "量指定子", "items": "* 0回以上 · + 1回以上\n? 0または1回\n'{n}' n回 · '{n,m}' 範囲" }, "anchors": { "title": "アンカー", "items": "^ 先頭 · $ 末尾\n\\b 単語境界 · \\B 非境界" }, "groups": { "title": "グループ", "items": "(...) キャプチャ\n(?:...) 非キャプチャ\n(?'<name>'...) 名前付き" }, "lookaround": { "title": "Lookaround", "items": "(?=...) 肯定先読み\n(?!...) 否定先読み\n(?<=...) 肯定後読み" }, "escape": { "title": "エスケープ", "items": "\\. ドット · \\\\ バックスラッシュ\n\\t タブ · \\n 改行" } },
       "privacy": "プライバシー：パターン、テスト文字列、置換結果はブラウザーWorker内だけで処理され、送信・保存されません。"
     },
@@ -178,9 +206,10 @@
       "notices": { "png": "PNGは品質設定だけでは小さくなりにくい場合があります。WebPまたはJPEGも検討してください。", "jpeg": "JPEGは透明度を保持できないため、透明部分は白背景になります。", "metadata": "圧縮時に位置情報や撮影情報などのメタデータが削除される場合があります。" },
       "preview": { "original": "元画像プレビュー", "result": "圧縮結果プレビュー", "empty": "設定後の圧縮結果がここに表示されます。" },
       "result": { "title": "容量比較", "size": "結果容量", "saved": "削減", "saving": "元画像より容量が小さくなりました。", "larger": "元画像より__SIZE__大きくなりました。元画像の使用も検討してください。", "same": "容量は変わりませんでした。", "targetMet": "目標容量以下に圧縮しました。", "targetMissed": "現在の解像度では目標達成が困難です。最大横幅を小さくするか形式を変更してください。", "quality": "適用品質" },
-      "errors": { "multiple": "画像は1枚ずつアップロードしてください。", "unsupported": "JPG、PNG、WebP画像を選択してください。", "fileLarge": "25MBを超えています。小さい画像を選択してください。", "signature": "ファイル内容と画像形式が一致しません。", "decode": "画像を開けません。ファイルが破損している可能性があります。", "dimensions": "2400万ピクセルまたは一辺12000pxの制限を超えています。", "encoder": "このブラウザーは選択した出力形式に対応していません。", "encode": "画像を圧縮できませんでした。設定を変更して再試行してください。", "target": "10～10240KBの整数を入力してください。", "unreachable": "現在の解像度では目標容量に到達できません。", "download": "画像をダウンロードできませんでした。再試行してください。" },
+      "errors": { "multiple": "画像は1枚ずつアップロードしてください。", "unsupported": "JPG、PNG、WebP画像を選択してください。", "fileLarge": "25MBを超えています。小さい画像を選択してください。", "signature": "ファイル内容と画像形式が一致しません。", "decode": "画像を開けません。ファイルが破損している可能性があります。", "dimensions": "2400万ピクセルまたは一辺12000pxの制限を超えています。", "encoder": "このブラウザーは選択した出力形式に対応していません。", "encode": "画像を圧縮できませんでした。設定を変更して再試行してください。", "target": "10～10240KBの整数を入力してください。", "unreachable": "現在の解像度では目標容量に到達できません。", "download": "画像をダウンロードできませんでした。再試行してください。", "tooManyFiles": "一度に選択できるのは最大50枚までです。", "zipFailed": "ZIPファイルを作成できませんでした。もう一度お試しください。" },
       "privacy": { "notice": "プライバシー：画像はブラウザー内で処理され、サーバーへ送信・保存されません。", "title": "画像は外部へ送信されません", "text": "元画像と圧縮結果はこのタブの一時メモリのみで処理され、クリアまたは終了時に解放されます。" },
-      "guide": { "qualityTitle": "品質と容量のバランス", "qualityText": "品質が高いほど鮮明ですがファイルは大きくなります。写真は80%から比較してください。", "targetTitle": "指定KB以内にする", "targetText": "100KB、200KB、500KB、1MBから選び、目標以下で可能な限り高い品質を探します。" }
+      "guide": { "qualityTitle": "品質と容量のバランス", "qualityText": "品質が高いほど鮮明ですがファイルは大きくなります。写真は80%から比較してください。", "targetTitle": "指定KB以内にする", "targetText": "100KB、200KB、500KB、1MBから選び、目標以下で可能な限り高い品質を探します。" },
+      "batch": { "tabSingle": "単一の画像", "tabBatch": "複数の画像(ZIP)", "title": "複数の画像をアップロード", "help": "JPG、PNG、WebPを複数選択するか、ここに置いてください。一度に最大50枚まで対応します。", "choose": "画像を複数選択", "reselect": "選び直す", "clear": "クリア", "columnFile": "ファイル名", "columnSize": "元の容量", "columnStatus": "状態", "columnResult": "結果", "statusPending": "待機中", "statusProcessing": "圧縮中", "statusDone": "完了", "statusError": "失敗", "run": "一括圧縮を開始", "running": "圧縮中 · __CURRENT__/__TOTAL__", "downloadZip": "ZIPでダウンロード", "zipping": "ZIPファイルを作成中…", "summary": "全__TOTAL__枚中__DONE__枚を圧縮完了 · __SAVED__削減" }
     },
     "imageColorPicker": {
       "metadata": { "title": "無料画像カラーピッカー", "description": "PNG、JPEG、WebP画像の正確なピクセル色をブラウザ内で安全に抽出します。" },
@@ -217,8 +246,27 @@
       "metadata": { "title": "無料QRコード生成", "description": "テキストやURLをサーバーへ送信せずQRコードにし、選んだサイズのPNGで保存できます。" },
       "title": "QRコード生成", "description": "テキストやURLを入力するとブラウザでQRコードを自動生成し、PNGで保存できます。",
       "input": { "label": "QRコードに入れる内容", "help": "テキスト、URL、韓国語、日本語、Emoji、複数行を入力できます。内容は入力どおりにエンコードされます。", "placeholder": "テキストまたは https://example.com" },
-      "preview": { "title": "QRコードプレビュー", "empty": "内容を入力するとQRコードが表示されます。", "processing": "QRコードを生成中…", "canvasLabel": "入力内容から生成されたQRコード", "size": "サイズ", "level": "誤り訂正", "margin": "Quiet Zone", "type": "入力タイプ", "types": { "text": "テキスト", "url": "URL" } },
+      "preview": { "title": "QRコードプレビュー", "empty": "内容を入力するとQRコードが表示されます。", "processing": "QRコードを生成中…", "canvasLabel": "入力内容から生成されたQRコード", "size": "サイズ", "level": "誤り訂正", "margin": "Quiet Zone", "type": "入力タイプ", "types": { "text": "テキスト", "url": "URL" }, "effectiveLevel": "実際に適用されたレベル(ロゴにより自動引き上げ)" },
       "options": { "title": "QRコードのオプション", "size": { "label": "出力サイズ", "help": "PNGの実際の幅と高さです。" }, "level": { "label": "誤り訂正レベル", "help": "高いほど損傷に強くなりますが、格納できるデータは減ります。", "L": "L - 低 · 約7%", "M": "M - 中 · 約15%", "Q": "Q - 高 · 約25%", "H": "H - 最高 · 約30%" }, "margin": { "label": "Quiet Zoneの余白", "help": "読み取りを助けるQRコード外側の白い余白です。", "4": "4 modules - デフォルト", "6": "6 modules", "8": "8 modules" } },
+      "source": {
+        "label": "ソースタイプ",
+        "types": { "text": "テキストまたはURL", "wifi": "Wi-Fi", "contact": "連絡先(vCard)", "email": "メール", "phone": "電話", "sms": "SMS", "location": "位置情報" },
+        "payloadPreview": "生成された内容",
+        "wifi": { "ssid": "ネットワーク名(SSID)", "ssidPlaceholder": "MyWiFi", "password": "パスワード", "security": "セキュリティ", "securityOptions": { "WPA": "WPA/WPA2", "WEP": "WEP", "nopass": "なし(オープンネットワーク)" }, "hidden": "隠しネットワーク" },
+        "contact": { "firstName": "名", "lastName": "姓", "phone": "電話番号", "email": "メールアドレス" },
+        "email": { "address": "宛先メールアドレス", "subject": "件名", "body": "本文" },
+        "phone": { "number": "電話番号" },
+        "sms": { "number": "電話番号", "message": "メッセージ" },
+        "location": { "latitude": "緯度", "longitude": "経度" }
+      },
+      "logo": {
+        "title": "中央ロゴ",
+        "upload": "ロゴをアップロード",
+        "remove": "ロゴを削除",
+        "help": "QRコードの中央にロゴを合成します。読み取り可能性を保つため誤り訂正レベルが自動的にQ以上へ引き上げられます。",
+        "boosted": "読み取り可能性を保つため誤り訂正レベルが自動的に引き上げられました。",
+        "errors": { "unsupportedType": "画像ファイルを選択してください。", "fileTooLarge": "画像サイズが大きすぎます。5MB以下のファイルを使用してください。" }
+      },
       "actions": { "download": "PNGをダウンロード", "copyInput": "入力値をコピー", "clear": "クリア", "downloaded": "qr-code.pngを保存しました。", "copied": "入力値をコピーしました。" },
       "warning": { "density": "データが長いため実際の環境では読み取りにくい場合があります。より大きいサイズか低い誤り訂正レベルを検討してください。" },
       "errors": { "capacity": "現在の誤り訂正レベルではデータが長すぎます。内容を短くするか低いレベルを選んでください。", "size": "このデータには選択したサイズが小さすぎます。より大きいサイズを選んでください。", "generation": "QRコードを生成できませんでした。入力とオプションを確認して再試行してください。", "download": "PNGを保存できませんでした。ブラウザ設定を確認して再試行してください。", "copy": "入力値をコピーできませんでした。クリップボード権限を確認してください。" },
@@ -244,6 +292,13 @@
     "urlEncoderDecoder": {
       "metadata": { "title": "URLエンコーダー/デコーダー", "description": "URL全体とURL構成要素をUTF-8パーセントエンコーディングで安全に変換します。" },
       "title": "URLエンコーダー/デコーダー", "description": "URL全体またはクエリパラメータの値をUTF-8パーセントエンコーディングに変換し、元の文字列へ戻します。",
+      "view": { "label": "表示モード", "text": "テキスト変換", "query": "クエリ文字列エディター" },
+      "query": {
+        "input": { "label": "URLまたはクエリ文字列", "placeholder": "https://example.com/search?q=hello&page=2" },
+        "actions": { "parse": "分解", "copy": "結果をコピー", "copied": "結果をコピーしました。", "copyError": "コピーできませんでした。クリップボードの権限を確認してください。", "clear": "クリア" },
+        "table": { "keyLabel": "キー", "keyPlaceholder": "キー", "valueLabel": "値", "valuePlaceholder": "値", "removeRow": "行を削除", "addRow": "行を追加", "empty": "URLまたはクエリ文字列を入力して「分解」を押してください。" },
+        "output": { "label": "再構成された結果", "empty": "結果がここに表示されます。" }
+      },
       "mode": { "label": "変換モード", "encode": "Encodeモード", "decode": "Decodeモード" },
       "encodingType": { "label": "エンコード方式", "component": "URL構成要素", "fullUrl": "URL全体", "componentHelp": "クエリパラメータの値のように予約文字もエンコードします。", "fullUrlHelp": "/、?、=、&などURLの構造を表す文字を維持します。" },
       "plusHelp": "通常のDecodeでは+をスペースに変換せず、+のまま維持します。",
@@ -261,15 +316,17 @@
       "errors":{"base64":"有効なBase64ではありません。文字、長さ、末尾の= paddingを確認してください。","unrepresentable":"選択したエンコーディングで表現できない文字があります。UTF-8などを選択してください。","invalidBytes":"選択したエンコーディングでは無効なバイトです。設定を確認してください。","ambiguous":"文字エンコーディングを特定できません。リストから直接選択してください。","load":"文字エンコーディング機能を読み込めませんでした。接続を確認して再試行してください。","copy":"コピーできませんでした。クリップボードの権限を確認してください。"},"guide":{"title":"文字エンコーディングについて","description":"Base64は暗号化ではありません。Auto EncodeはUTF-8を使用し、曖昧なlegacy Decodeでは直接選択が必要です。"},"privacy":{"title":"ブラウザ内だけで処理","description":"入力と結果はサーバーへ送信、保存されません。"}
     },
     "passwordGenerator": {
-      "metadata": { "title": "安全なパスワード生成", "description": "ブラウザで長さと文字種を選び、安全なランダムパスワードを生成できます。" },
-      "title": "パスワード生成", "description": "長さと文字種を選ぶと、ブラウザの安全な乱数でパスワードを作成します。",
+      "metadata": { "title": "安全なパスワード生成", "description": "ブラウザで長さと文字種を選ぶか、覚えやすい単語の組み合わせで安全なパスワードを生成できます。" },
+      "title": "パスワード生成", "description": "ランダムな文字または単語の組み合わせを選ぶと、ブラウザの安全な乱数でパスワードを作成します。",
+      "mode": { "label": "生成方式", "characters": "ランダムな文字", "passphrase": "単語の組み合わせ" },
       "settings": { "lengthGroup": "パスワードの長さ", "rangeLabel": "スライダーで長さを選択", "numberLabel": "長さを直接入力", "characterTypes": "含める文字種", "uppercase": "大文字 (A–Z)", "lowercase": "小文字 (a–z)", "numbers": "数字 (0–9)", "symbols": "特殊文字" },
+      "passphrase": { "wordCountGroup": "単語数", "wordCountRangeLabel": "スライダーで単語数を選択", "wordCountNumberLabel": "単語数を直接入力", "optionsGroup": "単語組み合わせオプション", "separatorLabel": "区切り文字", "separators": { "hyphen": "ハイフン (-)", "underscore": "アンダースコア (_)", "period": "ピリオド (.)", "space": "スペース", "none": "区切りなし" }, "capitalize": "各単語の先頭を大文字に", "includeNumber": "数字を1つ追加" },
       "actions": { "generate": "パスワードを生成", "copy": "結果をコピー", "copied": "パスワードをクリップボードにコピーしました。" },
       "result": { "label": "生成結果", "empty": "設定を確認してからパスワードを生成してください。" },
       "strength": { "label": "パスワード強度", "weak": "弱い", "medium": "普通", "strong": "強い", "weakDescription": "長さを増やすか、より多くの文字種を選ぶことをおすすめします。", "mediumDescription": "一般的な用途には適していますが、長くするとより安全です。", "strongDescription": "長さと文字種に基づく推定強度は高い状態です。", "notice": "強度は推定値であり、サービスのポリシー適合や絶対的な安全を保証しません。" },
-      "error": { "allDisabled": "文字種を1つ以上選択してください。", "length": "8から128までの整数を入力してください。", "random": "安全な乱数を利用できません。最新のブラウザでもう一度お試しください。", "copy": "コピーできませんでした。クリップボードの権限を確認して再試行してください。" },
-      "guide": { "title": "使い方", "description": "長さと含める文字種を選んで生成します。選択した各文字種が結果に1文字以上含まれます。" },
-      "privacy": { "title": "ブラウザで安全に生成", "description": "設定と生成したパスワードはサーバーへ送信、保存されません。" }
+      "error": { "allDisabled": "文字種を1つ以上選択してください。", "length": "8から128までの整数を入力してください。", "wordCount": "3から6までの整数を入力してください。", "random": "安全な乱数を利用できません。最新のブラウザでもう一度お試しください。", "copy": "コピーできませんでした。クリップボードの権限を確認して再試行してください。" },
+      "guide": { "title": "使い方", "description": "ランダムな文字または単語の組み合わせを選び、オプションを設定して生成します。文字方式は選択した各文字種が1文字以上含まれ、単語組み合わせ方式はEFFの公開英単語リスト(7,776語)から毎回独立して単語を選びます。" },
+      "privacy": { "title": "ブラウザで安全に生成", "description": "設定と生成したパスワードはサーバーへ送信、保存されません。単語組み合わせに使う単語リストも静的ファイルとしてブラウザに含まれています。" }
     },
     "jsonFormatter": {
       "metadata": { "title": "JSONフォーマッター", "description": "ブラウザでJSONを安全に整形、圧縮、コピーできます。" },
@@ -304,7 +361,8 @@
       "metadata":{"title":"Cron式ジェネレーター・解析ツール","description":"Linuxの5フィールドCron式を作成・検証し、タイムゾーン別の次回実行を確認します。"},"title":"Cron式ジェネレーター","description":"実行周期から5フィールドCron式を作成するか、既存の式を解析して次回実行を確認します。",
       "mode":{"label":"入力方法","generator":"かんたん作成","direct":"直接入力"},"presets":{"title":"よく使うプリセット","everyMinute":"毎分","every5Minutes":"5分ごと","every10Minutes":"10分ごと","every30Minutes":"30分ごと","hourly":"毎時","midnight":"毎日0時","daily9":"毎日9時","monday9":"毎週月曜9時","monthlyFirst":"毎月1日0時","weekdays9":"平日9時"},
       "generator":{"frequency":"実行周期","interval":"間隔","hour":"時 (0–23)","minute":"分 (0–59)","weekdays":"曜日","dates":"日付","months":"月","monthLabel":"{month}月"},"modes":{"every-minute":"毎分","every-n-minutes":"N分ごと","hourly":"毎時","every-n-hours":"N時間ごと","daily":"毎日","weekly":"毎週・曜日指定","monthly":"毎月・日付指定","specific-date":"月と日付を指定"},"weekdays":{"0":"日","1":"月","2":"火","3":"水","4":"木","5":"金","6":"土"},"weekdayNames":{"0":"日曜日","1":"月曜日","2":"火曜日","3":"水曜日","4":"木曜日","5":"金曜日","6":"土曜日"},
-      "direct":{"label":"Cron式","help":"分 時 日 月 曜日の数値5フィールドと *、カンマ、ハイフン、スラッシュに対応します。"},"result":{"title":"Cron結果","empty":"式を入力してください。"},"status":{"valid":"有効な5フィールドCron式です。","empty":"式を入力すると検証結果が表示されます。"},"actions":{"copyCron":"Cronをコピー","copyDescription":"説明をコピー","copied":"コピー済み","clear":"リセット"},
+      "direct":{"label":"Cron式","help":"分 時 日 月 曜日の数値5フィールドと *、カンマ、ハイフン、スラッシュに対応します。"},"result":{"title":"Cron結果","empty":"式を入力してください。"},"status":{"valid":"有効な5フィールドCron式です。","empty":"式を入力すると検証結果が表示されます。"},"actions":{"copyCron":"Cronをコピー","copyDescription":"説明をコピー","copyCrontab":"crontab行をコピー","copied":"コピー済み","clear":"リセット"},
+      "crontabLine":{"label":"コマンド(任意)","help":"crontabにそのまま貼り付けられる行を作成します。このツールはコマンドを実行しません。crontabが特別に解釈する % 文字は自動的に \\% にエスケープされます。","placeholder":"/usr/bin/backup.sh --mode=daily","resultLabel":"crontab全体行"},
       "descriptionTitle":"読みやすい説明","descriptions":{"everyMinute":"毎分実行","everyNMinutes":"{n}分ごとに実行","hourlyAt":"毎時{m}分に実行","everyNHours":"{n}時間ごとの{m}分に実行","dailyAt":"毎日{time}に実行","weeklyAt":"毎週{days}の{time}に実行","monthlyAt":"毎月{dates}日の{time}に実行","specificDate":"{months}月{dates}日の{time}に実行","custom":"カスタムスケジュールです。フィールドと次回実行を確認してください。","orSuffix":"日付または曜日のどちらかが一致すると実行します（OR）。"},
       "fields":{"title":"フィールドの内訳","minute":"Minute","hour":"Hour","dayOfMonth":"Day of Month","month":"Month","dayOfWeek":"Day of Week"},"warnings":{"domDowOr":"日付と曜日が両方指定されています。Unix/Vixie規則では、どちらかが一致すると実行します（OR）。"},
       "timezone":{"label":"タイムゾーン","browser":"ブラウザーのタイムゾーン · {zone}","warning":"通常、Cron式自体にタイムゾーンは含まれません。実際の実行時刻はサーバーやサービスの設定に依存します。"},"next":{"title":"次回実行予定","count":"表示件数","empty":"有効な式の次回実行がここに表示されます。"},

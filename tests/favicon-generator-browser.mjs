@@ -256,6 +256,38 @@ try {
   const readme = strFromU8(files["README.txt"]);
   assert.match(readme, /<link rel="icon" href="\/favicon\.ico" sizes="any" \/>/);
 
+  // --- Preset gallery: applies style, carries over current text/emoji (IDEAS.md #16) -----
+  // Scoped to #main-content: the site's own "도구 메뉴" nav dropdown has category buttons
+  // (e.g. "텍스트") that share text with this tool's own controls and would otherwise collide.
+  const main = page.locator("#main-content");
+  await main.getByRole("tab", { name: "텍스트" }).click();
+  await page.getByLabel("텍스트 (1~3자 권장)").fill("Hi");
+  await main.getByRole("button", { name: "오션", exact: true }).click();
+  assert.equal(await main.getByRole("tab", { name: "도형" }).getAttribute("aria-selected"), "true", "preset click switches to the Shape tab");
+  assert.equal(await bgHex.inputValue(), "#2563EB");
+  assert.equal(await fgHex.inputValue(), "#FFFFFF");
+  assert.equal(await main.getByRole("button", { name: "라운드 사각형", exact: true }).getAttribute("aria-pressed"), "true");
+  assert.equal(await main.getByRole("button", { name: "텍스트", exact: true }).getAttribute("aria-pressed"), "true", "content type carried over from the Text tab");
+  assert.equal(await page.getByLabel("텍스트 (1~3자 권장)").inputValue(), "Hi", "text typed on the Text tab is carried into the shape's content, never discarded");
+  assert.equal(await page.getByText("배경색과 글자색의 대비가 낮아", { exact: false }).count(), 0, "curated preset colors must not trigger the low-contrast warning");
+
+  await main.getByRole("tab", { name: "이모지" }).click();
+  await main.getByRole("button", { name: "🎯", exact: true }).click();
+  await main.getByRole("button", { name: "로즈", exact: true }).click();
+  assert.equal(await main.getByRole("tab", { name: "도형" }).getAttribute("aria-selected"), "true");
+  assert.equal(await bgHex.inputValue(), "#E11D48");
+  assert.equal(await main.getByRole("button", { name: "사각형", exact: true }).getAttribute("aria-pressed"), "true");
+  assert.equal(await main.getByRole("button", { name: "이모지", exact: true }).getAttribute("aria-pressed"), "true", "content type carried over from the Emoji tab");
+  assert.equal(await page.getByLabel("이모지", { exact: true }).inputValue(), "🎯", "emoji picked on the Emoji tab is carried into the shape's content");
+  assert.equal(await page.getByLabel("테두리 사용").isChecked(), false, "the rose preset has no border");
+
+  await main.getByRole("button", { name: "아웃라인", exact: true }).click();
+  assert.equal(await page.getByLabel("테두리 사용").isChecked(), true, "the outline preset enables the border");
+  assert.equal(await bgHex.inputValue(), "#FFFFFF");
+  // Content type is still "emoji" here (carried over from the rose step, and clicking a
+  // preset while already on the Shape tab intentionally never overrides it) — the foreground
+  // color picker only renders for text content, so it isn't checked for this step.
+
   // --- Reset --------------------------------------------------------------
   await page.getByRole("button", { name: "초기화" }).click();
   assert.equal(await page.getByRole("tab", { name: "텍스트" }).getAttribute("aria-selected"), "true");
@@ -314,6 +346,7 @@ try {
         pngSignaturesValid: true,
         manifestContentValid: true,
         readmeIncludesHtmlSnippet: true,
+        presetGallery: true,
         reset: true,
         locales: 3,
         viewports: [320, 375, 768, 1440],

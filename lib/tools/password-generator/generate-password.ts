@@ -25,7 +25,7 @@ export function selectedCharacterSets(options: PasswordOptions) {
     .map((key) => PASSWORD_CHARACTER_SETS[key]);
 }
 
-function browserRandomSource(values: Uint32Array) {
+export function browserRandomSource(values: Uint32Array) {
   if (!globalThis.crypto?.getRandomValues) throw new Error("Secure random unavailable");
   return globalThis.crypto.getRandomValues(values);
 }

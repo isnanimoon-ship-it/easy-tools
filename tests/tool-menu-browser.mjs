@@ -36,7 +36,7 @@ try {
   await page.goto(`${baseUrl}/ko/tools/json-formatter`, { waitUntil: "domcontentloaded" }); await assertLayout(page);
   for (const label of ["텍스트", "개발자", "이미지·미디어", "기타 도구", "전체 도구"]) assert.equal(await page.getByRole("button", { name: new RegExp(label) }).isVisible(), true);
   const developer = page.getByRole("button", { name: /개발자/ }); assert.equal(await developer.getAttribute("aria-expanded"), "false"); assert.match(await developer.getAttribute("class"), /bg-\[var\(--info-bg\)\]/);
-  await developer.click(); let panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 6); assert.equal(await panel.getByRole("heading", { name: "개발자" }).count(), 1);
+  await developer.click(); let panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 8); assert.equal(await panel.getByRole("heading", { name: "개발자" }).count(), 1);
   await page.keyboard.press("Escape"); assert.equal(await developer.evaluate(node => node === document.activeElement), true);
   await page.getByRole("button", { name: /기타 도구/ }).click(); panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 2); assert.equal(await panel.getByRole("heading", { name: "기타 도구" }).count(), 1);
   await page.keyboard.press("Escape");

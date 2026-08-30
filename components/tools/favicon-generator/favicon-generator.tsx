@@ -10,6 +10,7 @@ import { isLowContrast } from "@/lib/tools/favicon-generator/contrast";
 import { buildIco } from "@/lib/tools/favicon-generator/ico";
 import { buildHtmlSnippet, buildManifest, buildZipFilename } from "@/lib/tools/favicon-generator/manifest";
 import { buildZip, textToBytes, type PackageFile } from "@/lib/tools/favicon-generator/package";
+import { FAVICON_PRESETS, type FaviconPreset } from "@/lib/tools/favicon-generator/presets";
 import { renderFavicon } from "@/lib/tools/favicon-generator/render";
 import {
   DEFAULT_CROP,
@@ -138,6 +139,40 @@ export function FaviconGenerator() {
     crop,
     imageBackground,
   ]);
+
+  // Applying a preset switches to the Shape tab (the only source that has background +
+  // shape + border together) and carries over whatever the user already typed on the
+  // tab they were on, so a click never discards their current text/emoji — IDEAS.md #16.
+  function applyPreset(preset: FaviconPreset) {
+    setBackgroundColor(preset.background);
+    setForegroundColor(preset.foreground);
+    setShapeKind(preset.shape);
+    setShapeRadius(preset.radius);
+    setShapeBorderEnabled(preset.border !== null);
+    if (preset.border) {
+      setShapeBorderColor(preset.border.color);
+      setShapeBorderWidth(preset.border.width);
+    }
+    setTextBold(preset.bold);
+    if (activeTab === "text") {
+      setShapeContentType("text");
+      setShapeContentText(textValue);
+    } else if (activeTab === "emoji") {
+      setShapeContentType("emoji");
+      setShapeContentEmoji(emojiValue);
+    }
+    setActiveTab("shape");
+  }
+  function presetPreviewSpec(preset: FaviconPreset): FaviconSpec {
+    return {
+      kind: "shape",
+      shape: preset.shape,
+      background: preset.background,
+      border: preset.border,
+      radius: preset.radius,
+      content: { type: "text", text: "A", foreground: preset.foreground },
+    };
+  }
 
   const textTooLong = activeTab === "text" && [...textValue].length > 3;
   const shapeTextTooLong = activeTab === "shape" && shapeContentType === "text" && [...shapeContentText].length > 3;
@@ -330,6 +365,25 @@ export function FaviconGenerator() {
           </button>
         ))}
       </div>
+
+      <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-6">
+        <h2 className="font-bold text-[var(--foreground)]">{t("presets.title")}</h2>
+        <p className="mt-1 text-sm text-[var(--text-muted)]">{t("presets.help")}</p>
+        <div className="mt-3 flex flex-wrap gap-3">
+          {FAVICON_PRESETS.map((preset) => (
+            <button
+              key={preset.id}
+              type="button"
+              onClick={() => applyPreset(preset)}
+              aria-label={t(`presets.names.${preset.id}`)}
+              className="flex min-w-16 flex-col items-center gap-1 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-2 hover:bg-[var(--surface-muted)] focus:outline-none focus:ring-4 focus:ring-[var(--focus-ring)]"
+            >
+              <FaviconCanvas spec={presetPreviewSpec(preset)} size={48} displaySize={48} className="rounded" />
+              <span className="text-xs font-semibold text-[var(--foreground)]">{t(`presets.names.${preset.id}`)}</span>
+            </button>
+          ))}
+        </div>
+      </section>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,.9fr)]">
         <section className="min-w-0 space-y-5 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-6">

@@ -5,8 +5,38 @@ export type InputType = "text" | "url";
 export type QrGenerationError = "capacity-exceeded" | "size-too-small" | "generation-failed";
 
 export type QrOptions = { size: QrSize; level: ErrorCorrectionLevel; margin: QuietZone };
-export type QrMetadata = { version: number; moduleCount: number; modulePixels: number; warning: boolean };
+export type QrLogoOptions = { image: CanvasImageSource; sizeRatio: number };
+export type QrMetadata = {
+  version: number;
+  moduleCount: number;
+  modulePixels: number;
+  warning: boolean;
+  effectiveLevel: ErrorCorrectionLevel;
+};
 export type QrGenerationResult = { ok: true; metadata: QrMetadata } | { ok: false; reason: QrGenerationError };
+
+const LEVEL_ORDER: ErrorCorrectionLevel[] = ["L", "M", "Q", "H"];
+const MIN_LEVEL_WITH_LOGO: ErrorCorrectionLevel = "Q";
+
+export function effectiveLevelForLogo(level: ErrorCorrectionLevel, hasLogo: boolean): ErrorCorrectionLevel {
+  if (!hasLogo) return level;
+  return LEVEL_ORDER.indexOf(level) < LEVEL_ORDER.indexOf(MIN_LEVEL_WITH_LOGO) ? MIN_LEVEL_WITH_LOGO : level;
+}
+
+export function compositeLogo(canvas: HTMLCanvasElement, logo: QrLogoOptions): void {
+  const context = canvas.getContext("2d");
+  if (!context) return;
+
+  const logoSize = canvas.width * logo.sizeRatio;
+  const padding = logoSize * 0.12;
+  const backdropSize = logoSize + padding * 2;
+  const backdropOffset = (canvas.width - backdropSize) / 2;
+  const logoOffset = (canvas.width - logoSize) / 2;
+
+  context.fillStyle = "#ffffff";
+  context.fillRect(backdropOffset, backdropOffset, backdropSize, backdropSize);
+  context.drawImage(logo.image, logoOffset, logoOffset, logoSize, logoSize);
+}
 
 export const QR_SIZES = [128, 256, 512, 1024] as const;
 export const ERROR_LEVELS = ["L", "M", "Q", "H"] as const;
@@ -35,16 +65,32 @@ export function classifyGenerationError(error: unknown): QrGenerationError {
     ? "capacity-exceeded" : "generation-failed";
 }
 
-export async function renderQrCode(canvas: HTMLCanvasElement, input: string, options: QrOptions): Promise<QrGenerationResult> {
+export async function renderQrCode(
+  canvas: HTMLCanvasElement,
+  input: string,
+  options: QrOptions,
+  logo?: QrLogoOptions,
+): Promise<QrGenerationResult> {
   try {
     const QRCode = await import("qrcode");
-    const symbol = QRCode.create(input, { errorCorrectionLevel: options.level });
+    const effectiveLevel = effectiveLevelForLogo(options.level, Boolean(logo));
+    const symbol = QRCode.create(input, { errorCorrectionLevel: effectiveLevel });
     const modulePixels = calculateModulePixels(options.size, symbol.modules.size, options.margin);
     if (modulePixels < 2) return { ok: false, reason: "size-too-small" };
     await QRCode.toCanvas(canvas, input, {
-      errorCorrectionLevel: options.level, margin: options.margin, width: options.size,
+      errorCorrectionLevel: effectiveLevel, margin: options.margin, width: options.size,
       color: { dark: "#000000ff", light: "#ffffffff" },
     });
-    return { ok: true, metadata: { version: symbol.version, moduleCount: symbol.modules.size, modulePixels, warning: shouldWarnForDensity(symbol.version, input) } };
+    if (logo) compositeLogo(canvas, logo);
+    return {
+      ok: true,
+      metadata: {
+        version: symbol.version,
+        moduleCount: symbol.modules.size,
+        modulePixels,
+        warning: shouldWarnForDensity(symbol.version, input),
+        effectiveLevel,
+      },
+    };
   } catch (error) { return { ok: false, reason: classifyGenerationError(error) }; }
 }

@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { UrlEncoderDecoder, type UrlEncoderDecoderLabels } from "./url-encoder-decoder";
 
 const labels: UrlEncoderDecoderLabels = {
+  viewModeLabel: "View mode", viewText: "Text conversion", viewQuery: "Query string editor",
   modeLabel: "Mode", encodeMode: "Encode mode", decodeMode: "Decode mode",
   typeLabel: "Encoding type", componentType: "URL Component", fullUrlType: "Full URL",
   componentHelp: "Encodes reserved characters.", fullUrlHelp: "Keeps URL structure.", plusHelp: "Plus stays plus.",
@@ -12,6 +13,13 @@ const labels: UrlEncoderDecoderLabels = {
   encode: "Encode", decode: "Decode", clear: "Clear", copy: "Copy result", copied: "Copied",
   operations: { "encode-component": "UTF-8 component encoding", "encode-full-url": "UTF-8 full URL encoding", "decode-component": "UTF-8 component decoding", "decode-full-url": "UTF-8 full URL decoding" },
   errors: { "invalid-percent-encoding": "Invalid URL encoding", "invalid-unicode": "Invalid Unicode", copy: "Copy failed" },
+  query: {
+    inputLabel: "URL or query string", inputPlaceholder: "Paste a URL", parse: "Parse",
+    keyLabel: "Key", keyPlaceholder: "key", valueLabel: "Value", valuePlaceholder: "value",
+    removeRow: "Remove row", addRow: "Add row", tableEmpty: "No parameters yet",
+    outputLabel: "Result", outputEmpty: "Result appears here", copy: "Copy", copied: "Copied",
+    copyError: "Copy failed", clear: "Clear",
+  },
 };
 
 afterEach(() => vi.restoreAllMocks());

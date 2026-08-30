@@ -5,9 +5,28 @@ import { contrastRatio, hexToRgb, isLowContrast } from "./contrast";
 import { buildIco } from "./ico";
 import { buildHtmlSnippet, buildManifest, buildZipFilename, resolveSiteName } from "./manifest";
 import { buildZip, textToBytes } from "./package";
+import { FAVICON_PRESETS } from "./presets";
 import { fitTextFontSize } from "./render";
 import { validateFile, validDimensions } from "./validation";
 import type { CropState } from "./types";
+
+describe("FAVICON_PRESETS — IDEAS.md #16 quick-start gallery", () => {
+  it("clears the same low-contrast threshold used for manual color pickers", () => {
+    for (const preset of FAVICON_PRESETS) {
+      expect(isLowContrast(preset.background, preset.foreground), `${preset.id} background/foreground`).toBe(false);
+    }
+  });
+  it("has unique ids", () => {
+    expect(new Set(FAVICON_PRESETS.map((preset) => preset.id)).size).toBe(FAVICON_PRESETS.length);
+  });
+  it("keeps radius within the 0-0.5 range the UI slider allows", () => {
+    for (const preset of FAVICON_PRESETS) expect(preset.radius).toBeGreaterThanOrEqual(0);
+    for (const preset of FAVICON_PRESETS) expect(preset.radius).toBeLessThanOrEqual(0.5);
+  });
+  it("provides at least 6 presets as the SPEC calls for", () => {
+    expect(FAVICON_PRESETS.length).toBeGreaterThanOrEqual(6);
+  });
+});
 
 describe("cropRect — SPEC decision 4 (preview-independent normalized coordinates)", () => {
   const square = { width: 100, height: 100 };

@@ -12,9 +12,9 @@ const viewports = [
   { width: 1280, height: 900 },
 ];
 const labels = {
-  ko: { encodeMode: "Encode 모드", decodeMode: "Decode 모드", component: "URL 구성요소", full: "URL 전체", inputEncode: "문자열 또는 URL 입력", inputDecode: "인코딩된 문자열 입력", result: /결과/, encode: "Encode", decode: "Decode", clear: "초기화", copy: "결과 복사", nav: "URL 인코더" },
-  en: { encodeMode: "Encode mode", decodeMode: "Decode mode", component: "URL Component", full: "Full URL", inputEncode: "Text or URL input", inputDecode: "Encoded string input", result: /result/i, encode: "Encode", decode: "Decode", clear: "Clear", copy: "Copy result", nav: "URL Encoder" },
-  ja: { encodeMode: "Encodeモード", decodeMode: "Decodeモード", component: "URL構成要素", full: "URL全体", inputEncode: "文字列またはURLの入力", inputDecode: "エンコード済み文字列の入力", result: /結果/, encode: "エンコード", decode: "デコード", clear: "クリア", copy: "結果をコピー", nav: "URLエンコーダー" },
+  ko: { encodeMode: "Encode 모드", decodeMode: "Decode 모드", component: "URL 구성요소", full: "URL 전체", inputEncode: "문자열 또는 URL 입력", inputDecode: "인코딩된 문자열 입력", result: /결과/, encode: "Encode", decode: "Decode", clear: "초기화", copy: "결과 복사", nav: "URL 인코더/디코더", viewText: "텍스트 변환", viewQuery: "Query String 편집기", queryInput: "URL 또는 Query String 입력", parse: "분해", addRow: "행 추가", removeRow: "행 삭제", queryOutput: "재구성된 결과" },
+  en: { encodeMode: "Encode mode", decodeMode: "Decode mode", component: "URL Component", full: "Full URL", inputEncode: "Text or URL input", inputDecode: "Encoded string input", result: /result/i, encode: "Encode", decode: "Decode", clear: "Clear", copy: "Copy result", nav: "URL Encoder/Decoder", viewText: "Text conversion", viewQuery: "Query string editor", queryInput: "URL or query string", parse: "Parse", addRow: "Add row", removeRow: "Remove row", queryOutput: "Reconstructed result" },
+  ja: { encodeMode: "Encodeモード", decodeMode: "Decodeモード", component: "URL構成要素", full: "URL全体", inputEncode: "文字列またはURLの入力", inputDecode: "エンコード済み文字列の入力", result: /結果/, encode: "エンコード", decode: "デコード", clear: "クリア", copy: "結果をコピー", nav: "URLエンコーダー/デコーダー", viewText: "テキスト変換", viewQuery: "クエリ文字列エディター", queryInput: "URLまたはクエリ文字列", parse: "分解", addRow: "行を追加", removeRow: "行を削除", queryOutput: "再構成された結果" },
 };
 
 await mkdir("artifacts", { recursive: true });
@@ -98,6 +98,15 @@ try {
       const dimensions = await page.evaluate(() => ({ innerWidth, scrollWidth: document.documentElement.scrollWidth }));
       assert.ok(dimensions.scrollWidth <= dimensions.innerWidth);
       assert.ok((await page.locator("button, select").evaluateAll((elements) => elements.filter((element) => element.offsetParent !== null && !(element.getRootNode() instanceof ShadowRoot && element.getRootNode().host.tagName === "NEXTJS-PORTAL")).map((element) => element.getBoundingClientRect().height))).every((height) => height >= 44));
+
+      const viewQueryTab = page.getByRole("button", { name: label.viewQuery });
+      const viewTextTab = page.getByRole("button", { name: label.viewText });
+      await viewQueryTab.click();
+      assert.equal(await page.locator("textarea").count(), 1);
+      assert.equal(await page.getByRole("textbox", { name: label.queryInput }).count(), 1);
+      await viewTextTab.click();
+      assert.equal(await page.locator("textarea").count(), 2);
+
       if (locale === "ko" && viewport.width === 375) {
         for (const text of ["hello world", "안녕하세요", "こんにちは", "你好", "Hello 😀🚀", "안녕하세요 world & test=true", "! @ # $ % ^ & * ( )", "line 1\r\nline 2"]) {
           await roundTrip(page, label, text, "component");
@@ -163,6 +172,39 @@ try {
         assert.equal(requests.some((request) => request.includes(marker)), false);
         const stored = await page.evaluate(() => JSON.stringify({ url: location.href, local: Object.values(localStorage), session: Object.values(sessionStorage), cookie: document.cookie }));
         assert.equal(stored.includes(marker), false);
+
+        await viewQueryTab.click();
+        const queryInput = page.getByRole("textbox", { name: label.queryInput });
+        const parseButton = page.getByRole("button", { name: label.parse, exact: true });
+        const queryOutput = page.getByRole("textbox", { name: label.queryOutput });
+        await queryInput.fill("https://example.com/search?q=hello world&page=2&tag=a&tag=b");
+        await parseButton.click();
+        const keyInputs = page.getByPlaceholder("키");
+        const valueInputs = page.getByPlaceholder("값");
+        assert.deepEqual(await keyInputs.evaluateAll((els) => els.map((el) => el.value)), ["q", "page", "tag", "tag"]);
+        assert.deepEqual(await valueInputs.evaluateAll((els) => els.map((el) => el.value)), ["hello world", "2", "a", "b"]);
+        assert.equal(await queryOutput.inputValue(), "https://example.com/search?q=hello+world&page=2&tag=a&tag=b");
+
+        await valueInputs.first().fill("changed");
+        assert.equal(await queryOutput.inputValue(), "https://example.com/search?q=changed&page=2&tag=a&tag=b");
+
+        await page.getByRole("button", { name: label.removeRow }).first().click();
+        assert.equal(await queryOutput.inputValue(), "https://example.com/search?page=2&tag=a&tag=b");
+
+        await page.getByRole("button", { name: label.addRow }).click();
+        await keyInputs.last().fill("extra");
+        await valueInputs.last().fill("1");
+        assert.equal(await queryOutput.inputValue(), "https://example.com/search?page=2&tag=a&tag=b&extra=1");
+
+        await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: baseUrl });
+        await page.getByRole("button", { name: label.copy }).click();
+        assert.equal(await page.evaluate(() => navigator.clipboard.readText()), "https://example.com/search?page=2&tag=a&tag=b&extra=1");
+
+        await page.getByRole("button", { name: label.clear }).click();
+        assert.equal(await queryInput.inputValue(), "");
+        assert.equal(await queryOutput.inputValue(), "");
+        await viewTextTab.click();
+
         await page.screenshot({ path: "artifacts/url-encoder-decoder-375.png", fullPage: true });
       }
 

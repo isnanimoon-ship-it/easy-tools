@@ -4,9 +4,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Copy, RotateCcw, Sparkles } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { JsonTreeView } from "@/components/tools/jwt-decoder/json-tree-view";
 import { analyzeClaims, type TimeClaimResult } from "@/lib/tools/jwt-decoder/claims";
 import { analyzeStructure, decodeSegment, type SegmentDecodeResult } from "@/lib/tools/jwt-decoder/decode";
-import { prettyJson, tokenizeJson, type JsonTokenType } from "@/lib/tools/jwt-decoder/highlight";
+import { prettyJson } from "@/lib/tools/jwt-decoder/highlight";
 import { buildSampleJwt } from "@/lib/tools/jwt-decoder/sample";
 
 const DEBOUNCE_MS = 200;
@@ -25,30 +26,6 @@ const ALGORITHM_DESCRIPTIONS: Record<string, string> = {
   PS384: "RSASSA-PSS + SHA-384",
   PS512: "RSASSA-PSS + SHA-512",
 };
-
-const TOKEN_STYLES: Record<JsonTokenType, string> = {
-  key: "text-[var(--info-fg)] font-semibold",
-  string: "text-[var(--primary)]",
-  number: "text-[var(--warning-fg)]",
-  boolean: "text-[var(--warning-fg)]",
-  null: "text-[var(--text-muted)]",
-  punctuation: "text-[var(--foreground)]",
-};
-
-function CodeBlock({ value }: { value: unknown }) {
-  const tokens = useMemo(() => tokenizeJson(prettyJson(value)), [value]);
-  return (
-    <pre className="max-h-96 overflow-x-auto whitespace-pre rounded-xl bg-[var(--surface-muted)] p-4 text-sm leading-6">
-      <code>
-        {tokens.map((token, index) => (
-          <span key={index} className={TOKEN_STYLES[token.type]}>
-            {token.text}
-          </span>
-        ))}
-      </code>
-    </pre>
-  );
-}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -94,6 +71,13 @@ export function JwtDecoder() {
     () => (payload?.ok && nowMs !== null ? analyzeClaims(payload.value, nowMs, locale) : null),
     [payload, nowMs, locale],
   );
+
+  const treeLabels = {
+    expandNode: t("tree.expandNode"),
+    collapseNode: t("tree.collapseNode"),
+    copyValue: t("tree.copyValue"),
+    copied: t("tree.copied"),
+  };
 
   function resetAll() {
     setInput("");
@@ -243,7 +227,7 @@ export function JwtDecoder() {
             </div>
             {header?.ok ? (
               <>
-                <CodeBlock value={header.value} />
+                <JsonTreeView value={header.value} labels={treeLabels} />
                 {isRecord(header.value) ? (
                   <dl className="mt-3 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
                     {typeof header.value.alg === "string" ? (
@@ -309,7 +293,7 @@ export function JwtDecoder() {
             </div>
             {payload?.ok ? (
               <>
-                <CodeBlock value={payload.value} />
+                <JsonTreeView value={payload.value} labels={treeLabels} />
                 {!claims ? (
                   <p className="mt-3 text-sm text-[var(--text-muted)]">{t("payload.notObject")}</p>
                 ) : (

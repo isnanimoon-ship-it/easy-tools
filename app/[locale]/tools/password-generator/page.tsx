@@ -24,12 +24,17 @@ export default async function PasswordGeneratorPage({ params }: PageProps) {
   setRequestLocale(locale);
   const t = await getTranslations("Tools.passwordGenerator");
   const labels: PasswordGeneratorLabels = {
+    modeLabel: t("mode.label"), modeCharacters: t("mode.characters"), modePassphrase: t("mode.passphrase"),
     lengthGroup: t("settings.lengthGroup"), rangeLabel: t("settings.rangeLabel"), numberLabel: t("settings.numberLabel"), characterTypes: t("settings.characterTypes"),
     uppercase: t("settings.uppercase"), lowercase: t("settings.lowercase"), numbers: t("settings.numbers"), symbols: t("settings.symbols"),
+    wordCountGroup: t("passphrase.wordCountGroup"), wordCountRangeLabel: t("passphrase.wordCountRangeLabel"), wordCountNumberLabel: t("passphrase.wordCountNumberLabel"),
+    optionsGroup: t("passphrase.optionsGroup"), separatorLabel: t("passphrase.separatorLabel"),
+    separators: { hyphen: t("passphrase.separators.hyphen"), underscore: t("passphrase.separators.underscore"), period: t("passphrase.separators.period"), space: t("passphrase.separators.space"), none: t("passphrase.separators.none") },
+    capitalizeLabel: t("passphrase.capitalize"), includeNumberLabel: t("passphrase.includeNumber"),
     generate: t("actions.generate"), resultLabel: t("result.label"), emptyResult: t("result.empty"), copy: t("actions.copy"), copied: t("actions.copied"),
     strengthLabel: t("strength.label"), strength: { weak: t("strength.weak"), medium: t("strength.medium"), strong: t("strength.strong") },
     strengthDescription: { weak: t("strength.weakDescription"), medium: t("strength.mediumDescription"), strong: t("strength.strongDescription") }, strengthNotice: t("strength.notice"),
-    allDisabledError: t("error.allDisabled"), lengthError: t("error.length"), randomError: t("error.random"), copyError: t("error.copy"),
+    allDisabledError: t("error.allDisabled"), lengthError: t("error.length"), wordCountError: t("error.wordCount"), randomError: t("error.random"), copyError: t("error.copy"),
   };
   return <>
     <section className="border-b border-[var(--border)] bg-[var(--surface)]"><Container className="py-10 sm:py-14"><div className="max-w-4xl"><h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">{t("title")}</h1><p className="mt-4 text-lg leading-8 text-[var(--text-muted)]">{t("description")}</p></div></Container></section>

@@ -20,7 +20,8 @@
     "next-intl": "^4.13.4",
     "qrcode": "1.5.4",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "sql-formatter": "15.8.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

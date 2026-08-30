@@ -15,6 +15,21 @@ try{
  await setCase(page,"safe","safe again");assert.equal(await page.getByText("Match #1",{exact:true}).isVisible(),true);
  assert.equal(await page.getByText("g flag가 활성화되어 전체 Match를 찾았습니다.",{exact:true}).isVisible(),true);
  const marker="PRIVATE_REGEX_7f3a";await setCase(page,"PRIVATE_REGEX_\\w+",marker);assert.equal(await page.locator("mark").textContent(),marker);const storage=await page.evaluate(()=>({local:[...Object.keys(localStorage)],session:[...Object.keys(sessionStorage)],url:location.href}));assert.equal(JSON.stringify(storage).includes(marker),false);
+
+ await page.getByLabel("정규식 Pattern").fill("(\\d{4})-(\\d{2})-(\\d{2})");
+ await page.getByRole("button",{name:"케이스 추가"}).click();await page.getByRole("button",{name:"케이스 추가"}).click();await page.getByRole("button",{name:"케이스 추가"}).click();
+ const batchRows=page.getByPlaceholder("테스트할 문자열");
+ await batchRows.nth(0).fill("2024-01-02");await batchRows.nth(1).fill("not a date");await batchRows.nth(2).fill("2024-01-02 and 2025-06-07");
+ await page.getByText("매치됨",{exact:true}).first().waitFor({timeout:5000});
+ assert.equal(await page.getByText("매치 안 됨",{exact:true}).count(),1);
+ assert.equal(await page.getByText("매치됨 · 2건",{exact:true}).count(),1);
+ assert.equal(await page.getByText("Capture Groups",{exact:true}).count(),2);
+ const removeButtons=page.getByRole("button",{name:"케이스 삭제"});await removeButtons.nth(1).click();
+ assert.equal(await batchRows.count(),2);assert.equal(await page.getByText("매치 안 됨",{exact:true}).count(),0);
+ await page.getByLabel("정규식 Pattern").fill("[abc");
+ await page.getByText("Invalid regular expression",{exact:false}).first().waitFor({timeout:5000});
+ await page.getByRole("button",{name:"초기화"}).click();
+ assert.equal(await batchRows.count(),0);assert.equal(await page.getByText("아직 추가한 테스트 케이스가 없습니다.").isVisible(),true);
  await context.close();
  for(const[locale,width,title]of[["ko",320,"정규식 테스터"],["en",375,"Regex Tester"],["ja",768,"正規表現テスター"]]){const c=await browser.newContext({viewport:{width,height:850}});const p=await c.newPage();watch(p,`${locale}/${width}`);await p.goto(`${baseUrl}/${locale}/tools/regex-tester`,{waitUntil:"domcontentloaded"});assert.equal(await p.getByRole("heading",{name:title,exact:true}).isVisible(),true);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);await c.close();}
  assert.deepEqual(consoleErrors,[]);assert.deepEqual(pageErrors,[]);assert.deepEqual(externalRequests,[]);process.stdout.write(JSON.stringify({worker:"PASS",globalMatches:3,caseInsensitive:3,captureGroups:"PASS",namedGroups:"PASS",replace:"PASS",unicodeZeroLength:2,invalidRegex:"PASS",redosTimeout:"PASS",mainThreadResponsive:true,recoveryAfterTimeout:"PASS",locales:["ko","en","ja"],viewports:[320,375,768,1440],externalInputRequests:0,consoleErrors:0,pageErrors:0,horizontalOverflow:0},null,2));

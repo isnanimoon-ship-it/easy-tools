@@ -7,9 +7,9 @@ const chromePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const locales = ["ko", "en", "ja"];
 const viewports = [{ width: 320, height: 800 }, { width: 375, height: 812 }, { width: 768, height: 1024 }, { width: 1024, height: 768 }, { width: 1280, height: 900 }];
 const labels = {
-  ko: { input: "YouTube 영상 주소 또는 ID", extract: "썸네일 추출", clear: "초기화", nav: "유튜브 썸네일", unavailable: "이 영상에서는 제공되지 않음", open: "이미지 열기", save: "저장" },
+  ko: { input: "YouTube 영상 주소 또는 ID", extract: "썸네일 추출", clear: "초기화", nav: "유튜브 썸네일 추출기", unavailable: "이 영상에서는 제공되지 않음", open: "이미지 열기", save: "저장" },
   en: { input: "YouTube video URL or ID", extract: "Extract thumbnails", clear: "Clear", nav: "YouTube Thumbnail Downloader", unavailable: "Not available for this video", open: "Open image", save: "Download" },
-  ja: { input: "YouTube動画URLまたはID", extract: "サムネイルを抽出", clear: "クリア", nav: "YouTubeサムネイル", unavailable: "この動画では利用できません", open: "画像を開く", save: "保存" },
+  ja: { input: "YouTube動画URLまたはID", extract: "サムネイルを抽出", clear: "クリア", nav: "YouTubeサムネイル抽出", unavailable: "この動画では利用できません", open: "画像を開く", save: "保存" },
 };
 
 await mkdir("artifacts", { recursive: true });
