@@ -1,4 +1,5 @@
 import {
+  AppWindow,
   Binary,
   Braces,
   CalendarClock,
@@ -9,11 +10,13 @@ import {
   ImageDown,
   ImageIcon,
   Images,
+  KeyRound,
   Link2,
   Palette,
   QrCode,
   Regex,
   ShieldAlert,
+  Type,
   WholeWord,
   type LucideIcon,
 } from "lucide-react";
@@ -51,6 +54,9 @@ export const TOOLS = [
   { path: "/tools/privacy-redactor", translationKey: "privacyRedactor", category: "media", icon: ShieldAlert, homeOrder: 14, menuOrder: 5 },
   { path: "/tools/screenshot-statusbar-remover", translationKey: "screenshotStatusbarRemover", category: "media", icon: Crop, homeOrder: 15, menuOrder: 6 },
   { path: "/tools/text-cleaner", translationKey: "textCleaner", category: "text", icon: WholeWord, homeOrder: 16, menuOrder: 2 },
+  { path: "/tools/korean-initial-converter", translationKey: "koreanInitialConverter", category: "text", icon: Type, homeOrder: 17, menuOrder: 3 },
+  { path: "/tools/jwt-decoder", translationKey: "jwtDecoder", category: "developer", icon: KeyRound, homeOrder: 18, menuOrder: 7 },
+  { path: "/tools/favicon-generator", translationKey: "faviconGenerator", category: "media", icon: AppWindow, homeOrder: 19, menuOrder: 7 },
 ] as const satisfies readonly ToolDefinition[];
 
 export type ToolPath = (typeof TOOLS)[number]["path"];

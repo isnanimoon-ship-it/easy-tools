@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "croner": "10.0.1",
+    "fflate": "^0.8.3",
     "iconv-lite": "^0.7.3",
     "ipaddr.js": "2.2.0",
     "lucide-react": "^1.27.0",

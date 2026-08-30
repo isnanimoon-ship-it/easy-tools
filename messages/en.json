@@ -9,7 +9,7 @@
     "skipToContent": "Skip to main content",
     "status": "Coming soon",
     "theme": { "enableDark": "Enable dark mode", "enableLight": "Enable light mode" },
-    "toolsNav": { "label": "Tools menu", "mobileLabel": "Mobile tools menu", "open": "Tools", "all": "All tools", "categories": { "text": "Text", "developer": "Developer", "media": "Images & Media", "other": "More tools" }, "wordCounter": "Word Counter", "jsonFormatter": "JSON Formatter", "passwordGenerator": "Password Generator", "base64Converter": "Base64 Converter", "urlEncoderDecoder": "URL Encoder", "youtubeThumbnailDownloader": "YouTube Thumbnails", "qrCodeGenerator": "QR Generator", "ipInfo": "IP Lookup", "imageColorPicker": "Image Color Picker", "imageCompressor": "Image Compressor", "screenshotStitcher": "Screenshot Stitcher", "privacyRedactor": "Image Masking", "screenshotStatusbarRemover": "Status Bar Remover", "regexTester": "Regex Tester", "cronExpressionGenerator": "Cron Generator", "textCleaner": "Text Cleaner" },
+    "toolsNav": { "label": "Tools menu", "mobileLabel": "Mobile tools menu", "open": "Tools", "all": "All tools", "categories": { "text": "Text", "developer": "Developer", "media": "Images & Media", "other": "More tools" }, "wordCounter": "Word Counter", "jsonFormatter": "JSON Formatter", "passwordGenerator": "Password Generator", "base64Converter": "Base64 Converter", "urlEncoderDecoder": "URL Encoder", "youtubeThumbnailDownloader": "YouTube Thumbnails", "qrCodeGenerator": "QR Generator", "ipInfo": "IP Lookup", "imageColorPicker": "Image Color Picker", "imageCompressor": "Image Compressor", "screenshotStitcher": "Screenshot Stitcher", "privacyRedactor": "Image Masking", "screenshotStatusbarRemover": "Status Bar Remover", "regexTester": "Regex Tester", "cronExpressionGenerator": "Cron Generator", "textCleaner": "Text Cleaner", "koreanInitialConverter": "Initial Consonant Converter", "jwtDecoder": "JWT Decoder", "faviconGenerator": "Favicon Generator" },
     "footer": "© {year} Easy Tools. Simple tools for everyone.",
     "result": "Result",
     "copy": "Copy",
@@ -47,7 +47,10 @@
       "screenshotStatusbarRemover": { "title": "Screenshot Status Bar Remover", "description": "Detect and remove the time/battery/carrier status bar from a phone screenshot and download the result." },
       "regexTester": { "title": "Regex Tester", "description": "Test JavaScript regular expressions, matches, capture groups, and replacements." },
       "cronExpressionGenerator": { "title": "Cron Expression Generator", "description": "Build and explain five-field Cron expressions and preview upcoming runs by timezone." },
-      "textCleaner": { "title": "Text Cleaner", "description": "Clean up whitespace and blank lines across multiple lines, and remove duplicate lines." }
+      "textCleaner": { "title": "Text Cleaner", "description": "Clean up whitespace and blank lines across multiple lines, and remove duplicate lines." },
+      "koreanInitialConverter": { "title": "Korean Initial Consonant Converter", "description": "Extract just the initial consonants from Korean text instantly." },
+      "jwtDecoder": { "title": "JWT Decoder", "description": "Paste a JWT to instantly inspect its Header and Payload in your browser." },
+      "faviconGenerator": { "title": "Favicon Generator", "description": "Create a favicon set for your website using text, emoji, or an image." }
     }
   },
   "Tools": {
@@ -87,6 +90,52 @@
       "stats": { "label": "Stats", "originalLines": "Original lines", "resultLines": "Result lines", "removedLines": "Removed lines", "originalChars": "Original characters", "resultChars": "Result characters", "uniqueLines": "Unique lines", "duplicateLines": "Duplicate lines" },
       "whitespace": { "title": "Whitespace & line breaks", "collapseSpaces": "Collapse consecutive spaces to one", "trimLines": "Trim leading/trailing whitespace per line", "tabToSpaces": "Convert tabs to spaces", "normalizeSpecialSpaces": "Convert special spaces (NBSP, full-width) to a regular space", "blankLines": { "title": "Blank lines", "keep": "Keep", "collapse": "Collapse consecutive blank lines to one", "remove": "Remove all blank lines" }, "mergeToOneLine": "Merge all lines into one line" },
       "duplicate": { "title": "Remove duplicate lines", "disabledByMerge": "Duplicate removal has no effect while merge-to-one-line is on.", "ignoreCase": "Ignore case", "ignoreSurroundingWhitespace": "Ignore surrounding whitespace", "ignoreInnerWhitespaceDiff": "Ignore inner whitespace differences", "unicodeNormalize": "Compare after Unicode normalization (NFC)", "keep": { "title": "Keep", "first": "First occurrence", "last": "Last occurrence" }, "resultType": { "title": "Result type", "unique": "All, deduplicated", "duplicatesOnly": "Only lines that had duplicates", "onceOnly": "Only lines that appeared once" } }
+    },
+    "koreanInitialConverter": {
+      "metadata": { "title": "Free Korean Initial Consonant Converter", "description": "Convert Korean text into just its initial consonants instantly. Letters, numbers, punctuation, and emoji stay unchanged. Processed entirely in your browser." },
+      "title": "Korean Initial Consonant Converter", "description": "Enter Korean text and instantly extract the initial consonant of each syllable. Letters, numbers, spaces, and emoji are kept as-is.",
+      "input": { "label": "Original text", "placeholder": "Enter the text you want to convert" },
+      "result": { "label": "Initial consonant result" },
+      "options": { "removeWhitespace": "Remove spaces" },
+      "stats": "Input {input} chars · Result {result} chars",
+      "actions": { "copy": "Copy result", "copied": "Copied", "reset": "Reset" },
+      "examples": { "title": "Examples" },
+      "privacy": "The text you enter is processed only in your browser."
+    },
+    "jwtDecoder": {
+      "metadata": { "title": "Free JWT Decoder · Inspect Header & Payload", "description": "Paste a JWT to instantly decode its Header and Payload in your browser and check expiration. Signature verification is not performed. Processed entirely in your browser." },
+      "title": "JWT Decoder", "description": "Enter a JWT and instantly inspect its Header and Payload in your browser. Decoding is not signature verification.",
+      "input": { "label": "JWT input", "placeholder": "Paste a JWT token" },
+      "actions": { "loadSample": "Load sample JWT", "reset": "Reset", "copyJwt": "Copy full JWT", "copied": "Copied", "copyHeader": "Copy Header", "copyPayload": "Copy Payload" },
+      "errors": { "tooLarge": "The token is too long.", "tooFewSegments": "A JWT is usually made up of 3 parts.", "jwe": "This looks like an encrypted JWE token. The current JWT decoder does not support it.", "unsupportedSegments": "Unsupported token format ({count} parts detected)." },
+      "status": { "title": "Token Status", "structureLabel": "Structure", "structureOk": "Valid 3-part JWT format", "payloadLabel": "Payload", "payloadOk": "JSON decode succeeded", "payloadFail": "JSON decode failed", "expirationLabel": "Expiration", "expirationNone": "No exp claim", "expirationInvalid": "exp value is invalid", "expirationNotExpired": "Not expired yet", "expirationExpired": "Expired", "signatureLabel": "Signature", "signatureNotVerified": "Not verified" },
+      "security": { "notice": "Decoding a JWT is not the same as verifying its signature. Anyone can decode the Header and Payload — decoded content is not necessarily trustworthy." },
+      "header": { "title": "HEADER", "decodeFailedJson": "Header is not valid JSON.", "decodeFailedBase64": "Header could not be decoded as Base64URL.", "algorithm": "Algorithm", "type": "Type", "keyId": "Key ID", "contentType": "Content Type", "algNone": "The signing algorithm is set to none." },
+      "payload": { "title": "PAYLOAD", "decodeFailedJson": "Payload is not valid JSON.", "decodeFailedBase64": "Payload could not be decoded as Base64URL.", "notObject": "Payload is not a JSON object, so claims cannot be analyzed." },
+      "claims": { "title": "CLAIMS", "exp": "Expiration (exp)", "iat": "Issued At (iat)", "nbf": "Not Before (nbf)", "local": "Local", "utc": "UTC", "invalidValue": "This claim's value is not a valid number.", "expNone": "No exp", "iatNone": "No iat", "nbfNone": "No nbf", "iss": "Issuer (iss)", "sub": "Subject (sub)", "aud": "Audience (aud)", "jti": "JWT ID (jti)", "nbfNotYetActive": "This token is not yet valid.", "iatFutureWarning": "The iat value is in the future." },
+      "signature": { "title": "SIGNATURE", "label": "Signature data — not verified" },
+      "privacy": "The JWT you enter is processed only in your browser.",
+      "guide": { "title": "JWT structure", "headerText": "Algorithm and token metadata", "payloadText": "Claims", "signatureText": "Signature data used to verify tampering (this tool does not verify it)", "note": "Decoding and verification are different operations." }
+    },
+    "faviconGenerator": {
+      "metadata": { "title": "Free Favicon Generator · Make favicon.ico", "description": "Create a favicon set for browser tabs, bookmarks, iOS, and Android right in your browser using text, emoji, or an image. Download favicon.ico, PNG files, site.webmanifest, and the HTML code all at once." },
+      "title": "Favicon Generator", "description": "Create a favicon set for your website using text, emoji, or an image.",
+      "tabs": { "label": "Source", "text": "Text", "emoji": "Emoji", "image": "Image", "shape": "Shape" },
+      "text": { "label": "Text (1-3 characters recommended)", "bold": "Bold", "tooLong": "Short text (1-3 characters) is recommended. Longer text will shrink the font size." },
+      "emoji": { "label": "Emoji", "presets": "Common emoji", "platformNotice": "The actual appearance may vary depending on the user's OS and browser." },
+      "shape": { "kind": "Shape", "kinds": { "square": "Square", "rounded": "Rounded square", "circle": "Circle" }, "radius": "Corner radius", "border": "Use border", "borderColor": "Border color", "borderWidth": "Width", "content": "Content", "contentTypes": { "none": "None", "text": "Text", "emoji": "Emoji" }, "contentText": "Text (1-3 characters recommended)", "contentEmoji": "Emoji" },
+      "image": { "help": "Choose or drop a PNG, JPG, or still WebP image.", "drop": "Drop the image here.", "choose": "Choose image", "zoom": "Zoom", "background": "Background", "transparent": "Transparent", "solidColor": "Solid color", "detailNotice": "Images with thin lines or fine detail may not be visible at small sizes. Use as simple an image as possible." },
+      "errors": { "unsupported-type": "Choose a PNG, JPG, or still WebP image.", "file-too-large": "The file must be 25MB or smaller.", "animated-image": "Animated WebP is not supported. Please convert it to a still image.", "dimension-limit": "The image exceeds 40 megapixels or the 16,384px side limit.", "decode-failed": "Couldn't read the image. The file may be corrupted.", "multiple-files": "Choose only one image." },
+      "colors": { "background": "Background color", "foreground": "Text color" },
+      "siteName": { "label": "Site name", "placeholder": "e.g. Coddy" },
+      "actions": { "reset": "Reset", "generating": "Generating...", "downloadZip": "Download ZIP", "copyHtml": "Copy HTML code", "copied": "Copied" },
+      "preview": { "title": "Preview", "lowContrast": "The background and text colors have low contrast and may be hard to see at small sizes.", "empty": "Upload an image to see the preview." },
+      "context": { "title": "In-context preview", "tabPlaceholder": "My Site", "iosLabel": "iOS Home Screen", "androidLabel": "Android App Icon" },
+      "files": { "title": "Generated files" },
+      "html": { "title": "'<head>' HTML code" },
+      "manifest": { "title": "site.webmanifest" },
+      "readme": { "body": "Favicon package instructions\n\n1. Upload the contents of this zip to your website''s public root.\n2. Paste the HTML code below into your '<head>'.\n3. Browser caching may delay the change from showing up.\n\n{html}" },
+      "privacy": "The image you upload is processed only in your browser and is never sent to a server."
     },
     "screenshotStitcher": {
       "metadata": { "title": "Free Automatic Screenshot Stitcher", "description": "Automatically detect overlaps and merge consecutive screenshots into one long PNG in your browser." },

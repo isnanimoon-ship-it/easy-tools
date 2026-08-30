@@ -9,7 +9,7 @@
     "skipToContent": "本文へ移動",
     "status": "準備中",
     "theme": { "enableDark": "ダークモードをオン", "enableLight": "ライトモードをオン" },
-    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64変換", "urlEncoderDecoder": "URLエンコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像圧縮", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像マスキング", "screenshotStatusbarRemover": "ステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー" },
+    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64変換", "urlEncoderDecoder": "URLエンコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像圧縮", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像マスキング", "screenshotStatusbarRemover": "ステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー", "koreanInitialConverter": "初声変換ツール", "jwtDecoder": "JWTデコーダー", "faviconGenerator": "ファビコンジェネレーター" },
     "footer": "© {year} かんたんツール。誰でもかんたんに。",
     "result": "結果",
     "copy": "コピー",
@@ -47,7 +47,10 @@
       "screenshotStatusbarRemover": { "title": "スクリーンショットのステータスバー削除", "description": "スマホのスクリーンショット上部の時刻・バッテリー・通信状態バーを検出して削除し、ダウンロードします。" },
       "regexTester": { "title": "正規表現テスター", "description": "JavaScript正規表現の一致、キャプチャグループ、置換結果を確認します。" },
       "cronExpressionGenerator": { "title": "Cron式ジェネレーター", "description": "5フィールドCronを作成・解析し、タイムゾーン別の次回実行を確認します。" },
-      "textCleaner": { "title": "テキストクリーナー", "description": "複数行の空白と空行を整理し、重複行を削除します。" }
+      "textCleaner": { "title": "テキストクリーナー", "description": "複数行の空白と空行を整理し、重複行を削除します。" },
+      "koreanInitialConverter": { "title": "ハングル初声変換ツール", "description": "ハングルの文章を入力すると各音節の初声だけを即座に抽出します。" },
+      "jwtDecoder": { "title": "JWTデコーダー", "description": "JWTを貼り付けるとHeaderとPayloadをブラウザ内ですぐに確認できます。" },
+      "faviconGenerator": { "title": "ファビコンジェネレーター", "description": "テキスト、絵文字、画像でウェブサイト用のファビコンセットを生成します。" }
     }
   },
   "Tools": {
@@ -87,6 +90,52 @@
       "stats": { "label": "統計", "originalLines": "元の行数", "resultLines": "結果の行数", "removedLines": "削除された行数", "originalChars": "元の文字数", "resultChars": "結果の文字数", "uniqueLines": "重複のない行", "duplicateLines": "重複行" },
       "whitespace": { "title": "空白・改行の整理", "collapseSpaces": "連続する空白を1つにまとめる", "trimLines": "各行の前後の空白を削除", "tabToSpaces": "タブを空白に変換", "normalizeSpecialSpaces": "特殊な空白(全角スペース・NBSP)を通常の空白に変換", "blankLines": { "title": "空行の処理", "keep": "維持", "collapse": "連続する空行を1つにまとめる", "remove": "すべての空行を削除" }, "mergeToOneLine": "すべての行を1行にまとめる" },
       "duplicate": { "title": "重複行の削除", "disabledByMerge": "「1行にまとめる」が有効な場合、重複削除は適用されません。", "ignoreCase": "大文字・小文字を区別しない", "ignoreSurroundingWhitespace": "前後の空白を無視", "ignoreInnerWhitespaceDiff": "行内部の空白差を無視", "unicodeNormalize": "Unicode正規化(NFC)後に比較", "keep": { "title": "残す行", "first": "最初に出現した行", "last": "最後に出現した行" }, "resultType": { "title": "結果の種類", "unique": "重複を除いたすべて", "duplicatesOnly": "重複していた行のみ", "onceOnly": "1回だけ出現した行のみ" } }
+    },
+    "koreanInitialConverter": {
+      "metadata": { "title": "無料ハングル初声変換ツール", "description": "ハングルのテキストを初声だけに即座に変換します。英数字・記号・絵文字はそのまま維持され、ブラウザ内のみで処理されます。" },
+      "title": "ハングル初声変換ツール", "description": "ハングルの文章を入力すると各音節の初声だけを即座に抽出します。英数字・空白・絵文字はそのまま維持されます。",
+      "input": { "label": "元のテキスト", "placeholder": "変換したいテキストを入力してください" },
+      "result": { "label": "初声の結果" },
+      "options": { "removeWhitespace": "空白を削除" },
+      "stats": "入力 {input}文字 · 結果 {result}文字",
+      "actions": { "copy": "結果をコピー", "copied": "コピーしました", "reset": "リセット" },
+      "examples": { "title": "使用例" },
+      "privacy": "入力したテキストはブラウザ内でのみ処理されます。"
+    },
+    "jwtDecoder": {
+      "metadata": { "title": "無料JWTデコーダー・Header/Payload確認", "description": "JWTを貼り付けるとHeaderとPayloadをブラウザ内で即座にデコードし、有効期限を確認できます。署名検証は行いません。ブラウザ内のみで処理されます。" },
+      "title": "JWTデコーダー", "description": "JWTを入力するとHeaderとPayloadをブラウザ内ですぐに確認できます。デコードは署名検証ではありません。",
+      "input": { "label": "JWT入力", "placeholder": "JWTトークンを貼り付けてください" },
+      "actions": { "loadSample": "サンプルJWTを読み込む", "reset": "リセット", "copyJwt": "JWT全体をコピー", "copied": "コピーしました", "copyHeader": "Headerをコピー", "copyPayload": "Payloadをコピー" },
+      "errors": { "tooLarge": "トークンが長すぎます。", "tooFewSegments": "JWTは通常3つの部分で構成されます。", "jwe": "暗号化されたJWE形式のようです。現在のJWTデコーダーではサポートしていません。", "unsupportedSegments": "サポートされていないトークン形式です({count}個のセグメントを検出)。" },
+      "status": { "title": "トークンステータス", "structureLabel": "構造", "structureOk": "正常な3-part JWT形式", "payloadLabel": "Payload", "payloadOk": "JSONデコード成功", "payloadFail": "JSONデコード失敗", "expirationLabel": "有効期限", "expirationNone": "expなし", "expirationInvalid": "exp値が正しくありません", "expirationNotExpired": "まだ有効期限内です", "expirationExpired": "期限切れです", "signatureLabel": "Signature", "signatureNotVerified": "検証していません" },
+      "security": { "notice": "JWTをデコードすることは署名を検証することではありません。HeaderとPayloadは誰でもデコードでき、デコードされた内容が信頼できるという意味ではありません。" },
+      "header": { "title": "HEADER", "decodeFailedJson": "Headerが正しいJSON形式ではありません。", "decodeFailedBase64": "HeaderをBase64URLとしてデコードできません。", "algorithm": "Algorithm", "type": "Type", "keyId": "Key ID", "contentType": "Content Type", "algNone": "署名アルゴリズムがnoneに設定されています。" },
+      "payload": { "title": "PAYLOAD", "decodeFailedJson": "Payloadが正しいJSON形式ではありません。", "decodeFailedBase64": "PayloadをBase64URLとしてデコードできません。", "notObject": "PayloadがJSONオブジェクトではないため、Claimを分析できません。" },
+      "claims": { "title": "CLAIMS", "exp": "Expiration (exp)", "iat": "Issued At (iat)", "nbf": "Not Before (nbf)", "local": "ローカル", "utc": "UTC", "invalidValue": "claimの値が正しい数値形式ではありません。", "expNone": "expなし", "iatNone": "iatなし", "nbfNone": "nbfなし", "iss": "Issuer (iss)", "sub": "Subject (sub)", "aud": "Audience (aud)", "jti": "JWT ID (jti)", "nbfNotYetActive": "まだ使用可能な時間ではありません。", "iatFutureWarning": "現在時刻より未来のiat値です。" },
+      "signature": { "title": "SIGNATURE", "label": "署名データ — 検証していません" },
+      "privacy": "入力したJWTはブラウザ内でのみ処理されます。",
+      "guide": { "title": "JWTの構造", "headerText": "アルゴリズムとトークン情報", "payloadText": "Claims", "signatureText": "改ざん検証に使用される署名データ(このツールでは検証しません)", "note": "デコードと検証は別の作業です。" }
+    },
+    "faviconGenerator": {
+      "metadata": { "title": "無料ファビコンジェネレーター・favicon.ico作成", "description": "テキスト・絵文字・画像からブラウザタブ・ブックマーク・iOS・Android用のファビコンセットをブラウザ内で作成します。favicon.ico、PNG、site.webmanifest、HTMLコードを一括でダウンロードできます。" },
+      "title": "ファビコンジェネレーター", "description": "テキスト、絵文字、画像でウェブサイト用のファビコンセットを生成します。",
+      "tabs": { "label": "ソース選択", "text": "テキスト", "emoji": "絵文字", "image": "画像", "shape": "図形" },
+      "text": { "label": "テキスト(1~3文字推奨)", "bold": "太字", "tooLong": "短いテキスト(1~3文字)を推奨します。長くなるほど文字が小さくなります。" },
+      "emoji": { "label": "絵文字", "presets": "よく使う絵文字", "platformNotice": "実際の表示はユーザーのOS・ブラウザによって異なる場合があります。" },
+      "shape": { "kind": "図形の種類", "kinds": { "square": "四角形", "rounded": "角丸四角形", "circle": "円形" }, "radius": "角の丸み", "border": "枠線を使用", "borderColor": "枠線の色", "borderWidth": "太さ", "content": "内部表示", "contentTypes": { "none": "なし", "text": "テキスト", "emoji": "絵文字" }, "contentText": "テキスト(1~3文字推奨)", "contentEmoji": "絵文字" },
+      "image": { "help": "PNG、JPG、静止WebP画像を選択またはドロップしてください。", "drop": "ここに画像をドロップしてください。", "choose": "画像を選択", "zoom": "拡大・縮小", "background": "背景", "transparent": "透明", "solidColor": "単色", "detailNotice": "線が細かったり、細部が多い画像は小さいサイズで見えにくくなることがあります。できるだけシンプルな画像を使用してください。" },
+      "errors": { "unsupported-type": "PNG、JPG、または静止WebP画像を選択してください。", "file-too-large": "ファイルは25MB以下にしてください。", "animated-image": "アニメーションWebPはサポートされていません。静止画像に変換してください。", "dimension-limit": "画像が4,000万画素または最大辺16,384pxの制限を超えています。", "decode-failed": "画像を読み込めません。ファイルが破損している可能性があります。", "multiple-files": "画像は1枚だけ選択してください。" },
+      "colors": { "background": "背景色", "foreground": "文字色" },
+      "siteName": { "label": "サイト名", "placeholder": "例: Coddy" },
+      "actions": { "reset": "リセット", "generating": "生成中...", "downloadZip": "ZIPをダウンロード", "copyHtml": "HTMLコードをコピー", "copied": "コピーしました" },
+      "preview": { "title": "プレビュー", "lowContrast": "背景色と文字色のコントラストが低く、小さいサイズで見えにくい場合があります。", "empty": "画像をアップロードするとプレビューが表示されます。" },
+      "context": { "title": "実使用イメージ", "tabPlaceholder": "マイサイト", "iosLabel": "iOSホーム画面", "androidLabel": "Androidアプリアイコン" },
+      "files": { "title": "生成されるファイル" },
+      "html": { "title": "'<head>' HTMLコード" },
+      "manifest": { "title": "site.webmanifest" },
+      "readme": { "body": "ファビコンセット利用案内\n\n1. この圧縮ファイルの内容をウェブサイトのpublicルートにアップロードしてください。\n2. 以下のHTMLコードを'<head>'に貼り付けてください。\n3. ブラウザキャッシュにより反映が遅れる場合があります。\n\n{html}" },
+      "privacy": "アップロードした画像はブラウザ内でのみ処理され、サーバーには送信されません。"
     },
     "screenshotStitcher": {
       "metadata": { "title": "無料スクリーンショット自動結合", "description": "連続スクリーンショットの重複部分をブラウザーで検出し、1枚の長いPNGに結合します。" },
