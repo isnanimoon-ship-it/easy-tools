@@ -1,5 +1,6 @@
 import {
   AppWindow,
+  BarChart3,
   Binary,
   Braces,
   CalendarClock,
@@ -59,6 +60,7 @@ export const TOOLS = [
   { path: "/tools/jwt-decoder", translationKey: "jwtDecoder", category: "developer", icon: KeyRound, homeOrder: 18, menuOrder: 7 },
   { path: "/tools/favicon-generator", translationKey: "faviconGenerator", category: "media", icon: AppWindow, homeOrder: 19, menuOrder: 7 },
   { path: "/tools/sql-formatter", translationKey: "sqlFormatter", category: "developer", icon: Database, homeOrder: 20, menuOrder: 8 },
+  { path: "/tools/excel-chart-maker", translationKey: "excelChartMaker", category: "other", icon: BarChart3, homeOrder: 21, menuOrder: 3 },
 ] as const satisfies readonly ToolDefinition[];
 
 export type ToolPath = (typeof TOOLS)[number]["path"];

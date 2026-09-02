@@ -9,7 +9,7 @@
     "skipToContent": "본문으로 바로가기",
     "status": "준비 중",
     "theme": { "enableDark": "다크 모드 켜기", "enableLight": "라이트 모드 켜기" },
-    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 인코더/디코더", "urlEncoderDecoder": "URL 인코더/디코더", "youtubeThumbnailDownloader": "유튜브 썸네일 추출기", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 용량 줄이기", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기", "sqlFormatter": "SQL 포맷터" },
+    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 인코더/디코더", "urlEncoderDecoder": "URL 인코더/디코더", "youtubeThumbnailDownloader": "유튜브 썸네일 추출기", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 용량 줄이기", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기", "sqlFormatter": "SQL 포맷터", "excelChartMaker": "엑셀·CSV 그래프 만들기" },
     "footer": "© {year} 간편도구. 누구나 간편하게.",
     "result": "결과",
     "copy": "복사",
@@ -51,7 +51,8 @@
       "koreanInitialConverter": { "title": "한글 초성 변환기", "description": "한글 텍스트를 입력하면 각 음절의 초성만 즉시 추출합니다." },
       "jwtDecoder": { "title": "JWT 디코더", "description": "JWT를 붙여넣으면 Header와 Payload를 브라우저에서 즉시 확인합니다." },
       "faviconGenerator": { "title": "파비콘 생성기", "description": "텍스트, 이모지, 이미지로 웹사이트용 파비콘 세트를 생성합니다." },
-      "sqlFormatter": { "title": "SQL 포맷터", "description": "MySQL, PostgreSQL, SQL Server, Oracle, SQLite 문법을 고려해 SQL 쿼리를 브라우저에서 정렬합니다." }
+      "sqlFormatter": { "title": "SQL 포맷터", "description": "MySQL, PostgreSQL, SQL Server, Oracle, SQLite 문법을 고려해 SQL 쿼리를 브라우저에서 정렬합니다." },
+      "excelChartMaker": { "title": "엑셀·CSV 그래프 만들기", "description": "Excel과 CSV 데이터를 브라우저에서 차트로 만들고 정확한 크기의 이미지로 저장합니다." }
     }
   },
   "Privacy": {
@@ -400,6 +401,30 @@
       "errors":{"fieldCount":"분 시 일 월 요일의 5개 필드가 필요합니다.","tooLong":"표현식은 1,000자 이하여야 합니다.","syntax":"지원하지 않는 Cron 문법입니다.","syntaxToken":"{field} 필드의 “{token}” 문법을 확인하세요.","range":"{field} 값 “{token}”은 {min}~{max} 범위여야 합니다.","rangeOrder":"{field} 범위 “{token}”은 시작값이 끝값보다 클 수 없습니다.","step":"{field} 간격 “{token}”은 {min}~{max} 범위여야 합니다.","copy":"복사하지 못했습니다. 클립보드 권한을 확인하세요."},
       "reference":{"title":"Cron 빠른 문법표","description":"첫 버전은 Unix/Vixie 방식의 숫자형 5필드 Cron만 지원합니다.","syntax":"*  모든 값\n,  여러 값\n-  범위\n/  간격","fields":"Minute 0–59 · Hour 0–23 · Day 1–31 · Month 1–12 · Weekday 0–7 (0과 7은 일요일)"},"vercel":{"title":"Vercel Cron 사용 시 주의","description":"Vercel 등 실행 플랫폼은 시간대와 허용 주기에 별도 정책이 있을 수 있습니다. 배포 전 해당 플랫폼의 최신 공식 문서를 확인하세요."},"privacy":"표현식과 설정은 브라우저 메모리에서만 처리하며 서버로 전송하거나 저장하지 않습니다."
     },
+    "excelChartMaker": {
+      "metadata":{"title":"엑셀·CSV 그래프 만들기","description":"Excel XLSX·XLS 또는 CSV 파일을 서버 전송 없이 분석하여 막대·라인·원형 등 차트 이미지로 저장하세요."},
+      "title":"엑셀·CSV 그래프 만들기","description":"파일을 올리고 열을 선택하면 브라우저에서 바로 차트를 만들고 PNG, JPG 또는 SVG로 저장할 수 있습니다.",
+      "upload":{"title":"Excel 또는 CSV 파일","help":"XLSX, XLS, CSV 한 개를 선택하세요. 시트와 헤더는 파일을 읽은 뒤 변경할 수 있습니다.","drop":"파일을 놓거나 눌러서 선택","limit":"최대 25 MiB · 100,000행 · 50열"},
+      "privacy":"파일과 셀 데이터는 이 브라우저에서만 처리되며 서버나 저장소로 전송되지 않습니다.",
+      "actions":{"choose":"파일 선택","sample":"예제 데이터","clear":"전체 초기화","resetChart":"차트 설정 초기화","download":"{format} 다운로드"},
+      "status":{"reading":"파일을 읽고 분석하는 중…","ready":"차트를 만들 준비가 됐습니다.","exporting":"이미지를 만드는 중…","exported":"{width} × {height}px 이미지가 준비되었습니다."},
+      "file":{"name":"파일명","size":"파일 크기","sheets":"시트 수","encoding":"문자 인코딩"},"sample":{"name":"월별-매출-예제.csv","sheet":"월별 매출","label":"예제"},
+      "sections":{"data":"1. 데이터 선택","chart":"2. 차트 설정","design":"3. 디자인","export":"4. 이미지 크기와 저장"},
+      "fields":{"sheet":"시트","header":"헤더 행","noHeader":"헤더 없음","row":"{row}행","auto":"자동 선택","xAxis":"X축 (항목)","xValue":"X 값 (숫자)","yValue":"Y 값 (숫자)","series":"Y축 데이터","seriesHelp":"숫자 열을 최대 {max}개 선택할 수 있습니다.","chartType":"차트 유형","aggregation":"같은 항목 묶기","sort":"정렬","topN":"상위 N개","all":"전체","title":"차트 제목","subtitle":"부제목","legend":"범례 표시","labels":"데이터 값 표시","xAxis":"X축 표시","yAxis":"Y축 표시","grid":"눈금선 표시","legendPosition":"범례 위치","theme":"테마","background":"배경","numberFormat":"숫자 표시","colors":"데이터 색상","width":"너비","height":"높이","scale":"해상도","format":"파일 형식","quality":"JPG 품질"},
+      "charts":{"bar":"세로 막대","horizontal-bar":"가로 막대","line":"라인","pie":"원형","donut":"도넛","area":"영역","scatter":"산점도"},
+      "types":{"string":"문자","number":"숫자","percentage":"백분율","currency":"통화","date":"날짜","datetime":"날짜·시간","boolean":"참/거짓","empty":"비어 있음","unknown":"알 수 없음"},
+      "aggregations":{"none":"묶지 않음","sum":"합계","avg":"평균","count":"개수","min":"최솟값","max":"최댓값"},
+      "sorts":{"source":"원본 순서","x-asc":"X 오름차순","x-desc":"X 내림차순","value-asc":"값 낮은 순","value-desc":"값 높은 순"},
+      "positions":{"top":"위","bottom":"아래"},"themes":{"default":"기본","simple":"심플","dark":"다크","presentation":"프레젠테이션"},"backgrounds":{"white":"흰색","dark":"다크","transparent":"투명"},"numberFormats":{"plain":"원본 숫자","grouped":"천 단위 쉼표","percent":"백분율","won":"원화","dollar":"달러"},
+      "recommend":{"title":"추천 차트","apply":"추천 차트 사용","time":"시간 흐름을 비교하기 좋아요.","numeric":"두 숫자 사이의 관계를 확인하기 좋아요.","category":"항목별 값을 비교하기 좋아요.","long-labels":"항목이 많거나 이름이 길어 가로 막대가 읽기 쉬워요."},
+      "warnings":{"pie-many":"항목이 많으면 원형 차트 비교가 어렵습니다. 막대 차트를 권장합니다.","unordered-line":"순서 없는 항목은 라인 차트에 적합하지 않을 수 있습니다."},
+      "chartErrors":{"missing-columns":"X축과 숫자 데이터를 선택하세요.","scatter-types":"산점도에는 숫자 X와 숫자 Y가 필요합니다.","pie-negative":"원형 차트에는 음수 값을 사용할 수 없습니다.","pie-zero":"원형 차트 값의 합계는 0보다 커야 합니다.","too-many-points":"표시할 데이터가 너무 많습니다. 집계 또는 상위 N개를 사용하세요."},
+      "errors":{"file-large":"25 MiB 이하 파일을 선택하세요.","unsupported":"XLSX, XLS 또는 CSV 파일을 선택하세요.","signature":"파일 확장자와 실제 형식이 일치하지 않습니다.","parse":"파일을 읽지 못했습니다. 손상되었거나 암호화된 파일인지 확인하세요.","empty":"사용할 데이터가 없는 파일입니다.","limits":"처리 한도를 넘었습니다. 필요한 행과 열만 남겨 다시 저장하세요.","encoding":"CSV 문자 인코딩을 확인할 수 없습니다.","render":"차트를 표시하지 못했습니다. 설정을 바꾸거나 다시 시도하세요.","export":"이미지를 저장하지 못했습니다. 크기와 형식을 확인하세요.","size":"너비·높이는 200~4,000px이며 최종 이미지는 한 변 8,000px, 3,200만 픽셀 이하여야 합니다."},
+      "preview":{"title":"차트 미리보기","untitled":"제목 없는 차트","empty":"차트에 사용할 열을 선택하세요.","summary":"{title}, 데이터 {points}개, 시리즈 {series}개 차트","points":"데이터 수","series":"시리즈 수","x":"X축","operation":"차트"},
+      "export":{"resultSize":"저장 이미지: {width} × {height}px"},"table":{"title":"데이터 미리보기","summary":"전체 {rows}행 × {columns}열 · 처음 {preview}행 표시"},
+      "guide":{"easyTitle":"열만 고르면 완성","easyText":"자동 추천을 시작점으로 X축과 숫자 데이터를 직접 바꿀 수 있습니다.","accurateTitle":"값을 바꾸지 않음","accurateText":"0과 빈 값을 구분하고 날짜·백분율·통화 표시와 계산값을 분리합니다.","privateTitle":"브라우저에서만 처리","privateText":"업로드한 파일과 셀 내용은 서버, 분석 도구 또는 브라우저 저장소로 전송하지 않습니다."}
+    },
+    "excelChartScatterGuide":{"title":"산점도는 두 숫자의 관계를 보여줍니다","description":"각 행이 점 하나가 됩니다. X 값에는 원인이 될 수 있는 숫자를, Y 값에는 비교할 결과 숫자를 선택하세요.","example":"예: X = 수량, Y = 매출 · 광고비와 매출 · 공부 시간과 점수","unavailable":"산점도를 만들려면 숫자 열이 2개 이상 필요합니다."},
     "wordCounter": {
       "metadata": {
         "title": "글자수 계산기",

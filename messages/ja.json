@@ -9,7 +9,7 @@
     "skipToContent": "本文へ移動",
     "status": "準備中",
     "theme": { "enableDark": "ダークモードをオン", "enableLight": "ライトモードをオン" },
-    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64エンコーダー/デコーダー", "urlEncoderDecoder": "URLエンコーダー/デコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル抽出", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像ファイルサイズを小さくする", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像マスキング", "screenshotStatusbarRemover": "ステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー", "koreanInitialConverter": "初声変換ツール", "jwtDecoder": "JWTデコーダー", "faviconGenerator": "ファビコンジェネレーター", "sqlFormatter": "SQLフォーマッター" },
+    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64エンコーダー/デコーダー", "urlEncoderDecoder": "URLエンコーダー/デコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル抽出", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像ファイルサイズを小さくする", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像マスキング", "screenshotStatusbarRemover": "ステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー", "koreanInitialConverter": "初声変換ツール", "jwtDecoder": "JWTデコーダー", "faviconGenerator": "ファビコンジェネレーター", "sqlFormatter": "SQLフォーマッター", "excelChartMaker": "Excel・CSVグラフ作成" },
     "footer": "© {year} かんたんツール。誰でもかんたんに。",
     "result": "結果",
     "copy": "コピー",
@@ -51,7 +51,8 @@
       "koreanInitialConverter": { "title": "ハングル初声変換ツール", "description": "ハングルの文章を入力すると各音節の初声だけを即座に抽出します。" },
       "jwtDecoder": { "title": "JWTデコーダー", "description": "JWTを貼り付けるとHeaderとPayloadをブラウザ内ですぐに確認できます。" },
       "faviconGenerator": { "title": "ファビコンジェネレーター", "description": "テキスト、絵文字、画像でウェブサイト用のファビコンセットを生成します。" },
-      "sqlFormatter": { "title": "SQLフォーマッター", "description": "MySQL、PostgreSQL、SQL Server、Oracle、SQLiteの文法を考慮してSQLクエリをブラウザで整形します。" }
+      "sqlFormatter": { "title": "SQLフォーマッター", "description": "MySQL、PostgreSQL、SQL Server、Oracle、SQLiteの文法を考慮してSQLクエリをブラウザで整形します。" },
+      "excelChartMaker": { "title": "Excel・CSVグラフ作成", "description": "ExcelやCSVをブラウザでグラフに変換し、指定サイズの画像として保存します。" }
     }
   },
   "Privacy": {
@@ -397,6 +398,21 @@
       "errors":{"fieldCount":"分 時 日 月 曜日の5フィールドが必要です。","tooLong":"式は1,000文字以内で入力してください。","syntax":"対応していないCron構文です。","syntaxToken":"{field}フィールドの「{token}」を確認してください。","range":"{field}の値「{token}」は{min}～{max}の範囲で指定してください。","rangeOrder":"{field}の範囲「{token}」は開始値を終了値以下にしてください。","step":"{field}の間隔「{token}」は{min}～{max}の範囲で指定してください。","copy":"コピーできませんでした。クリップボード権限を確認してください。"},
       "reference":{"title":"Cronクイックリファレンス","description":"初版はUnix/Vixie方式の数値5フィールドに対応します。","syntax":"*  すべて\n,  複数値\n-  範囲\n/  間隔","fields":"Minute 0–59 · Hour 0–23 · Day 1–31 · Month 1–12 · Weekday 0–7（0と7は日曜）"},"vercel":{"title":"Vercel Cronの注意","description":"Vercelなどのプラットフォームには独自のタイムゾーンや実行間隔制限があります。デプロイ前に最新の公式ドキュメントを確認してください。"},"privacy":"式と設定はブラウザーのメモリ内だけで処理し、サーバーへ送信・保存しません。"
     },
+    "excelChartMaker": {
+      "metadata":{"title":"Excel・CSVグラフ作成","description":"XLSX、XLS、CSVをアップロードせずに解析し、棒・折れ線・円などのグラフ画像を作成します。"},"title":"Excel・CSVグラフ作成","description":"ファイルと列を選び、ブラウザ内でグラフを作成してPNG、JPG、SVGで保存できます。",
+      "upload":{"title":"ExcelまたはCSVファイル","help":"XLSX、XLS、CSVを1つ選択してください。読み込み後にシートと見出しを変更できます。","drop":"ファイルをドロップまたはクリックして選択","limit":"最大25 MiB・100,000行・50列"},"privacy":"ファイルとセルデータはこのブラウザ内だけで処理され、サーバーやストレージには送信されません。",
+      "actions":{"choose":"ファイルを選択","sample":"サンプルデータ","clear":"すべてリセット","resetChart":"グラフ設定をリセット","download":"{format}をダウンロード"},"status":{"reading":"ファイルを読み込み、解析しています…","ready":"グラフを作成できます。","exporting":"画像を作成しています…","exported":"{width} × {height}pxの画像を作成しました。"},
+      "file":{"name":"ファイル名","size":"ファイルサイズ","sheets":"シート数","encoding":"文字コード"},"sample":{"name":"月別売上サンプル.csv","sheet":"月別売上","label":"サンプル"},"sections":{"data":"1. データ選択","chart":"2. グラフ設定","design":"3. デザイン","export":"4. 画像サイズと保存"},
+      "fields":{"sheet":"シート","header":"見出し行","noHeader":"見出しなし","row":"{row}行","auto":"自動選択","xAxis":"X軸（項目）","xValue":"X値（数値）","yValue":"Y値（数値）","series":"Y軸データ","seriesHelp":"数値列を最大{max}個選択できます。","chartType":"グラフ種類","aggregation":"同じ項目を集計","sort":"並び順","topN":"上位N件","all":"すべて","title":"グラフタイトル","subtitle":"サブタイトル","legend":"凡例を表示","labels":"データ値を表示","xAxis":"X軸を表示","yAxis":"Y軸を表示","grid":"グリッドを表示","legendPosition":"凡例の位置","theme":"テーマ","background":"背景","numberFormat":"数値表示","colors":"系列の色","width":"幅","height":"高さ","scale":"解像度","format":"ファイル形式","quality":"JPG品質"},
+      "charts":{"bar":"縦棒","horizontal-bar":"横棒","line":"折れ線","pie":"円","donut":"ドーナツ","area":"面","scatter":"散布図"},"types":{"string":"文字","number":"数値","percentage":"パーセント","currency":"通貨","date":"日付","datetime":"日時","boolean":"真偽値","empty":"空","unknown":"不明"},
+      "aggregations":{"none":"集計しない","sum":"合計","avg":"平均","count":"件数","min":"最小","max":"最大"},"sorts":{"source":"元の順序","x-asc":"X昇順","x-desc":"X降順","value-asc":"値の昇順","value-desc":"値の降順"},"positions":{"top":"上","bottom":"下"},"themes":{"default":"標準","simple":"シンプル","dark":"ダーク","presentation":"プレゼン"},"backgrounds":{"white":"白","dark":"ダーク","transparent":"透明"},"numberFormats":{"plain":"元の数値","grouped":"桁区切り","percent":"パーセント","won":"韓国ウォン","dollar":"米ドル"},
+      "recommend":{"title":"おすすめグラフ","apply":"おすすめを使用","time":"時間による変化の比較に向いています。","numeric":"2つの数値の関係確認に向いています。","category":"項目ごとの比較に向いています。","long-labels":"項目が多い、または長いため横棒が読みやすくなります。"},"warnings":{"pie-many":"項目が多い円グラフは比較しにくいため、棒グラフをおすすめします。","unordered-line":"順序のない項目は折れ線グラフに適さない場合があります。"},
+      "chartErrors":{"missing-columns":"X軸と数値データを選択してください。","scatter-types":"散布図には数値のXとYが必要です。","pie-negative":"円グラフでは負の値を使用できません。","pie-zero":"円グラフの合計は0より大きい必要があります。","too-many-points":"データが多すぎます。集計または上位N件を使用してください。"},
+      "errors":{"file-large":"25 MiB以下のファイルを選択してください。","unsupported":"XLSX、XLS、CSVを選択してください。","signature":"拡張子と実際の形式が一致しません。","parse":"ファイルを読み込めません。破損または暗号化されていないか確認してください。","empty":"使用できるデータがありません。","limits":"処理上限を超えました。必要な行と列だけ残してください。","encoding":"CSVの文字コードを判定できません。","render":"グラフを表示できません。設定を変更して再試行してください。","export":"画像を保存できません。サイズと形式を確認してください。","size":"幅と高さは200～4,000px、最終画像は一辺8,000pxかつ3,200万画素以下にしてください。"},
+      "preview":{"title":"グラフプレビュー","untitled":"無題のグラフ","empty":"グラフに使う列を選択してください。","summary":"{title}、データ{points}件、系列{series}件のグラフ","points":"データ数","series":"系列数","x":"X軸","operation":"グラフ"},"export":{"resultSize":"保存画像：{width} × {height}px"},"table":{"title":"データプレビュー","summary":"全{rows}行 × {columns}列・先頭{preview}行を表示"},
+      "guide":{"easyTitle":"列を選ぶだけ","easyText":"自動おすすめから始めて、項目と数値を自由に変更できます。","accurateTitle":"値を変えない","accurateText":"0と空欄を区別し、日付や表示形式を計算値から分離します。","privateTitle":"ブラウザ内で処理","privateText":"ファイルとセル内容はサーバー、分析ツール、ブラウザストレージへ送信されません。"}
+    },
+    "excelChartScatterGuide":{"title":"散布図は2つの数値の関係を示します","description":"各行が1つの点になります。Xには影響要因となる数値、Yには比較したい結果の数値を選択してください。","example":"例：X = 数量、Y = 売上・広告費と売上・勉強時間と点数","unavailable":"散布図には数値列が2つ以上必要です。"},
     "wordCounter": {
       "metadata": {
         "title": "文字数カウンター",

@@ -1078,3 +1078,108 @@ Critic 93/100(≥90), Critical 0·High 0, `docs/EVALUATION.md` QA 게이트(자�
 ## Product Owner 최종 판정
 
 `tasks/text-cleaner/SPEC.md`의 파이프라인 순서·중복 처리 규칙을 그대로 구현했고, 유닛·실브라우저 QA가 모두 PASS했다. 상태 `DONE`.
+
+# 엑셀·CSV 그래프 만들기 — 2026-09-02
+
+## Builder 인계
+
+- 상태: `EVALUATING`, Builder 최종 승인 없음
+- URL: `/{locale}/tools/excel-chart-maker`
+- SheetJS CE 0.20.3, Papa Parse 5.7.0, Apache ECharts 6.1.0을 고정 설치했다.
+- XLSX/XLS/CSV 파싱, Worker 경계, 정규화·타입 추론, 추천·집계·정렬·Top N, 7개 차트, 디자인 설정, PNG/JPG/SVG export, ko/en/ja, registry·sitemap 연동을 구현했다.
+- 기능 단위 테스트 7개 PASS, 실제 Chrome 기능 스크립트 PASS, lint/type-check/build PASS.
+- 전체 Vitest 688개 중 기존 Base64 1MiB round-trip 테스트가 전체 병렬 실행에서 5초 timeout으로 1건 실패했다. 기능 단독 실행에서는 Excel Chart 테스트가 PASS했으나 전체 자동 테스트 게이트는 아직 PASS가 아니다.
+
+## Critic 회차 0 — 사전 질문과 평가
+
+1. 처음 온 사용자가 파일 업로드와 예제 데이터 중 하나로 시작할 수 있는가? — 예, 두 행동이 상단에 함께 보인다.
+2. 파일 업로드 후 기본 차트가 즉시 보이는가? — 예, X/Y와 차트가 자동 추천된다.
+3. 시트·헤더를 사용자가 바꿀 수 있는가? — 예, 자동 선택 표시와 함께 제공된다.
+4. X/Y 개념이 낯선 사용자도 사용할 수 있는가? — 대부분 가능하나 X축 설명은 짧다.
+5. 잘못된 추천을 쉽게 바꿀 수 있는가? — 예, 7개 차트 radio와 추천 적용 버튼이 있다.
+6. 부적합 Pie/Scatter를 차단하는가? — 음수·합계 0·문자형 scatter를 차단하고 다수 slice를 경고한다.
+7. 0/null/백분율/통화를 왜곡하지 않는가? — 0/null과 format은 분리했지만 1904 date system 정보가 UI 정규화에 전달되지 않는다.
+8. 옵션이 과도하게 한꺼번에 보이지 않는가? — accordion 4단계로 정리됐다.
+9. 출력 크기와 해상도를 이해할 수 있는가? — 최종 pixel dimensions를 표시한다.
+10. Preview와 2×/3× 출력의 레이아웃이 같은가? — 현재 export가 최종 pixel 크기를 logical 크기로 렌더링해 글자·여백의 상대 크기가 달라질 수 있다.
+11. 모바일 흐름과 overflow는 정상인가? — 320/375/768px 자동 검증에서 overflow 0이다.
+12. 개인정보 처리 위치를 업로드 전에 알 수 있는가? — upload 바로 아래에 browser-only 문구가 있다.
+13. 대형 파일 제한과 오류 복구가 명확한가? — 상한과 복구 문구는 있으나 실제 100k행 성능 fixture 측정은 아직 없다.
+14. 결과 차트가 바로 사용할 만큼 읽기 쉬운가? — 기본 예제 desktop 화면에서 제목·범례·축·grid가 선명하다.
+15. 키보드·스크린리더가 설정과 데이터를 확인할 수 있는가? — visible label, native controls, 표, chart 요약이 있으나 키보드 전체 흐름 실측 증거가 부족하다.
+
+### 기능별 강화 점수
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 데이터 파싱 정확성 | 16/20 | XLSX/XLS/CSV·집계 통과, 1904 workbook 정보 누락 |
+| 차트 데이터 정확성 | 20/20 | 0/null·SUM/AVG/COUNT/MIN/MAX oracle 통과 |
+| Export 정확성 | 10/15 | PNG exact size·JPG·SVG 통과, 고해상도 layout 불일치 위험 |
+| UX | 14/15 | 자동 추천과 단계형 설정, X/Y 초보 설명은 제한적 |
+| 차트 가독성·디자인 | 10/10 | 기본 화면과 7종 renderer 확인 |
+| 모바일 | 5/5 | 320/375/768px overflow 0 |
+| 성능 | 3/5 | Worker·limit 적용, 경계 fixture 실측 미완료 |
+| Privacy | 5/5 | marker가 request URL로 유출되지 않음 |
+| 접근성 | 2/3 | semantics 구현, 키보드 전체 실측 미완료 |
+| 코드 품질 | 2/2 | strict type-check/lint/build 통과 |
+| 합계 | **87/100** | 기능 기준 92 미달 |
+
+### Critic 이슈
+
+- `ECM-C01` Critical/Data Accuracy: 1904 date system workbook이 1900 system으로 정규화되어 날짜가 1,462일 달라질 수 있다.
+- `ECM-H01` High/Export: 2×/3×가 동일 logical layout의 해상도만 높이는 대신 chart layout 자체를 더 큰 크기로 다시 계산한다.
+- `ECM-M01` Medium: 대형 파일 성능과 keyboard-only 전체 흐름이 NOT TESTED다.
+
+Critic 판정: **FAIL**. Critic은 코드를 수정하지 않고 Optimizer에게 인계한다.
+
+## QA 회차 0
+
+- PASS: 기능 단위 7 tests, lint, type-check, production build.
+- PASS: 실제 Chrome에서 7개 chart, XLSX/XLS/CP949 CSV, multi-sheet, PNG 2400×1260 exact dimensions, JPG signature, 안전한 SVG, ko/en/ja, 320/375/768/1440px, Console Error 0, page error 0.
+- FAIL: 전체 `npm test` 688개 중 기존 Base64 1MiB test가 병렬 부하에서 5초 timeout. 2회 재현되어 자동 테스트 게이트 미달.
+- NOT TESTED: 1904 workbook browser fixture, 100k행 sparse/dense 경계, keyboard-only 전체 flow, storage/request body privacy marker.
+
+QA 판정: **FAIL**. Critical 1, High 1, 자동 테스트 FAIL 및 필수 항목 NOT TESTED이므로 Optimizer 회차 1로 인계한다.
+
+## Optimizer 회차 1
+
+- `ECM-C01`: workbook의 `WBProps.date1904`를 parser payload에 보존하고 모든 normalization 경로에 전달했다. 1904 workbook의 serial 1이 `1904-01-02`로 유지되는 unit·browser fixture를 추가했다.
+- `ECM-H01`: raster export를 큰 logical canvas로 재배치하지 않고 logical dimensions로 한 번 layout한 뒤 ECharts `getDataURL.pixelRatio`만 1×/2×/3×로 적용했다. SVG에서는 scale을 1×로 고정했다.
+- `ECM-M01`: 100,000행 CSV 경계의 worker 처리와 100,001행 preflight 거부, keyboard Enter 시작과 focus 유지, request body/URL·Storage marker 0을 실제 Chrome에서 검증했다.
+- 전체 병렬 실행에서 기존 1MiB Base64 테스트가 CPU 경합으로 5초를 넘던 문제는 검증 강도를 낮추지 않고 Vitest `maxWorkers=4`로 동시 부하를 제한했다. 동일 테스트는 3.3~3.7초에 통과했다.
+- 회귀 SEO 검사에서 raw AdSense `<script>`가 hydration 전에 `<head>`를 변경하는 기존 Console Error를 발견해 Next.js 16 공식 `Script strategy="afterInteractive"`로 교체했다.
+- 신규 dependency의 고정 버전과 라이선스를 `THIRD_PARTY_NOTICES.md`에 기록했다.
+
+## Critic 회차 1 재평가
+
+회차 0의 15개 질문 전체를 동일 범위로 다시 확인했다. 1904 날짜, 고해상도 동일 layout, 대형 파일·keyboard·privacy evidence가 보강됐고 회차 0 Critical/High는 재현되지 않았다.
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 데이터 파싱 정확성 | 20/20 | XLSX/XLS/UTF-8·CP949 CSV, 날짜·형식·집계 oracle 통과 |
+| 차트 데이터 정확성 | 20/20 | 7종 option, 다중 series, 0/null, 정렬·집계 검증 |
+| Export 정확성 | 15/15 | 4개 규격 PNG, 2× exact size, JPG dimensions, 안전한 SVG |
+| UX | 14/15 | 자동 기본값·추천·단계형 설정; X/Y 초보 도움말은 간결한 수준 |
+| 차트 가독성·디자인 | 10/10 | 제목·범례·축·grid·테마와 실제 preview 확인 |
+| 모바일 | 5/5 | 320/375/768px overflow 0, 핵심 흐름 완료 |
+| 성능 | 5/5 | Worker, 100k행 10초 이내, 초과 preflight 거부 |
+| Privacy | 5/5 | 파일 marker request/storage 기록 0 |
+| 접근성 | 2/3 | native controls·label·table·chart summary·keyboard 시작 검증; 별도 screen reader 실청취는 Low 잔여 |
+| 코드 품질 | 2/2 | strict type, 순수 계산 모듈, 고정 dependency·license notice |
+| 합계 | **98/100** | 기능 PASS 기준 92 이상 |
+
+공통 `docs/EVALUATION.md` 점수는 98/100이다. Critical 0, High 0, Medium 0, Low 2(X/Y 초보 설명 확장 여지, 실제 screen reader·원어민 번역 검수 미실시)이며 완료를 차단하지 않는다.
+
+## QA 회차 1 최종 증거
+
+- `npm run lint`: PASS, error/warning 0
+- `npm run type-check`: PASS, TypeScript Error 0
+- `npm test`: 50 files, 691 tests PASS, fail/skip/todo 0
+- `npm run build`: PASS, ko/en/ja의 `/tools/excel-chart-maker` 정적 route 생성
+- `node tests/excel-chart-maker-browser.mjs`: XLSX/XLS/UTF-8·CP949 CSV, multi-sheet/header, 1904 date, 100k행 경계, 7 chart, multi-series, PNG 1200×630 2×=2400×1260 및 1080×1080·1920×1080·1080×1920, JPG dimensions, SVG, 320/375/768/1440px, ko/en/ja, keyboard, Console Error 0, page error 0, privacy marker 전송·저장 0 PASS
+- `node tests/tool-menu-browser.mjs`: 21개 도구 등록, 기타 도구 3개, 모바일·desktop menu overflow/overlap 0, Console Error 0 PASS
+- `node tests/seo-browser.mjs`: sitemap URL/hreflang 72개, canonical/Open Graph/Twitter/JSON-LD, Console Error 0 PASS
+
+## Product Owner 최종 판정
+
+기능 평가 98(≥92), 공통 평가 98(≥90), Data Accuracy Critical 0, Export Critical 0, 전체 Critical 0·High 0, 자동 테스트·build·Console·모바일·privacy 게이트를 모두 충족했다. 개선 회차 1에서 `DONE`으로 확정한다. Builder나 Optimizer가 자기 결과를 승인한 것이 아니라 Critic 점수와 QA evidence를 Product Owner가 확인해 기록했다.
