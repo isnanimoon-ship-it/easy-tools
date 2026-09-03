@@ -1183,3 +1183,71 @@ QA 판정: **FAIL**. Critical 1, High 1, 자동 테스트 FAIL 및 필수 항목
 ## Product Owner 최종 판정
 
 기능 평가 98(≥92), 공통 평가 98(≥90), Data Accuracy Critical 0, Export Critical 0, 전체 Critical 0·High 0, 자동 테스트·build·Console·모바일·privacy 게이트를 모두 충족했다. 개선 회차 1에서 `DONE`으로 확정한다. Builder나 Optimizer가 자기 결과를 승인한 것이 아니라 Critic 점수와 QA evidence를 Product Owner가 확인해 기록했다.
+# 브라우저 P2P 파일 전송 — 2026-09-03
+
+## Builder 결과
+
+- URL: `/{locale}/tools/p2p-file-transfer`, 수신 URL: `/{locale}/t/{sessionId}`
+- WebRTC DataChannel 직접 전송, Cloudflare Worker + Durable Object signaling, Cloudflare Realtime TURN 단기 자격 증명 구조를 구현했다.
+- 64KiB binary chunk, bufferedAmount backpressure, 32-chunk ACK window, SHA-256 송수신 검증과 COMPLETE_ACK 후 완료 판정을 구현했다.
+- QR/링크 공유, 수신자 승인, 진행률·속도·ETA·연결 방식, 취소, 안전한 파일명, 위험 확장자 경고, Chrome/Edge disk streaming 및 200MiB memory fallback을 구현했다.
+- ko/en/ja, 독립 SEO URL, noindex 수신 URL, 메뉴·홈·sitemap 자동 등록을 반영했다. Builder는 최종 PASS를 선언하지 않았다.
+
+## Critic 1차 품질 질문
+
+1. 처음 방문한 사용자가 파일 선택→링크 생성→상대 승인 흐름을 설명 없이 이해하는가?
+2. 파일이 서비스 서버에 저장되지 않지만 TURN을 통과할 수 있다는 설명이 정확한가?
+3. QR과 복사 링크가 동일한 만료 세션을 가리키는가?
+4. 링크만 가진 제3자가 송신자 권한을 얻을 수 없는가?
+5. 송신자가 모르는 수신자에게 파일을 자동 전송하지 않는가?
+6. 한글 파일명과 Unicode 파일 내용이 손상 없이 복원되는가?
+7. 저장 완료와 SHA-256 검증 전에 완료로 표시하지 않는가?
+8. 대용량 전송이 송·수신 메모리에 파일 크기만큼 누적되지 않는가?
+9. 느린 수신자에서 backpressure와 ACK가 메모리 폭증을 막는가?
+10. 취소·탭 종료·네트워크 단절·디스크 실패에서 자원이 정리되고 재시도 가능한가?
+11. 직접 연결 실패 시 실제 TURN UDP 및 TLS/443 fallback이 되는가?
+12. 320px 모바일에서 QR, URL, 승인과 수신 버튼이 잘리거나 겹치지 않는가?
+13. 키보드와 스크린리더만으로 전체 흐름과 상태 변화를 이해할 수 있는가?
+14. ko/en/ja에서 기능·오류·Privacy 의미가 동일한가?
+15. 공개 API가 세션·TURN 자격 증명 남용과 비용 폭증을 제한하는가?
+
+## Critic 1차 평가
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 전송 안정성 | 12.5/25 | 186KB 실제 direct round trip과 SHA-256 PASS, 단절·재시도·TURN 미검증 |
+| 대용량·Memory 안정성 | 0/15 | 1GiB/5GiB heap profile NOT TESTED |
+| 사용법 이해도 | 15/15 | 단계형 UI, QR·링크, 양쪽 승인과 예시 제공 |
+| 상태·Progress UX | 10/10 | 양쪽 상태·progress·speed·ETA·완료 ACK 제공 |
+| 보안·Privacy 정확성 | 5/10 | sender secret·Origin·TTL·비저장 설명 PASS, 운영 TURN·abuse evidence 미확보 |
+| 모바일 | 5/10 | 320/375/768 자동 레이아웃 PASS, 실제 Android/iOS 미검증 |
+| 오류 처리 | 2.5/5 | invalid session·protocol·size·hash 경로 구현, 전체 장애 주입 미검증 |
+| 성능 | 0/5 | 대용량 throughput·heap 측정 NOT TESTED |
+| 접근성 | 1.5/3 | label·aria-live·native control, 실제 스크린리더 미검증 |
+| 코드 품질 | 2/2 | strict type, lint, build, unit test PASS |
+| 합계 | **53.5/100** | 기능별 PASS 92점 미달 |
+
+- Critical 0, High 1: 공개 세션 API rate limit/운영 kill switch 부재.
+- Critic 판정: FAIL. Critic은 제품 코드를 수정하지 않고 Optimizer에 전달했다.
+
+## QA 1차
+
+- `npm test`: 51 files, 699 tests PASS, skip/todo 0.
+- 실제 독립 Chrome 컨텍스트: 186,000 bytes Unicode 파일 direct 전송, 다운로드 SHA-256 동일, sender/receiver 완료 PASS.
+- 320/375/768px, ko/en/ja smoke, overflow 0, Console Error 0, page error 0.
+- SEO: sitemap 75 URL 및 hreflang, canonical/Open Graph/Twitter/JSON-LD PASS.
+- Worker dry-run bundle PASS. 1GiB/5GiB, 실제 모바일, 서로 다른 네트워크, TURN UDP/TLS, 장시간·중단·디스크 장애는 NOT TESTED.
+- QA 판정: FAIL. 필수 실제 환경 게이트가 NOT TESTED다.
+
+## Optimizer 1차
+
+- Cloudflare Rate Limiting binding으로 IP별 세션 생성을 분당 10회로 제한하고 `SERVICE_ENABLED` 비용·장애 kill switch를 추가했다.
+- 세션이 승인되면 만료를 6시간으로 연장하며 alarm을 갱신하고, 수신자가 먼저 연결된 race를 송신자 인증 시 복구하도록 수정했다.
+- 10GiB 송·수신 hard limit, async protocol 오류 처리, 실패·취소 시 파일 writer abort 및 성공 후 writer 정리를 추가했다.
+- Cloudflare Worker 전역 타입을 Next.js DOM 타입과 분리하고 프로토콜·프레임·상태·파일명·metrics·chunk ACK 단위 테스트 7개를 추가했다.
+
+## 최종 상태
+
+- 현재 상태: **NEEDS HUMAN REVIEW**
+- 이유: 로컬 direct 전송과 자동 회귀는 통과했지만 SPEC 필수 게이트인 실제 TURN UDP/TLS fallback, 서로 다른 네트워크·실기기, 1GiB/5GiB memory profile이 NOT TESTED다. 이 항목은 Cloudflare TURN 계정 자격 증명과 외부 기기·망 없이 mock으로 대체하거나 PASS 처리할 수 없다.
+- 배포 전 필요 사항: Worker 배포, `signal.konly.co.kr` route, TURN key/token secret, production `REQUIRE_TURN=true`, Vercel `NEXT_PUBLIC_P2P_SIGNALING_URL`, Cloudflare 비용 alert/budget 설정 후 외부 QA 실행.

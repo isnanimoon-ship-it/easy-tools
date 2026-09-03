@@ -38,12 +38,12 @@ try {
   const developer = page.getByRole("button", { name: /개발자/ }); assert.equal(await developer.getAttribute("aria-expanded"), "false"); assert.match(await developer.getAttribute("class"), /bg-\[var\(--info-bg\)\]/);
   await developer.click(); let panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 8); assert.equal(await panel.getByRole("heading", { name: "개발자" }).count(), 1);
   await page.keyboard.press("Escape"); assert.equal(await developer.evaluate(node => node === document.activeElement), true);
-  await page.getByRole("button", { name: /기타 도구/ }).click(); panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 3); assert.equal(await panel.getByRole("heading", { name: "기타 도구" }).count(), 1);
+  await page.getByRole("button", { name: /기타 도구/ }).click(); panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), 4); assert.equal(await panel.getByRole("heading", { name: "기타 도구" }).count(), 1);
   await page.keyboard.press("Escape");
   await page.getByRole("button", { name: /전체 도구/ }).click(); panel = page.locator("#tool-panel"); assert.equal(await panel.getByRole("link").count(), registeredToolCount); assert.equal(await panel.getByRole("heading").count(), 4);
   await page.screenshot({ path: "artifacts/tool-menu-1280-ko.png" });
   await context.close();
 
   assert.deepEqual(consoleErrors, []); assert.deepEqual(pageErrors, []);
-  process.stdout.write(JSON.stringify({ mobileCases: mobileCases.length, desktopMenus: 5, desktopCategories: 4, otherLinks: 3, links: registeredToolCount, consoleErrors: 0, pageErrors: 0, horizontalOverflow: 0, overlap: 0 }, null, 2));
+  process.stdout.write(JSON.stringify({ mobileCases: mobileCases.length, desktopMenus: 5, desktopCategories: 4, otherLinks: 4, links: registeredToolCount, consoleErrors: 0, pageErrors: 0, horizontalOverflow: 0, overlap: 0 }, null, 2));
 } finally { await browser.close(); }

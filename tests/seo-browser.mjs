@@ -9,7 +9,7 @@ try{
   const robots=await (await context.request.get(`${baseUrl}/robots.txt`)).text();assert.match(robots,/User-Agent: \*/i);assert.match(robots,/Allow: \//i);assert.match(robots,/Sitemap: https:\/\/www\.konly\.co\.kr\/sitemap\.xml/i);
   const home=await (await context.request.get(`${baseUrl}/ko`)).text();const toolCount=(home.match(/href="\/ko\/tools\//g)??[]).length;const expectedUrlCount=(toolCount+3)*3;
   const sitemap=await (await context.request.get(`${baseUrl}/sitemap.xml`)).text();assert.equal((sitemap.match(/<url>/g)??[]).length,expectedUrlCount);assert.equal((sitemap.match(/hreflang="x-default"/g)??[]).length,expectedUrlCount);assert.match(sitemap,/https:\/\/www\.konly\.co\.kr\/ja\/tools\/cron-expression-generator/);
-  for(const [locale,path] of [["ko","word-counter"],["en","json-formatter"],["ja","image-color-picker"],["ko","screenshot-stitcher"],["en","privacy-redactor"],["ko","excel-chart-maker"]]){
+  for(const [locale,path] of [["ko","word-counter"],["en","json-formatter"],["ja","image-color-picker"],["ko","screenshot-stitcher"],["en","privacy-redactor"],["ko","excel-chart-maker"],["ja","p2p-file-transfer"]]){
     const pathname=`/${locale}/tools/${path}`;await page.goto(`${baseUrl}${pathname}`,{waitUntil:"networkidle"});
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"),`https://www.konly.co.kr${pathname}`);
     for(const alternate of ["ko","en","ja","x-default"])assert.equal(await page.locator(`link[rel="alternate"][hreflang="${alternate}"]`).count(),1);

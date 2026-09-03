@@ -1,0 +1,20 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "konly-p2p-signaling",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-03",
+  "durable_objects": {
+    "bindings": [{ "name": "SESSIONS", "class_name": "TransferSession" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["TransferSession"] }],
+  "ratelimits": [{
+    "name": "SESSION_RATE_LIMITER",
+    "namespace_id": "11001",
+    "simple": { "limit": 10, "period": 60 }
+  }],
+  "vars": {
+    "ALLOWED_ORIGINS": "http://localhost:3001,http://localhost:3002,https://www.konly.co.kr,https://konly.co.kr",
+    "REQUIRE_TURN": "false",
+    "SERVICE_ENABLED": "true"
+  }
+}

@@ -16,6 +16,12 @@
 # vercel
 .vercel
 
+# Cloudflare Wrangler local state
+.wrangler/
+.wrangler-local/
+.wrangler-dry-run/
+worker-configuration.d.ts
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

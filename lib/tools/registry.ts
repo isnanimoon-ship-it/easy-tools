@@ -8,6 +8,7 @@ import {
   Database,
   FileKey,
   FileText,
+  Files,
   Globe2,
   ImageDown,
   ImageIcon,
@@ -61,6 +62,7 @@ export const TOOLS = [
   { path: "/tools/favicon-generator", translationKey: "faviconGenerator", category: "media", icon: AppWindow, homeOrder: 19, menuOrder: 7 },
   { path: "/tools/sql-formatter", translationKey: "sqlFormatter", category: "developer", icon: Database, homeOrder: 20, menuOrder: 8 },
   { path: "/tools/excel-chart-maker", translationKey: "excelChartMaker", category: "other", icon: BarChart3, homeOrder: 21, menuOrder: 3 },
+  { path: "/tools/p2p-file-transfer", translationKey: "p2pFileTransfer", category: "other", icon: Files, homeOrder: 22, menuOrder: 4 },
 ] as const satisfies readonly ToolDefinition[];
 
 export type ToolPath = (typeof TOOLS)[number]["path"];
