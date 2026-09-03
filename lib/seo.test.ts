@@ -3,7 +3,7 @@ import robots from "@/app/robots";
 import sitemap from "@/app/sitemap";
 import { createPageMetadata, localizedAlternates } from "./seo";
 import { routing } from "@/i18n/routing";
-import { TOOLS } from "@/lib/tools/registry";
+import { PUBLIC_TOOLS } from "@/lib/tools/registry";
 
 describe("SEO metadata", () => {
   it("creates reciprocal locale and x-default alternates", () => {
@@ -17,7 +17,7 @@ describe("SEO metadata", () => {
     expect(metadata.robots).toMatchObject({index:true,follow:true});
   });
   it("lists every locale and tool exactly once in the sitemap", () => {
-    const entries=sitemap(); const expectedPaths=["","/privacy","/contact",...TOOLS.map(tool=>tool.path)];
+    const entries=sitemap(); const expectedPaths=["","/privacy","/contact",...PUBLIC_TOOLS.map(tool=>tool.path)];
     expect(entries).toHaveLength(expectedPaths.length*routing.locales.length); expect(new Set(entries.map(entry=>entry.url)).size).toBe(entries.length);
     for(const path of expectedPaths) for(const locale of routing.locales) expect(entries.some(entry=>entry.url===`https://www.konly.co.kr/${locale}${path}`)).toBe(true);
     expect(entries.every(entry=>entry.url.startsWith("https://www.konly.co.kr/"))).toBe(true);

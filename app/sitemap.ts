@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { getBaseUrl } from "@/lib/site-url";
-import { TOOLS } from "@/lib/tools/registry";
+import { PUBLIC_TOOLS } from "@/lib/tools/registry";
 
-const paths = ["", "/privacy", "/contact", ...TOOLS.map(tool => tool.path)] as const;
+const paths = ["", "/privacy", "/contact", ...PUBLIC_TOOLS.map(tool => tool.path)] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getBaseUrl();

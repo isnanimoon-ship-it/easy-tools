@@ -34,6 +34,7 @@ export type ToolDefinition = {
   icon: LucideIcon;
   homeOrder: number;
   menuOrder: number;
+  visibility?: "hidden";
 };
 
 /**
@@ -62,13 +63,16 @@ export const TOOLS = [
   { path: "/tools/favicon-generator", translationKey: "faviconGenerator", category: "media", icon: AppWindow, homeOrder: 19, menuOrder: 7 },
   { path: "/tools/sql-formatter", translationKey: "sqlFormatter", category: "developer", icon: Database, homeOrder: 20, menuOrder: 8 },
   { path: "/tools/excel-chart-maker", translationKey: "excelChartMaker", category: "other", icon: BarChart3, homeOrder: 21, menuOrder: 3 },
-  { path: "/tools/p2p-file-transfer", translationKey: "p2pFileTransfer", category: "other", icon: Files, homeOrder: 22, menuOrder: 4 },
+  { path: "/tools/p2p-file-transfer", translationKey: "p2pFileTransfer", category: "other", icon: Files, homeOrder: 22, menuOrder: 4, visibility: "hidden" },
 ] as const satisfies readonly ToolDefinition[];
 
 export type ToolPath = (typeof TOOLS)[number]["path"];
 
-export const HOME_TOOLS = [...TOOLS].sort((a, b) => a.homeOrder - b.homeOrder);
+function isPublicTool(tool: ToolDefinition) { return tool.visibility !== "hidden"; }
+
+export const PUBLIC_TOOLS = TOOLS.filter(isPublicTool);
+export const HOME_TOOLS = [...PUBLIC_TOOLS].sort((a, b) => a.homeOrder - b.homeOrder);
 
 export function toolsInCategory(category: ToolCategoryKey) {
-  return TOOLS.filter(tool => tool.category === category).sort((a, b) => a.menuOrder - b.menuOrder);
+  return PUBLIC_TOOLS.filter(tool => tool.category === category).sort((a, b) => a.menuOrder - b.menuOrder);
 }

@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { TOOL_CATEGORY_KEYS, TOOLS } from "./registry";
+import { HOME_TOOLS, PUBLIC_TOOLS, TOOL_CATEGORY_KEYS, TOOLS } from "./registry";
 
 describe("tool registry", () => {
   it("registers every tool route exactly once", () => {
@@ -30,5 +30,11 @@ describe("tool registry", () => {
         expect(messages.Home.tools[tool.translationKey]?.description).toBeTruthy();
       }
     }
+  });
+
+  it("keeps hidden tools directly routable but out of public discovery", () => {
+    expect(TOOLS.some(tool => tool.path === "/tools/p2p-file-transfer")).toBe(true);
+    expect(PUBLIC_TOOLS.some(tool => tool.path === "/tools/p2p-file-transfer")).toBe(false);
+    expect(HOME_TOOLS.some(tool => tool.path === "/tools/p2p-file-transfer")).toBe(false);
   });
 });
