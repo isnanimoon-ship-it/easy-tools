@@ -7,10 +7,11 @@
     "brand": "かんたんツール",
     "homeLabel": "かんたんツールのホーム",
     "skipToContent": "本文へ移動",
-    "status": "準備中",
+    "status": "利用可能",
     "theme": { "enableDark": "ダークモードをオン", "enableLight": "ライトモードをオン" },
-    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "text": "テキスト", "developer": "開発者", "media": "画像・メディア", "other": "その他のツール" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64エンコーダー/デコーダー", "urlEncoderDecoder": "URLエンコーダー/デコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル抽出", "qrCodeGenerator": "QRコード生成", "ipInfo": "IP情報確認", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像ファイルサイズを小さくする", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像マスキング", "screenshotStatusbarRemover": "ステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー", "koreanInitialConverter": "初声変換ツール", "jwtDecoder": "JWTデコーダー", "faviconGenerator": "ファビコンジェネレーター", "sqlFormatter": "SQLフォーマッター", "excelChartMaker": "Excel・CSVグラフ作成", "p2pFileTransfer": "QRファイル転送" },
+    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "image": "画像", "text": "テキスト", "developer": "開発者", "generator": "ジェネレーター", "fileData": "ファイル・データ", "network": "ネットワーク" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64エンコーダー/デコーダー", "urlEncoderDecoder": "URLエンコーダー/デコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル抽出", "qrCodeGenerator": "QRコード生成", "ipInfo": "IPアドレス情報", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像ファイルサイズを小さくする", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像の個人情報を隠す", "screenshotStatusbarRemover": "スクリーンショットのステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー", "koreanInitialConverter": "ハングル初声変換ツール", "jwtDecoder": "JWTデコーダー", "faviconGenerator": "ファビコンジェネレーター", "sqlFormatter": "SQLフォーマッター", "excelChartMaker": "Excel・CSVグラフ作成", "p2pFileTransfer": "QRファイル転送" },
     "footer": "© {year} かんたんツール。誰でもかんたんに。",
+    "footerNavLabel": "サービス案内",
     "result": "結果",
     "copy": "コピー",
     "copied": "コピー済み",
@@ -26,7 +27,12 @@
   "Home": {
     "eyebrow": "必要なツールをひとつの場所に",
     "title": "複雑な作業を\nかんたんに。",
-    "description": "インストールやログインなしですぐに使えるオンラインツールを準備しています。",
+    "description": "インストールや会員登録なしで、画像・テキスト・開発・ファイル作業に役立つ無料オンラインツールをすぐに使えます。可能な処理はブラウザ内で直接行います。",
+    "search": { "title": "必要なツールを探す", "description": "ツール名や行いたい作業を入力してすばやく検索できます。", "placeholder": "例：画像圧縮、JSON、文字数", "label": "ツールを検索", "clear": "検索語を消去", "resultsTitle": "検索結果", "results": "{count}個のツール", "emptyTitle": "一致するツールがありません。", "emptyDescription": "検索語を短くするか、別の検索語を入力してください。", "reset": "検索をリセット" },
+    "popular": { "title": "よく使われるツール", "description": "日常的な作業をすぐに始められる代表的なツールです。" },
+    "categories": { "title": "カテゴリーから探す", "description": "目的の作業に合わせてツールを探せます。", "count": "{count}個のツール", "filterLabel": "ツールカテゴリーの絞り込み", "all": "すべて" },
+    "recent": { "title": "最近追加されたツール", "description": "新しく利用できるようになったオンラインツールです。" },
+    "service": { "free": { "title": "無料・ログイン不要", "description": "アカウント作成やソフトのインストールなしですぐに使えます。" }, "private": { "title": "ブラウザ中心の処理", "description": "可能な変換や編集はユーザーのブラウザ内で処理するよう設計しています。" }, "accessible": { "title": "さまざまな端末に対応", "description": "PC、タブレット、スマートフォンから快適に利用できます。" } },
     "tools": {
       "title": "ツールを選択してください",
       "description": "インストールやログインなしですぐに利用できます。",
@@ -43,7 +49,7 @@
       "imageColorPicker": { "title": "画像カラーピッカー", "description": "画像をアップロードし、正確なピクセル色をHEX、RGB、HSL、HSV、CMYKで確認します。" },
       "imageCompressor": { "title": "画像ファイルサイズを小さくする", "description": "JPG、PNG、WebPを品質または目標サイズでブラウザー内圧縮します。" },
       "screenshotStitcher": { "title": "スクリーンショット結合", "description": "連続画像の重複部分を検出し、1枚の長いPNGに結合します。" },
-      "privacyRedactor": { "title": "画像マスキングツール", "description": "写真やスクリーンショットで隠したい部分を選び、マスキングしたPNGを保存します。" },
+      "privacyRedactor": { "title": "画像の個人情報を隠す", "description": "写真やスクリーンショットで隠したい部分を選び、マスキングしたPNGを保存します。" },
       "screenshotStatusbarRemover": { "title": "スクリーンショットのステータスバー削除", "description": "スマホのスクリーンショット上部の時刻・バッテリー・通信状態バーを検出して削除し、ダウンロードします。" },
       "regexTester": { "title": "正規表現テスター", "description": "JavaScript正規表現の一致、キャプチャグループ、置換結果を確認します。" },
       "cronExpressionGenerator": { "title": "Cron式ジェネレーター", "description": "5フィールドCronを作成・解析し、タイムゾーン別の次回実行を確認します。" },
@@ -84,9 +90,37 @@
       "responseTime": { "body": "かんたんツールは個人で運営しているサービスのため、ご返信までお時間をいただく場合があります。あらかじめご了承ください。いただいたお問い合わせにはできるだけ早く目を通します。" }
     }
   },
+  "About": {
+    "metadata": { "title": "サービス紹介", "description": "インストールや会員登録なしで利用できる無料オンラインツール、かんたんツールの運営方針をご紹介します。" },
+    "title": "サービス紹介",
+    "intro": "かんたんツールは、日常や仕事でよく使う作業をインストールなしで処理できる無料オンラインツール集です。",
+    "sections": {
+      "service": { "title": "必要な作業をかんたんに", "body": "テキスト、データ、画像、開発などの用途に合わせたツールを提供しています。各ツールには固有のURLがあり、必要な機能をすぐに利用できます。" },
+      "access": { "title": "会員登録なしで利用", "body": "公開ツールはアカウント作成やログインなしで利用できます。基本機能のためにプロフィールや作業履歴を登録する必要はありません。" },
+      "browser": { "title": "可能な処理はブラウザ内で", "body": "画像、テキスト、ファイルなどは、可能な限り利用者の端末内で処理します。外部照会が必要なツールでは、送信先と処理方法を各ページで案内します。" },
+      "improvement": { "title": "継続的な確認と改善", "body": "機能、モバイル操作、アクセシビリティ、説明を継続して確認します。新機能の追加だけでなく、既存ツールの不具合や使いにくさも改善します。" }
+    },
+    "contact": { "title": "不具合や改善案がありますか？", "body": "利用中の問題や分かりにくい案内、改善案はお問い合わせページからお知らせください。", "link": "お問い合わせを開く" }
+  },
+  "Terms": {
+    "metadata": { "title": "利用規約", "description": "かんたんツールのオンライン機能を利用する際の基本条件と責任範囲をご案内します。" },
+    "title": "利用規約",
+    "lastUpdated": "最終更新日：2026年9月7日",
+    "intro": "本規約は、かんたんツールが提供するオンラインツールと関連コンテンツの利用に必要な基本事項を説明します。",
+    "sections": {
+      "use": { "title": "サービスの利用", "body": "公開機能は会員登録なしで利用できます。他者の権利を侵害したり、サービスの運営を妨げたりする目的で利用してはいけません。" },
+      "features": { "title": "提供機能", "body": "テキスト、画像、データ、開発、ネットワーク関連の作業を支援するツールと案内を提供します。対応形式と制限は各ツールページをご確認ください。" },
+      "accuracy": { "title": "結果の正確性", "body": "正確性を確認していますが、入力、ファイル形式、ブラウザ環境、外部提供者の状態によって結果が異なる場合があります。重要な判断や原本変更の前に結果をご確認ください。" },
+      "responsibility": { "title": "利用者の責任", "body": "入力資料を処理する権利の確認と、生成・変換結果の利用および保管は利用者の責任です。機密情報には各ツールの処理案内をご確認ください。" },
+      "copyright": { "title": "著作権", "body": "サイトのデザイン、説明、独自コンテンツは法令により保護されます。利用者が入力した資料と結果の権利は、利用者または元の権利者に帰属します。" },
+      "external": { "title": "外部サービス", "body": "一部機能、広告、アクセス解析では外部サービスを利用する場合があります。外部データの照会時には、提供者の利用条件とプライバシー方針が適用されることがあります。" },
+      "changes": { "title": "サービスの変更", "body": "安定性、技術環境、運営上の理由により機能や提供範囲を変更・終了する場合があります。重要な変更は可能な範囲でサイト上に案内します。" },
+      "disclaimer": { "title": "免責", "body": "本サイトは一般的な作業を支援するツールであり、法律、医療、金融などの専門判断に代わるものではありません。合理的に管理できない障害等の責任は法令の範囲で制限されます。" }
+    }
+  },
   "Tools": {
     "privacyRedactor": {
-      "metadata": { "title": "無料オンライン画像モザイク・隠しツール", "description": "写真やスクリーンショットで隠したい部分を自分で選び、単色またはモザイクで隠してダウンロードできます。処理はすべてブラウザ内で行われます。" },
+      "metadata": { "title": "画像の個人情報を隠す", "description": "写真やスクリーンショットで隠したい部分を自分で選び、単色またはモザイクで隠してダウンロードできます。処理はすべてブラウザ内で行われます。" },
       "title": "画像の個人情報を隠す", "description": "隠したい部分をドラッグで選択し、単色またはモザイクで隠してダウンロードします。サーバーには送信されず、ブラウザ内だけで処理されます。",
       "upload": { "title": "画像を選択", "help": "PNG、JPG、静止WebPを1枚選択またはドロップしてください。最大25MB・4,000万画素。", "drop": "ここに画像をドロップしてください。" },
       "privacy": "画像はブラウザ内でのみ処理され、サーバーには送信されません。",
@@ -99,7 +133,7 @@
       "errors": { "multiple-files": "画像は1枚だけ選択してください。", "unsupported-type": "PNG、JPG、または静止WebP画像を選択してください。", "file-too-large": "ファイルは25MB以下にしてください。", "animated-image": "アニメーションWebPとGIFには対応していません。静止画像に変換してください。", "dimension-limit": "画像が4,000万画素または最大辺16,384pxの制限を超えています。", "decode-failed": "画像を読み込めません。ファイルが破損している可能性があります。", "canvas-failed": "画像の結果を作成できませんでした。より小さい画像で再試行してください。", "no-selected-region": "隠す領域を1つ以上選択または追加してください。" }
     },
     "screenshotStatusbarRemover": {
-      "metadata": { "title": "無料スクリーンショットのステータスバー削除・iPhone/Android", "description": "スマホのスクリーンショット上部の時刻・バッテリー・通信状態バーをブラウザで検出して削除し、ダウンロードできます。" },
+      "metadata": { "title": "スクリーンショットのステータスバー削除", "description": "スマホのスクリーンショット上部の時刻・バッテリー・通信状態バーをブラウザで検出して削除し、ダウンロードできます。" },
       "title": "スクリーンショットのステータスバー削除", "description": "縦向きスマホスクリーンショット上部のステータスバーの高さを検出し、削除ラインを表示します。確認または調整してダウンロードしてください。",
       "upload": { "title": "画像を選択", "help": "PNG、JPG、静止WebPの縦向きスクリーンショットを1枚選択またはドロップしてください。最大25MB・4,000万画素", "drop": "ここに画像をドロップしてください。" },
       "privacy": "画像はブラウザ内でのみ処理され、サーバーには送信されません。このツールはステータスバー以外の個人情報を自動的には削除しません。",
@@ -112,7 +146,7 @@
       "errors": { "multiple-files": "画像は1枚だけ選択してください。", "unsupported-type": "PNG、JPG、または静止WebP画像を選択してください。", "file-too-large": "ファイルは25MB以下にしてください。", "dimension-limit": "画像が4,000万画素または最大辺16,384pxの制限を超えています。", "decode-failed": "画像を読み込めません。ファイルが破損している可能性があります。", "canvas-failed": "結果画像を作成できませんでした。より小さい画像で再試行してください。", "crop-exceeds-image": "削除する高さは画像の高さより大きくできません。" }
     },
     "textCleaner": {
-      "metadata": { "title": "無料オンラインテキストクリーナー・空白と重複行の削除", "description": "余分な空白、空行、重複行をまとめて整理します。ブラウザ内のみで処理されます。" },
+      "metadata": { "title": "テキストクリーナー", "description": "余分な空白、空行、重複行をまとめて整理します。ブラウザ内のみで処理されます。" },
       "title": "テキストクリーナー", "description": "不要な空白や空行を整理し、重複した行を削除します。オプションを組み合わせて希望の形にテキストを整えましょう。",
       "presets": { "title": "クイック設定", "basic": "基本整理", "removeBlank": "空行削除", "removeDuplicate": "重複削除", "oneLine": "1行にまとめる", "full": "完全整理" },
       "input": { "label": "元のテキスト", "placeholder": "整理したいテキストを入力または貼り付けてください。", "tooLarge": "入力が大きすぎます(最大10MB)。テキストを分割して処理してください。", "perfWarning": "入力が大きいため、処理が遅くなる場合があります。" },
@@ -124,7 +158,7 @@
       "regexRule": { "title": "正規表現置換(上級者向け)", "help": "パターンに一致する部分を別の値に置き換えるか削除します。他のオプションより先に適用されます。正規表現が分からない場合は使わなくても構いません。", "pattern": "検索パターン", "patternPlaceholder": "例: ^#.*$", "replacement": "置換後の文字列", "replacementPlaceholder": "空欄で削除", "ignoreCase": "大文字・小文字を区別しない", "invalidPattern": "正規表現が正しくありません: {message}" }
     },
     "koreanInitialConverter": {
-      "metadata": { "title": "無料ハングル初声変換ツール", "description": "ハングルのテキストを初声だけに即座に変換します。英数字・記号・絵文字はそのまま維持され、ブラウザ内のみで処理されます。" },
+      "metadata": { "title": "ハングル初声変換ツール", "description": "ハングルのテキストを初声だけに即座に変換します。英数字・記号・絵文字はそのまま維持され、ブラウザ内のみで処理されます。" },
       "title": "ハングル初声変換ツール", "description": "ハングルの文章を入力すると各音節の初声だけを即座に抽出します。英数字・空白・絵文字はそのまま維持されます。",
       "input": { "label": "元のテキスト", "placeholder": "変換したいテキストを入力してください" },
       "result": { "label": "初声の結果" },
@@ -135,7 +169,7 @@
       "privacy": "入力したテキストはブラウザ内でのみ処理されます。"
     },
     "jwtDecoder": {
-      "metadata": { "title": "無料JWTデコーダー・Header/Payload確認", "description": "JWTを貼り付けるとHeaderとPayloadをブラウザ内で即座にデコードし、有効期限を確認できます。署名検証は行いません。ブラウザ内のみで処理されます。" },
+      "metadata": { "title": "JWTデコーダー", "description": "JWTを貼り付けるとHeaderとPayloadをブラウザ内で即座にデコードし、有効期限を確認できます。署名検証は行いません。ブラウザ内のみで処理されます。" },
       "title": "JWTデコーダー", "description": "JWTを入力するとHeaderとPayloadをブラウザ内ですぐに確認できます。デコードは署名検証ではありません。",
       "input": { "label": "JWT入力", "placeholder": "JWTトークンを貼り付けてください" },
       "actions": { "loadSample": "サンプルJWTを読み込む", "reset": "リセット", "copyJwt": "JWT全体をコピー", "copied": "コピーしました", "copyHeader": "Headerをコピー", "copyPayload": "Payloadをコピー" },
@@ -151,7 +185,7 @@
       "guide": { "title": "JWTの構造", "headerText": "アルゴリズムとトークン情報", "payloadText": "Claims", "signatureText": "改ざん検証に使用される署名データ(このツールでは検証しません)", "note": "デコードと検証は別の作業です。" }
     },
     "faviconGenerator": {
-      "metadata": { "title": "無料ファビコンジェネレーター・favicon.ico作成", "description": "テキスト・絵文字・画像からブラウザタブ・ブックマーク・iOS・Android用のファビコンセットをブラウザ内で作成します。favicon.ico、PNG、site.webmanifest、HTMLコードを一括でダウンロードできます。" },
+      "metadata": { "title": "ファビコンジェネレーター", "description": "テキスト・絵文字・画像からブラウザタブ・ブックマーク・iOS・Android用のファビコンセットをブラウザ内で作成します。favicon.ico、PNG、site.webmanifest、HTMLコードを一括でダウンロードできます。" },
       "title": "ファビコンジェネレーター", "description": "テキスト、絵文字、画像でウェブサイト用のファビコンセットを生成します。",
       "tabs": { "label": "ソース選択", "text": "テキスト", "emoji": "絵文字", "image": "画像", "shape": "図形" },
       "presets": { "title": "クイックスタートスタイル", "help": "クリックすると、入力済みのテキスト・絵文字を保持したまま背景・図形のスタイルだけを適用します。", "names": { "ocean": "オーシャン", "sunset": "サンセット", "forest": "フォレスト", "grape": "グレープ", "charcoal": "チャコール", "outline": "アウトライン", "rose": "ローズ", "amber": "アンバー" } },
@@ -172,7 +206,7 @@
       "privacy": "アップロードした画像はブラウザ内でのみ処理され、サーバーには送信されません。"
     },
     "sqlFormatter": {
-      "metadata": { "title": "無料SQLフォーマッター・SQL Beautifier", "description": "MySQL、PostgreSQL、SQL Server、Oracle、SQLiteの文法を考慮してSQLクエリをブラウザで整形・圧縮します。" },
+      "metadata": { "title": "SQLフォーマッター", "description": "MySQL、PostgreSQL、SQL Server、Oracle、SQLiteの文法を考慮してSQLクエリをブラウザで整形・圧縮します。" },
       "title": "SQLフォーマッター", "description": "読みにくいSQLを選択したDBMSの文法で解析し、読みやすい形に整形します。",
       "input": { "label": "SQL入力", "help": "セミコロンで区切って複数のSQL文を入力できます。", "placeholder": "SELECT a,b,c FROM users WHERE a=1 AND b=2;" },
       "options": {
@@ -196,7 +230,7 @@
       "privacy": { "title": "ブラウザ内だけで処理", "description": "入力したSQLはブラウザで処理され、サーバーへ送信・保存されません。" }
     },
     "screenshotStitcher": {
-      "metadata": { "title": "無料スクリーンショット結合", "description": "連続スクリーンショットの重複部分をブラウザーで検出し、1枚の長いPNGに結合します。" },
+      "metadata": { "title": "スクリーンショット結合", "description": "連続スクリーンショットの重複部分をブラウザーで検出し、1枚の長いPNGに結合します。" },
       "title": "スクリーンショット結合", "description": "連続キャプチャの重複部分を見つけて削除し、1枚の長いスクリーンショットを作成します。",
       "upload": { "title": "スクリーンショットを追加", "help": "複数のPNG、JPG、WebPを選択するか、ここにドロップしてください。", "dropActive": "ここに画像をドロップしてください。", "limit": "2～20枚 · 1ファイル20MB · 合計100MB" },
       "actions": { "choose": "画像を選択", "add": "画像を追加", "clear": "すべてクリア", "up": "上へ移動", "down": "下へ移動", "remove": "画像を削除", "analyze": "重複を自動検出", "reanalyze": "除外範囲で再解析", "cancel": "キャンセル", "confirm": "この接続を確認", "compose": "長い画像を作成", "download": "PNGをダウンロード" },
@@ -209,7 +243,7 @@
       "guide": { "orderTitle": "最初に順序を確認", "orderText": "正確な重複検出には撮影順序が正しい必要があります。", "reviewTitle": "接続部分を確認", "reviewText": "繰り返しメニューや単色領域は曖昧です。信頼度とプレビューを確認してください。", "privacyTitle": "ブラウザー内処理", "privacyText": "元画像と結果は外部へ送信されず、クリアまたはタブを閉じると解放されます。" }
     },
     "regexTester": {
-      "metadata": { "title": "無料JavaScript正規表現テスター", "description": "JavaScript正規表現のフラグ、キャプチャグループ、名前付きグループ、置換をブラウザーで確認できます。" },
+      "metadata": { "title": "正規表現テスター", "description": "JavaScript正規表現のフラグ、キャプチャグループ、名前付きグループ、置換をブラウザーで確認できます。" },
       "title": "正規表現テスター", "description": "JavaScript正規表現をリアルタイムで検証し、一致位置、キャプチャグループ、置換結果を確認できます。",
       "fields": { "pattern": "正規表現パターン", "patternHelp": "前後の / を付けずパターンだけ入力してください。バックスラッシュはそのままJavaScript RegExpへ渡されます。", "flags": "フラグ", "test": "テスト文字列", "testHelp": "複数行、日本語、韓国語、Emojiに対応します。IndexはJavaScript UTF-16位置です。", "replacement": "置換文字列", "replacementHelp": "$&, $1, $2, $'<name>', $$などJavaScript置換構文を使用できます。" },
       "flags": { "g": "すべての一致を検索", "i": "大文字小文字を区別しない", "m": "^と$を行単位で適用", "s": ".に改行を含める", "u": "Unicodeコードポイントモード", "y": "現在位置からsticky一致" },
@@ -225,7 +259,7 @@
       "privacy": "プライバシー：パターン、テスト文字列、置換結果はブラウザーWorker内だけで処理され、送信・保存されません。"
     },
     "imageCompressor": {
-      "metadata": { "title": "無料画像圧縮・写真サイズ削減", "description": "JPG、PNG、WebPをアップロードせず100KB、200KB、500KBなどの目標サイズに圧縮します。" },
+      "metadata": { "title": "画像ファイルサイズを小さくする", "description": "JPG、PNG、WebPをアップロードせず100KB、200KB、500KBなどの目標サイズに圧縮します。" },
       "title": "画像ファイルサイズを小さくする", "description": "JPG、PNG、WebPを品質または目標容量で圧縮し、結果を比較してダウンロードできます。",
       "upload": { "title": "画像をアップロード", "help": "JPG、PNG、WebPを1枚選択またはドロップしてください。最大25MB、2400万ピクセルです。", "drop": "ここに画像をドロップしてください。" },
       "actions": { "choose": "画像を選択", "change": "画像を変更", "clear": "クリア", "compress": "圧縮する", "download": "圧縮画像をダウンロード" },
@@ -242,7 +276,7 @@
       "batch": { "tabSingle": "単一の画像", "tabBatch": "複数の画像(ZIP)", "title": "複数の画像をアップロード", "help": "JPG、PNG、WebPを複数選択するか、ここに置いてください。一度に最大50枚まで対応します。", "choose": "画像を複数選択", "reselect": "選び直す", "clear": "クリア", "columnFile": "ファイル名", "columnSize": "元の容量", "columnStatus": "状態", "columnResult": "結果", "statusPending": "待機中", "statusProcessing": "圧縮中", "statusDone": "完了", "statusError": "失敗", "run": "一括圧縮を開始", "running": "圧縮中 · __CURRENT__/__TOTAL__", "downloadZip": "ZIPでダウンロード", "zipping": "ZIPファイルを作成中…", "summary": "全__TOTAL__枚中__DONE__枚を圧縮完了 · __SAVED__削減" }
     },
     "imageColorPicker": {
-      "metadata": { "title": "無料画像カラーピッカー", "description": "PNG、JPEG、WebP画像の正確なピクセル色をブラウザ内で安全に抽出します。" },
+      "metadata": { "title": "画像カラーピッカー", "description": "PNG、JPEG、WebP画像の正確なピクセル色をブラウザ内で安全に抽出します。" },
       "title": "画像カラーピッカー", "description": "画像のピクセルを選択し、5種類の色形式でコピーできます。画像はブラウザの外に送信されません。",
       "upload": { "title": "画像をアップロード", "help": "PNG、JPEG、WebP画像を1つ選択またはドロップしてください。上限は25MB、2400万ピクセルです。", "drop": "ここに画像をドロップしてください。" },
       "actions": { "choose": "画像を選択", "change": "画像を変更", "reset": "リセット", "copy": "コピー", "copied": "コピー済み" },
@@ -259,7 +293,7 @@
       "guide": { "pixelTitle": "ピクセル単位の正確さ", "pixelText": "座標はデコードされた元画像が基準です。ズームはプレビューサイズだけを変え、選択ピクセルは変えません。", "zoomTitle": "正確に選択", "zoomText": "全体表示にはフィット、正確な選択には高いズーム率を使います。大きな画像はプレビュー内でスクロールします。", "colorTitle": "色形式", "colorText": "透明色はHEXA、RGBA、HSLA、HSVAで表示します。CMYKは画面色の数式変換であり、印刷プロファイル値ではありません。" }
     },
     "ipInfo": {
-      "metadata": { "title": "IPアドレス確認・IP情報検索", "description": "現在のIPv4またはIPv6、国、地域、ISP、ASN情報を無料で確認できます。" },
+      "metadata": { "title": "IPアドレス情報", "description": "現在のIPv4またはIPv6、国、地域、ISP、ASN情報を無料で確認できます。" },
       "title": "IPアドレス情報", "description": "現在のグローバルIP、推定地域、ISP、ネットワーク情報を確認します。",
       "provider": { "notice": "検索のためIPアドレスが外部プロバイダーIPWHOIS.IOに送信されます。このサイトは結果を保存しません。", "privacyLink": "プロバイダーのプライバシーポリシー" },
       "current": { "title": "現在のグローバルIP" },
@@ -273,7 +307,7 @@
       "guide": { "publicIpTitle": "グローバルIPとは？", "publicIpText": "インターネット接続を識別するアドレスです。ルーターや通信事業者の環境では端末のプライベートIPと異なります。", "locationTitle": "位置情報の制限", "locationText": "IP位置はネットワーク登録と経路情報による推定値です。住所や個人の正確な位置ではありません。", "vpnTitle": "VPNとプロキシ", "vpnText": "VPN、プロキシ、社内ネットワーク、携帯回線では、そのネットワークの出口位置が表示される場合があります。", "privacyTitle": "プライバシーと外部プロバイダー", "privacyText": "検索はブラウザからIPWHOIS.IOへ直接送信されます。このサイトはIPと結果をサーバー、ブラウザストレージ、履歴に保存しません。" }
     },
     "qrCodeGenerator": {
-      "metadata": { "title": "無料QRコード生成", "description": "テキストやURLをサーバーへ送信せずQRコードにし、選んだサイズのPNGで保存できます。" },
+      "metadata": { "title": "QRコード生成", "description": "テキストやURLをサーバーへ送信せずQRコードにし、選んだサイズのPNGで保存できます。" },
       "title": "QRコード生成", "description": "テキストやURLを入力するとブラウザでQRコードを自動生成し、PNGで保存できます。",
       "input": { "label": "QRコードに入れる内容", "help": "テキスト、URL、韓国語、日本語、Emoji、複数行を入力できます。内容は入力どおりにエンコードされます。", "placeholder": "テキストまたは https://example.com" },
       "preview": { "title": "QRコードプレビュー", "empty": "内容を入力するとQRコードが表示されます。", "processing": "QRコードを生成中…", "canvasLabel": "入力内容から生成されたQRコード", "size": "サイズ", "level": "誤り訂正", "margin": "Quiet Zone", "type": "入力タイプ", "types": { "text": "テキスト", "url": "URL" }, "effectiveLevel": "実際に適用されたレベル(ロゴにより自動引き上げ)" },
@@ -346,7 +380,7 @@
       "errors":{"base64":"有効なBase64ではありません。文字、長さ、末尾の= paddingを確認してください。","unrepresentable":"選択したエンコーディングで表現できない文字があります。UTF-8などを選択してください。","invalidBytes":"選択したエンコーディングでは無効なバイトです。設定を確認してください。","ambiguous":"文字エンコーディングを特定できません。リストから直接選択してください。","load":"文字エンコーディング機能を読み込めませんでした。接続を確認して再試行してください。","copy":"コピーできませんでした。クリップボードの権限を確認してください。"},"guide":{"title":"文字エンコーディングについて","description":"Base64は暗号化ではありません。Auto EncodeはUTF-8を使用し、曖昧なlegacy Decodeでは直接選択が必要です。"},"privacy":{"title":"ブラウザ内だけで処理","description":"入力と結果はサーバーへ送信、保存されません。"}
     },
     "passwordGenerator": {
-      "metadata": { "title": "安全なパスワード生成", "description": "ブラウザで長さと文字種を選ぶか、覚えやすい単語の組み合わせで安全なパスワードを生成できます。" },
+      "metadata": { "title": "パスワード生成", "description": "ブラウザで長さと文字種を選ぶか、覚えやすい単語の組み合わせで安全なパスワードを生成できます。" },
       "title": "パスワード生成", "description": "ランダムな文字または単語の組み合わせを選ぶと、ブラウザの安全な乱数でパスワードを作成します。",
       "mode": { "label": "生成方式", "characters": "ランダムな文字", "passphrase": "単語の組み合わせ" },
       "settings": { "lengthGroup": "パスワードの長さ", "rangeLabel": "スライダーで長さを選択", "numberLabel": "長さを直接入力", "characterTypes": "含める文字種", "uppercase": "大文字 (A–Z)", "lowercase": "小文字 (a–z)", "numbers": "数字 (0–9)", "symbols": "特殊文字" },
@@ -388,7 +422,7 @@
       "privacy": { "title": "ブラウザ内だけで処理", "description": "入力したJSONはサーバーへ送信、保存されません。" }
     },
     "cronExpressionGenerator": {
-      "metadata":{"title":"Cron式ジェネレーター・解析ツール","description":"Linuxの5フィールドCron式を作成・検証し、タイムゾーン別の次回実行を確認します。"},"title":"Cron式ジェネレーター","description":"実行周期から5フィールドCron式を作成するか、既存の式を解析して次回実行を確認します。",
+      "metadata":{"title":"Cron式ジェネレーター","description":"Linuxの5フィールドCron式を作成・検証し、タイムゾーン別の次回実行を確認します。"},"title":"Cron式ジェネレーター","description":"実行周期から5フィールドCron式を作成するか、既存の式を解析して次回実行を確認します。",
       "mode":{"label":"入力方法","generator":"かんたん作成","direct":"直接入力"},"presets":{"title":"よく使うプリセット","everyMinute":"毎分","every5Minutes":"5分ごと","every10Minutes":"10分ごと","every30Minutes":"30分ごと","hourly":"毎時","midnight":"毎日0時","daily9":"毎日9時","monday9":"毎週月曜9時","monthlyFirst":"毎月1日0時","weekdays9":"平日9時"},
       "generator":{"frequency":"実行周期","interval":"間隔","hour":"時 (0–23)","minute":"分 (0–59)","weekdays":"曜日","dates":"日付","months":"月","monthLabel":"{month}月"},"modes":{"every-minute":"毎分","every-n-minutes":"N分ごと","hourly":"毎時","every-n-hours":"N時間ごと","daily":"毎日","weekly":"毎週・曜日指定","monthly":"毎月・日付指定","specific-date":"月と日付を指定"},"weekdays":{"0":"日","1":"月","2":"火","3":"水","4":"木","5":"金","6":"土"},"weekdayNames":{"0":"日曜日","1":"月曜日","2":"火曜日","3":"水曜日","4":"木曜日","5":"金曜日","6":"土曜日"},
       "direct":{"label":"Cron式","help":"分 時 日 月 曜日の数値5フィールドと *、カンマ、ハイフン、スラッシュに対応します。"},"result":{"title":"Cron結果","empty":"式を入力してください。"},"status":{"valid":"有効な5フィールドCron式です。","empty":"式を入力すると検証結果が表示されます。"},"actions":{"copyCron":"Cronをコピー","copyDescription":"説明をコピー","copyCrontab":"crontab行をコピー","copied":"コピー済み","clear":"リセット"},
@@ -400,7 +434,7 @@
       "reference":{"title":"Cronクイックリファレンス","description":"初版はUnix/Vixie方式の数値5フィールドに対応します。","syntax":"*  すべて\n,  複数値\n-  範囲\n/  間隔","fields":"Minute 0–59 · Hour 0–23 · Day 1–31 · Month 1–12 · Weekday 0–7（0と7は日曜）"},"vercel":{"title":"Vercel Cronの注意","description":"Vercelなどのプラットフォームには独自のタイムゾーンや実行間隔制限があります。デプロイ前に最新の公式ドキュメントを確認してください。"},"privacy":"式と設定はブラウザーのメモリ内だけで処理し、サーバーへ送信・保存しません。"
     },
     "p2pFileTransfer": {
-      "metadata":{"title":"QRファイル転送 - ブラウザ間ですぐ送信","description":"サービスのサーバーに保存せず、QRまたはリンクで接続してリアルタイムにファイルを転送します。"},"title":"QRですぐにファイルを送信","description":"サービスのサーバーにファイルを保存せず、相手のブラウザへ直接転送します。","badgeStorage":"サーバー保存なし","badgeShare":"QR・リンク共有","badgeBrowser":"ブラウザ間転送","dropTitle":"ここにファイルをドロップ","dropOr":"または下のボタンから選択してください。","choose":"ファイルを選択","notStored":"ファイルはサービスのサーバーに保存されません。","unknownType":"不明なファイル形式","dangerous":"実行ファイルまたはスクリプトの可能性があります。信頼できる相手とのみ送受信してください。","createLink":"共有リンクを作成","chooseAnother":"別のファイルを選択","serviceSetup":"signaling/TURNサービスのURLが未設定のため、実際の共有セッションを作成できません。","qrLabel":"ファイル受信リンクのQRコード","scan":"相手にこのQRコードを読み取ってもらいます","shareUrl":"共有リンク","copy":"リンクをコピー","copied":"コピーしました","keepOpen":"このブラウザを閉じると相手はファイルを受信できません。","approvePrompt":"この端末へファイルを送信しますか？","approve":"転送を許可","reject":"拒否","cancel":"転送をキャンセル","sendAnother":"別のファイルを送信","receiveTitle":"ファイルを受信しますか？","receive":"ファイルを受信","waitingSender":"送信ブラウザと安全に接続しています…","calculating":"計算中…","eta":"残り約{seconds}秒","connecting":"接続方式を確認中","connection":{"direct":"直接接続","relay":"中継接続"},"sender":"送信端末","receiver":"受信端末","exampleSender":"1.36 GiB送信","exampleReceiver":"受信中",
+      "metadata":{"title":"QRファイル転送","description":"サービスのサーバーに保存せず、QRまたはリンクで接続してリアルタイムにファイルを転送します。"},"title":"QRファイル転送","description":"サービスのサーバーにファイルを保存せず、相手のブラウザへ直接転送します。","badgeStorage":"サーバー保存なし","badgeShare":"QR・リンク共有","badgeBrowser":"ブラウザ間転送","dropTitle":"ここにファイルをドロップ","dropOr":"または下のボタンから選択してください。","choose":"ファイルを選択","notStored":"ファイルはサービスのサーバーに保存されません。","unknownType":"不明なファイル形式","dangerous":"実行ファイルまたはスクリプトの可能性があります。信頼できる相手とのみ送受信してください。","createLink":"共有リンクを作成","chooseAnother":"別のファイルを選択","serviceSetup":"signaling/TURNサービスのURLが未設定のため、実際の共有セッションを作成できません。","qrLabel":"ファイル受信リンクのQRコード","scan":"相手にこのQRコードを読み取ってもらいます","shareUrl":"共有リンク","copy":"リンクをコピー","copied":"コピーしました","keepOpen":"このブラウザを閉じると相手はファイルを受信できません。","approvePrompt":"この端末へファイルを送信しますか？","approve":"転送を許可","reject":"拒否","cancel":"転送をキャンセル","sendAnother":"別のファイルを送信","receiveTitle":"ファイルを受信しますか？","receive":"ファイルを受信","waitingSender":"送信ブラウザと安全に接続しています…","calculating":"計算中…","eta":"残り約{seconds}秒","connecting":"接続方式を確認中","connection":{"direct":"直接接続","relay":"中継接続"},"sender":"送信端末","receiver":"受信端末","exampleSender":"1.36 GiB送信","exampleReceiver":"受信中",
       "states":{"IDLE":"ファイルを選択してください。","FILE_SELECTED":"ファイルを確認して共有リンクを作成してください。","SESSION_CREATING":"安全なセッションを作成中…","WAITING_FOR_RECEIVER":"相手の接続を待っています。","RECEIVER_JOINED":"相手が接続しました。","NEGOTIATING":"相手と接続中…","CONNECTED":"ブラウザが接続されました。","WAITING_RECEIVER_ACCEPT":"相手の受信操作を待っています。","READY":"転送準備が完了しました。","TRANSFERRING":"ファイルを転送中です。","VERIFYING":"受信とファイル整合性を確認中…","COMPLETED":"ファイル転送が完了しました。","FAILED":"転送に失敗しました。","CANCELLED":"転送をキャンセルしました。","EXPIRED":"共有リンクの有効期限が切れました。"},
       "errors":{"SESSION_NOT_FOUND":"存在しないか期限切れの共有リンクです。","SESSION_EXPIRED":"共有リンクの期限が切れました。新しいリンクを作成してください。","SESSION_OCCUPIED":"すでに別の端末が接続しています。","SENDER_OFFLINE":"送信ブラウザの接続が切れました。","RECEIVER_REJECTED":"相手が受信を拒否しました。","ICE_FAILED":"ブラウザ間の接続に失敗しました。ネットワークを確認してください。","TURN_UNAVAILABLE":"中継接続を利用できません。後でもう一度お試しください。","FILE_READ_FAILED":"ファイルを読み込めません。選択し直してください。","FILE_TOO_LARGE_FOR_BROWSER":"このブラウザの安全な保存上限を超えています。デスクトップ版ChromeまたはEdgeを使用してください。","DISK_WRITE_FAILED":"保存できません。空き容量と権限を確認してください。","HASH_MISMATCH":"ファイル整合性の確認に失敗しました。使用せず再転送してください。","PEER_DISCONNECTED":"相手との接続が切れました。最初からやり直してください。","PROTOCOL_ERROR":"安全でない転送状態を検出したため接続を停止しました。","SERVICE_UNAVAILABLE":"転送サービスを利用できません。設定またはネットワークを確認してください。"},
       "howTitle":"どのように動作しますか？","steps":{"select":{"title":"ファイル選択","text":"送信するファイルを選択します。"},"share":{"title":"QR・リンク共有","text":"QRコードまたはリンクを相手へ送ります。"},"connect":{"title":"相手が接続","text":"相手が開くとブラウザ同士が接続します。"},"transfer":{"title":"すぐに転送","text":"双方が同意すると転送を開始します。"}},"exampleTitle":"PCの2GB動画をスマートフォンへ送る場合","exampleText":"選択から受信確認まで双方で同じ進捗を確認できます。","privacyTitle":"ファイルを保存しません","privacyText":"ファイル本体はサービスのサーバーに保存されません。接続に必要な最小限のsignaling情報だけを一時的に中継します。","encryptionTitle":"暗号化された接続","encryptionText":"WebRTCはDTLSで暗号化されます。直接接続できない場合は暗号化データがTURN中継を通過することがあります。","faqTitle":"よくある質問","faq":{"upload":{"q":"ファイルはサーバーへアップロードされますか？","a":"サービスのサーバーには保存されません。ネットワークによって暗号化データがTURN中継を通過する場合があります。"},"offline":{"q":"リンクを送りPCを閉じてもよいですか？","a":"いいえ。送信ブラウザを開き、相手と同時に接続する必要があります。"},"complete":{"q":"相手がすべて受信したか分かりますか？","a":"受信側が保存とSHA-256検証を終えた後に送信側も完了表示になります。"},"large":{"q":"大きなファイルも送れますか？","a":"デスクトップ版ChromeとEdgeはディスクへストリーム保存します。他のブラウザはメモリ制約でサイズが制限されます。"},"multiple":{"q":"2人が同時に受信できますか？","a":"V1は一度に1台のみ対応します。"},"encrypted":{"q":"転送は暗号化されますか？","a":"WebRTC DataChannelはDTLSで暗号化されます。"}}

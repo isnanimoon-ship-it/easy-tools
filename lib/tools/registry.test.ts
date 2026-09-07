@@ -18,16 +18,33 @@ describe("tool registry", () => {
   it("has valid categories, unique ordering, and translations for every locale", () => {
     for (const category of TOOL_CATEGORY_KEYS) {
       const tools = TOOLS.filter(tool => tool.category === category);
+      expect(tools.some(tool => !("visibility" in tool) || tool.visibility !== "hidden")).toBe(true);
       expect(new Set(tools.map(tool => tool.menuOrder)).size).toBe(tools.length);
     }
     expect(new Set(TOOLS.map(tool => tool.homeOrder)).size).toBe(TOOLS.length);
 
     for (const locale of ["ko", "en", "ja"]) {
       const messages = JSON.parse(readFileSync(resolve(process.cwd(), `messages/${locale}.json`), "utf8"));
+      for (const category of TOOL_CATEGORY_KEYS) {
+        expect(messages.Common.toolsNav.categories[category]).toBeTruthy();
+      }
       for (const tool of TOOLS) {
         expect(messages.Common.toolsNav[tool.translationKey]).toBeTruthy();
         expect(messages.Home.tools[tool.translationKey]?.title).toBeTruthy();
         expect(messages.Home.tools[tool.translationKey]?.description).toBeTruthy();
+      }
+    }
+  });
+
+  it("uses one canonical tool name in navigation, cards, headings, and metadata", () => {
+    for (const locale of ["ko", "en", "ja"]) {
+      const messages = JSON.parse(readFileSync(resolve(process.cwd(), `messages/${locale}.json`), "utf8"));
+      for (const tool of TOOLS) {
+        const key = tool.translationKey;
+        const canonicalName = messages.Tools[key].title;
+        expect(messages.Common.toolsNav[key], `${locale}:${key}:navigation`).toBe(canonicalName);
+        expect(messages.Home.tools[key].title, `${locale}:${key}:home`).toBe(canonicalName);
+        expect(messages.Tools[key].metadata.title, `${locale}:${key}:metadata`).toBe(canonicalName);
       }
     }
   });

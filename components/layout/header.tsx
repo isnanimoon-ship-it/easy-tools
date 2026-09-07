@@ -18,7 +18,7 @@ export function Header() {
       >
         {t("skipToContent")}
       </a>
-      <Container>
+      <Container style={{ maxWidth: "90rem" }}>
         <div className="flex h-16 items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-2 sm:gap-5"><Link
             href="/"

@@ -141,3 +141,29 @@ textarea {
   color: var(--foreground);
   padding: 0.625rem 0.75rem;
 }
+
+.tool-menu-expanded {
+  display: none;
+}
+
+.tool-menu-compact {
+  display: inline-flex;
+}
+
+@media (min-width: 1536px) {
+  .tool-menu-expanded {
+    display: flex;
+  }
+
+  .tool-menu-compact {
+    display: none;
+  }
+
+  .tool-menu-panel {
+    position: absolute;
+    top: 3.5rem;
+    right: auto;
+    left: 0;
+    width: 42rem;
+  }
+}

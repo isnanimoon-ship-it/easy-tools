@@ -7,10 +7,11 @@
     "brand": "Easy Tools",
     "homeLabel": "Easy Tools home",
     "skipToContent": "Skip to main content",
-    "status": "Coming soon",
+    "status": "Available",
     "theme": { "enableDark": "Enable dark mode", "enableLight": "Enable light mode" },
-    "toolsNav": { "label": "Tools menu", "mobileLabel": "Mobile tools menu", "open": "Tools", "all": "All tools", "categories": { "text": "Text", "developer": "Developer", "media": "Images & Media", "other": "More tools" }, "wordCounter": "Word Counter", "jsonFormatter": "JSON Formatter", "passwordGenerator": "Password Generator", "base64Converter": "Base64 Encoder/Decoder", "urlEncoderDecoder": "URL Encoder/Decoder", "youtubeThumbnailDownloader": "YouTube Thumbnail Downloader", "qrCodeGenerator": "QR Generator", "ipInfo": "IP Lookup", "imageColorPicker": "Image Color Picker", "imageCompressor": "Reduce image file size", "screenshotStitcher": "Screenshot Stitcher", "privacyRedactor": "Image Masking", "screenshotStatusbarRemover": "Status Bar Remover", "regexTester": "Regex Tester", "cronExpressionGenerator": "Cron Generator", "textCleaner": "Text Cleaner", "koreanInitialConverter": "Initial Consonant Converter", "jwtDecoder": "JWT Decoder", "faviconGenerator": "Favicon Generator", "sqlFormatter": "SQL Formatter", "excelChartMaker": "Excel & CSV Chart Maker", "p2pFileTransfer": "QR File Transfer" },
+    "toolsNav": { "label": "Tools menu", "mobileLabel": "Mobile tools menu", "open": "Tools", "all": "All tools", "categories": { "image": "Images", "text": "Text", "developer": "Developer", "generator": "Generators", "fileData": "Files & Data", "network": "Network" }, "wordCounter": "Word Counter", "jsonFormatter": "JSON Formatter", "passwordGenerator": "Password Generator", "base64Converter": "Base64 Encoder/Decoder", "urlEncoderDecoder": "URL Encoder/Decoder", "youtubeThumbnailDownloader": "YouTube Thumbnail Downloader", "qrCodeGenerator": "QR Code Generator", "ipInfo": "IP Address Lookup", "imageColorPicker": "Image Color Picker", "imageCompressor": "Reduce image file size", "screenshotStitcher": "Screenshot Stitcher", "privacyRedactor": "Image Privacy Masking", "screenshotStatusbarRemover": "Screenshot Status Bar Remover", "regexTester": "Regex Tester", "cronExpressionGenerator": "Cron Expression Generator", "textCleaner": "Text Cleaner", "koreanInitialConverter": "Korean Initial Consonant Converter", "jwtDecoder": "JWT Decoder", "faviconGenerator": "Favicon Generator", "sqlFormatter": "SQL Formatter", "excelChartMaker": "Excel & CSV Chart Maker", "p2pFileTransfer": "QR File Transfer" },
     "footer": "© {year} Easy Tools. Simple tools for everyone.",
+    "footerNavLabel": "Service information",
     "result": "Result",
     "copy": "Copy",
     "copied": "Copied",
@@ -26,7 +27,12 @@
   "Home": {
     "eyebrow": "Everything you need in one place",
     "title": "Make complex tasks\nsimple.",
-    "description": "We are preparing online tools you can use instantly without installing anything or signing in.",
+    "description": "Use free online tools for images, text, development, and file tasks without installing software or creating an account. Whenever possible, your work is processed directly in your browser.",
+    "search": { "title": "Find the right tool", "description": "Search by tool name or describe the task you want to complete.", "placeholder": "Try image compression, JSON, or word count", "label": "Search tools", "clear": "Clear search", "resultsTitle": "Search results", "results": "{count} tools", "emptyTitle": "No matching tools found.", "emptyDescription": "Try a shorter or different search term.", "reset": "Reset search" },
+    "popular": { "title": "Popular tools", "description": "Start common tasks quickly with these featured tools." },
+    "categories": { "title": "Browse by category", "description": "Explore tools based on the kind of task you need to complete.", "count": "{count} tools", "filterLabel": "Tool category filter", "all": "All" },
+    "recent": { "title": "Recently added", "description": "Explore the latest online tools available on the site." },
+    "service": { "free": { "title": "Free, no sign-in", "description": "Start immediately without creating an account or installing software." }, "private": { "title": "Browser-first processing", "description": "Whenever possible, conversions and edits are performed inside your browser." }, "accessible": { "title": "Works across devices", "description": "Use the same tools comfortably on desktop, tablet, and mobile." } },
     "tools": {
       "title": "Choose a tool",
       "description": "Use these tools instantly without installing anything or signing in.",
@@ -43,7 +49,7 @@
       "imageColorPicker": { "title": "Image Color Picker", "description": "Upload an image and read the exact pixel color as HEX, RGB, HSL, HSV, and CMYK." },
       "imageCompressor": { "title": "Reduce image file size", "description": "Reduce JPG, PNG, and WebP images by quality or target file size in your browser." },
       "screenshotStitcher": { "title": "Screenshot Stitcher", "description": "Detect overlaps in consecutive screenshots and merge them into one long PNG." },
-      "privacyRedactor": { "title": "Image Masking Tool", "description": "Select the parts of a photo or screenshot you want to hide and export a masked PNG." },
+      "privacyRedactor": { "title": "Image Privacy Masking", "description": "Select the parts of a photo or screenshot you want to hide and export a masked PNG." },
       "screenshotStatusbarRemover": { "title": "Screenshot Status Bar Remover", "description": "Detect and remove the time/battery/carrier status bar from a phone screenshot and download the result." },
       "regexTester": { "title": "Regex Tester", "description": "Test JavaScript regular expressions, matches, capture groups, and replacements." },
       "cronExpressionGenerator": { "title": "Cron Expression Generator", "description": "Build and explain five-field Cron expressions and preview upcoming runs by timezone." },
@@ -84,9 +90,37 @@
       "responseTime": { "body": "Easy Tools is run by a single person, so replies may take a little while — thanks for your patience. We'll review every message as quickly as we can." }
     }
   },
+  "About": {
+    "metadata": { "title": "About", "description": "Learn about Easy Tools, a collection of free online utilities available without installation or sign-up." },
+    "title": "About",
+    "intro": "Easy Tools is a collection of free online utilities for common tasks, available directly in your browser without installation.",
+    "sections": {
+      "service": { "title": "Useful tools in one place", "body": "The site provides focused tools for text, data, images, development, and other recurring tasks. Each tool has its own URL so you can return to the feature you need." },
+      "access": { "title": "No account required", "body": "Public tools are available without creating an account or signing in. You do not need to register a profile or work history to use the core features." },
+      "browser": { "title": "Browser-first processing", "body": "Whenever practical, images, text, and files are processed on your device. Tools that require an external lookup explain what is sent and how it is handled on their own page." },
+      "improvement": { "title": "Continuously reviewed", "body": "We continue to check functionality, mobile usability, accessibility, and guidance. Improvements include fixing existing tools and reducing friction, not only adding new features." }
+    },
+    "contact": { "title": "Found an issue or have an idea?", "body": "Use the contact page to report a problem, unclear guidance, or a useful improvement.", "link": "Open contact page" }
+  },
+  "Terms": {
+    "metadata": { "title": "Terms of Use", "description": "Basic terms and responsibilities that apply when using Easy Tools and its online utilities." },
+    "title": "Terms of Use",
+    "lastUpdated": "Last updated: September 7, 2026",
+    "intro": "These terms explain the basic conditions for using the online tools and related content provided by Easy Tools.",
+    "sections": {
+      "use": { "title": "Using the service", "body": "You may use public features without an account. You must not use the service to violate another person's rights or interfere with its operation." },
+      "features": { "title": "Features provided", "body": "The site provides tools and guidance for text, images, data, development, and network-related tasks. Format support and limitations are described on each tool page." },
+      "accuracy": { "title": "Accuracy of results", "body": "We review results for accuracy, but they can vary with input, file format, browser environment, or an external data provider. Check important results before making decisions or changing an original file." },
+      "responsibility": { "title": "Your responsibility", "body": "You are responsible for having the right to process submitted material and for using and storing the resulting output. Review a tool's processing notes before using sensitive material." },
+      "copyright": { "title": "Copyright", "body": "The site's design, guidance, and original content are protected by applicable law. Rights in user-provided material and outputs remain with the user or their original rights holder." },
+      "external": { "title": "External services", "body": "Some tools, advertising, or analytics may use external services. Their own terms and privacy practices may apply when you visit them or request external data." },
+      "changes": { "title": "Service changes", "body": "Features or availability may change or be discontinued for reliability, technical, or operational reasons. Material changes will be announced on the site when practical." },
+      "disclaimer": { "title": "Disclaimer", "body": "The site provides general-purpose utilities and does not replace legal, medical, financial, or other professional judgment. Liability for events outside reasonable control is limited to the extent permitted by applicable law." }
+    }
+  },
   "Tools": {
     "privacyRedactor": {
-      "metadata": { "title": "Free Online Image Masking Tool", "description": "Select the parts of a photo or screenshot you want to hide, mask them with a solid block or pixelation, and download — processed entirely in your browser." },
+      "metadata": { "title": "Image Privacy Masking", "description": "Select the parts of a photo or screenshot you want to hide, mask them with a solid block or pixelation, and download — processed entirely in your browser." },
       "title": "Image Privacy Masking", "description": "Drag to select the parts you want to hide, mask them with a solid block or pixelation, and download. Nothing is sent to a server — everything runs in your browser.",
       "upload": { "title": "Choose an image", "help": "Choose or drop one PNG, JPG, or still WebP. Up to 25 MB and 40 megapixels.", "drop": "Drop the image here." },
       "privacy": "The image is processed only in your browser and is never sent to a server.",
@@ -99,7 +133,7 @@
       "errors": { "multiple-files": "Choose only one image.", "unsupported-type": "Choose a PNG, JPG, or still WebP image.", "file-too-large": "The file must be 25MB or smaller.", "animated-image": "Animated WebP and GIF are not supported. Convert to a still image first.", "dimension-limit": "The image exceeds 40 megapixels or the 16,384px side limit.", "decode-failed": "Couldn't read the image. The file may be corrupted.", "canvas-failed": "Couldn't build the image result. Try a smaller image.", "no-selected-region": "Select or add at least one region to mask." }
     },
     "screenshotStatusbarRemover": {
-      "metadata": { "title": "Free Screenshot Status Bar Remover · iPhone & Android", "description": "Detect and remove the time/battery/carrier status bar from a phone screenshot in your browser and download the result." },
+      "metadata": { "title": "Screenshot Status Bar Remover", "description": "Detect and remove the time/battery/carrier status bar from a phone screenshot in your browser and download the result." },
       "title": "Screenshot Status Bar Remover", "description": "Detects the status bar height at the top of a vertical phone screenshot and shows a removal line. Review or adjust it, then download.",
       "upload": { "title": "Choose an image", "help": "Choose or drop one PNG, JPG, or still WebP vertical screenshot. Up to 25MB, 40 megapixels", "drop": "Drop the image here." },
       "privacy": "The image is processed only in your browser and is never sent to a server. This tool does not automatically remove any private information other than the status bar.",
@@ -112,7 +146,7 @@
       "errors": { "multiple-files": "Choose only one image.", "unsupported-type": "Choose a PNG, JPG, or still WebP image.", "file-too-large": "The file must be 25MB or smaller.", "dimension-limit": "The image exceeds 40 megapixels or the 16,384px side limit.", "decode-failed": "Couldn't read the image. The file may be corrupted.", "canvas-failed": "Couldn't build the result image. Try a smaller image.", "crop-exceeds-image": "The removal height can't be larger than the image height." }
     },
     "textCleaner": {
-      "metadata": { "title": "Free Online Text Cleaner · Remove Whitespace & Duplicate Lines", "description": "Clean up extra whitespace, blank lines, and duplicate lines in your text at once. Processed entirely in your browser." },
+      "metadata": { "title": "Text Cleaner", "description": "Clean up extra whitespace, blank lines, and duplicate lines in your text at once. Processed entirely in your browser." },
       "title": "Text Cleaner", "description": "Clean up unnecessary whitespace and blank lines, and remove duplicate lines. Combine options to shape your text exactly the way you want.",
       "presets": { "title": "Quick Presets", "basic": "Basic Cleanup", "removeBlank": "Remove Blank Lines", "removeDuplicate": "Remove Duplicates", "oneLine": "Merge to One Line", "full": "Clean Everything" },
       "input": { "label": "Original text", "placeholder": "Enter or paste the text you want to clean.", "tooLarge": "The input is too large (max 10MB). Please split the text and try again.", "perfWarning": "The input is large, so processing may be slower." },
@@ -124,7 +158,7 @@
       "regexRule": { "title": "Regex replace (advanced)", "help": "Replaces or removes anything matching the pattern, before any other option runs. Skip this if you don''t know regular expressions.", "pattern": "Find pattern", "patternPlaceholder": "e.g. ^#.*$", "replacement": "Replace with", "replacementPlaceholder": "Leave empty to remove", "ignoreCase": "Ignore case", "invalidPattern": "Invalid regular expression: {message}" }
     },
     "koreanInitialConverter": {
-      "metadata": { "title": "Free Korean Initial Consonant Converter", "description": "Convert Korean text into just its initial consonants instantly. Letters, numbers, punctuation, and emoji stay unchanged. Processed entirely in your browser." },
+      "metadata": { "title": "Korean Initial Consonant Converter", "description": "Convert Korean text into just its initial consonants instantly. Letters, numbers, punctuation, and emoji stay unchanged. Processed entirely in your browser." },
       "title": "Korean Initial Consonant Converter", "description": "Enter Korean text and instantly extract the initial consonant of each syllable. Letters, numbers, spaces, and emoji are kept as-is.",
       "input": { "label": "Original text", "placeholder": "Enter the text you want to convert" },
       "result": { "label": "Initial consonant result" },
@@ -135,7 +169,7 @@
       "privacy": "The text you enter is processed only in your browser."
     },
     "jwtDecoder": {
-      "metadata": { "title": "Free JWT Decoder · Inspect Header & Payload", "description": "Paste a JWT to instantly decode its Header and Payload in your browser and check expiration. Signature verification is not performed. Processed entirely in your browser." },
+      "metadata": { "title": "JWT Decoder", "description": "Paste a JWT to instantly decode its Header and Payload in your browser and check expiration. Signature verification is not performed. Processed entirely in your browser." },
       "title": "JWT Decoder", "description": "Enter a JWT and instantly inspect its Header and Payload in your browser. Decoding is not signature verification.",
       "input": { "label": "JWT input", "placeholder": "Paste a JWT token" },
       "actions": { "loadSample": "Load sample JWT", "reset": "Reset", "copyJwt": "Copy full JWT", "copied": "Copied", "copyHeader": "Copy Header", "copyPayload": "Copy Payload" },
@@ -151,7 +185,7 @@
       "guide": { "title": "JWT structure", "headerText": "Algorithm and token metadata", "payloadText": "Claims", "signatureText": "Signature data used to verify tampering (this tool does not verify it)", "note": "Decoding and verification are different operations." }
     },
     "faviconGenerator": {
-      "metadata": { "title": "Free Favicon Generator · Make favicon.ico", "description": "Create a favicon set for browser tabs, bookmarks, iOS, and Android right in your browser using text, emoji, or an image. Download favicon.ico, PNG files, site.webmanifest, and the HTML code all at once." },
+      "metadata": { "title": "Favicon Generator", "description": "Create a favicon set for browser tabs, bookmarks, iOS, and Android right in your browser using text, emoji, or an image. Download favicon.ico, PNG files, site.webmanifest, and the HTML code all at once." },
       "title": "Favicon Generator", "description": "Create a favicon set for your website using text, emoji, or an image.",
       "tabs": { "label": "Source", "text": "Text", "emoji": "Emoji", "image": "Image", "shape": "Shape" },
       "presets": { "title": "Quick-start styles", "help": "Click one to apply a background/shape style while keeping the text or emoji you already entered.", "names": { "ocean": "Ocean", "sunset": "Sunset", "forest": "Forest", "grape": "Grape", "charcoal": "Charcoal", "outline": "Outline", "rose": "Rose", "amber": "Amber" } },
@@ -172,7 +206,7 @@
       "privacy": "The image you upload is processed only in your browser and is never sent to a server."
     },
     "sqlFormatter": {
-      "metadata": { "title": "Free SQL Formatter / SQL Beautifier", "description": "Format and minify SQL queries in your browser with MySQL, PostgreSQL, SQL Server, Oracle, and SQLite syntax in mind." },
+      "metadata": { "title": "SQL Formatter", "description": "Format and minify SQL queries in your browser with MySQL, PostgreSQL, SQL Server, Oracle, and SQLite syntax in mind." },
       "title": "SQL Formatter", "description": "Analyzes hard-to-read SQL against your chosen DBMS syntax and rearranges it into a readable form.",
       "input": { "label": "SQL input", "help": "You can enter multiple SQL statements separated by semicolons.", "placeholder": "SELECT a,b,c FROM users WHERE a=1 AND b=2;" },
       "options": {
@@ -196,7 +230,7 @@
       "privacy": { "title": "Processed only in your browser", "description": "Your SQL is processed in the browser and is not sent to a server or stored." }
     },
     "screenshotStitcher": {
-      "metadata": { "title": "Free Screenshot Stitcher", "description": "Automatically detect overlaps and merge consecutive screenshots into one long PNG in your browser." },
+      "metadata": { "title": "Screenshot Stitcher", "description": "Automatically detect overlaps and merge consecutive screenshots into one long PNG in your browser." },
       "title": "Screenshot Stitcher", "description": "Find overlapping sections in consecutive captures, remove duplicates, and create one long screenshot.",
       "upload": { "title": "Add screenshots", "help": "Select multiple PNG, JPG, or WebP files, or drop them here.", "dropActive": "Drop the images here.", "limit": "2–20 images · 20 MB each · 100 MB total" },
       "actions": { "choose": "Choose images", "add": "Add images", "clear": "Clear all", "up": "Move up", "down": "Move down", "remove": "Remove image", "analyze": "Find overlaps", "reanalyze": "Analyze with exclusions", "cancel": "Cancel", "confirm": "Confirm this join", "compose": "Create long image", "download": "Download PNG" },
@@ -209,7 +243,7 @@
       "guide": { "orderTitle": "Check the order first", "orderText": "The capture order must be correct for reliable overlap detection.", "reviewTitle": "Review every join", "reviewText": "Repeated menus and flat areas can be ambiguous. Check confidence and the seam preview.", "privacyTitle": "Browser-only processing", "privacyText": "Originals and results are not sent to a server and are released when you clear or close the tab." }
     },
     "regexTester": {
-      "metadata": { "title": "Free JavaScript Regex Tester", "description": "Test JavaScript regular expressions, flags, capture groups, named groups, and replacements safely in your browser." },
+      "metadata": { "title": "Regex Tester", "description": "Test JavaScript regular expressions, flags, capture groups, named groups, and replacements safely in your browser." },
       "title": "Regex Tester", "description": "Validate JavaScript regular expressions and inspect match positions, capture groups, and replacement results in real time.",
       "fields": { "pattern": "Regular expression pattern", "patternHelp": "Enter only the pattern without surrounding slashes. Backslashes are passed directly to JavaScript RegExp.", "flags": "Flags", "test": "Test string", "testHelp": "Supports multiple lines, Korean, Japanese, and Emoji. Indexes use JavaScript UTF-16 positions.", "replacement": "Replacement", "replacementHelp": "Use JavaScript tokens such as $&, $1, $2, $'<name>', and $$." },
       "flags": { "g": "Find all matches", "i": "Ignore letter case", "m": "Apply ^ and $ per line", "s": "Let . include newlines", "u": "Unicode code point mode", "y": "Sticky match at current position" },
@@ -225,7 +259,7 @@
       "privacy": "Privacy: your pattern, test string, and replacement are processed only inside a browser Worker and are never uploaded or stored."
     },
     "imageCompressor": {
-      "metadata": { "title": "Free Image Compressor · Reduce Photo Size", "description": "Compress JPG, PNG, and WebP images to 100KB, 200KB, 500KB, or a custom size without uploading them." },
+      "metadata": { "title": "Reduce image file size", "description": "Compress JPG, PNG, and WebP images to 100KB, 200KB, 500KB, or a custom size without uploading them." },
       "title": "Reduce image file size", "description": "Compress JPG, PNG, and WebP photos by quality or target size, compare the result, and download it.",
       "upload": { "title": "Upload an image", "help": "Choose or drop one JPG, PNG, or WebP image. Up to 25MB and 24 million pixels.", "drop": "Drop the image here." },
       "actions": { "choose": "Choose image", "change": "Change image", "clear": "Clear", "compress": "Compress now", "download": "Download compressed image" },
@@ -242,7 +276,7 @@
       "batch": { "tabSingle": "Single image", "tabBatch": "Multiple images (ZIP)", "title": "Upload multiple images", "help": "Select or drop several JPG, PNG, or WebP files. Up to 50 at a time.", "choose": "Choose multiple images", "reselect": "Choose again", "clear": "Clear", "columnFile": "File", "columnSize": "Original size", "columnStatus": "Status", "columnResult": "Result", "statusPending": "Pending", "statusProcessing": "Compressing", "statusDone": "Done", "statusError": "Failed", "run": "Start batch compression", "running": "Compressing · __CURRENT__/__TOTAL__", "downloadZip": "Download as ZIP", "zipping": "Building the ZIP file…", "summary": "__DONE__ of __TOTAL__ images compressed · saved __SAVED__" }
     },
     "imageColorPicker": {
-      "metadata": { "title": "Free Image Color Picker", "description": "Pick exact pixel colors from PNG, JPEG, and WebP images locally in your browser." },
+      "metadata": { "title": "Image Color Picker", "description": "Pick exact pixel colors from PNG, JPEG, and WebP images locally in your browser." },
       "title": "Image Color Picker", "description": "Upload an image, select a pixel, and copy its color in five useful formats. Your image stays in this browser.",
       "upload": { "title": "Upload an image", "help": "Choose or drop one PNG, JPEG, or WebP image (up to 25 MB and 24 megapixels).", "drop": "Drop the image here." },
       "actions": { "choose": "Choose image", "change": "Change image", "reset": "Reset", "copy": "Copy", "copied": "Copied" },
@@ -259,7 +293,7 @@
       "guide": { "pixelTitle": "Pixel-accurate sampling", "pixelText": "Coordinates refer to the original decoded image. Zoom changes only the preview size, not the sampled pixel.", "zoomTitle": "Choose precisely", "zoomText": "Use Fit for an overview and higher zoom levels for exact pixel selection. Large previews scroll inside their own area.", "colorTitle": "Color formats", "colorText": "Alpha-aware images use HEXA, RGBA, HSLA, and HSVA. CMYK is a mathematical screen-color conversion, not a print profile." }
     },
     "ipInfo": {
-      "metadata": { "title": "My IP Address · IP Information Lookup", "description": "Check your public IPv4 or IPv6, country, region, ISP, and ASN information for free." },
+      "metadata": { "title": "IP Address Lookup", "description": "Check your public IPv4 or IPv6, country, region, ISP, and ASN information for free." },
       "title": "IP Address Lookup", "description": "Check your current public IP address, approximate location, ISP, and network information.",
       "provider": { "notice": "Your IP address is sent to the external provider IPWHOIS.IO for lookup. This site does not store the result.", "privacyLink": "Provider privacy policy" },
       "current": { "title": "Current public IP" },
@@ -273,7 +307,7 @@
       "guide": { "publicIpTitle": "What is a public IP?", "publicIpText": "It identifies an internet connection. Behind a router or carrier network, it may differ from a device's private IP.", "locationTitle": "Location limitations", "locationText": "IP location is an estimate based on network registration and routing. It is not a street address or a person's precise location.", "vpnTitle": "VPNs and proxies", "vpnText": "When using a VPN, proxy, corporate network, or mobile carrier, the result may show that network's exit location.", "privacyTitle": "Privacy and external provider", "privacyText": "Lookup requests go directly from your browser to IPWHOIS.IO. This site does not retain IPs or results on its server, in browser storage, or in lookup history." }
     },
     "qrCodeGenerator": {
-      "metadata": { "title": "Free QR Code Generator", "description": "Create a QR code from text or a URL without sending it to a server, then download a PNG at your chosen size." },
+      "metadata": { "title": "QR Code Generator", "description": "Create a QR code from text or a URL without sending it to a server, then download a PNG at your chosen size." },
       "title": "QR Code Generator", "description": "Enter text or a URL to create a QR code automatically in your browser and save it as PNG.",
       "input": { "label": "Content to encode", "help": "Enter text, a URL, Korean, Japanese, Emoji, or multiple lines. Your content is encoded exactly as entered.", "placeholder": "Text or https://example.com" },
       "preview": { "title": "QR code preview", "empty": "Enter content to see a QR code here.", "processing": "Generating QR code…", "canvasLabel": "QR code generated from the input", "size": "Size", "level": "Error correction", "margin": "Quiet Zone", "type": "Input type", "types": { "text": "Text", "url": "URL" }, "effectiveLevel": "Applied level (auto-raised for logo)" },
@@ -346,7 +380,7 @@
       "errors":{"base64":"This is not valid Base64. Check the characters, length, and = padding at the end.","unrepresentable":"Some characters cannot be represented by the selected encoding. Choose UTF-8 or another encoding.","invalidBytes":"These bytes are not valid for the selected encoding. Check the encoding.","ambiguous":"The character encoding cannot be determined. Select it directly from the list.","load":"The character encoding support could not be loaded. Check your connection and try again.","copy":"Could not copy. Check clipboard permission."},"guide":{"title":"About character encoding","description":"Base64 is not encryption. Auto Encode uses UTF-8, and ambiguous legacy Decode requires a manual encoding choice."},"privacy":{"title":"Processed only in your browser","description":"Your input and result are never sent to a server or stored."}
     },
     "passwordGenerator": {
-      "metadata": { "title": "Secure Password Generator", "description": "Create a secure password in your browser — choose a length and character types, or build an easy-to-remember passphrase." },
+      "metadata": { "title": "Password Generator", "description": "Create a secure password in your browser — choose a length and character types, or build an easy-to-remember passphrase." },
       "title": "Password Generator", "description": "Choose random characters or a word-based passphrase, and generate it with secure browser randomness.",
       "mode": { "label": "Generation mode", "characters": "Random characters", "passphrase": "Passphrase" },
       "settings": { "lengthGroup": "Password length", "rangeLabel": "Choose length with slider", "numberLabel": "Enter exact length", "characterTypes": "Character types to include", "uppercase": "Uppercase (A–Z)", "lowercase": "Lowercase (a–z)", "numbers": "Numbers (0–9)", "symbols": "Special characters" },
@@ -388,7 +422,7 @@
       "privacy": { "title": "Processed only in your browser", "description": "Your JSON is not sent to a server or stored." }
     },
     "cronExpressionGenerator": {
-      "metadata":{"title":"Cron Expression Generator & Parser","description":"Build, validate, and explain Linux five-field Cron expressions and preview upcoming runs by timezone."},"title":"Cron Expression Generator","description":"Choose a schedule to build a five-field Cron expression, or parse an existing expression and preview its next runs.",
+      "metadata":{"title":"Cron Expression Generator","description":"Build, validate, and explain Linux five-field Cron expressions and preview upcoming runs by timezone."},"title":"Cron Expression Generator","description":"Choose a schedule to build a five-field Cron expression, or parse an existing expression and preview its next runs.",
       "mode":{"label":"Input method","generator":"Visual generator","direct":"Direct input"},"presets":{"title":"Common presets","everyMinute":"Every minute","every5Minutes":"Every 5 minutes","every10Minutes":"Every 10 minutes","every30Minutes":"Every 30 minutes","hourly":"Hourly","midnight":"Daily at midnight","daily9":"Daily at 9 AM","monday9":"Monday at 9 AM","monthlyFirst":"First day monthly","weekdays9":"Weekdays at 9 AM"},
       "generator":{"frequency":"Frequency","interval":"Interval","hour":"Hour (0–23)","minute":"Minute (0–59)","weekdays":"Weekdays","dates":"Dates","months":"Months","monthLabel":"Month {month}"},"modes":{"every-minute":"Every minute","every-n-minutes":"Every N minutes","hourly":"Hourly","every-n-hours":"Every N hours","daily":"Daily","weekly":"Weekly / weekdays","monthly":"Monthly / dates","specific-date":"Specific months and dates"},"weekdays":{"0":"Sun","1":"Mon","2":"Tue","3":"Wed","4":"Thu","5":"Fri","6":"Sat"},"weekdayNames":{"0":"Sunday","1":"Monday","2":"Tuesday","3":"Wednesday","4":"Thursday","5":"Friday","6":"Saturday"},
       "direct":{"label":"Cron expression","help":"Supports numeric Unix five-field Cron in minute hour day month weekday order, with *, comma, hyphen, and slash."},"result":{"title":"Cron result","empty":"Enter an expression."},"status":{"valid":"Valid five-field Cron expression.","empty":"Enter an expression to see validation."},"actions":{"copyCron":"Copy Cron","copyDescription":"Copy description","copyCrontab":"Copy crontab line","copied":"Copied","clear":"Reset"},
@@ -400,7 +434,7 @@
       "reference":{"title":"Cron quick reference","description":"Version one supports the numeric Unix/Vixie five-field subset.","syntax":"*  any value\n,  multiple values\n-  range\n/  step","fields":"Minute 0–59 · Hour 0–23 · Day 1–31 · Month 1–12 · Weekday 0–7 (0 and 7 are Sunday)"},"vercel":{"title":"Using Vercel Cron","description":"Platforms such as Vercel may define their own timezone and scheduling limits. Check the platform's latest official documentation before deployment."},"privacy":"Expressions and settings are processed only in browser memory and are not sent to or stored on a server."
     },
     "p2pFileTransfer": {
-      "metadata":{"title":"QR File Transfer - Send Files Browser to Browser","description":"Connect with a QR code or link and transfer files in real time without storing them on the service server."},"title":"Send files instantly with a QR code","description":"Transfer a file to another browser without storing it on the service server.","badgeStorage":"No server storage","badgeShare":"QR / link sharing","badgeBrowser":"Browser-to-browser transfer","dropTitle":"Drop a file here","dropOr":"or choose one with the button below.","choose":"Choose file","notStored":"The file is not stored on the service server.","unknownType":"Unknown file type","dangerous":"This may be an executable or script. Only exchange files with someone you trust.","createLink":"Create sharing link","chooseAnother":"Choose another file","serviceSetup":"The signaling/TURN service URL is not configured, so a real sharing session cannot be created.","qrLabel":"QR code for the receiving link","scan":"Ask the recipient to scan this QR code","shareUrl":"Sharing link","copy":"Copy link","copied":"Copied","keepOpen":"Keep this browser open or the recipient cannot receive the file.","approvePrompt":"Send the file to this device?","approve":"Allow transfer","reject":"Reject","cancel":"Cancel transfer","sendAnother":"Send another file","receiveTitle":"Receive this file?","receive":"Receive file","waitingSender":"Establishing a secure connection with the sender…","calculating":"Calculating…","eta":"About {seconds}s remaining","connecting":"Checking connection","connection":{"direct":"Direct connection","relay":"Relay connection"},"sender":"Sending device","receiver":"Receiving device","exampleSender":"1.36 GiB sent","exampleReceiver":"Receiving file",
+      "metadata":{"title":"QR File Transfer","description":"Connect with a QR code or link and transfer files in real time without storing them on the service server."},"title":"QR File Transfer","description":"Transfer a file to another browser without storing it on the service server.","badgeStorage":"No server storage","badgeShare":"QR / link sharing","badgeBrowser":"Browser-to-browser transfer","dropTitle":"Drop a file here","dropOr":"or choose one with the button below.","choose":"Choose file","notStored":"The file is not stored on the service server.","unknownType":"Unknown file type","dangerous":"This may be an executable or script. Only exchange files with someone you trust.","createLink":"Create sharing link","chooseAnother":"Choose another file","serviceSetup":"The signaling/TURN service URL is not configured, so a real sharing session cannot be created.","qrLabel":"QR code for the receiving link","scan":"Ask the recipient to scan this QR code","shareUrl":"Sharing link","copy":"Copy link","copied":"Copied","keepOpen":"Keep this browser open or the recipient cannot receive the file.","approvePrompt":"Send the file to this device?","approve":"Allow transfer","reject":"Reject","cancel":"Cancel transfer","sendAnother":"Send another file","receiveTitle":"Receive this file?","receive":"Receive file","waitingSender":"Establishing a secure connection with the sender…","calculating":"Calculating…","eta":"About {seconds}s remaining","connecting":"Checking connection","connection":{"direct":"Direct connection","relay":"Relay connection"},"sender":"Sending device","receiver":"Receiving device","exampleSender":"1.36 GiB sent","exampleReceiver":"Receiving file",
       "states":{"IDLE":"Choose a file.","FILE_SELECTED":"Review the file and create a sharing link.","SESSION_CREATING":"Creating a secure session…","WAITING_FOR_RECEIVER":"Waiting for the recipient to connect.","RECEIVER_JOINED":"The recipient is connected.","NEGOTIATING":"Connecting to the recipient…","CONNECTED":"The browsers are connected.","WAITING_RECEIVER_ACCEPT":"Waiting for the recipient to accept the file.","READY":"Ready to transfer.","TRANSFERRING":"Transferring the file.","VERIFYING":"Confirming receipt and file integrity…","COMPLETED":"File transfer complete.","FAILED":"The transfer failed.","CANCELLED":"Transfer cancelled.","EXPIRED":"The sharing link expired."},
       "errors":{"SESSION_NOT_FOUND":"This sharing link does not exist or has expired.","SESSION_EXPIRED":"The sharing link expired. Ask for a new link.","SESSION_OCCUPIED":"Another device is already connected to this session.","SENDER_OFFLINE":"The sender browser disconnected.","RECEIVER_REJECTED":"The recipient rejected the file.","ICE_FAILED":"The browsers could not connect. Check the network and try again.","TURN_UNAVAILABLE":"A relay connection is unavailable. Try again later.","FILE_READ_FAILED":"The selected file could not be read. Choose it again.","FILE_TOO_LARGE_FOR_BROWSER":"This exceeds the safe limit for this browser. Use desktop Chrome or Edge.","DISK_WRITE_FAILED":"The file could not be saved. Check storage space and permissions.","HASH_MISMATCH":"File integrity verification failed. Do not use the file; transfer it again.","PEER_DISCONNECTED":"The other device disconnected. Restart the transfer.","PROTOCOL_ERROR":"An unsafe transfer state was detected and the connection was stopped.","SERVICE_UNAVAILABLE":"The transfer service is unavailable. Check setup or your network."},
       "howTitle":"How does it work?","steps":{"select":{"title":"Choose a file","text":"Choose the file you want to send."},"share":{"title":"Share QR or link","text":"Send the QR code or link to the recipient."},"connect":{"title":"Recipient connects","text":"The browsers connect when the recipient opens it."},"transfer":{"title":"Transfer now","text":"The file transfers after both people approve."}},"exampleTitle":"Sending a 2GB PC video to your phone","exampleText":"Both devices show the same progress from selection through verified receipt.","privacyTitle":"Files are not stored","privacyText":"File bytes are not stored on the service server. Only minimal signaling data is relayed briefly to establish the session.","encryptionTitle":"Encrypted browser connection","encryptionText":"WebRTC uses DTLS encryption. If direct connection fails, encrypted data may pass through a TURN relay.","faqTitle":"Frequently asked questions","faq":{"upload":{"q":"Is the file uploaded to a server?","a":"It is not stored on the service server. Depending on the network, encrypted data may pass through a TURN relay."},"offline":{"q":"Can I send the link and turn off my PC?","a":"No. The sending browser must remain open and connected at the same time."},"complete":{"q":"Will I know when the recipient has everything?","a":"The sender shows complete only after the receiver saves and verifies the SHA-256 hash."},"large":{"q":"Can I send large files?","a":"Desktop Chrome and Edge can stream to disk. Other browsers may have lower limits due to memory constraints."},"multiple":{"q":"Can two people receive at once?","a":"V1 supports one receiving device at a time."},"encrypted":{"q":"Is the transfer encrypted?","a":"Browser WebRTC DataChannels are encrypted with DTLS."}}

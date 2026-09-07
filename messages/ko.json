@@ -7,10 +7,11 @@
     "brand": "간편도구",
     "homeLabel": "간편도구 홈",
     "skipToContent": "본문으로 바로가기",
-    "status": "준비 중",
+    "status": "이용 가능",
     "theme": { "enableDark": "다크 모드 켜기", "enableLight": "라이트 모드 켜기" },
-    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "text": "텍스트", "developer": "개발자", "media": "이미지·미디어", "other": "기타 도구" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 인코더/디코더", "urlEncoderDecoder": "URL 인코더/디코더", "youtubeThumbnailDownloader": "유튜브 썸네일 추출기", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 용량 줄이기", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기", "sqlFormatter": "SQL 포맷터", "excelChartMaker": "엑셀·CSV 그래프 만들기", "p2pFileTransfer": "QR 파일 전송" },
+    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "image": "이미지", "text": "텍스트", "developer": "개발자", "generator": "생성기", "fileData": "파일·데이터", "network": "네트워크" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 인코더/디코더", "urlEncoderDecoder": "URL 인코더/디코더", "youtubeThumbnailDownloader": "유튜브 썸네일 추출기", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 용량 줄이기", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기", "sqlFormatter": "SQL 포맷터", "excelChartMaker": "엑셀·CSV 그래프 만들기", "p2pFileTransfer": "QR 파일 전송" },
     "footer": "© {year} 간편도구. 누구나 간편하게.",
+    "footerNavLabel": "서비스 안내",
     "result": "결과",
     "copy": "복사",
     "copied": "복사됨",
@@ -26,7 +27,12 @@
   "Home": {
     "eyebrow": "필요한 도구를 한곳에서",
     "title": "복잡한 작업을\n간단하게 해결하세요.",
-    "description": "설치와 로그인 없이 바로 사용할 수 있는 온라인 도구를 준비하고 있습니다.",
+    "description": "설치나 회원가입 없이 이미지, 텍스트, 개발, 파일 작업에 필요한 무료 온라인 도구를 바로 사용하세요. 가능한 작업은 브라우저에서 직접 처리합니다.",
+    "search": { "title": "필요한 도구 찾기", "description": "도구 이름이나 하려는 작업을 입력해 빠르게 찾아보세요.", "placeholder": "예: 이미지 압축, JSON, 글자수", "label": "도구 검색", "clear": "검색어 지우기", "resultsTitle": "검색 결과", "results": "{count}개 도구", "emptyTitle": "일치하는 도구가 없습니다.", "emptyDescription": "검색어를 줄이거나 다른 검색어를 입력해 보세요.", "reset": "검색 초기화" },
+    "popular": { "title": "많이 찾는 도구", "description": "자주 필요한 작업을 빠르게 시작할 수 있는 대표 도구입니다." },
+    "categories": { "title": "카테고리로 찾기", "description": "하려는 작업의 종류에 따라 도구를 살펴보세요.", "count": "{count}개 도구", "filterLabel": "도구 카테고리 필터", "all": "전체" },
+    "recent": { "title": "최근 추가된 도구", "description": "새롭게 이용할 수 있게 된 온라인 도구를 확인하세요." },
+    "service": { "free": { "title": "로그인 없이 무료", "description": "계정을 만들거나 프로그램을 설치하지 않고 바로 사용할 수 있습니다." }, "private": { "title": "브라우저 중심 처리", "description": "가능한 변환과 편집은 사용자의 브라우저 안에서 처리하도록 설계합니다." }, "accessible": { "title": "다양한 기기 지원", "description": "PC, 태블릿, 모바일에서 같은 도구를 편리하게 이용할 수 있습니다." } },
     "tools": {
       "title": "사용할 도구를 선택하세요",
       "description": "설치나 로그인 없이 바로 사용할 수 있습니다.",
@@ -43,7 +49,7 @@
       "imageColorPicker": { "title": "이미지 색상 추출기", "description": "이미지를 올리고 정확한 픽셀 색상을 HEX, RGB, HSL, HSV, CMYK로 확인합니다." },
       "imageCompressor": { "title": "이미지 용량 줄이기", "description": "JPG, PNG, WebP 사진을 원하는 품질이나 목표 용량으로 브라우저에서 줄입니다." },
       "screenshotStitcher": { "title": "스크린샷 이어붙이기", "description": "연속 스크린샷의 겹치는 영역을 찾아 중복 없이 하나의 긴 PNG로 합칩니다." },
-      "privacyRedactor": { "title": "이미지 마스킹 도구", "description": "사진이나 스크린샷에서 가리고 싶은 부분을 직접 선택해 마스킹한 PNG로 저장합니다." },
+      "privacyRedactor": { "title": "이미지 개인정보 가리기", "description": "사진이나 스크린샷에서 가리고 싶은 부분을 직접 선택해 마스킹한 PNG로 저장합니다." },
       "screenshotStatusbarRemover": { "title": "스크린샷 상태바 제거", "description": "스마트폰 스크린샷 상단의 시간·배터리·통신 상태바를 감지해 제거하고 다운로드합니다." },
       "regexTester": { "title": "정규식 테스터", "description": "JavaScript 정규식을 실행해 매치, 캡처 그룹과 문자열 치환 결과를 확인합니다." },
       "cronExpressionGenerator": { "title": "Cron 표현식 생성기", "description": "5필드 Cron을 만들고 해석하며 시간대별 다음 실행 시간을 확인합니다." },
@@ -84,9 +90,37 @@
       "responseTime": { "body": "간편도구는 개인이 운영하는 서비스라 답변까지 다소 시간이 걸릴 수 있는 점 양해 부탁드립니다. 보내주신 문의는 최대한 빠르게 확인하겠습니다." }
     }
   },
+  "About": {
+    "metadata": { "title": "서비스 소개", "description": "설치와 회원가입 없이 사용할 수 있는 무료 온라인 도구 서비스 간편도구의 운영 원칙을 소개합니다." },
+    "title": "서비스 소개",
+    "intro": "간편도구는 일상과 업무에서 자주 필요한 작업을 설치 없이 바로 처리할 수 있도록 만든 무료 온라인 도구 모음입니다.",
+    "sections": {
+      "service": { "title": "필요한 작업을 간편하게", "body": "텍스트 정리, 데이터 변환, 이미지 편집, 개발 작업 등 반복해서 필요한 기능을 한곳에서 제공합니다. 각 도구는 별도의 주소를 가지며 필요한 기능을 바로 찾아 사용할 수 있습니다." },
+      "access": { "title": "회원가입 없이 사용", "body": "계정을 만들거나 로그인하지 않아도 공개된 도구를 바로 사용할 수 있습니다. 기본 기능을 사용하기 위해 개인 프로필이나 작업 기록을 등록할 필요가 없습니다." },
+      "browser": { "title": "가능한 작업은 브라우저에서 처리", "body": "이미지, 텍스트, 파일처럼 브라우저에서 처리할 수 있는 데이터는 가능한 한 사용자의 기기 안에서 변환합니다. 외부 조회가 필요한 도구는 해당 페이지에서 전송 대상과 처리 방식을 별도로 안내합니다." },
+      "improvement": { "title": "지속적인 점검과 개선", "body": "도구가 실제 환경에서 안정적으로 동작하도록 기능, 모바일 사용성, 접근성과 설명을 계속 점검합니다. 새로운 기능을 늘리는 것뿐 아니라 기존 도구의 오류와 불편을 줄이는 작업도 함께 진행합니다." }
+    },
+    "contact": { "title": "오류나 개선 의견이 있나요?", "body": "사용 중 발견한 문제, 이해하기 어려운 안내 또는 필요한 개선 사항은 문의 페이지를 통해 알려주세요.", "link": "문의 페이지 열기" }
+  },
+  "Terms": {
+    "metadata": { "title": "이용약관", "description": "간편도구의 온라인 도구와 콘텐츠를 이용할 때 적용되는 기본 조건과 책임 범위를 안내합니다." },
+    "title": "이용약관",
+    "lastUpdated": "최종 수정일: 2026년 9월 7일",
+    "intro": "이 약관은 간편도구가 제공하는 온라인 도구와 관련 콘텐츠를 이용할 때 필요한 기본 사항을 설명합니다.",
+    "sections": {
+      "use": { "title": "서비스 이용", "body": "이용자는 별도의 회원가입 없이 공개된 기능을 사용할 수 있습니다. 다른 사람의 권리를 침해하거나 서비스 운영을 방해하는 방식으로 이용해서는 안 됩니다." },
+      "features": { "title": "제공 기능", "body": "사이트는 텍스트, 이미지, 데이터, 개발 및 네트워크 관련 작업을 돕는 도구와 사용 안내를 제공합니다. 도구별 지원 형식과 제한사항은 각 상세 페이지의 안내를 따릅니다." },
+      "accuracy": { "title": "결과의 정확성", "body": "결과가 정확하도록 점검하지만 입력값, 파일 형식, 브라우저 환경 또는 외부 데이터 제공자의 상태에 따라 차이가 발생할 수 있습니다. 중요한 의사결정이나 원본 변경 전에는 결과를 직접 확인해야 합니다." },
+      "responsibility": { "title": "이용자의 책임", "body": "이용자는 입력하거나 처리하는 자료를 사용할 권한이 있는지 확인해야 하며, 생성·변환한 결과의 사용과 보관에 책임을 집니다. 민감한 자료는 각 도구의 처리 방식과 주의사항을 확인한 뒤 사용해 주세요." },
+      "copyright": { "title": "저작권", "body": "사이트의 디자인, 설명과 자체 제작 콘텐츠는 관련 법령의 보호를 받습니다. 이용자가 입력한 자료와 처리 결과에 대한 권리는 해당 이용자 또는 원 권리자에게 있으며, 사이트가 이를 소유한다고 주장하지 않습니다." },
+      "external": { "title": "외부 서비스", "body": "일부 기능, 광고 또는 통계는 외부 서비스를 이용할 수 있습니다. 외부 서비스로 이동하거나 데이터를 조회할 때에는 해당 제공자의 이용 조건과 개인정보 처리 기준이 적용될 수 있습니다." },
+      "changes": { "title": "서비스 변경", "body": "안정성 개선, 기술 환경 변화 또는 운영상 필요에 따라 기능이나 제공 범위를 변경하거나 중단할 수 있습니다. 이용에 중요한 변경 사항은 가능한 범위에서 사이트에 안내합니다." },
+      "disclaimer": { "title": "면책", "body": "사이트는 일반적인 작업을 돕는 편의 도구를 제공하며 법률, 의료, 금융 등 전문적인 판단을 대신하지 않습니다. 사이트가 합리적으로 통제하기 어려운 장애나 외부 서비스 문제로 발생한 손해에 대해서는 관련 법령이 허용하는 범위에서 책임이 제한됩니다." }
+    }
+  },
   "Tools": {
     "privacyRedactor": {
-      "metadata": { "title": "무료 온라인 이미지 모자이크·가리기", "description": "사진이나 스크린샷에서 가리고 싶은 부분을 직접 선택해 단색 또는 모자이크로 가리고 다운로드하세요. 브라우저에서만 처리됩니다." },
+      "metadata": { "title": "이미지 개인정보 가리기", "description": "사진이나 스크린샷에서 가리고 싶은 부분을 직접 선택해 단색 또는 모자이크로 가리고 다운로드하세요. 브라우저에서만 처리됩니다." },
       "title": "이미지 개인정보 가리기", "description": "가리고 싶은 부분을 직접 드래그로 선택하고, 단색 또는 모자이크로 가린 뒤 다운로드하세요. 서버로 전송되지 않고 브라우저에서만 처리됩니다.",
       "upload": { "title": "이미지 선택", "help": "PNG, JPG, 정지 WebP 한 장을 선택하거나 여기에 놓으세요. 최대 25MB·4천만 픽셀", "drop": "여기에 이미지를 놓으세요." },
       "privacy": "이미지는 브라우저에서만 처리되며 서버로 전송되지 않습니다.",
@@ -99,7 +133,7 @@
       "errors": { "multiple-files": "이미지는 한 장만 선택하세요.", "unsupported-type": "PNG, JPG 또는 정지 WebP 이미지를 선택하세요.", "file-too-large": "파일은 25MB 이하여야 합니다.", "animated-image": "움직이는 WebP와 GIF는 지원하지 않습니다. 정지 이미지로 변환해 주세요.", "dimension-limit": "이미지가 4천만 픽셀 또는 한 변 16,384px 제한을 초과합니다.", "decode-failed": "이미지를 읽을 수 없습니다. 파일이 손상되었을 수 있습니다.", "canvas-failed": "이미지 결과를 만들지 못했습니다. 더 작은 이미지로 다시 시도하세요.", "no-selected-region": "가릴 영역을 하나 이상 선택하거나 직접 추가하세요." }
     },
     "screenshotStatusbarRemover": {
-      "metadata": { "title": "무료 스크린샷 상태바 제거 · 아이폰·갤럭시", "description": "스마트폰 스크린샷 상단의 시간·배터리·통신 상태바를 브라우저에서 감지해 제거하고 다운로드하세요." },
+      "metadata": { "title": "스크린샷 상태바 제거", "description": "스마트폰 스크린샷 상단의 시간·배터리·통신 상태바를 브라우저에서 감지해 제거하고 다운로드하세요." },
       "title": "스크린샷 상태바 제거", "description": "세로형 스마트폰 스크린샷 상단의 상태바 높이를 감지해 제거선으로 보여드립니다. 확인하거나 직접 조정한 뒤 다운로드하세요.",
       "upload": { "title": "이미지 선택", "help": "PNG, JPG, 정지 WebP 세로형 스크린샷 한 장을 선택하거나 여기에 놓으세요. 최대 25MB·4천만 픽셀", "drop": "여기에 이미지를 놓으세요." },
       "privacy": "이미지는 브라우저에서만 처리되며 서버로 전송되지 않습니다. 상태바 이외의 개인정보는 자동으로 제거되지 않습니다.",
@@ -112,7 +146,7 @@
       "errors": { "multiple-files": "이미지는 한 장만 선택하세요.", "unsupported-type": "PNG, JPG 또는 정지 WebP 이미지를 선택하세요.", "file-too-large": "파일은 25MB 이하여야 합니다.", "dimension-limit": "이미지가 4천만 픽셀 또는 한 변 16,384px 제한을 초과합니다.", "decode-failed": "이미지를 읽을 수 없습니다. 파일이 손상되었을 수 있습니다.", "canvas-failed": "결과 이미지를 만들지 못했습니다. 더 작은 이미지로 다시 시도하세요.", "crop-exceeds-image": "제거 높이가 이미지 높이보다 클 수 없습니다." }
     },
     "textCleaner": {
-      "metadata": { "title": "무료 온라인 텍스트 정리기 · 공백·중복 줄 제거", "description": "여러 줄 공백, 빈 줄, 중복된 줄을 한 번에 정리하세요. 브라우저에서만 처리됩니다." },
+      "metadata": { "title": "텍스트 정리기", "description": "여러 줄 공백, 빈 줄, 중복된 줄을 한 번에 정리하세요. 브라우저에서만 처리됩니다." },
       "title": "텍스트 정리기", "description": "불필요한 공백과 빈 줄을 정리하고 중복된 줄을 제거합니다. 옵션을 조합해 원하는 형태로 텍스트를 정리하세요.",
       "presets": { "title": "빠른 설정", "basic": "기본 정리", "removeBlank": "빈 줄 제거", "removeDuplicate": "중복 제거", "oneLine": "한 줄로 만들기", "full": "완전히 정리" },
       "input": { "label": "원본 텍스트", "placeholder": "정리할 텍스트를 입력하거나 붙여넣으세요.", "tooLarge": "입력이 너무 큽니다 (최대 10MB). 텍스트를 나눠서 처리해 주세요.", "perfWarning": "입력이 커서 처리 속도가 느려질 수 있습니다." },
@@ -124,7 +158,7 @@
       "regexRule": { "title": "정규식 치환(고급)", "help": "찾을 패턴에 맞는 부분을 다른 값으로 바꾸거나 삭제합니다. 다른 옵션보다 먼저 적용되며, 정규식을 모르면 사용하지 않아도 됩니다.", "pattern": "찾을 패턴", "patternPlaceholder": "예: ^#.*$", "replacement": "바꿀 문자열", "replacementPlaceholder": "비워두면 삭제", "ignoreCase": "대소문자 구분 안 함", "invalidPattern": "정규식이 올바르지 않습니다: {message}" }
     },
     "koreanInitialConverter": {
-      "metadata": { "title": "무료 한글 초성 변환기 · 초성 추출", "description": "한글 텍스트를 초성만 남기고 즉시 변환하세요. 영문·숫자·특수문자·이모지는 그대로 유지되며 브라우저에서만 처리됩니다." },
+      "metadata": { "title": "한글 초성 변환기", "description": "한글 텍스트를 초성만 남기고 즉시 변환하세요. 영문·숫자·특수문자·이모지는 그대로 유지되며 브라우저에서만 처리됩니다." },
       "title": "한글 초성 변환기", "description": "한글 문장을 입력하면 각 음절의 초성만 즉시 추출합니다. 영문·숫자·공백·이모지는 그대로 유지됩니다.",
       "input": { "label": "원본 텍스트", "placeholder": "변환할 텍스트를 입력하세요" },
       "result": { "label": "초성 결과" },
@@ -135,7 +169,7 @@
       "privacy": "입력한 텍스트는 브라우저에서만 처리됩니다."
     },
     "jwtDecoder": {
-      "metadata": { "title": "무료 JWT 디코더 · Header·Payload 확인", "description": "JWT를 붙여넣으면 Header와 Payload를 브라우저에서 즉시 디코딩하고 만료 시간을 확인하세요. 서명 검증은 하지 않으며 브라우저에서만 처리됩니다." },
+      "metadata": { "title": "JWT 디코더", "description": "JWT를 붙여넣으면 Header와 Payload를 브라우저에서 즉시 디코딩하고 만료 시간을 확인하세요. 서명 검증은 하지 않으며 브라우저에서만 처리됩니다." },
       "title": "JWT 디코더", "description": "JWT를 입력하면 Header와 Payload를 브라우저에서 바로 확인할 수 있습니다. 디코딩은 서명 검증이 아닙니다.",
       "input": { "label": "JWT 입력", "placeholder": "JWT 토큰을 붙여넣으세요" },
       "actions": { "loadSample": "예제 JWT 불러오기", "reset": "초기화", "copyJwt": "JWT 전체 복사", "copied": "복사되었습니다", "copyHeader": "Header 복사", "copyPayload": "Payload 복사" },
@@ -151,7 +185,7 @@
       "guide": { "title": "JWT 구조 안내", "headerText": "알고리즘과 토큰 정보", "payloadText": "Claims", "signatureText": "변조 여부 검증에 사용되는 서명 데이터(이 도구는 검증하지 않습니다)", "note": "디코딩과 검증은 서로 다른 작업입니다." }
     },
     "faviconGenerator": {
-      "metadata": { "title": "무료 파비콘 생성기 · favicon.ico 만들기", "description": "텍스트, 이모지, 이미지로 브라우저 탭·북마크·iOS·Android용 파비콘 세트를 브라우저에서 바로 만드세요. favicon.ico, PNG, site.webmanifest, HTML 코드까지 한 번에 다운로드합니다." },
+      "metadata": { "title": "파비콘 생성기", "description": "텍스트, 이모지, 이미지로 브라우저 탭·북마크·iOS·Android용 파비콘 세트를 브라우저에서 바로 만드세요. favicon.ico, PNG, site.webmanifest, HTML 코드까지 한 번에 다운로드합니다." },
       "title": "파비콘 생성기", "description": "텍스트, 이모지, 이미지로 웹사이트용 파비콘 세트를 생성합니다.",
       "tabs": { "label": "소스 선택", "text": "텍스트", "emoji": "이모지", "image": "이미지", "shape": "도형" },
       "presets": { "title": "빠른 시작 스타일", "help": "클릭하면 현재 입력한 텍스트·이모지를 유지한 채 배경·도형 스타일만 적용합니다.", "names": { "ocean": "오션", "sunset": "선셋", "forest": "포레스트", "grape": "그레이프", "charcoal": "차콜", "outline": "아웃라인", "rose": "로즈", "amber": "앰버" } },
@@ -172,7 +206,7 @@
       "privacy": "업로드한 이미지는 브라우저에서만 처리되며 서버로 전송되지 않습니다."
     },
     "sqlFormatter": {
-      "metadata": { "title": "무료 SQL 포맷터 · SQL Beautifier", "description": "MySQL, PostgreSQL, SQL Server, Oracle, SQLite 문법을 고려해 SQL 쿼리를 브라우저에서 정렬하고 압축하세요." },
+      "metadata": { "title": "SQL 포맷터", "description": "MySQL, PostgreSQL, SQL Server, Oracle, SQLite 문법을 고려해 SQL 쿼리를 브라우저에서 정렬하고 압축하세요." },
       "title": "SQL 포맷터", "description": "가독성이 낮은 SQL을 선택한 DBMS 문법 기준으로 분석해 읽기 쉬운 형태로 정렬합니다.",
       "input": { "label": "SQL 입력", "help": "여러 SQL 문을 세미콜론으로 구분해 입력할 수 있습니다.", "placeholder": "SELECT a,b,c FROM users WHERE a=1 AND b=2;" },
       "options": {
@@ -196,7 +230,7 @@
       "privacy": { "title": "브라우저에서만 처리", "description": "입력한 SQL은 브라우저에서 처리되며 서버로 전송하거나 저장하지 않습니다." }
     },
     "screenshotStitcher": {
-      "metadata": { "title": "무료 스크린샷 이어붙이기", "description": "여러 스크린샷의 겹치는 부분을 브라우저에서 자동으로 찾아 하나의 긴 PNG로 합치세요." },
+      "metadata": { "title": "스크린샷 이어붙이기", "description": "여러 스크린샷의 겹치는 부분을 브라우저에서 자동으로 찾아 하나의 긴 PNG로 합치세요." },
       "title": "스크린샷 이어붙이기", "description": "연속으로 찍은 이미지의 겹치는 부분을 자동으로 찾아 중복을 제거하고 긴 스크린샷으로 만드세요.",
       "upload": { "title": "스크린샷 추가", "help": "PNG, JPG, WebP 파일을 여러 장 선택하거나 여기에 놓으세요.", "dropActive": "여기에 이미지를 놓으세요.", "limit": "2~20장 · 파일당 20MB · 전체 100MB" },
       "actions": { "choose": "이미지 선택", "add": "이미지 추가", "clear": "전체 초기화", "up": "위로 이동", "down": "아래로 이동", "remove": "이미지 삭제", "analyze": "겹침 자동 찾기", "reanalyze": "제외 범위로 다시 분석", "cancel": "취소", "confirm": "이 연결 확인", "compose": "긴 이미지 만들기", "download": "PNG 다운로드" },
@@ -209,7 +243,7 @@
       "guide": { "orderTitle": "순서를 먼저 확인하세요", "orderText": "촬영한 순서가 맞아야 겹치는 영역을 정확하게 찾을 수 있습니다.", "reviewTitle": "연결부를 확인하세요", "reviewText": "반복되는 메뉴나 단색 화면은 오탐될 수 있습니다. 신뢰도와 미리보기를 확인하세요.", "privacyTitle": "브라우저에서만 처리", "privacyText": "원본과 결과는 외부 서버로 전송하지 않으며 초기화하거나 탭을 닫으면 해제됩니다." }
     },
     "regexTester": {
-      "metadata": { "title": "무료 정규식 테스터 · JavaScript Regex 테스트", "description": "JavaScript 정규표현식의 매치, 플래그, 캡처 그룹과 치환 결과를 브라우저에서 안전하게 확인하세요." },
+      "metadata": { "title": "정규식 테스터", "description": "JavaScript 정규표현식의 매치, 플래그, 캡처 그룹과 치환 결과를 브라우저에서 안전하게 확인하세요." },
       "title": "정규식 테스터", "description": "JavaScript 정규표현식을 실시간으로 검증하고 매치 위치, 캡처 그룹과 문자열 치환 결과를 확인하세요.",
       "fields": { "pattern": "정규식 Pattern", "patternHelp": "앞뒤 / 없이 pattern만 입력하세요. 입력한 역슬래시는 그대로 JavaScript RegExp에 전달됩니다.", "flags": "Flags", "test": "테스트 문자열", "testHelp": "여러 줄, 한글, 일본어와 Emoji를 포함할 수 있습니다. Index는 JavaScript UTF-16 위치입니다.", "replacement": "치환 문자열", "replacementHelp": "$&, $1, $2, $'<name>', $$ 등 JavaScript 치환 문법을 사용할 수 있습니다." },
       "flags": { "g": "모든 일치 항목 찾기", "i": "대소문자 구분 안 함", "m": "^와 $를 줄 단위로 적용", "s": ".이 줄바꿈까지 포함", "u": "Unicode code point 모드", "y": "현재 위치부터 sticky match" },
@@ -225,7 +259,7 @@
       "privacy": "개인정보 보호: Pattern, 테스트 문자열과 치환 결과는 이 브라우저의 Worker에서만 처리되며 서버로 전송되거나 저장되지 않습니다."
     },
     "imageCompressor": {
-      "metadata": { "title": "무료 이미지 압축 · 사진 용량 줄이기", "description": "JPG, PNG, WebP 이미지를 서버 업로드 없이 100KB, 200KB, 500KB 등 원하는 용량으로 줄이세요." },
+      "metadata": { "title": "이미지 용량 줄이기", "description": "JPG, PNG, WebP 이미지를 서버 업로드 없이 100KB, 200KB, 500KB 등 원하는 용량으로 줄이세요." },
       "title": "이미지 용량 줄이기", "description": "JPG, PNG, WebP 사진을 원하는 품질이나 목표 용량으로 압축하고 전후 결과를 비교해 다운로드하세요.",
       "upload": { "title": "이미지 업로드", "help": "JPG, PNG, WebP 한 개를 선택하거나 놓으세요. 최대 25MB, 2,400만 픽셀까지 지원합니다.", "drop": "여기에 이미지를 놓으세요." },
       "actions": { "choose": "이미지 선택", "change": "이미지 변경", "clear": "초기화", "compress": "지금 압축", "download": "압축 이미지 다운로드" },
@@ -242,7 +276,7 @@
       "batch": { "tabSingle": "단일 이미지", "tabBatch": "여러 이미지 (ZIP)", "title": "여러 이미지 업로드", "help": "JPG, PNG, WebP 여러 장을 선택하거나 놓으세요. 한 번에 최대 50장까지 가능합니다.", "choose": "이미지 여러 장 선택", "reselect": "다시 선택", "clear": "초기화", "columnFile": "파일명", "columnSize": "원본 용량", "columnStatus": "상태", "columnResult": "결과", "statusPending": "대기 중", "statusProcessing": "압축 중", "statusDone": "완료", "statusError": "실패", "run": "일괄 압축 시작", "running": "압축 중 · __CURRENT__/__TOTAL__", "downloadZip": "ZIP으로 다운로드", "zipping": "압축 파일을 만드는 중…", "summary": "총 __TOTAL__장 중 __DONE__장 압축 완료 · __SAVED__ 절약" }
     },
     "imageColorPicker": {
-      "metadata": { "title": "무료 이미지 색상 추출기", "description": "PNG, JPEG, WebP 이미지의 정확한 픽셀 색상을 브라우저에서 안전하게 추출하세요." },
+      "metadata": { "title": "이미지 색상 추출기", "description": "PNG, JPEG, WebP 이미지의 정확한 픽셀 색상을 브라우저에서 안전하게 추출하세요." },
       "title": "이미지 색상 추출기", "description": "이미지를 올리고 픽셀 하나를 선택해 다섯 가지 색상 형식으로 복사하세요. 이미지는 브라우저 밖으로 전송되지 않습니다.",
       "upload": { "title": "이미지 업로드", "help": "PNG, JPEG, WebP 이미지 한 개를 선택하거나 놓으세요. 최대 25MB, 2,400만 픽셀까지 지원합니다.", "drop": "여기에 이미지를 놓으세요." },
       "actions": { "choose": "이미지 선택", "change": "이미지 변경", "reset": "초기화", "copy": "복사", "copied": "복사됨" },
@@ -259,7 +293,7 @@
       "guide": { "pixelTitle": "픽셀 단위로 정확하게", "pixelText": "좌표는 디코딩된 원본 이미지를 기준으로 합니다. 확대 비율은 미리보기 크기만 바꾸며 선택되는 픽셀은 변하지 않습니다.", "zoomTitle": "정밀하게 선택하기", "zoomText": "전체 모습은 맞춤으로 보고, 정확한 선택에는 높은 확대 비율을 사용하세요. 큰 이미지는 미리보기 안에서 스크롤됩니다.", "colorTitle": "색상 형식 안내", "colorText": "투명도가 있는 색상은 HEXA, RGBA, HSLA, HSVA로 표시합니다. CMYK는 화면 색상의 수학적 변환값이며 인쇄 프로파일 값은 아닙니다." }
     },
     "ipInfo": {
-      "metadata": { "title": "내 IP 주소 확인 · IP 정보 조회", "description": "현재 공인 IPv4 또는 IPv6와 국가, 지역, ISP, ASN 정보를 무료로 확인하세요." },
+      "metadata": { "title": "IP 정보 확인", "description": "현재 공인 IPv4 또는 IPv6와 국가, 지역, ISP, ASN 정보를 무료로 확인하세요." },
       "title": "IP 정보 확인", "description": "현재 공인 IP 주소와 대략적인 위치, ISP 및 네트워크 정보를 확인합니다.",
       "provider": { "notice": "조회를 위해 IP 주소가 외부 정보 제공자 IPWHOIS.IO로 전송됩니다. 이 사이트는 조회 결과를 저장하지 않습니다.", "privacyLink": "제공자 개인정보 처리방침" },
       "current": { "title": "현재 공인 IP" },
@@ -273,7 +307,7 @@
       "guide": { "publicIpTitle": "공인 IP란?", "publicIpText": "인터넷에서 연결을 식별하는 주소입니다. 공유기나 통신사 환경에서는 기기 내부의 사설 IP와 다를 수 있습니다.", "locationTitle": "위치 정보의 한계", "locationText": "IP 위치는 네트워크 등록과 라우팅 정보를 바탕으로 한 근사값입니다. 주소나 개인의 정확한 위치를 뜻하지 않습니다.", "vpnTitle": "VPN과 프록시", "vpnText": "VPN, 프록시, 회사망 또는 이동통신망을 사용하면 실제 위치 대신 해당 네트워크의 출구 위치가 표시될 수 있습니다.", "privacyTitle": "개인정보와 외부 제공자", "privacyText": "조회 요청은 브라우저에서 IPWHOIS.IO로 직접 전송됩니다. 이 사이트는 IP와 결과를 서버, 브라우저 저장소 또는 조회 기록에 보관하지 않습니다." }
     },
     "qrCodeGenerator": {
-      "metadata": { "title": "무료 QR 코드 생성기", "description": "텍스트와 URL을 서버 전송 없이 QR 코드로 만들고 원하는 크기의 PNG로 저장하세요." },
+      "metadata": { "title": "QR 코드 생성기", "description": "텍스트와 URL을 서버 전송 없이 QR 코드로 만들고 원하는 크기의 PNG로 저장하세요." },
       "title": "QR 코드 생성기", "description": "텍스트나 URL을 입력하면 브라우저에서 QR 코드를 자동으로 만들고 PNG로 저장합니다.",
       "input": { "label": "QR 코드에 넣을 내용", "help": "텍스트, URL, 한글, 일본어, Emoji와 여러 줄을 입력할 수 있습니다. 입력 내용은 그대로 인코딩됩니다.", "placeholder": "텍스트 또는 https://example.com" },
       "preview": { "title": "QR 코드 미리보기", "empty": "내용을 입력하면 QR 코드가 여기에 표시됩니다.", "processing": "QR 코드를 생성하는 중…", "canvasLabel": "입력 내용으로 생성된 QR 코드", "size": "크기", "level": "오류 복원", "margin": "Quiet Zone", "type": "입력 유형", "types": { "text": "텍스트", "url": "URL" }, "effectiveLevel": "실제 적용 수준(로고로 자동 상향)" },
@@ -349,7 +383,7 @@
       "guide":{"title":"문자 인코딩 안내","description":"Base64는 암호화가 아닙니다. Auto Encode는 UTF-8을 사용하며 legacy Decode가 모호하면 인코딩을 직접 선택해야 합니다."},"privacy":{"title":"브라우저에서만 처리","description":"입력과 결과는 서버로 전송하거나 저장하지 않습니다."}
     },
     "passwordGenerator": {
-      "metadata": { "title": "안전한 비밀번호 생성기", "description": "브라우저에서 길이와 문자 유형을 선택하거나 기억하기 쉬운 단어 조합으로 안전한 비밀번호를 생성하세요." },
+      "metadata": { "title": "비밀번호 생성기", "description": "브라우저에서 길이와 문자 유형을 선택하거나 기억하기 쉬운 단어 조합으로 안전한 비밀번호를 생성하세요." },
       "title": "비밀번호 생성기", "description": "무작위 문자 또는 단어 조합 중 원하는 방식을 선택하면 브라우저의 보안 난수로 비밀번호를 만듭니다.",
       "mode": { "label": "생성 방식", "characters": "무작위 문자", "passphrase": "단어 조합" },
       "settings": { "lengthGroup": "비밀번호 길이", "rangeLabel": "슬라이더로 길이 선택", "numberLabel": "길이 직접 입력", "characterTypes": "포함할 문자 유형", "uppercase": "대문자 (A–Z)", "lowercase": "소문자 (a–z)", "numbers": "숫자 (0–9)", "symbols": "특수문자" },
@@ -391,7 +425,7 @@
       "privacy": { "title": "브라우저에서만 처리", "description": "입력한 JSON은 서버로 전송하거나 저장하지 않습니다." }
     },
     "cronExpressionGenerator": {
-      "metadata":{"title":"Cron 표현식 생성기·해석기","description":"Linux 5필드 Cron 표현식을 만들고 검증하며 시간대별 다음 실행 시간을 확인하세요."},"title":"Cron 표현식 생성기","description":"실행 주기를 선택해 5필드 Cron을 만들거나 기존 표현식을 해석하고 다음 실행 시간을 확인합니다.",
+      "metadata":{"title":"Cron 표현식 생성기","description":"Linux 5필드 Cron 표현식을 만들고 검증하며 시간대별 다음 실행 시간을 확인하세요."},"title":"Cron 표현식 생성기","description":"실행 주기를 선택해 5필드 Cron을 만들거나 기존 표현식을 해석하고 다음 실행 시간을 확인합니다.",
       "mode":{"label":"입력 방식","generator":"간편 생성기","direct":"직접 입력"},"presets":{"title":"자주 쓰는 Preset","everyMinute":"매분","every5Minutes":"5분마다","every10Minutes":"10분마다","every30Minutes":"30분마다","hourly":"매시간","midnight":"매일 자정","daily9":"매일 오전 9시","monday9":"매주 월요일 오전 9시","monthlyFirst":"매월 1일 자정","weekdays9":"평일 오전 9시"},
       "generator":{"frequency":"실행 주기","interval":"간격","hour":"시 (0–23)","minute":"분 (0–59)","weekdays":"요일","dates":"날짜","months":"월","monthLabel":"{month}월"},"modes":{"every-minute":"매분","every-n-minutes":"매 N분","hourly":"매시간","every-n-hours":"매 N시간","daily":"매일","weekly":"매주·특정 요일","monthly":"매월·특정 날짜","specific-date":"특정 월과 날짜"},"weekdays":{"0":"일","1":"월","2":"화","3":"수","4":"목","5":"금","6":"토"},"weekdayNames":{"0":"일요일","1":"월요일","2":"화요일","3":"수요일","4":"목요일","5":"금요일","6":"토요일"},
       "direct":{"label":"Cron 표현식","help":"분 시 일 월 요일 순서의 숫자형 5필드와 *, 쉼표, 하이픈, 슬래시를 지원합니다."},"result":{"title":"Cron 결과","empty":"표현식을 입력하세요."},"status":{"valid":"유효한 5필드 Cron 표현식입니다.","empty":"표현식을 입력하면 검증 결과가 표시됩니다."},"actions":{"copyCron":"Cron 복사","copyDescription":"설명 복사","copyCrontab":"Crontab 줄 복사","copied":"복사됨","clear":"초기화"},
@@ -403,8 +437,8 @@
       "reference":{"title":"Cron 빠른 문법표","description":"첫 버전은 Unix/Vixie 방식의 숫자형 5필드 Cron만 지원합니다.","syntax":"*  모든 값\n,  여러 값\n-  범위\n/  간격","fields":"Minute 0–59 · Hour 0–23 · Day 1–31 · Month 1–12 · Weekday 0–7 (0과 7은 일요일)"},"vercel":{"title":"Vercel Cron 사용 시 주의","description":"Vercel 등 실행 플랫폼은 시간대와 허용 주기에 별도 정책이 있을 수 있습니다. 배포 전 해당 플랫폼의 최신 공식 문서를 확인하세요."},"privacy":"표현식과 설정은 브라우저 메모리에서만 처리하며 서버로 전송하거나 저장하지 않습니다."
     },
     "p2pFileTransfer": {
-      "metadata":{"title":"QR 파일 전송 - 브라우저에서 바로 파일 보내기","description":"서버에 파일을 저장하지 않고 QR 또는 링크로 연결해 브라우저 간 실시간으로 파일을 전송하세요."},
-      "title":"QR로 바로 파일 보내기","description":"파일을 서비스 서버에 저장하지 않고 상대방 브라우저로 바로 전송하세요.","badgeStorage":"서버 저장 없음","badgeShare":"QR / 링크 공유","badgeBrowser":"브라우저 간 전송",
+      "metadata":{"title":"QR 파일 전송","description":"서버에 파일을 저장하지 않고 QR 또는 링크로 연결해 브라우저 간 실시간으로 파일을 전송하세요."},
+      "title":"QR 파일 전송","description":"파일을 서비스 서버에 저장하지 않고 상대방 브라우저로 바로 전송하세요.","badgeStorage":"서버 저장 없음","badgeShare":"QR / 링크 공유","badgeBrowser":"브라우저 간 전송",
       "dropTitle":"파일을 여기에 놓으세요","dropOr":"또는 아래 버튼으로 파일을 선택하세요.","choose":"파일 선택","notStored":"파일은 서비스 서버에 저장되지 않습니다.","unknownType":"알 수 없는 파일 형식","dangerous":"실행 파일 또는 스크립트일 수 있습니다. 신뢰할 수 있는 사람과만 주고받으세요.","createLink":"공유 링크 만들기","chooseAnother":"다른 파일 선택","serviceSetup":"현재 signaling/TURN 서비스 주소가 설정되지 않아 실제 공유 세션을 만들 수 없습니다.",
       "qrLabel":"파일 수신 링크 QR 코드","scan":"상대방이 이 QR을 스캔하세요","shareUrl":"공유 링크","copy":"링크 복사","copied":"복사했습니다","keepOpen":"이 브라우저를 닫으면 상대방이 파일을 받을 수 없습니다.","approvePrompt":"이 기기로 파일을 전송하시겠습니까?","approve":"전송 허용","reject":"거절","cancel":"전송 취소","sendAnother":"새 파일 보내기","receiveTitle":"파일을 받으시겠습니까?","receive":"파일 받기","waitingSender":"보내는 브라우저와 안전하게 연결하는 중입니다.","calculating":"계산 중…","eta":"약 {seconds}초 남음","connecting":"연결 방식 확인 중","connection":{"direct":"직접 연결","relay":"중계 연결"},"sender":"보내는 기기","receiver":"받는 기기","exampleSender":"1.36 GiB 전송","exampleReceiver":"파일을 받고 있습니다",
       "states":{"IDLE":"파일을 선택하세요.","FILE_SELECTED":"파일을 확인하고 공유 링크를 만드세요.","SESSION_CREATING":"안전한 공유 세션을 만드는 중입니다…","WAITING_FOR_RECEIVER":"상대방 접속을 기다리고 있습니다.","RECEIVER_JOINED":"상대방이 연결되었습니다.","NEGOTIATING":"상대방과 연결하는 중입니다…","CONNECTED":"브라우저가 연결되었습니다.","WAITING_RECEIVER_ACCEPT":"상대방이 파일 받기를 누르길 기다립니다.","READY":"전송 준비가 완료되었습니다.","TRANSFERRING":"파일을 전송하고 있습니다.","VERIFYING":"상대방의 파일 수신과 무결성을 확인하고 있습니다…","COMPLETED":"파일 전송이 완료되었습니다.","FAILED":"전송하지 못했습니다.","CANCELLED":"전송을 취소했습니다.","EXPIRED":"공유 링크가 만료되었습니다."},

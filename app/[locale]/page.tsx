@@ -1,11 +1,10 @@
-import { ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/layout/container";
-import { Link } from "@/i18n/navigation";
+import { ToolDiscovery } from "@/components/home/tool-discovery";
 import type { AppLocale } from "@/i18n/routing";
-import { HOME_TOOLS, type ToolPath } from "@/lib/tools/registry";
 
 type HomeProps = {
   params: Promise<{ locale: AppLocale }>;
@@ -40,26 +39,7 @@ function HomeContent() {
         </Container>
       </section>
 
-      <section aria-labelledby="tools-heading">
-        <Container className="py-12 sm:py-16">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div><h2 id="tools-heading" className="text-2xl font-bold text-[var(--foreground)]">{t("tools.title")}</h2><p className="mt-2 text-[var(--text-muted)]">{t("tools.description")}</p></div>
-            <p className="flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)]"><ShieldCheck aria-hidden="true" size={18} />{t("tools.privacy")}</p>
-          </div>
-          <div className="mt-7 grid gap-4 md:grid-cols-2">
-            {HOME_TOOLS.map(tool => { const Icon = tool.icon; return <ToolCard key={tool.path} href={tool.path} icon={<Icon aria-hidden="true" />} title={t(`tools.${tool.translationKey}.title`)} description={t(`tools.${tool.translationKey}.description`)} action={t("tools.open")} />; })}
-          </div>
-        </Container>
-      </section>
+      <ToolDiscovery />
     </>
   );
-}
-
-function ToolCard({ href, icon, title, description, action }: { href: ToolPath; icon: React.ReactNode; title: string; description: string; action: string }) {
-  return <Link href={href} className="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm transition hover:border-[var(--info-border)] hover:shadow-md focus:outline-none focus:ring-4 focus:ring-[var(--focus-ring)]">
-    <span className="grid size-11 place-items-center rounded-xl bg-[var(--info-bg)] text-[var(--primary)]">{icon}</span>
-    <h3 className="mt-5 text-xl font-bold text-[var(--foreground)]">{title}</h3>
-    <p className="mt-2 leading-7 text-[var(--text-muted)]">{description}</p>
-    <span className="mt-5 inline-flex items-center gap-2 font-semibold text-[var(--primary)]">{action}<ArrowRight aria-hidden="true" size={18} className="transition-transform group-hover:translate-x-1" /></span>
-  </Link>;
 }
