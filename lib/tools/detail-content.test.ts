@@ -13,12 +13,15 @@ describe("tool detail content", () => {
     expect(koreanPaths).toEqual(publicPaths);
   });
 
-  it("provides visible sections, 3-5 FAQs, and useful related links", () => {
+  it("provides Korean and English sections, 3-5 FAQs, privacy notes, and useful related links", () => {
     for (const [path, config] of Object.entries(TOOL_DETAIL_CONFIG)) {
-      const content = TOOL_DETAIL_DATA.ko[path as DetailToolPath];
-      expect(content?.sections.length).toBeGreaterThan(0);
-      expect(content?.faqs.items.length).toBeGreaterThanOrEqual(3);
-      expect(content?.faqs.items.length).toBeLessThanOrEqual(5);
+      for (const locale of ["ko", "en"] as const) {
+        const content = TOOL_DETAIL_DATA[locale][path as DetailToolPath];
+        expect(content?.sections.length, `${locale}:${path}:sections`).toBeGreaterThan(0);
+        expect(content?.faqs.items.length, `${locale}:${path}:faqs`).toBeGreaterThanOrEqual(3);
+        expect(content?.faqs.items.length, `${locale}:${path}:faqs`).toBeLessThanOrEqual(5);
+        if (locale === "en") expect(content?.privacy, `${locale}:${path}:privacy`).toBeTruthy();
+      }
       expect(config.related.length).toBeGreaterThanOrEqual(3);
       expect(config.related.length).toBeLessThanOrEqual(5);
       expect(config.related).not.toContain(path);
@@ -29,8 +32,8 @@ describe("tool detail content", () => {
     }
   });
 
-  it("keeps the deferred English and Japanese rollout limited to the initial three tools", () => {
-    expect(Object.keys(TOOL_DETAIL_DATA.en)).toHaveLength(3);
+  it("covers every English tool while keeping Japanese limited to the initial three", () => {
+    expect(Object.keys(TOOL_DETAIL_DATA.en).sort()).toEqual(PUBLIC_TOOLS.map((tool) => tool.path).sort());
     expect(Object.keys(TOOL_DETAIL_DATA.ja)).toHaveLength(3);
   });
 });

@@ -17,7 +17,7 @@ const INLINE_DETAIL_PATHS = new Set<DetailToolPath>([
 export function ToolDetailRouter() {
   const pathname = usePathname();
   const locale = useLocale() as AppLocale;
-  if (locale !== "ko" || !(pathname in TOOL_DETAIL_CONFIG) || INLINE_DETAIL_PATHS.has(pathname as DetailToolPath)) return null;
+  if (locale === "ja" || !(pathname in TOOL_DETAIL_CONFIG) || INLINE_DETAIL_PATHS.has(pathname as DetailToolPath)) return null;
 
   return <Container className="pb-12 sm:pb-16"><ToolDetailContent toolPath={pathname as DetailToolPath} locale={locale} /></Container>;
 }

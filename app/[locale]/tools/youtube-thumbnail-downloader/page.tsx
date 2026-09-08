@@ -39,7 +39,7 @@ export default async function Page({ params }: PageProps) {
         <Info title={t("privacy.title")} text={t("privacy.description")} blue />
         <Info title={t("rights.title")} text={t("rights.description")} />
       </section>
-      <section className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"><h2 className="font-bold text-[var(--foreground)]">{t("faq.title")}</h2><h3 className="mt-4 font-semibold">{t("faq.maxQuestion")}</h3><p className="mt-1 text-sm leading-6 text-[var(--text-muted)]">{t("faq.maxAnswer")}</p><h3 className="mt-4 font-semibold">{t("faq.downloadQuestion")}</h3><p className="mt-1 text-sm leading-6 text-[var(--text-muted)]">{t("faq.downloadAnswer")}</p></section>
+      {locale === "ja" ? <section className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"><h2 className="font-bold text-[var(--foreground)]">{t("faq.title")}</h2><h3 className="mt-4 font-semibold">{t("faq.maxQuestion")}</h3><p className="mt-1 text-sm leading-6 text-[var(--text-muted)]">{t("faq.maxAnswer")}</p><h3 className="mt-4 font-semibold">{t("faq.downloadQuestion")}</h3><p className="mt-1 text-sm leading-6 text-[var(--text-muted)]">{t("faq.downloadAnswer")}</p></section> : null}
     </Container>
   </>;
 }

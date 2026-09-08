@@ -35,6 +35,30 @@ function koreanAppendix(input: {
   };
 }
 
+function englishAppendix(input: {
+  name: string;
+  overview: string;
+  steps: Array<[string, string]>;
+  examples: Array<[string, string]>;
+  rules: Array<[string, string]>;
+  privacy: ToolDetailData["privacy"];
+  faqs: Array<[string, string]>;
+  relatedTitle: string;
+}): ToolDetailData {
+  return {
+    sections: [
+      { type: "text", title: `What does the ${input.name} do?`, paragraphs: [input.overview] },
+      { type: "steps", title: "How to use it", items: input.steps.map(([title, text]) => ({ title, text })) },
+      { type: "example", title: "Practical examples", items: input.examples.map(([label, value]) => ({ label, value })) },
+      { type: "list", title: "Processing rules and limitations", items: input.rules.map(([title, text]) => ({ title, text })) },
+    ],
+    privacy: input.privacy,
+    faqs: { title: "Frequently asked questions", items: input.faqs.map(([question, answer]) => ({ question, answer })) },
+    relatedTitle: input.relatedTitle,
+    popularTitle: "Other popular tools",
+  };
+}
+
 export const TOOL_DETAIL_DATA: Record<AppLocale, Partial<Record<DetailToolPath, ToolDetailData>>> = {
   ko: {
     "/tools/base64-converter": koreanAppendix({
@@ -225,6 +249,150 @@ export const TOOL_DETAIL_DATA: Record<AppLocale, Partial<Record<DetailToolPath, 
     },
   },
   en: {
+    "/tools/base64-converter": englishAppendix({
+      name: "Base64 Encoder/Decoder", overview: "It converts text to Base64 through an explicit character encoding, or decodes Base64 bytes back into text. This is useful when inspecting encoded API fields, email data, or legacy text payloads.",
+      steps: [["Choose a direction", "Use Encode for plain text or Decode for an existing Base64 value."], ["Set the character encoding", "Auto uses UTF-8 for encoding. Select a known legacy encoding when the source requires it."], ["Convert and review", "Run the conversion, check the applied encoding, and copy the result when it looks correct."]],
+      examples: [["UTF-8 text", "Hello 안녕하세요 😀\n→ Encode → Decode → original text"], ["Legacy text", "Select EUC-KR or Shift_JIS\nDecode bytes using that character set"]],
+      rules: [["Byte-based conversion", "Text is converted to bytes before Base64 is produced; Unicode text is not passed directly to btoa."], ["Loss prevention", "Encoding fails instead of silently replacing characters that the selected character set cannot represent."], ["Auto detection", "Base64 does not store its original character encoding, so a detected decode encoding is an estimate unless a BOM identifies it."]],
+      privacy: { title: "Conversion stays in your browser", description: "Text, bytes, and Base64 results are processed locally and are not sent to or stored on this site's server." },
+      faqs: [["Is Base64 encryption?", "No. Anyone can decode it, so it must not be used to protect secrets."], ["Why does decoded text look corrupted?", "The bytes were probably decoded with a different character encoding. Select the encoding used by the source."], ["Can I decode Base64 without padding?", "Valid unpadded input is normalized where possible, while malformed Base64 is rejected."]], relatedTitle: "Related encoding tools",
+    }),
+    "/tools/cron-expression-generator": englishAppendix({
+      name: "Cron Expression Generator", overview: "It builds and explains numeric five-field Unix/Vixie Cron expressions, validates an existing expression, and previews upcoming run times in a selected timezone.",
+      steps: [["Build or enter an expression", "Choose a schedule in the generator or switch to the parser and enter a five-field expression."], ["Check the explanation", "Review each field and the upcoming run times in the selected browser or named timezone."], ["Verify the target platform", "Copy the expression only after checking the scheduler's timezone and supported Cron syntax."]],
+      examples: [["Every day at 09:00", "0 9 * * *"], ["Every 10 minutes on weekdays", "*/10 * * * 1-5"]],
+      rules: [["Five fields only", "The supported fields are minute, hour, day of month, month, and day of week; seconds are not supported."], ["Supported operators", "Numeric values can use wildcards, lists, ranges, and steps."], ["Timezone is external", "A Cron string does not contain a timezone. The actual scheduler configuration remains authoritative."]],
+      privacy: { title: "Schedules are calculated locally", description: "Expressions, settings, and preview dates are processed in browser memory and are not sent to the server." },
+      faqs: [["Does this support a seconds field?", "No. It supports numeric five-field Unix/Vixie Cron expressions."], ["Why does my server run at a different time?", "The server may use UTC or another configured timezone instead of the timezone selected in this preview."], ["Can I paste the result into Vercel Cron unchanged?", "The basic syntax may apply, but you must check Vercel's current frequency and timezone rules before deployment."]], relatedTitle: "Related developer tools",
+    }),
+    "/tools/excel-chart-maker": englishAppendix({
+      name: "Excel & CSV Chart Maker", overview: "It reads spreadsheet or CSV data, lets you choose columns and an aggregation, and renders bar, line, pie, or scatter charts for export as PNG, JPEG, or SVG.",
+      steps: [["Open a file", "Choose an XLSX, XLS, or CSV file, then select the sheet and confirm the detected header row."], ["Map the data", "Choose the category or numeric axes, series, aggregation, and chart type."], ["Review and export", "Adjust labels and appearance, verify the preview, and export at the required dimensions."]],
+      examples: [["Monthly sales", "X: Month\nY: Sales\nChart: Bar or line"], ["Ad spend vs sales", "X: Ad spend\nY: Sales\nChart: Scatter"]],
+      rules: [["Input limits", "Files are limited to 25 MiB, 100,000 rows, and 100 columns."], ["Scatter data", "Each plotted row needs numeric values for both the X and Y axes."], ["Aggregation", "When aggregation is enabled, rows with the same category are combined using the selected calculation."]],
+      privacy: { title: "Spreadsheet data stays in the browser", description: "The selected file, cell data, chart rendering, and export are handled locally and are not uploaded to this site's server." },
+      faqs: [["Why are CSV characters garbled?", "Save the CSV as UTF-8 and open it again. The tool does not guess every legacy CSV encoding."], ["Are spreadsheet formulas recalculated?", "No. The tool reads values stored in the file and does not run the spreadsheet calculation engine."], ["Why does a pie chart show fewer values?", "Pie charts group values by category and are clearest with a small number of positive categories."]], relatedTitle: "Related data tools",
+    }),
+    "/tools/favicon-generator": englishAppendix({
+      name: "Favicon Generator", overview: "It creates a browser favicon set from text, an emoji, or a PNG, JPEG, or WebP image and packages the common icon files, manifest, and HTML references.",
+      steps: [["Choose a source", "Enter short text or an emoji, or upload a nearly square image."], ["Check small previews", "Adjust colors and spacing, then make sure the design remains recognizable at 16px."], ["Download the package", "Generate the ZIP and place its files and HTML references in your site."]],
+      examples: [["Text icon", "Source: K\nHigh-contrast background\nShort bold glyph"], ["Logo icon", "Upload square logo\nAdjust crop\nCheck 16px preview"]],
+      rules: [["Small-size legibility", "Fine details and long text disappear at favicon sizes, so simple high-contrast artwork works best."], ["Image inputs", "PNG, JPEG, and static WebP images are accepted and rendered into square outputs."], ["Browser caching", "A replaced favicon may not appear immediately because browsers cache icon files aggressively."]],
+      privacy: { title: "Source images stay on this device", description: "Rendering and ZIP creation happen in the browser. Uploaded artwork is not sent to or stored on the server." },
+      faqs: [["Do I need both ICO and PNG files?", "Modern browsers commonly use PNG, while favicon.ico remains useful for older clients and fallback requests."], ["Why is text hard to read?", "Use fewer characters, a heavier typeface, and stronger foreground/background contrast."], ["Does the package install itself?", "No. Download the ZIP, copy the files into your site, and add the provided links to your document head."]], relatedTitle: "Related image and website tools",
+    }),
+    "/tools/image-color-picker": englishAppendix({
+      name: "Image Color Picker", overview: "It samples an exact image pixel and reports that color as HEX, RGB, HSL, HSV, and CMYK values, with zoom and a pixel grid for precise selection.",
+      steps: [["Open an image", "Choose a PNG, JPEG, or static WebP file."], ["Zoom and point", "Move over the image, use the magnified pixel grid, and select the center pixel."], ["Copy a value", "Review the coordinates and copy the color notation needed by your design or code."]],
+      examples: [["CSS color", "Pick a logo pixel\nCopy: #2563EB"], ["Design comparison", "Sample the same coordinate\nCompare RGB and HSL values"]],
+      rules: [["Pixel coordinates", "Coordinates refer to the original image, even when the preview is scaled to fit the page."], ["Color conversion", "HEX and RGB describe sampled channel values; HSL, HSV, and CMYK are mathematical conversions of the same pixel."], ["Input validation", "The file signature and decoded dimensions are checked; animated WebP is not treated as a frame picker."]],
+      privacy: { title: "Images are sampled locally", description: "The image and selected colors stay in browser memory and are not uploaded or saved by this site." },
+      faqs: [["Why does the color differ from another app?", "Color profiles, display management, transparency, and rounding can change how converted values are reported."], ["Can I select a precise pixel on mobile?", "Yes. Use zoom and the magnified grid rather than relying only on the scaled preview."], ["Is CMYK read from the image file?", "No. It is a calculated approximation from the sampled RGB pixel, not an embedded print profile value."]], relatedTitle: "Related image tools",
+    }),
+    "/tools/ip-info": englishAppendix({
+      name: "IP Address Lookup", overview: "It shows the current public IP address or looks up a valid public IPv4/IPv6 address, then presents network registration and approximate location data returned by IPWHOIS.IO.",
+      steps: [["Use the current address or enter one", "Load the detected public address, or type a public IPv4 or IPv6 address to inspect."], ["Run the lookup", "The browser requests country, region, ISP, organization, ASN, and timezone data from the provider."], ["Interpret cautiously", "Treat location as a network estimate, especially for mobile carriers, VPNs, proxies, and corporate networks."]],
+      examples: [["Current connection", "Check public IP\nReview ISP and ASN"], ["Known public address", "Enter: 8.8.8.8\nReview provider response"]],
+      rules: [["Public addresses only", "Private, loopback, link-local, documentation, and other non-public address ranges are rejected."], ["Approximate location", "The result describes network routing and registration, not a person's street address or precise position."], ["Provider availability", "Results and rate limits depend on IPWHOIS.IO, so a lookup can fail even when the page itself is available."]],
+      privacy: { title: "Lookup requests use IPWHOIS.IO", description: "The queried IP address is sent directly from your browser to IPWHOIS.IO. This site does not store the address or lookup result." },
+      faqs: [["Why is the city incorrect?", "IP geolocation is an estimate based on the network and may identify an ISP gateway or regional exit point."], ["Why does a VPN change the result?", "The lookup sees the VPN or proxy exit address rather than the connection behind it."], ["Can this reveal someone's home address?", "No. Public IP data does not reliably identify a precise residence or individual."]], relatedTitle: "Related network and encoding tools",
+    }),
+    "/tools/jwt-decoder": englishAppendix({
+      name: "JWT Decoder", overview: "It separates a compact JWT into its encoded segments, decodes readable Header and Payload JSON, and highlights common time claims such as exp, nbf, and iat.",
+      steps: [["Paste a token", "Enter a compact JWS with three segments or an unsecured two-segment JWT."], ["Inspect decoded data", "Review the Header, Payload, token structure, and interpreted time claims."], ["Copy only what you need", "Use the JSON or tree views without treating the decoded token as trusted."]],
+      examples: [["Header", "{\"alg\":\"HS256\",\"typ\":\"JWT\"}"], ["Payload", "{\"sub\":\"123\",\"exp\":1893456000}"]],
+      rules: [["Decoding is not verification", "The tool does not validate a signature, key, issuer, audience, or authorization policy."], ["Base64URL segments", "JWT segments use URL-safe Base64 and may omit padding."], ["Time claims", "NumericDate claims are displayed for convenience, but the issuing system decides how they are enforced."]],
+      privacy: { title: "Tokens are decoded locally", description: "The JWT and decoded values are processed in this browser and are not sent to or stored on the server." },
+      faqs: [["Does a readable payload mean the token is valid?", "No. Anyone can construct encoded segments; validity requires signature and claim verification by the receiving system."], ["Can I paste a production access token?", "Avoid exposing active credentials unnecessarily. Decoding is local, but sensitive tokens should still be handled carefully."], ["Why is the signature not decoded as JSON?", "The final segment is cryptographic signature data, not a JSON document."]], relatedTitle: "Related token and encoding tools",
+    }),
+    "/tools/korean-initial-converter": englishAppendix({
+      name: "Korean Initial Consonant Converter", overview: "It extracts the initial consonant from each precomposed Korean syllable while preserving Latin letters, numbers, punctuation, whitespace, and emoji.",
+      steps: [["Enter Korean text", "Type or paste a word, sentence, or multiline list."], ["Review the live result", "Each Hangul syllable is replaced by its initial consonant immediately."], ["Copy or reset", "Copy the converted text or clear both input and result."]],
+      examples: [["Word", "안녕하세요 → ㅇㄴㅎㅅㅇ"], ["Mixed text", "KONLY 도구 2026 → KONLY ㄷㄱ 2026"]],
+      rules: [["Precomposed Hangul", "Modern precomposed syllables in the 가–힣 range are decomposed mathematically."], ["Other characters", "Standalone jamo and non-Hangul characters are preserved rather than guessed or removed."], ["Text structure", "Spaces and line breaks remain in their original positions."]],
+      privacy: { title: "Text stays in your browser", description: "Initial-consonant conversion runs locally and does not send or store the input." },
+      faqs: [["Why are English letters unchanged?", "The tool converts precomposed Korean syllables only and intentionally preserves other characters."], ["Does it create abbreviations automatically?", "No. It extracts consonants mechanically and does not decide which syllables should form an abbreviation."], ["Are spaces and line breaks removed?", "No. The original whitespace is preserved."]], relatedTitle: "Related text tools",
+    }),
+    "/tools/password-generator": englishAppendix({
+      name: "Password Generator", overview: "It creates a random character password from selected character groups or a word-based passphrase, then estimates strength from the generated result and settings.",
+      steps: [["Choose a mode", "Use a character password or switch to a passphrase built from words."], ["Set the options", "Choose length and character groups, or configure the passphrase word count and separators."], ["Generate and copy", "Generate a new result, review the strength indicator, and copy it to the intended password field."]],
+      examples: [["Character password", "Length: 20\nUppercase + lowercase + numbers + symbols"], ["Passphrase", "Multiple random words\nCustom separator\nOptional capitalization"]],
+      rules: [["Secure randomness", "Generation uses the browser's cryptographic random-number API rather than Math.random."], ["Character coverage", "When possible, the result includes at least one character from every enabled group."], ["Strength indicator", "The label is an estimate and cannot account for reuse, phishing, leaks, or how a service stores passwords."]],
+      privacy: { title: "Passwords are generated locally", description: "Settings and generated values stay in the browser and are not sent to or stored on this site's server." },
+      faqs: [["What happens if every character group is disabled?", "Generation is blocked until at least one character group is enabled."], ["Is a longer password always better?", "Length usually increases resistance to guessing, provided the value is random and not reused."], ["Should I save the generated password in this page?", "No. Store it in a trusted password manager; this tool does not provide an account vault."]], relatedTitle: "Related security tools",
+    }),
+    "/tools/privacy-redactor": englishAppendix({
+      name: "Image Privacy Masking", overview: "It lets you draw and adjust regions over a PNG, JPEG, or static WebP image, cover them with an opaque block or pixelation, and export a new PNG.",
+      steps: [["Open and inspect the image", "Choose an image and identify every name, number, face, or area that should not be shared."], ["Add masking regions", "Draw regions, move or resize them, and choose an opaque fill or pixelation."], ["Review the final image", "Use the result preview, confirm every sensitive area is covered, and download the generated PNG."]],
+      examples: [["Message screenshot", "Cover names, profile photos, phone numbers, and message details"], ["Document photo", "Cover identification numbers, addresses, signatures, and faces"]],
+      rules: [["Manual selection", "The current tool does not promise automatic OCR or face detection; the user must identify and verify sensitive areas."], ["Opaque masking is safer", "A solid opaque block is recommended for sensitive data because pixelation can sometimes leave recognizable structure."], ["New PNG output", "The exported image is rendered as a new PNG and does not retain the original image's EXIF metadata."]],
+      privacy: { title: "Images are edited locally", description: "The source image and masking regions remain in browser memory and are not uploaded or saved by this site." },
+      faqs: [["Does the tool find personal information automatically?", "No. Add and verify every region manually before sharing the result."], ["Can pixelation be reversed?", "It can preserve clues from the original pattern. Use a fully opaque fill when the information is sensitive."], ["Does hiding a region alter my original file?", "No. The original file is unchanged; downloading creates a separate PNG result."]], relatedTitle: "Related screenshot and image tools",
+    }),
+    "/tools/qr-code-generator": englishAppendix({
+      name: "QR Code Generator", overview: "It encodes text, URLs, Wi-Fi settings, contact details, email, phone, SMS, or location data into a QR code with selectable size, error correction, margin, and colors.",
+      steps: [["Choose the content type", "Enter plain text or complete the fields for a supported structured QR type."], ["Adjust QR options", "Choose a size, L/M/Q/H error-correction level, quiet-zone margin, and readable colors."], ["Scan before downloading", "Verify the preview with a scanner, then download the PNG or copy the original input where available."]],
+      examples: [["Website", "https://example.com\n256px · M · margin 4"], ["Printed code", "512px or larger\nHigh contrast\nAdequate quiet zone"]],
+      rules: [["Exact input", "Plain text and URLs are encoded as entered; the tool does not automatically normalize example.com into a different URL."], ["Density", "Longer data and higher error correction create denser symbols, which may need a larger output size."], ["Contrast and margin", "Low contrast, very small modules, or an inadequate quiet zone can reduce scan reliability."]],
+      privacy: { title: "QR content stays in the browser", description: "The entered content and generated QR image are processed locally and are not sent to an external QR service or stored by this site." },
+      faqs: [["What do L, M, Q, and H mean?", "They select increasing error-correction levels. More correction can tolerate more damage but also increases QR density."], ["Why will my QR code not scan?", "Try a larger size, stronger foreground/background contrast, a sufficient margin, and less content."], ["Does the tool shorten URLs?", "No. It encodes the exact URL entered and does not call a URL-shortening service."]], relatedTitle: "Related generator and image tools",
+    }),
+    "/tools/regex-tester": englishAppendix({
+      name: "Regex Tester", overview: "It runs JavaScript regular expressions against test text, shows matches and capture groups, previews replacements, and supports checking multiple test rows. The existing syntax reference remains the detailed guide for supported constructs.",
+      steps: [["Enter a pattern and flags", "Use JavaScript regular-expression syntax without surrounding slash delimiters."], ["Add test text", "Run the pattern against the main text and inspect highlighted matches and captures."], ["Check replacement or batch cases", "Preview replacement output or add rows to compare which samples match."]],
+      examples: [["Capture a date", "Pattern: (?<year>\\d{4})-(\\d{2})-(\\d{2})\nFlags: g"], ["Normalize whitespace", "Pattern: \\s+\nReplacement: single space"]],
+      rules: [["JavaScript behavior", "Syntax and flags follow the JavaScript RegExp engine, not PCRE, Python, or .NET."], ["Execution safeguards", "Pattern, text, matches, detail, highlighting, and replacement output are capped to keep the page responsive."], ["Global flag", "Without g, JavaScript reports the first match; with g, matching continues until the configured safety limit."]],
+      privacy: { title: "Patterns and test data remain local", description: "Regex execution runs inside a browser Worker. Patterns, test strings, and replacements are not uploaded or stored." },
+      faqs: [["Should I include /pattern/ delimiters?", "No. Enter only the pattern and select flags separately."], ["Why does a PCRE expression fail?", "JavaScript supports a different feature set and syntax from PCRE and other regex engines."], ["Can a regular expression freeze the page?", "Some patterns are computationally expensive. The tool uses a Worker and limits, but patterns should still be tested with realistic input."]], relatedTitle: "Related text and developer tools",
+    }),
+    "/tools/screenshot-statusbar-remover": englishAppendix({
+      name: "Screenshot Status Bar Remover", overview: "It estimates the top status-bar boundary in a phone screenshot, lets you correct the crop manually, and exports a new image without that top strip.",
+      steps: [["Open a screenshot", "Choose a supported phone screenshot and wait for the proposed top crop."], ["Verify the boundary", "Compare the preview and adjust the crop line if automatic detection includes app content or leaves status icons."], ["Create and download", "Generate the cropped result and save the new image after checking its dimensions."]],
+      examples: [["Phone screenshot", "Remove time, signal, Wi-Fi, and battery strip"], ["Unusual layout", "Detection uncertain\nSet the top crop manually"]],
+      rules: [["Heuristic detection", "The boundary is estimated from visual changes near the top; it is not device-model recognition."], ["Manual review", "Full-screen apps, solid backgrounds, notches, and edited screenshots can make the estimate uncertain."], ["Top crop only", "The tool removes a horizontal area from the top and does not automatically hide other private information."]],
+      privacy: { title: "Screenshots stay on this device", description: "Detection, cropping, and export run in the browser. Images are not uploaded or stored by this site." },
+      faqs: [["Why was part of the app header removed?", "The status bar and app header may have similar colors. Move the crop boundary before exporting."], ["Can it remove a bottom navigation bar?", "No. This tool is designed for a top status-bar crop only."], ["Does it erase other personal information?", "No. Use Image Privacy Masking to cover names, messages, numbers, or faces."]], relatedTitle: "Related screenshot tools",
+    }),
+    "/tools/screenshot-stitcher": englishAppendix({
+      name: "Screenshot Stitcher", overview: "It compares consecutive screenshots for overlapping rows, removes the repeated area, and combines them vertically into one long PNG with manual controls for uncertain joins.",
+      steps: [["Add screenshots in order", "Select consecutive captures in top-to-bottom reading order."], ["Review every join", "Check overlap confidence and adjust exclusions or overlap values where repeated UI confuses detection."], ["Build the result", "Create the combined preview, inspect each seam, and download the final PNG."]],
+      examples: [["Long conversation", "Capture while scrolling\nKeep a visible overlap\nCombine in order"], ["Page with fixed header", "Exclude repeated header rows before confirming the join"]],
+      rules: [["Overlap required", "Automatic joining needs a sufficiently distinctive repeated area between neighboring images."], ["Same-width images", "Consistent capture width and scale produce more reliable comparisons and a cleaner output."], ["Ambiguous screens", "Flat backgrounds, repeated lists, animations, and sticky UI can require manual adjustment."]],
+      privacy: { title: "Screenshots are processed locally", description: "Source images, overlap analysis, and the combined PNG stay in the browser and are not uploaded or saved by this site." },
+      faqs: [["Why was an overlap not detected?", "The shared area may be too small, too uniform, animated, or different between captures. Adjust the join manually."], ["Why is a header repeated?", "Exclude the fixed header from the relevant edge before rebuilding the result."], ["Are the original screenshots modified?", "No. The tool creates a separate combined PNG."]], relatedTitle: "Related screenshot and image tools",
+    }),
+    "/tools/sql-formatter": englishAppendix({
+      name: "SQL Formatter", overview: "It formats or minifies SQL using the selected database dialect, with indentation, keyword case, tab width, comma style, and placeholder controls.",
+      steps: [["Choose a SQL dialect", "Select MySQL, PostgreSQL, SQL Server, Oracle, SQLite, or the closest supported syntax."], ["Set formatting options", "Choose indentation, keyword case, comma style, and placeholder handling."], ["Format, review, and copy", "Check that database-specific syntax is preserved before using the result in your editor or migration."]],
+      examples: [["Readable query", "SELECT id, name\nFROM users\nWHERE active = 1;"], ["Compact query", "SELECT id,name FROM users WHERE active=1;"]],
+      rules: [["Formatting is not validation", "A formatted query can still contain invalid SQL, missing objects, or logic errors."], ["Dialect matters", "Quoting, operators, clauses, and placeholders differ by database, so choose the intended dialect."], ["Comments and literals", "The formatter aims to preserve their content, but important production queries should be compared before execution."]],
+      privacy: { title: "SQL stays in your browser", description: "Formatting and minification run locally. Queries are not executed, sent to a database, or stored by this site." },
+      faqs: [["Does this run my SQL?", "No. It only transforms text and never connects to a database."], ["Can formatting change query behavior?", "It is designed to preserve semantics, but vendor-specific syntax should always be reviewed before execution."], ["Which dialect should I choose?", "Select the database that will execute the query; use the closest option only when its syntax is compatible."]], relatedTitle: "Related data and developer tools",
+    }),
+    "/tools/text-cleaner": englishAppendix({
+      name: "Text Cleaner", overview: "It applies selected cleanup steps to multiline text, including whitespace normalization, blank-line handling, line trimming, sorting, and duplicate-line filtering.",
+      steps: [["Paste the source text", "Enter the list, copied document, or multiline content you want to clean."], ["Choose cleanup rules", "Enable only the whitespace, blank-line, duplicate, sort, or filtering operations you need."], ["Review and copy", "Compare counts and output, then copy the cleaned result."]],
+      examples: [["Remove duplicate lines", "Apple\nApple \nBanana\n→ Apple\nBanana"], ["Normalize copied text", "Trim line edges\nCollapse repeated spaces\nLimit blank lines"]],
+      rules: [["Order of operations", "Cleanup follows the tool's displayed pipeline, so sorting and duplicate handling can affect the final line order."], ["Duplicate comparison", "Case sensitivity and whitespace normalization influence whether two lines are considered equal."], ["No language rewriting", "The tool changes selected structure and spacing; it does not paraphrase, translate, or correct grammar."]],
+      privacy: { title: "Text is cleaned locally", description: "The source, settings, and result remain in browser memory and are not sent to or stored on the server." },
+      faqs: [["Why were two similar lines not merged?", "Their case or remaining whitespace may differ under the selected comparison settings."], ["Does sorting change duplicate results?", "It can change output order, while duplicate detection follows the configured pipeline and comparison rules."], ["Can I undo a cleanup?", "Keep the original input until you have checked the result; copied or replaced source text cannot be recovered by the site."]], relatedTitle: "Related text tools",
+    }),
+    "/tools/url-encoder-decoder": englishAppendix({
+      name: "URL Encoder/Decoder", overview: "It applies UTF-8 percent encoding to either a complete URL or an individual URL component, and decodes valid percent-encoded text without treating plus signs as spaces by default.",
+      steps: [["Choose Encode or Decode", "Select the direction based on whether the input is plain Unicode text or percent-encoded text."], ["Choose the encoding scope", "Use URL Component for parameter values, or Full URL when URL structure characters should remain readable."], ["Convert and copy", "Run the operation, review reserved characters, and copy the result."]],
+      examples: [["Query value", "안녕하세요 world & test=true\nUse: URL Component"], ["Complete URL", "https://example.com/search?q=안녕하세요&sort=new\nUse: Full URL"]],
+      rules: [["UTF-8 bytes", "Unicode characters are converted to UTF-8 percent-encoded byte sequences."], ["Reserved characters", "Full URL mode preserves URL structure in the same manner as encodeURI; component mode encodes separators such as &, =, ?, and /."], ["Plus signs", "Normal decode preserves + as a plus. Query-string handling is a separate form-encoding behavior."]],
+      privacy: { title: "URL text stays in the browser", description: "Encoding, decoding, and query editing run locally. The entered URL is not requested, visited, or stored by this site." },
+      faqs: [["Which mode should I use for a query parameter value?", "Use URL Component so separators inside the value cannot be confused with URL structure."], ["Why did decoding fail on % or %ZZ?", "Every percent escape must contain exactly two hexadecimal digits and form valid UTF-8 when decoded."], ["Does + become a space?", "Not in normal URL Decode mode. Use query-string behavior only when the source follows application/x-www-form-urlencoded rules."]], relatedTitle: "Related encoding tools",
+    }),
+    "/tools/youtube-thumbnail-downloader": englishAppendix({
+      name: "YouTube Thumbnail Downloader", overview: "It extracts a video ID from supported YouTube watch, share, Shorts, embed, live, and mobile URLs, checks which standard thumbnail variants are available, and downloads a verified image.",
+      steps: [["Paste a YouTube address", "Use the address copied from the browser or the YouTube share menu."], ["Check available thumbnails", "The browser requests standard thumbnail URLs and shows only image variants that respond successfully."], ["Choose and download", "Compare the actual dimensions and download the available JPEG you need."]],
+      examples: [["Share URL", "https://youtu.be/VIDEO_ID"], ["Shorts URL", "https://www.youtube.com/shorts/VIDEO_ID"]],
+      rules: [["Supported addresses", "The input must resolve to a recognizable YouTube video ID; arbitrary websites and channel or playlist-only URLs are not treated as videos."], ["Maximum resolution", "maxresdefault is shown only when YouTube provides it for that video. Upload history and processing affect availability."], ["Image rights", "Availability does not grant reuse permission. Follow the creator's rights and YouTube's applicable terms."]],
+      privacy: { title: "Thumbnail checks contact YouTube", description: "The pasted address is parsed locally, but thumbnail availability and downloads make requests from your browser to YouTube's i.ytimg.com image servers. This site does not store the address or images." },
+      faqs: [["Why is the highest-resolution thumbnail missing?", "YouTube does not generate every variant for every video, and a recent upload may still be processing."], ["Can I use a channel or playlist URL?", "No. Provide an address that contains a specific video ID."], ["Why can I preview an image but not reuse it freely?", "Technical access and copyright permission are different; obtain the necessary rights before publishing it."]], relatedTitle: "Related image tools",
+    }),
     "/tools/json-formatter": {
       sections: [
         { type: "text", title: "What does the JSON Formatter do?", paragraphs: ["It validates JSON syntax and converts valid data into an indented format for reading or a compact format without unnecessary whitespace. Use it to inspect API responses and clean up configuration files."] },

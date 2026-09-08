@@ -19,7 +19,7 @@ export function ToolBreadcrumbRouter() {
   const common = useTranslations("Common");
   const home = useTranslations("Home.tools");
   const tool = PUBLIC_TOOLS.find((item) => item.path === pathname);
-  if (locale !== "ko" || !tool || INLINE_BREADCRUMB_PATHS.has(pathname)) return null;
+  if (locale === "ja" || !tool || INLINE_BREADCRUMB_PATHS.has(pathname)) return null;
 
   return <div className="border-b border-[var(--border)] bg-[var(--surface)]"><Container className="py-4"><Breadcrumb locale={locale} homeLabel={common("homeLabel")} category={{ key: tool.category, label: common(`toolsNav.categories.${tool.category}`) }} tool={{ path: tool.path, label: home(`${tool.translationKey}.title`) }} /></Container></div>;
 }
