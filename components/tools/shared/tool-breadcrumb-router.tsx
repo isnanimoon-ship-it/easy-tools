@@ -9,7 +9,11 @@ import { PUBLIC_TOOLS } from "@/lib/tools/registry";
 
 const INLINE_BREADCRUMB_PATHS = new Set([
   "/tools/json-formatter",
+  "/tools/markdown-viewer",
   "/tools/image-compressor",
+  "/tools/image-metadata-remover",
+  "/tools/image-to-pdf",
+  "/tools/hwp-hwpx-viewer",
   "/tools/word-counter",
 ]);
 

@@ -61,6 +61,36 @@ function englishAppendix(input: {
 
 export const TOOL_DETAIL_DATA: Record<AppLocale, Partial<Record<DetailToolPath, ToolDetailData>>> = {
   ko: {
+    "/tools/image-to-pdf": koreanAppendix({
+      steps: [["이미지 선택", "JPG, PNG, WebP 정적 이미지를 최대 20장 추가합니다."], ["순서와 용지 설정", "위·아래 버튼으로 페이지 순서를 정하고 A4 또는 Letter, 가로·세로, 여백을 선택합니다."], ["PDF 생성 및 저장", "PDF 만들기를 누른 뒤 결과를 내려받습니다. 설정을 바꾸면 다시 만들어야 합니다."]],
+      examples: [["서류 사진 제출", "신분증이나 신청서 사진을 순서대로 한 PDF에 묶기"], ["영수증 정리", "여러 장의 영수증 사진을 한 파일로 제출하기"]],
+      rules: [["페이지 배치", "이미지 한 장이 PDF 한 페이지가 됩니다. 종횡비를 유지하며 여백 안에 맞춰 잘리지 않게 배치합니다."], ["화질과 투명도", "브라우저에서 흰 배경에 이미지를 그린 뒤 JPEG로 다시 저장하므로 화질과 용량이 달라질 수 있습니다."], ["지원 범위", "JPG, PNG, WebP 정적 이미지와 파일당 25 MiB, 최대 20장을 지원합니다. OCR·애니메이션 이미지는 지원하지 않습니다."]],
+      privacy: { title: "이미지는 브라우저에서 처리됩니다", description: "선택한 이미지와 생성한 PDF는 서버나 외부 변환 API로 전송되지 않습니다. PDF 변환이 이미지 속 개인 정보까지 가려 주는 것은 아닙니다." },
+      faqs: [["이미지 속 글자를 PDF에서 검색할 수 있나요?", "아니요. 이 도구는 이미지를 PDF 페이지에 넣으며 OCR을 수행하지 않습니다."], ["PNG 투명 부분은 어떻게 되나요?", "흰 배경에 합성되어 PDF에 들어갑니다."], ["사진의 GPS 정보도 제거되나요?", "PDF 생성 과정에서 새 이미지를 만들지만 이 도구를 메타데이터 삭제 수단으로 보장하지 않습니다. 공유 전에는 사진 메타데이터 삭제 도구로 별도 확인하세요."]],
+      relatedTitle: "함께 쓰는 이미지 도구",
+    }),
+    "/tools/image-metadata-remover": koreanAppendix({
+      steps: [["사진 선택", "JPG, PNG 또는 WebP 사진을 최대 20개까지 선택하고 감지된 GPS·EXIF 정보를 확인합니다."], ["삭제 설정 확인", "JPG와 WebP 품질 및 재인코딩으로 생길 수 있는 화질·색상 변화를 확인합니다."], ["삭제 후 저장", "삭제 확인됨 상태를 확인하고 개별 사진 또는 전체 ZIP을 다운로드합니다."]],
+      examples: [["중고거래 사진", "촬영 위치와 휴대전화 모델 정보 제거 후 공유"], ["업무 이미지", "촬영 시각·편집 프로그램·작성자 정보가 포함되지 않은 새 파일 저장"]],
+      rules: [["지원 형식", "정적인 JPG, PNG, WebP를 지원합니다. 파일당 25 MiB, 최대 20개이며 애니메이션 이미지는 제외됩니다."], ["재인코딩 방식", "브라우저에서 픽셀을 새 이미지로 저장하므로 원본 메타데이터를 복사하지 않지만 JPG·WebP 화질과 용량이 달라질 수 있습니다."], ["색상과 방향", "사진 방향은 픽셀에 적용합니다. 색상 프로파일은 복사하지 않아 색상 관리가 중요한 사진은 색감이 달라질 수 있습니다."], ["검사 범위", "결과 컨테이너를 다시 검사하지만 알려지지 않은 제조사 전용 데이터까지 없다고 절대적으로 보장하지는 않습니다."]],
+      privacy: { title: "사진은 현재 브라우저에서만 처리됩니다", description: "이미지, 파일명, GPS와 분석 결과를 서버나 외부 서비스로 전송·저장하지 않습니다. 초기화하거나 탭을 닫으면 임시 데이터가 사라집니다." },
+      faqs: [["사진 화질이 완전히 같나요?", "아니요. 안전한 제거 방식은 새 이미지로 재인코딩하므로 JPG와 WebP 화질 및 용량이 달라질 수 있습니다."], ["사진에 보이는 개인정보도 사라지나요?", "아니요. 얼굴, 주소, 번호판, 문서 내용처럼 픽셀에 보이는 정보는 이미지 개인정보 가리기 도구로 직접 가려야 합니다."], ["GPS 좌표를 외부 지도에 전송하나요?", "아니요. 위치 정보의 존재 여부와 분석은 현재 브라우저에서만 처리하며 지도나 역지오코딩 서비스를 호출하지 않습니다."], ["메타데이터가 없다고 나오면 완전히 안전한가요?", "지원하는 표준과 컨테이너에서 알려진 정보를 찾지 못했다는 뜻입니다. 비표준 제조사 데이터까지 없다고 절대적으로 보장할 수는 없습니다."]],
+      relatedTitle: "관련 이미지·개인정보 도구",
+    }),
+    "/tools/markdown-viewer": koreanAppendix({
+      steps: [["Markdown 입력", "원문을 직접 입력하거나 UTF-8로 저장된 MD, MARKDOWN, TXT 파일을 엽니다."], ["보기 모드 선택", "분할 보기에서 원문과 결과를 비교하거나 원문·미리보기 한쪽만 크게 봅니다."], ["결과 검토", "제목, 목록, 표, 인용문, 링크와 코드 블록이 의도대로 표시되는지 확인합니다."]],
+      examples: [["README 검토", "제목 + 설치 순서 + 코드 블록 + 참고 링크"], ["작업 문서", "할 일 목록 + 진행 표 + 중요한 내용 인용"]],
+      rules: [["지원 문법", "CommonMark 기본 문법과 GFM 표, 할 일 목록, 취소선, 자동 링크를 지원합니다."], ["HTML과 링크", "원문의 HTML은 실행하지 않으며 위험한 주소와 기준 URL이 없는 상대 링크는 비활성화합니다."], ["이미지와 파일", "외부 이미지는 자동으로 불러오지 않습니다. UTF-8 텍스트 파일을 최대 2 MiB까지 열 수 있습니다."], ["표시 차이", "GitHub 전용 확장이나 Mermaid, 수식, 각주, 구문 강조는 현재 지원하지 않습니다."]],
+      privacy: { title: "Markdown은 브라우저에서만 처리됩니다", description: "입력 원문과 선택한 파일은 현재 탭의 임시 메모리에서 처리되며 서버나 브라우저 저장소에 전송·보관되지 않습니다. 추적 요청을 막기 위해 외부 이미지도 자동으로 불러오지 않습니다." },
+      faqs: [["GitHub와 완전히 똑같이 보이나요?", "아니요. CommonMark와 지정된 GFM 문법을 지원하지만 GitHub 전용 기능과 화면 스타일은 다를 수 있습니다."], ["Markdown 안의 HTML을 사용할 수 있나요?", "보안을 위해 raw HTML은 실행하거나 DOM 요소로 만들지 않습니다."], ["이미지가 표시되지 않는 이유는 무엇인가요?", "Markdown에 포함된 외부 주소로 브라우저가 자동 접속하지 않도록 V1에서는 이미지 요청을 차단합니다."], ["파일이 서버에 업로드되나요?", "아니요. UTF-8 텍스트 읽기와 미리보기 생성은 현재 브라우저에서만 처리됩니다."]], relatedTitle: "관련 텍스트·개발 도구",
+    }),
+    "/tools/hwp-hwpx-viewer": koreanAppendix({
+      steps: [["파일 선택", "HWP 또는 HWPX 파일을 선택하고 감지한 형식과 제한을 확인합니다."], ["지원 범위 확인", "HWPX 지원 또는 HWP 5.x 제한 지원 안내를 읽고 문서를 엽니다."], ["내용 탐색", "페이지 이동, 확대·축소와 검색으로 문서를 확인합니다."]],
+      examples: [["공공 문서 확인", "HWPX 안내문을 프로그램 설치 없이 읽기"], ["받은 HWP 미리보기", "HWP 5.x 문서의 본문을 확인하고 중요한 배치는 공식 프로그램에서 재확인"]],
+      rules: [["지원 수준", "HWPX를 우선 지원하고 HWP 5.x는 제한적으로 지원합니다."], ["원본과의 차이", "전용 글꼴과 복잡한 표·도형·수식·차트는 다르게 보이거나 누락될 수 있습니다."], ["지원하지 않는 문서", "암호화·배포용·구버전 문서의 보호를 우회하지 않습니다."]],
+      privacy: { title: "문서는 브라우저에서만 처리됩니다", description: "파일과 문서 내용은 현재 탭의 임시 메모리에서 처리되며 서버나 외부 변환 서비스로 전송·저장되지 않습니다." },
+      faqs: [["한컴오피스 없이 볼 수 있나요?", "지원되는 HWPX와 HWP 5.x 문서는 볼 수 있지만 중요한 문서는 공식 프로그램으로 최종 확인해야 합니다."], ["원본과 다르게 보이는 이유는 무엇인가요?", "설치된 글꼴과 브라우저 렌더링 방식, 지원하지 않는 전용 요소가 다르기 때문입니다."], ["문서가 서버에 업로드되나요?", "아니요. 선택한 파일은 현재 브라우저의 임시 메모리에서만 처리됩니다."]], relatedTitle: "관련 파일·데이터 도구",
+    }),
     "/tools/base64-converter": koreanAppendix({
       steps: [["모드 선택", "일반 문자열은 Encode, Base64를 원문으로 돌릴 때는 Decode를 선택합니다."], ["문자 인코딩 확인", "Auto Encode는 UTF-8을 사용하며 기존 데이터의 인코딩을 안다면 직접 선택합니다."], ["변환 및 복사", "변환 후 실제 적용된 인코딩을 확인하고 결과를 복사합니다."]],
       examples: [["UTF-8 텍스트", "안녕하세요 😀 → Base64 → 같은 UTF-8로 원문 복원"], ["레거시 데이터", "EUC-KR 또는 Shift_JIS Base64 → 동일 인코딩을 선택해 Decode"]],
@@ -249,6 +279,40 @@ export const TOOL_DETAIL_DATA: Record<AppLocale, Partial<Record<DetailToolPath, 
     },
   },
   en: {
+    "/tools/image-to-pdf": englishAppendix({
+      name: "Image to PDF Converter", overview: "Combine still JPG, PNG, or WebP images into one ordered PDF with a chosen paper size and margin.",
+      steps: [["Add images", "Choose up to 20 still images."], ["Set order and paper", "Move images up or down, then choose A4 or Letter, orientation, and margin."], ["Create and save", "Create the PDF and download it. Recreate it after changing any setting."]],
+      examples: [["Document submission", "Put multiple photographed pages in one PDF."], ["Receipts", "Combine receipt photos in the order you want to submit them."]],
+      rules: [["One image per page", "Each image is fitted without cropping and keeps its aspect ratio."], ["Re-encoding", "Images are drawn on white and encoded as JPEG, which may change transparency, quality, and file size."], ["Limits", "Supports still JPG, PNG, and WebP images, up to 25 MiB each and 20 images total. No OCR or animation support."]],
+      privacy: { title: "Images stay in your browser", description: "Selected images and the resulting PDF are not sent to a server or external conversion API. Visible personal details in the pixels are not hidden." },
+      faqs: [["Can I search text in the PDF?", "No. Image text stays part of the picture because this tool does not run OCR."], ["What happens to transparent PNG areas?", "They are placed on a white background."], ["Does this remove GPS metadata?", "Do not rely on PDF conversion as a metadata-removal guarantee. Check sensitive images with the Image Metadata Remover before sharing."]],
+      relatedTitle: "Related image tools",
+    }),
+    "/tools/image-metadata-remover": englishAppendix({
+      name: "Image Metadata Remover", overview: "It checks JPG, PNG, and WebP photos for known GPS, EXIF, capture, and device information, then creates a new image without copying those metadata blocks.",
+      steps: [["Choose photos", "Select up to 20 JPG, PNG, or WebP photos and review the metadata categories found."], ["Review the setting", "Choose JPG/WebP output quality and read the re-encoding and color-profile notice."], ["Clean and download", "Run removal, wait for verification, then download one cleaned photo or a ZIP."]],
+      examples: [["Marketplace photo", "Remove capture location and phone model before sharing"], ["Work image", "Save a new file without capture date, editor, or author details"]],
+      rules: [["Supported files", "Static JPG, PNG, and WebP images are supported, up to 25 MiB each and 20 files. Animated images are rejected."], ["Re-encoding", "Pixels are saved into a new image without copying source metadata. JPG/WebP quality and file size can change."], ["Color and orientation", "Orientation is applied to pixels. Color profiles are not copied, so color-managed photos can look different."], ["Verification scope", "The output container is scanned again, but the tool cannot promise that every unknown proprietary byte format has been identified."]],
+      privacy: { title: "Photos are processed only in this browser", description: "Images, filenames, GPS values, and analysis results are not sent to or stored by the server or an external service. Temporary data disappears when you clear the tool or close the tab." },
+      faqs: [["Will image quality stay identical?", "No. Safe removal re-encodes the image, so JPG and WebP quality and size can change."], ["Does it hide information visible in the photo?", "No. Faces, addresses, plates, and document text are pixels and must be masked with the Image Privacy Masking tool."], ["Are GPS coordinates sent to a map service?", "No. GPS detection stays in the current browser and does not call a map or reverse-geocoding service."], ["Does ‘no metadata found’ guarantee there is none?", "It means no known data was found in the supported standards and containers. Unknown proprietary data cannot be ruled out absolutely."]],
+      relatedTitle: "Related image and privacy tools",
+    }),
+    "/tools/markdown-viewer": englishAppendix({
+      name: "Markdown Viewer", overview: "Preview Markdown text or a UTF-8 Markdown file without uploading its contents. Compare the source with a rendered CommonMark and GFM view.",
+      steps: [["Enter Markdown", "Type or paste source text, or open a UTF-8 MD, MARKDOWN, or TXT file."], ["Choose a view", "Compare source and output side by side, or focus on either the source or preview."], ["Review the document", "Check headings, lists, tables, blockquotes, links, and code blocks before publishing."]],
+      examples: [["README review", "Heading + setup steps + code block + reference link"], ["Working document", "Task list + progress table + important blockquote"]],
+      rules: [["Supported syntax", "CommonMark plus GFM tables, task lists, strikethrough, and automatic links are supported."], ["HTML and links", "Raw HTML is not executed. Unsafe URLs and relative links without a base URL are disabled."], ["Images and files", "Remote images are not loaded automatically. UTF-8 text files up to 2 MiB can be opened."], ["Rendering differences", "GitHub-only extensions, Mermaid, math, footnotes, and syntax highlighting are not supported in this version."]],
+      privacy: { title: "Markdown stays in your browser", description: "Source text and selected files are processed in temporary memory in this tab and are not sent to a server or browser storage. Remote images are blocked to prevent unintended tracking requests." },
+      faqs: [["Will it look exactly like GitHub?", "No. It supports CommonMark and the listed GFM features, but GitHub-specific extensions and visual styling can differ."], ["Can Markdown contain HTML?", "Raw HTML is not executed or converted into active DOM elements for security."], ["Why is an image not displayed?", "Version 1 blocks image requests so a Markdown document cannot silently contact an external server."], ["Is my file uploaded?", "No. UTF-8 file reading and preview rendering happen only in the current browser tab."]], relatedTitle: "Related text and developer tools",
+    }),
+    "/tools/hwp-hwpx-viewer": englishAppendix({
+      name: "HWP & HWPX Document Viewer", overview: "Open supported Hangul documents page by page without editing the source file or installing desktop software.",
+      steps: [["Choose a file", "Select an HWP or HWPX document and review the detected format."], ["Review support", "Read the HWPX support or HWP 5.x limited-support notice before opening it."], ["Navigate the document", "Move between pages, zoom, and search the parsed text."]],
+      examples: [["Public document", "Review an HWPX notice without installing a desktop app."], ["Received HWP file", "Preview HWP 5.x text, then verify critical layout in the official software."]],
+      rules: [["Support level", "HWPX is the primary format; HWP 5.x support is limited."], ["Layout differences", "Proprietary fonts and complex tables, shapes, equations, or charts may differ or be omitted."], ["Protected documents", "Encrypted, distribution-protected, and older documents are not bypassed or opened."]],
+      privacy: { title: "Documents stay in your browser", description: "The file and parsed contents remain in temporary memory in this tab and are not sent to our server or an external conversion service." },
+      faqs: [["Can I view files without Hancom Office?", "Supported HWPX and HWP 5.x files can be viewed, but important documents should be verified in the official software."], ["Why can the layout differ?", "Installed fonts, browser rendering, and unsupported proprietary elements can change pagination and layout."], ["Is the document uploaded?", "No. The selected file is processed only in temporary browser memory."]], relatedTitle: "Related file and data tools",
+    }),
     "/tools/base64-converter": englishAppendix({
       name: "Base64 Encoder/Decoder", overview: "It converts text to Base64 through an explicit character encoding, or decodes Base64 bytes back into text. This is useful when inspecting encoded API fields, email data, or legacy text payloads.",
       steps: [["Choose a direction", "Use Encode for plain text or Decode for an existing Base64 value."], ["Set the character encoding", "Auto uses UTF-8 for encoding. Select a known legacy encoding when the source requires it."], ["Convert and review", "Run the conversion, check the applied encoding, and copy the result when it looks correct."]],
@@ -473,6 +537,59 @@ export const TOOL_DETAIL_DATA: Record<AppLocale, Partial<Record<DetailToolPath, 
     },
   },
   ja: {
+    "/tools/image-to-pdf": { sections: [
+      { type: "steps", title: "使い方", items: [{ title: "画像を選ぶ", text: "静止画のJPG、PNG、WebPを最大20枚追加します。" }, { title: "順番と用紙を設定", text: "上下ボタンで順番を変え、A4またはLetter、向き、余白を選びます。" }, { title: "PDFを保存", text: "PDFを作成してダウンロードします。設定を変えたら作り直します。" }] },
+      { type: "list", title: "処理方法と制限", items: [{ title: "1画像につき1ページ", text: "縦横比を保ち、画像全体が収まるように配置します。" }, { title: "画質と透明部分", text: "白い背景に描画してJPEGに再変換するため、画質・容量・透明部分が変わる場合があります。" }] },
+    ], privacy: { title: "ブラウザ内で処理", description: "画像とPDFはサーバーや外部変換APIへ送信されません。画像に写った個人情報は隠されません。" }, faqs: { title: "よくある質問", items: [{ question: "PDF内の文字を検索できますか？", answer: "いいえ。OCRは行わず、画像としてPDFに配置します。" }, { question: "透明なPNG部分は？", answer: "白い背景と合成されます。" }, { question: "GPS情報は削除されますか？", answer: "メタデータ削除の保証には使わず、共有前に別途確認してください。" }] }, relatedTitle: "関連する画像ツール", popularTitle: "人気のツール" },
+    "/tools/image-metadata-remover": {
+      sections: [
+        { type: "text", title: "写真メタデータ削除でできること", paragraphs: ["JPG、PNG、WebP写真のGPS、EXIF、撮影・機器情報を確認し、それらをコピーしない新しい画像を作成します。"] },
+        { type: "steps", title: "使い方", items: [{ title: "写真を選択", text: "最大20枚の写真を選び、検出された情報を確認します。" }, { title: "設定を確認", text: "JPG・WebP品質と再エンコードの注意点を確認します。" }, { title: "削除して保存", text: "削除確認後、個別またはZIPで保存します。" }] },
+        { type: "example", title: "利用例", items: [{ label: "フリマ写真", value: "撮影場所とスマートフォン機種情報を削除して共有" }, { label: "業務画像", value: "撮影日時・編集ソフト・作成者情報を含まない新規ファイルを保存" }] },
+        { type: "list", title: "処理方法と制限", items: [{ title: "対応形式", text: "静止画のJPG、PNG、WebPに対応し、1ファイル25 MiB、最大20枚です。" }, { title: "再エンコード", text: "ピクセルを新しい画像に保存するため、JPG・WebPの画質や容量が変わる場合があります。" }, { title: "色と向き", text: "向きはピクセルに適用します。カラープロファイルをコピーしないため色味が変わる場合があります。" }] },
+      ],
+      privacy: { title: "写真は現在のブラウザ内だけで処理されます", description: "画像、ファイル名、GPS、解析結果をサーバーや外部サービスへ送信・保存しません。" },
+      faqs: { title: "よくある質問", items: [{ question: "画質は完全に同じですか？", answer: "いいえ。安全な削除では再エンコードするため、JPG・WebPの画質や容量が変わる場合があります。" }, { question: "写真に写った個人情報も消えますか？", answer: "いいえ。顔、住所、ナンバー、文書の文字は別のマスキングツールで隠してください。" }, { question: "GPSを地図サービスへ送信しますか？", answer: "いいえ。GPSの検出は現在のブラウザ内だけで行います。" }] },
+      relatedTitle: "関連する画像・プライバシーツール", popularTitle: "その他の人気ツール",
+    },
+    "/tools/markdown-viewer": {
+      sections: [
+        { type: "text", title: "Markdownビューアでできること", paragraphs: ["Markdownの原文またはUTF-8ファイルをサーバーへ送信せずにプレビューし、原文とCommonMark・GFMの表示結果を比較できます。"] },
+        { type: "steps", title: "使い方", items: [{ title: "Markdownを入力", text: "原文を入力・貼り付けるか、MD、MARKDOWN、TXTファイルを開きます。" }, { title: "表示を選択", text: "分割表示で比較するか、原文またはプレビューだけを大きく表示します。" }, { title: "内容を確認", text: "見出し、リスト、表、引用、リンク、コードブロックを確認します。" }] },
+        { type: "example", title: "利用例", items: [{ label: "READMEの確認", value: "見出し + 手順 + コードブロック + 参考リンク" }, { label: "作業文書", value: "タスクリスト + 進捗表 + 重要な引用" }] },
+        { type: "list", title: "対応範囲と制限", items: [{ title: "対応構文", text: "CommonMarkとGFMの表、タスクリスト、取り消し線、自動リンクに対応します。" }, { title: "HTMLとリンク", text: "raw HTMLは実行せず、危険なURLと基準URLのない相対リンクは無効にします。" }, { title: "画像とファイル", text: "外部画像は自動取得しません。UTF-8ファイルは最大2 MiBです。" }] },
+      ],
+      privacy: { title: "Markdownはブラウザ内で処理されます", description: "原文と選択したファイルはこのタブの一時メモリで処理され、サーバーやブラウザストレージへ送信・保存されません。" },
+      faqs: { title: "よくある質問", items: [{ question: "GitHubと同じ表示になりますか？", answer: "CommonMarkと指定されたGFM機能には対応しますが、GitHub固有機能やスタイルは異なる場合があります。" }, { question: "HTMLを使用できますか？", answer: "安全のためraw HTMLは実行せず、アクティブなDOM要素にも変換しません。" }, { question: "画像が表示されないのはなぜですか？", answer: "Markdownから外部サーバーへ自動接続しないよう、画像リクエストをブロックしています。" }, { question: "ファイルはアップロードされますか？", answer: "いいえ。UTF-8ファイルの読み込みとプレビューは現在のブラウザ内だけで処理されます。" }] },
+      relatedTitle: "関連するテキスト・開発ツール", popularTitle: "その他の人気ツール",
+    },
+    "/tools/hwp-hwpx-viewer": {
+      sections: [
+        { type: "text", title: "HWP・HWPX文書ビューアでできること", paragraphs: ["対応するHWPXおよびHWP 5.x文書をブラウザでページごとに表示します。文書を編集したり、原本ファイルを変更したりする機能ではありません。"] },
+        { type: "steps", title: "使い方", items: [
+          { title: "ファイルを選択", text: "HWPまたはHWPX文書を選び、検出された形式を確認します。" },
+          { title: "対応範囲を確認", text: "HWPX対応またはHWP 5.x限定対応の案内を読んでから文書を開きます。" },
+          { title: "内容を確認", text: "ページ移動、拡大・縮小、文書内検索を使って内容を確認します。" },
+        ] },
+        { type: "example", title: "利用例", items: [
+          { label: "案内文書の確認", value: "デスクトップアプリをインストールせずにHWPXのお知らせを確認" },
+          { label: "受け取ったHWPのプレビュー", value: "HWP 5.xの本文を確認し、重要な配置は公式ソフトで再確認" },
+        ] },
+        { type: "list", title: "対応範囲と制限", items: [
+          { title: "対応レベル", text: "HWPXを優先対応し、HWP 5.xは限定対応です。" },
+          { title: "原本との差異", text: "専用フォントや複雑な表、図形、数式、グラフは異なるか省略される場合があります。" },
+          { title: "対応しない文書", text: "暗号化、配布用、旧形式文書の保護を解除したり回避したりしません。" },
+        ] },
+      ],
+      privacy: { title: "文書はブラウザ内で処理されます", description: "ファイルと解析内容はこのタブの一時メモリで処理され、サーバーや外部変換サービスへ送信・保存されません。" },
+      faqs: { title: "よくある質問", items: [
+        { question: "Hancom Officeがなくても表示できますか？", answer: "対応するHWPXとHWP 5.x文書は表示できます。ただし重要な文書は公式ソフトで最終確認してください。" },
+        { question: "原本と配置が異なるのはなぜですか？", answer: "利用可能なフォント、ブラウザの描画方法、未対応の専用要素により改ページや配置が変わるためです。" },
+        { question: "文書はサーバーへ送信されますか？", answer: "いいえ。選択したファイルは現在のブラウザの一時メモリだけで処理されます。" },
+      ] },
+      relatedTitle: "関連するファイル・データツール",
+      popularTitle: "その他の人気ツール",
+    },
     "/tools/json-formatter": {
       sections: [
         { type: "text", title: "JSONフォーマッターでできること", paragraphs: ["JSONの構文を検証し、データを変更せずに読みやすいインデント形式、または不要な空白を除いた圧縮形式へ変換します。APIレスポンスや設定ファイルの確認に利用できます。"] },

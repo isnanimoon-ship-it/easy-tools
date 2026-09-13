@@ -3,8 +3,13 @@ import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/layout/container";
+import { PopularRankingWidget } from "@/components/home/popular-ranking-widget";
 import { ToolDiscovery } from "@/components/home/tool-discovery";
 import type { AppLocale } from "@/i18n/routing";
+
+// 인기 랭킹 위젯이 읽는 tool_popularity는 pg_cron이 5분마다 갱신한다 — 그 주기에 맞춰
+// 홈페이지를 ISR로 재생성해서 매 요청마다 Supabase를 조회하지 않도록 한다.
+export const revalidate = 300;
 
 type HomeProps = {
   params: Promise<{ locale: AppLocale }>;
@@ -39,7 +44,7 @@ function HomeContent() {
         </Container>
       </section>
 
-      <ToolDiscovery />
+      <ToolDiscovery popularRanking={<PopularRankingWidget />} />
     </>
   );
 }

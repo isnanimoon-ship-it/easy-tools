@@ -17,7 +17,7 @@ export function ToolDetailContent({ toolPath, locale }: { toolPath: DetailToolPa
 
   return (
     <div className="mt-12 border-t border-[var(--border)] pt-12 sm:mt-16 sm:pt-16">
-      <div className="grid gap-12">
+      <div className="grid min-w-0 gap-12">
         {content.sections.map((section, index) => <ContentSection key={`${section.type}-${index}`} section={section} />)}
 
         {content.privacy ? <section aria-labelledby={`${config.namespace}-privacy-heading`} className="rounded-2xl border border-[var(--info-border)] bg-[var(--info-bg)] p-5 sm:p-7">
@@ -50,7 +50,7 @@ function ContentSection({ section }: { section: DetailSection }) {
   }
 
   if (section.type === "example") {
-    return <section><h2 className="text-2xl font-bold text-[var(--foreground)]">{section.title}</h2>{section.intro ? <p className="mt-3 leading-7 text-[var(--text-muted)]">{section.intro}</p> : null}<div className="mt-5 grid gap-4 md:grid-cols-2">{section.items.map((item) => <div key={item.label} className="min-w-0 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"><h3 className="font-bold text-[var(--foreground)]">{item.label}</h3><pre className="mt-3 overflow-x-auto whitespace-pre-wrap break-words rounded-xl bg-[var(--code-bg)] p-4 text-sm leading-6 text-[var(--code-fg)]"><code>{item.value}</code></pre></div>)}</div></section>;
+    return <section className="min-w-0"><h2 className="text-2xl font-bold text-[var(--foreground)]">{section.title}</h2>{section.intro ? <p className="mt-3 leading-7 text-[var(--text-muted)]">{section.intro}</p> : null}<div className="mt-5 grid min-w-0 gap-4 md:grid-cols-2">{section.items.map((item) => <div key={item.label} className="min-w-0 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"><h3 className="font-bold text-[var(--foreground)]">{item.label}</h3><pre className="mt-3 max-w-full overflow-x-auto whitespace-pre-wrap break-words rounded-xl bg-[var(--code-bg)] p-4 text-sm leading-6 text-[var(--code-fg)]"><code>{item.value}</code></pre></div>)}</div></section>;
   }
 
   const ordered = section.type === "steps";

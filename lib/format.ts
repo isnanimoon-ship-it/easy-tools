@@ -20,6 +20,10 @@ export function formatNumber(
   return new Intl.NumberFormat(locale, options).format(value);
 }
 
+export function formatRelativeMinutes(minutesAgo: number, locale: AppLocale) {
+  return new Intl.RelativeTimeFormat(locale, { numeric: "always" }).format(-Math.round(minutesAgo), "minute");
+}
+
 export function formatFileSize(bytes: number, locale: AppLocale) {
   const safeBytes = Math.max(0, bytes);
   const units = ["byte", "kilobyte", "megabyte", "gigabyte"] as const;

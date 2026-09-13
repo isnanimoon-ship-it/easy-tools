@@ -5,12 +5,16 @@ export type DetailToolPath =
   | "/tools/cron-expression-generator"
   | "/tools/excel-chart-maker"
   | "/tools/favicon-generator"
+  | "/tools/hwp-hwpx-viewer"
   | "/tools/image-color-picker"
   | "/tools/json-formatter"
   | "/tools/image-compressor"
+  | "/tools/image-metadata-remover"
+  | "/tools/image-to-pdf"
   | "/tools/ip-info"
   | "/tools/jwt-decoder"
   | "/tools/korean-initial-converter"
+  | "/tools/markdown-viewer"
   | "/tools/password-generator"
   | "/tools/privacy-redactor"
   | "/tools/qr-code-generator"
@@ -34,6 +38,7 @@ export const TOOL_DETAIL_CONFIG = {
   "/tools/cron-expression-generator": { namespace: "cronExpressionGenerator", related: ["/tools/regex-tester", "/tools/json-formatter", "/tools/sql-formatter"], popular: ["/tools/image-compressor", "/tools/qr-code-generator", "/tools/word-counter"] },
   "/tools/excel-chart-maker": { namespace: "excelChartMaker", related: ["/tools/json-formatter", "/tools/sql-formatter", "/tools/image-compressor"], popular: ["/tools/qr-code-generator", "/tools/word-counter", "/tools/password-generator"] },
   "/tools/favicon-generator": { namespace: "faviconGenerator", related: ["/tools/image-color-picker", "/tools/image-compressor", "/tools/qr-code-generator"], popular: ["/tools/json-formatter", "/tools/word-counter", "/tools/password-generator"] },
+  "/tools/hwp-hwpx-viewer": { namespace: "hwpHwpxViewer", related: ["/tools/excel-chart-maker", "/tools/text-cleaner", "/tools/screenshot-stitcher"], popular: ["/tools/image-compressor", "/tools/json-formatter", "/tools/qr-code-generator"] },
   "/tools/image-color-picker": { namespace: "imageColorPicker", related: ["/tools/image-compressor", "/tools/favicon-generator", "/tools/screenshot-stitcher"], popular: ["/tools/qr-code-generator", "/tools/json-formatter", "/tools/word-counter"] },
   "/tools/json-formatter": {
     namespace: "jsonFormatter",
@@ -45,9 +50,12 @@ export const TOOL_DETAIL_CONFIG = {
     related: ["/tools/image-color-picker", "/tools/favicon-generator", "/tools/screenshot-stitcher"],
     popular: ["/tools/qr-code-generator", "/tools/json-formatter", "/tools/word-counter"],
   },
+  "/tools/image-metadata-remover": { namespace: "imageMetadataRemover", related: ["/tools/privacy-redactor", "/tools/image-compressor", "/tools/image-color-picker", "/tools/screenshot-stitcher"], popular: ["/tools/qr-code-generator", "/tools/json-formatter", "/tools/word-counter"] },
+  "/tools/image-to-pdf": { namespace: "imageToPdf", related: ["/tools/image-compressor", "/tools/image-metadata-remover", "/tools/screenshot-stitcher"], popular: ["/tools/qr-code-generator", "/tools/json-formatter", "/tools/word-counter"] },
   "/tools/ip-info": { namespace: "ipInfo", related: ["/tools/url-encoder-decoder", "/tools/json-formatter", "/tools/qr-code-generator"], popular: ["/tools/image-compressor", "/tools/word-counter", "/tools/password-generator"] },
   "/tools/jwt-decoder": { namespace: "jwtDecoder", related: ["/tools/base64-converter", "/tools/json-formatter", "/tools/url-encoder-decoder", "/tools/regex-tester"], popular: ["/tools/password-generator", "/tools/qr-code-generator", "/tools/word-counter"] },
   "/tools/korean-initial-converter": { namespace: "koreanInitialConverter", related: ["/tools/word-counter", "/tools/text-cleaner", "/tools/regex-tester"], popular: ["/tools/image-compressor", "/tools/json-formatter", "/tools/qr-code-generator"] },
+  "/tools/markdown-viewer": { namespace: "markdownViewer", related: ["/tools/text-cleaner", "/tools/word-counter", "/tools/regex-tester", "/tools/json-formatter"], popular: ["/tools/image-compressor", "/tools/qr-code-generator", "/tools/password-generator"] },
   "/tools/password-generator": { namespace: "passwordGenerator", related: ["/tools/jwt-decoder", "/tools/qr-code-generator", "/tools/word-counter"], popular: ["/tools/image-compressor", "/tools/json-formatter", "/tools/url-encoder-decoder"] },
   "/tools/privacy-redactor": { namespace: "privacyRedactor", related: ["/tools/screenshot-statusbar-remover", "/tools/image-compressor", "/tools/screenshot-stitcher", "/tools/image-color-picker"], popular: ["/tools/qr-code-generator", "/tools/json-formatter", "/tools/word-counter"] },
   "/tools/qr-code-generator": { namespace: "qrCodeGenerator", related: ["/tools/url-encoder-decoder", "/tools/image-color-picker", "/tools/favicon-generator"], popular: ["/tools/image-compressor", "/tools/json-formatter", "/tools/password-generator"] },

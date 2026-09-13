@@ -9,8 +9,9 @@
     "skipToContent": "본문으로 바로가기",
     "status": "이용 가능",
     "theme": { "enableDark": "다크 모드 켜기", "enableLight": "라이트 모드 켜기" },
-    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "image": "이미지", "text": "텍스트", "developer": "개발자", "generator": "생성기", "fileData": "파일·데이터", "network": "네트워크" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 인코더/디코더", "urlEncoderDecoder": "URL 인코더/디코더", "youtubeThumbnailDownloader": "유튜브 썸네일 추출기", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 용량 줄이기", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기", "sqlFormatter": "SQL 포맷터", "excelChartMaker": "엑셀·CSV 그래프 만들기", "p2pFileTransfer": "QR 파일 전송" },
+    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "image": "이미지", "text": "텍스트", "developer": "개발자", "generator": "생성기", "fileData": "파일·데이터", "network": "네트워크" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 인코더/디코더", "urlEncoderDecoder": "URL 인코더/디코더", "youtubeThumbnailDownloader": "유튜브 썸네일 추출기", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 용량 줄이기", "imageMetadataRemover": "사진 메타데이터 삭제", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기", "sqlFormatter": "SQL 포맷터", "excelChartMaker": "엑셀·CSV 그래프 만들기", "hwpHwpxViewer": "HWP·HWPX 문서 뷰어", "markdownViewer": "Markdown 뷰어", "imageToPdf": "이미지 PDF 변환기", "p2pFileTransfer": "QR 파일 전송" },
     "footer": "© {year} 간편도구. 누구나 간편하게.",
+    "share": { "label": "공유", "x": "X", "kakao": "카카오톡", "copy": "링크 복사", "more": "다른 앱", "copied": "현재 페이지 주소를 복사했습니다.", "copyFailed": "자동 복사에 실패했습니다. 아래 주소를 선택해 복사하세요.", "manualCopy": "직접 복사할 페이지 주소", "shareFailed": "기기 공유창을 열지 못했습니다.", "kakaoSetup": "카카오톡 직접 공유는 Kakao Developers 앱 키와 도메인 설정 후 사용할 수 있습니다. 지원 기기에서는 ‘다른 앱’에서 카카오톡을 선택할 수 있습니다.", "kakaoLoading": "카카오톡 공유 기능을 준비 중입니다.", "kakaoLoadFailed": "카카오톡 공유 기능을 불러오지 못했습니다.", "kakaoFailed": "카카오톡 공유를 시작하지 못했습니다. 앱 설정을 확인하세요.", "nativeUnavailable": "이 브라우저에서는 기기 공유를 지원하지 않습니다." },
     "footerNavLabel": "서비스 안내",
     "result": "결과",
     "copy": "복사",
@@ -29,7 +30,7 @@
     "title": "복잡한 작업을\n간단하게 해결하세요.",
     "description": "설치나 회원가입 없이 이미지, 텍스트, 개발, 파일 작업에 필요한 무료 온라인 도구를 바로 사용하세요. 가능한 작업은 브라우저에서 직접 처리합니다.",
     "search": { "title": "필요한 도구 찾기", "description": "도구 이름이나 하려는 작업을 입력해 빠르게 찾아보세요.", "placeholder": "예: 이미지 압축, JSON, 글자수", "label": "도구 검색", "clear": "검색어 지우기", "resultsTitle": "검색 결과", "results": "{count}개 도구", "emptyTitle": "일치하는 도구가 없습니다.", "emptyDescription": "검색어를 줄이거나 다른 검색어를 입력해 보세요.", "reset": "검색 초기화" },
-    "popular": { "title": "많이 찾는 도구", "description": "자주 필요한 작업을 빠르게 시작할 수 있는 대표 도구입니다." },
+    "popular": { "title": "많이 찾는 도구", "description": "자주 필요한 작업을 빠르게 시작할 수 있는 대표 도구입니다.", "tabs": { "realtime": "실시간", "weekly": "이번 주" }, "viewCount": "{count}회", "lastUpdated": "마지막 업데이트: {relative}", "updatedJustNow": "방금 전", "empty": "아직 집계된 데이터가 없습니다." },
     "categories": { "title": "카테고리로 찾기", "description": "하려는 작업의 종류에 따라 도구를 살펴보세요.", "count": "{count}개 도구", "filterLabel": "도구 카테고리 필터", "all": "전체" },
     "recent": { "title": "최근 추가된 도구", "description": "새롭게 이용할 수 있게 된 온라인 도구를 확인하세요." },
     "service": { "free": { "title": "로그인 없이 무료", "description": "계정을 만들거나 프로그램을 설치하지 않고 바로 사용할 수 있습니다." }, "private": { "title": "브라우저 중심 처리", "description": "가능한 변환과 편집은 사용자의 브라우저 안에서 처리하도록 설계합니다." }, "accessible": { "title": "다양한 기기 지원", "description": "PC, 태블릿, 모바일에서 같은 도구를 편리하게 이용할 수 있습니다." } },
@@ -59,6 +60,10 @@
       "faviconGenerator": { "title": "파비콘 생성기", "description": "텍스트, 이모지, 이미지로 웹사이트용 파비콘 세트를 생성합니다." },
       "sqlFormatter": { "title": "SQL 포맷터", "description": "MySQL, PostgreSQL, SQL Server, Oracle, SQLite 문법을 고려해 SQL 쿼리를 브라우저에서 정렬합니다." },
       "excelChartMaker": { "title": "엑셀·CSV 그래프 만들기", "description": "Excel과 CSV 데이터를 브라우저에서 차트로 만들고 정확한 크기의 이미지로 저장합니다." },
+        "hwpHwpxViewer": { "title": "HWP·HWPX 문서 뷰어", "description": "한글 문서를 서버에 업로드하지 않고 브라우저에서 읽기 전용으로 확인합니다." },
+        "markdownViewer": { "title": "Markdown 뷰어", "description": "Markdown 원문이나 UTF-8 파일을 브라우저에서 안전하게 미리봅니다." },
+      "imageMetadataRemover": { "title": "사진 메타데이터 삭제", "description": "사진의 GPS, EXIF 등 숨은 정보를 브라우저에서 확인하고 제거합니다." },
+      "imageToPdf": { "title": "이미지 PDF 변환기", "description": "JPG, PNG, WebP 여러 장을 순서대로 하나의 PDF로 만듭니다." },
       "p2pFileTransfer": { "title": "QR 파일 전송", "description": "파일을 서비스 서버에 저장하지 않고 QR이나 링크로 연결해 상대방 브라우저로 전송합니다." }
     }
   },
@@ -69,7 +74,7 @@
     "intro": "간편도구(이하 \"사이트\")를 이용해 주셔서 감사합니다. 본 개인정보처리방침은 이용자가 사이트를 이용할 때 어떤 정보가 어떻게 처리되는지 설명합니다.",
     "sections": {
       "principle": { "title": "기본 원칙: 브라우저 로컬 처리", "body": "사이트에서 제공하는 대부분의 도구는 이용자가 입력한 텍스트나 파일을 서버로 전송하지 않고 이용자의 브라우저 안에서만 처리합니다. 각 도구 페이지 하단에도 처리 방식이 별도로 안내되어 있습니다." },
-      "dataCollected": { "title": "직접 수집하는 정보", "body": "사이트는 회원가입이나 로그인 기능을 제공하지 않으며, 이용자가 도구에 입력한 내용을 서버에 저장하거나 수집하지 않습니다. 예외적으로 IP 정보 확인 도구는 조회를 위해 입력한 IP 주소를 외부 조회 서비스로 전송하며, 이는 해당 도구 페이지에 별도로 안내되어 있습니다." },
+      "dataCollected": { "title": "직접 수집하는 정보", "body": "사이트는 회원가입이나 로그인 기능을 제공하지 않으며, 이용자가 도구에 입력한 내용을 서버에 저장하거나 수집하지 않습니다. 예외적으로 IP 정보 확인 도구는 조회를 위해 입력한 IP 주소를 외부 조회 서비스로 전송하며, 이는 해당 도구 페이지에 별도로 안내되어 있습니다. 또한 인기 도구 랭킹을 위해 도구 방문 시각과, IP 주소·기기 정보·날짜를 해시(단방향 변환)한 값을 최대 8일간 저장합니다. 원본 IP 주소는 저장하지 않으며 이 값만으로는 개인을 특정할 수 없습니다." },
       "ads": { "title": "광고와 쿠키 (Google AdSense)", "body": "사이트는 Google AdSense를 통해 광고를 게재합니다. Google과 제3자 광고 파트너는 쿠키를 사용해 이용자가 이전에 방문한 사이트를 바탕으로 광고를 제공할 수 있습니다.", "optOutLink": "Google 광고 설정에서 맞춤 광고 거부하기", "policyLink": "Google의 광고 쿠키 사용 정책 보기" },
       "analytics": { "title": "방문자 통계 (네이버 웹로그분석)", "body": "사이트는 네이버 웹로그분석 서비스를 사용해 방문자 수, 페이지 조회 수 등 통계 정보를 수집합니다. 이 정보는 사이트 이용 현황을 파악하는 용도로만 사용됩니다." },
       "thirdParty": { "title": "이용 중인 제3자 서비스", "items": ["Google AdSense — 광고 게재", "네이버 웹로그분석 — 방문자 통계"] },
@@ -471,6 +476,23 @@
       "guide":{"easyTitle":"열만 고르면 완성","easyText":"자동 추천을 시작점으로 X축과 숫자 데이터를 직접 바꿀 수 있습니다.","accurateTitle":"값을 바꾸지 않음","accurateText":"0과 빈 값을 구분하고 날짜·백분율·통화 표시와 계산값을 분리합니다.","privateTitle":"브라우저에서만 처리","privateText":"업로드한 파일과 셀 내용은 서버, 분석 도구 또는 브라우저 저장소로 전송하지 않습니다."}
     },
     "excelChartScatterGuide":{"title":"산점도는 두 숫자의 관계를 보여줍니다","description":"각 행이 점 하나가 됩니다. X 값에는 원인이 될 수 있는 숫자를, Y 값에는 비교할 결과 숫자를 선택하세요.","example":"예: X = 수량, Y = 매출 · 광고비와 매출 · 공부 시간과 점수","unavailable":"산점도를 만들려면 숫자 열이 2개 이상 필요합니다."},
+    "hwpHwpxViewer": { "metadata": { "title": "HWP·HWPX 문서 뷰어", "description": "한글 문서를 서버에 업로드하지 않고 브라우저에서 읽기 전용으로 확인하세요." }, "title": "HWP·HWPX 문서 뷰어", "description": "한글 문서를 서버에 업로드하지 않고 브라우저에서 읽기 전용으로 확인하세요." },
+    "markdownViewer": { "metadata": { "title": "Markdown 뷰어", "description": "Markdown 텍스트와 UTF-8 파일을 서버 전송 없이 브라우저에서 안전하게 미리보세요." }, "title": "Markdown 뷰어", "description": "Markdown 원문과 렌더링 결과를 나란히 비교하고 표, 할 일 목록과 코드 블록을 확인하세요.", "viewer": { "noticeTitle": "브라우저에서 안전하게 미리봅니다", "notice": "원문과 파일은 서버로 전송하거나 저장하지 않습니다. raw HTML과 위험한 링크는 실행하지 않으며 외부 이미지는 자동으로 불러오지 않습니다.", "openFile": "파일 열기", "sample": "예제 불러오기", "clear": "초기화", "dropHint": ".md, .markdown, .txt 파일을 여기에 놓을 수도 있습니다 · UTF-8 · 최대 2 MiB", "modeLabel": "보기 모드", "modes": { "split": "분할 보기", "source": "원문", "preview": "미리보기" }, "sourceLabel": "Markdown 원문", "previewLabel": "미리보기", "placeholder": "# 제목\n\nMarkdown을 입력하세요.", "updating": "미리보기를 업데이트하는 중…", "empty": "Markdown을 입력하면 미리보기가 여기에 표시됩니다.", "blockedImage": "외부 이미지는 자동으로 불러오지 않습니다.", "blockedLink": "안전하지 않거나 기준 주소가 없는 링크입니다.", "errors": { "unsupported-extension": "MD, MARKDOWN 또는 TXT 파일을 선택하세요.", "file-too-large": "2 MiB 이하의 파일을 선택하세요.", "empty-file": "내용이 없는 파일입니다. 직접 입력하거나 다른 파일을 선택하세요.", "invalid-utf8": "UTF-8 텍스트로 읽을 수 없습니다. 파일을 UTF-8로 저장한 뒤 다시 시도하세요.", "binary-file": "텍스트 Markdown 파일이 아닌 것으로 보입니다.", "read-failed": "파일을 읽지 못했습니다. 다시 선택해 주세요." } } },
+    "imageToPdf": { "metadata": { "title": "이미지 PDF 변환기", "description": "JPG, PNG, WebP 이미지를 브라우저에서 순서대로 하나의 PDF로 변환합니다." }, "title": "이미지 PDF 변환기", "description": "여러 이미지를 원하는 순서와 용지 크기로 정리해 하나의 PDF로 저장하세요." },
+    "imageMetadataRemover": {
+      "metadata": { "title": "사진 메타데이터 삭제", "description": "사진의 GPS, EXIF, 촬영 기기 정보를 서버 전송 없이 브라우저에서 확인하고 제거하세요." },
+      "title": "사진 메타데이터 삭제", "description": "JPG, PNG, WebP 사진에 포함된 위치·촬영·기기 정보를 확인하고 새 이미지에서 제거합니다.",
+      "notice": { "title": "사진은 브라우저에서만 처리합니다", "description": "파일을 서버나 외부 분석 서비스로 보내지 않습니다. 사진 픽셀에 직접 보이는 얼굴, 주소, 번호판과 문자는 제거되지 않습니다." },
+      "upload": { "title": "사진 선택", "help": "JPG, PNG, WebP · 파일당 25 MiB · 최대 20개 · 끌어놓기 가능" },
+      "actions": { "choose": "사진 선택", "clear": "초기화", "remove": "메타데이터 삭제", "download": "정리된 사진 다운로드", "downloadAll": "전체 ZIP 다운로드", "removeFile": "{name} 목록에서 제거" },
+      "settings": { "title": "삭제 설정", "description": "사진을 화면에 보이는 방향으로 새 파일에 다시 그려 알려진 메타데이터를 복사하지 않습니다.", "quality": "JPG·WebP 출력 품질: {quality}%", "warning": "재인코딩하면 JPG·WebP 화질과 파일 용량이 달라질 수 있으며, 색상 프로파일 제거로 일부 사진의 색감이 달라질 수 있습니다." },
+      "status": { "working": "사진을 처리하는 중…", "ready": "삭제 준비됨", "processing": "메타데이터를 삭제하고 확인하는 중…", "done": "삭제 확인됨", "error": "처리 실패" },
+      "results": { "title": "사진 목록 {count}개", "noneFound": "알려진 메타데이터 없음", "analysisIncomplete": "일부 세부 정보를 해석하지 못했습니다. 컨테이너에서 발견한 항목만 표시합니다." },
+      "kinds": { "gps": "GPS 위치", "exif": "EXIF", "xmp": "XMP", "iptc": "IPTC", "icc": "색상 프로파일", "comment": "주석", "text": "텍스트 정보" },
+      "details": { "camera": "카메라", "lens": "렌즈", "capturedAt": "촬영 시각", "software": "소프트웨어", "creator": "작성자·저작권" },
+      "errors": { "unsupported-format": "JPG, PNG 또는 WebP 사진을 선택하세요.", "file-too-large": "파일당 25 MiB 이하의 사진을 선택하세요.", "signature-mismatch": "파일 확장자와 실제 이미지 형식이 일치하지 않습니다.", "too-many-files": "한 번에 최대 20개까지 처리할 수 있습니다.", "decode-failed": "이 사진을 읽을 수 없습니다. 손상된 파일인지 확인하세요.", "invalid-dimensions": "사진의 크기 또는 픽셀 수가 처리 한도를 넘었습니다.", "total-pixels": "선택한 사진의 전체 픽셀 수가 처리 한도를 넘었습니다. 일부 파일을 제거하세요.", "animated": "애니메이션 이미지는 프레임을 유지할 수 없어 지원하지 않습니다.", "encode-failed": "새 이미지를 만들지 못했습니다. 다시 시도해 주세요.", "encoder-unsupported": "이 브라우저는 해당 이미지 형식 저장을 지원하지 않습니다.", "verification-failed": "메타데이터가 제거됐는지 확인하지 못해 다운로드를 차단했습니다.", "zip-too-large": "결과가 100 MiB를 넘어 ZIP을 만들 수 없습니다. 개별로 다운로드하세요.", "zip-failed": "ZIP 파일을 만들지 못했습니다. 개별로 다운로드하세요." },
+      "privacy": "사진, 파일명, GPS와 분석 결과는 서버·외부 API·브라우저 저장소로 전송하거나 저장하지 않습니다. 초기화하거나 탭을 닫으면 임시 데이터가 사라집니다."
+    },
     "wordCounter": {
       "metadata": {
         "title": "글자수 계산기",

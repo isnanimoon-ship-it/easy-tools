@@ -52,6 +52,16 @@ agents/                          # 역할별 실행 계약
 - 비밀키를 클라이언트 번들에 넣지 않는다.
 - 성능 회귀는 빌드 결과와 실제 모바일 조건에서 확인한다.
 
+## 서버 사이드 예외: 도구 조회수 집계
+
+"브라우저 로컬 처리 기본" 원칙의 첫 예외다. 홈페이지 인기 랭킹 위젯을 위해 도구 방문을 서버에서 집계한다.
+
+- 클라이언트는 방문 사실만 서버(`app/api/track-visit/route.ts`)에 알리고, dedup 판정·저장은 전부 서버와 Supabase 함수 안에서 이루어진다. 클라이언트가 DB에 직접 쓰는 경로는 없다.
+- 저장하는 값은 IP 원문이 아니라 `sha256(IP + User-Agent + 날짜)` 해시이며 최대 8일 후 삭제한다(`supabase/migrations/`).
+- 랭킹 위젯은 매 요청마다 원본 로그를 집계하지 않고, `pg_cron`이 5분마다 미리 계산해 둔 `tool_popularity` 테이블만 읽는다. Supabase 조회가 실패해도 기존 큐레이션 목록으로 폴백해 홈페이지가 깨지지 않는다.
+- 도구 페이지 자체는 계속 정적 렌더링을 유지한다 — `headers()`를 페이지 컴포넌트에서 읽지 않고 별도 Route Handler로 분리한 이유다.
+- 상세 스키마와 트레이드오프: `supabase/migrations/0001_tool_popularity_schema.sql`, `0002_tool_popularity_cron.sql`.
+
 ## 변경 결정
 
 새 의존성, 서버 기능, 폴더 규칙 변경은 Architect가 대안·비용·영향을 기록한 뒤 승인한다. 작은 되돌릴 수 있는 결정은 코드와 `PROGRESS.md` 기록으로 충분하며, 장기 영향이 큰 결정은 `docs/ARCHITECTURE.md`에 반영한다.

@@ -32,8 +32,16 @@ describe("tool detail content", () => {
     }
   });
 
-  it("covers every English tool while keeping Japanese limited to the initial three", () => {
+  it("covers every English tool and the explicitly localized Japanese detail pages", () => {
     expect(Object.keys(TOOL_DETAIL_DATA.en).sort()).toEqual(PUBLIC_TOOLS.map((tool) => tool.path).sort());
-    expect(Object.keys(TOOL_DETAIL_DATA.ja)).toHaveLength(3);
+    expect(Object.keys(TOOL_DETAIL_DATA.ja).sort()).toEqual([
+      "/tools/hwp-hwpx-viewer",
+      "/tools/image-compressor",
+      "/tools/image-metadata-remover",
+      "/tools/image-to-pdf",
+      "/tools/json-formatter",
+      "/tools/markdown-viewer",
+      "/tools/word-counter",
+    ]);
   });
 });

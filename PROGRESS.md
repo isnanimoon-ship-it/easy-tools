@@ -1183,6 +1183,71 @@ QA 판정: **FAIL**. Critical 1, High 1, 자동 테스트 FAIL 및 필수 항목
 ## Product Owner 최종 판정
 
 기능 평가 98(≥92), 공통 평가 98(≥90), Data Accuracy Critical 0, Export Critical 0, 전체 Critical 0·High 0, 자동 테스트·build·Console·모바일·privacy 게이트를 모두 충족했다. 개선 회차 1에서 `DONE`으로 확정한다. Builder나 Optimizer가 자기 결과를 승인한 것이 아니라 Critic 점수와 QA evidence를 Product Owner가 확인해 기록했다.
+
+# HWP·HWPX 문서 뷰어 — 2026-09-12
+
+## Builder 결과 (회차 0)
+
+- `/{locale}/tools/hwp-hwpx-viewer` 읽기 전용 도구를 추가하고 `@rhwp/core` 0.8.6을 브라우저에서 지연 로드하도록 구현했다.
+- 파일 선택·Drop, 25 MiB 사전 제한, HWP CFB/HWPX ZIP 구조 검사, 열기 전 지원 범위 확인, 페이지 이동, 50~200% 확대, 문서 검색, 초기화와 오류 복구를 구현했다.
+- HWPX는 지원, HWP 5.x는 제한적 지원으로 구분하고 원본 차이·공식 프로그램 최종 확인·브라우저 임시 처리 고지를 파일 선택 전과 결과에 제공했다.
+- registry를 통해 홈·메뉴·sitemap에 등록하고 ko/en/ja metadata, Breadcrumb, 설명, FAQ와 관련 도구를 연결했다.
+- WASM 렌더 결과만 canvas에 표시하며 문서의 HTML·스크립트·외부 URL을 DOM에 삽입하거나 실행하지 않는다. Builder는 완료 여부를 승인하지 않았다.
+
+## Critic 회차 0 사전 질문과 평가
+
+1. 파일 선택 전에 HWPX와 HWP 5.x 지원 수준 차이를 이해할 수 있는가? — 예, 상단 고지와 사전 확인 badge가 있다.
+2. 제한적 지원 표시가 흐름을 막지 않는가? — 예, 확인 후 한 번의 버튼으로 연다.
+3. 원본과 다른 배치의 원인을 알 수 있는가? — 예, 글꼴·도형·수식·차트·정교한 배치 제한을 설명한다.
+4. 누락 요소를 완전한 성공으로 오해하지 않는가? — 부분 지원 또는 validation warning이 있으면 결과 경고가 유지된다.
+5. 중요한 문서의 최종 확인 안내가 적절한가? — 파일 선택 전부터 보인다.
+6. 잘못된 파일에서 앱이 깨지지 않고 복구 가능한가? — 위장·빈 파일·초과 파일·비정상 ZIP은 사용자용 오류와 새 선택 UI로 돌아간다.
+7. 서버 비전송 설명과 실제 동작이 일치하는가? — 실제 브라우저 marker 검사에서 문서 데이터 요청 0건이다.
+8. 모바일에서 탐색 가능한가? — 320/375/768/1280px에서 overflow 0과 핵심 control 표시를 확인했다.
+9. 키보드와 스크린리더가 상태를 이해할 수 있는가? — native control, label, role=status/alert, canvas label을 제공하지만 실제 스크린리더 실청취는 미실시다.
+10. 제공하지 않는 편집·변환 기능처럼 보이는가? — 읽기 전용임을 설명하고 편집·저장 control을 제공하지 않는다.
+11. 느린 처리 중 취소·복구가 가능한가? — 파일 열기 전 취소와 완료 후 초기화는 가능하지만 동기 WASM parse 중 즉시 중단은 불가능하다.
+12. 파일명·본문·검색어가 로그·URL·저장소에 남는가? — 구현은 저장 API를 사용하지 않고 marker network 검사도 통과했으나 storage 전체 자동 감시는 추가 검증 여지가 있다.
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 핵심 기능과 정확성 | 17.5/25 | 공개 HWP/HWPX 실제 파일 렌더 PASS. 표 cell·이미지·보호 문서별 oracle fixture는 NOT TESTED |
+| 사용성·정보 구조 | 20/20 | 사전 고지, 확인, 탐색, 검색 결과 이동, 오류 복구 제공 |
+| 모바일 반응형 | 15/15 | 320/375/768/1280px overflow·겹침 0 |
+| 접근성 | 10/15 | label·키보드·동적 상태 구현, 실제 스크린리더와 고배율 실기기 미검증 |
+| 성능·안정성 | 7/10 | 동적 WASM, page 단위 render, free 정리, archive 제한. parse Worker·즉시 취소 없음 |
+| 다국어·콘텐츠 | 5/5 | ko/en/ja 핵심 화면·직접 URL 확인 |
+| SEO·공유 가능성 | 5/5 | 독립 route·metadata·Breadcrumb·registry/sitemap 연결 |
+| 개인정보·보안 | 5/5 | canvas 렌더, 외부 문서 요청 0, ZIP path·compression guard |
+| 합계 | **84.5/100** | 90점 미달 |
+
+- Critical 0, High 0, Medium 2: 동기 parse 중 즉시 취소 불가, 필수 호환성 oracle fixture 미확보.
+- Critic 판정: FAIL. 미검증 결과를 지원 성공으로 간주하지 않았다.
+
+## QA 및 Optimizer 개선 회차 1~5
+
+1. 회차 1: HWP/HWPX signature 검사와 25 MiB 사전 차단을 추가하고 실제 공개 HWP/HWPX 파일이 canvas로 렌더되는지 확인했다.
+2. 회차 2: HWPX central directory를 선검사해 필수 package entry, entry path, ZIP64, entry 수·단일 크기·총 해제 크기·압축률을 제한했다.
+3. 회차 3: 검색 전 오표시를 제거하고 검색된 페이지의 순환 이전/다음 이동과 검색어 변경 시 결과 초기화를 추가했다.
+4. 회차 4: 320/375/768/1280px 및 ko/en/ja 직접 URL을 검사하고 파일 marker가 network로 나가지 않음을 확인했다.
+5. 회차 5: 전체 lint, type-check, 55개 test file의 716개 테스트, production build와 최신 실제 브라우저 회귀를 재실행했다. 필수 보호 문서 및 요소별 oracle fixture 부재는 코드 변경만으로 해소할 수 없었다.
+
+## QA 최종 증거
+
+- `npm run lint`: PASS, error/warning 0
+- `npm run type-check`: PASS, TypeScript Error 0
+- `npm test`: 55 files, 716 tests PASS, fail/skip/todo 0
+- HWP/HWPX 감지 보안 테스트: 추가 검사 포함 6 tests PASS
+- `npm run build`: PASS, ko/en/ja `/tools/hwp-hwpx-viewer` 정적 route 생성 및 WASM asset 생성
+- `node tests/hwp-hwpx-viewer-browser.mjs`: 실제 공개 HWP/HWPX 열기, 위장·빈·25 MiB 초과 오류, 320/375/768/1280px, ko/en/ja, Console Error 0, page error 0, 문서 marker request 0 PASS
+- NOT TESTED: 기대값이 명시된 HWPX 표 cell·삽입 이미지 fixture, HWP 압축/비압축 stream fixture, 암호화·배포용·HWP 3.x fixture, 실제 스크린리더, 동기 parse 중 즉시 취소, storage·analytics payload 전체 감시
+
+## 최종 상태
+
+- 현재 상태: **NEEDS HUMAN REVIEW**
+- 이유: 5회 개선·재검증 뒤에도 SPEC의 강제 완료 게이트인 표·이미지 oracle, 보호·구버전 파일, active content fixture 검증 일부가 NOT TESTED이며 Critic 점수가 90 미만이다.
+- 사용자 영향: 일반 공개 HWP/HWPX 표본은 열리지만 모든 문서 구성과 보호 형식에 대한 호환성을 보증할 수 없다. 화면의 제한적 지원 및 공식 프로그램 최종 확인 고지를 유지해야 한다.
+- 권고: 재배포 가능한 전용 fixture 세트를 작성해 본문·표 cell·이미지 기대값과 오류 code를 고정하고, parse Worker/취소 설계를 추가한 뒤 Critic·QA를 다시 수행한다.
 # 브라우저 P2P 파일 전송 — 2026-09-03
 
 ## Builder 결과
@@ -1251,3 +1316,65 @@ QA 판정: **FAIL**. Critical 1, High 1, 자동 테스트 FAIL 및 필수 항목
 - 현재 상태: **NEEDS HUMAN REVIEW**
 - 이유: 로컬 direct 전송과 자동 회귀는 통과했지만 SPEC 필수 게이트인 실제 TURN UDP/TLS fallback, 서로 다른 네트워크·실기기, 1GiB/5GiB memory profile이 NOT TESTED다. 이 항목은 Cloudflare TURN 계정 자격 증명과 외부 기기·망 없이 mock으로 대체하거나 PASS 처리할 수 없다.
 - 배포 전 필요 사항: Worker 배포, `signal.konly.co.kr` route, TURN key/token secret, production `REQUIRE_TURN=true`, Vercel `NEXT_PUBLIC_P2P_SIGNALING_URL`, Cloudflare 비용 alert/budget 설정 후 외부 QA 실행.
+
+# Markdown 뷰어 — 2026-09-12
+
+## Builder 회차 0
+
+- `/tools/markdown-viewer`에 직접 입력, UTF-8 MD/MARKDOWN/TXT 파일 열기·Drop, 분할/원문/미리보기, 250ms 갱신, 예제와 초기화를 구현했다.
+- CommonMark와 GFM 표·task list·취소선·자동 링크를 `react-markdown` 10.1.0과 `remark-gfm` 4.0.1로 렌더한다.
+- raw HTML, 위험 protocol, 기준 URL 없는 상대 링크와 모든 외부 이미지를 실행·요청하지 않도록 component allowlist와 URL 정책을 적용했다.
+- ko/en/ja, 공통 Hero·상세 콘텐츠, registry·메뉴·홈·sitemap과 라이선스 고지를 연결했다. Builder는 최종 승인하지 않았다.
+
+## Critic 회차 0 질문·평가
+
+1. 입력과 미리보기를 즉시 구분하는가? — visible heading과 보기 모드로 구분한다.
+2. 붙여넣기 후 별도 실행 없이 결과가 나오는가? — 250ms 후 자동 갱신된다.
+3. 빈 입력과 파일 오류가 혼동되지 않는가? — 빈 preview와 role=alert 오류를 구분한다.
+4. 지원 범위를 과장하지 않는가? — CommonMark/GFM 지원과 GitHub 전용 기능 제외를 설명한다.
+5. HTML·이미지 차단 이유를 알 수 있는가? — 도구 상단과 상세 콘텐츠에 고지한다.
+6. 안전한 링크와 위험 링크가 구분되는가? — 허용 protocol만 anchor로 생성한다.
+7. 긴 표·code가 전체 layout을 밀지 않는가? — preview 내부 overflow로 제한한다.
+8. 키보드·스크린리더로 조작 가능한가? — native button/input, aria label·pressed·alert·status를 사용한다.
+9. 오류 후 원문을 잃지 않는가? — 파일 오류는 기존 원문을 유지하고 다시 선택할 수 있다.
+10. 세 언어의 기능·보안 의미가 일치하는가? — ko/en/ja 직접 URL과 문구를 확인했다.
+11. 비전송 설명과 실제 동작이 일치하는가? — marker request·storage·URL 유출 0이다.
+12. 반복 사용이 쉬운가? — 같은 파일 재선택, 예제, 초기화와 모드 전환을 제공한다.
+
+| 영역 | 점수 | 근거 |
+|---|---:|---|
+| 핵심 기능과 정확성 | 25/25 | 문법 DOM, UTF-8/BOM, 경계·오류와 파일 흐름 검증 |
+| 사용성·정보 구조 | 20/20 | 자동 preview, 3개 모드, 예제, 복구 상태 |
+| 모바일 반응형 | 15/15 | 320/375/768/1024/1280/1440px overflow 0 |
+| 접근성 | 12.5/15 | native semantics와 동적 상태 PASS, 실제 스크린리더 실청취는 미실시 |
+| 성능·안정성 | 9/10 | 250ms debounce와 2 MiB preflight; 별도 Worker는 사용하지 않음 |
+| 다국어·콘텐츠 | 5/5 | ko/en/ja 전용 UI·상세 콘텐츠 |
+| SEO·공유 가능성 | 5/5 | metadata, canonical, hreflang, sitemap PASS |
+| 개인정보·보안 | 5/5 | active HTML·위험 링크·외부 이미지 차단과 marker 유출 0 |
+| 합계 | **96.5/100** | 공통 PASS 기준 90 이상 |
+
+- Markdown 기능 범위의 Critical 0, High 0, Medium 0, Low 2(실제 스크린리더 실청취 및 2 MiB 저사양 기기 장시간 profile 미실시).
+
+## QA·Optimizer·재검증
+
+- QA 1차에서 1024/1440px 및 marker storage·URL 증거 부족을 확인했다.
+- Optimizer 1차에서 브라우저 매트릭스와 marker 감시를 보강하고, 기존 메뉴·SEO 테스트의 고정 도구/카테고리 수를 현재 registry 구조에 맞게 수정했다.
+- Critic+QA 재검증: `npm run lint`, `npm run type-check`, production build, 58 files·725 tests 모두 PASS.
+- Markdown browser QA: ko/en/ja, 320/375/768/1024/1280/1440px, table/task list, mode·clear·UTF-8 file, invalid file, raw HTML·unsafe URL·remote image 차단, request/storage/URL 유출 0, Console Error 0, page error 0 PASS.
+- menu QA: 공개 도구 23개, 6개 category, desktop/mobile overflow·overlap·console error 0 PASS.
+- SEO QA: sitemap 84 URL, canonical·hreflang·Open Graph·Twitter·JSON-LD PASS.
+- dependency audit의 production High 1건은 새 Markdown package가 아니라 기존 `next@16.3.3 → sharp@0.35.3` 경로다. 별도 전체 프로젝트 dependency 유지보수 대상으로 남긴다.
+
+## Product Owner 최종 판정
+
+Critic 96.5점, Markdown 범위 Critical 0·High 0, 자동 테스트·build·Console·모바일·보안·수용 기준 게이트를 충족했다. Optimizer가 아닌 Product Owner가 증거를 확인해 개선 회차 1에서 `DONE`으로 기록한다.
+
+## 이미지 → PDF 변환기 (2026-09-13)
+
+- Product Owner: `tasks/image-to-pdf/SPEC.md`의 V1 범위로 구현 승인. 배포·푸시는 보류.
+- Architect: `pdf-lib` + 브라우저 Canvas JPEG 재인코딩 경로 선택. 회전·투명도·저사양 메모리 위험을 명시.
+- Builder 회차 0: 업로드, 순서 이동, A4/Letter·방향·여백, PDF 생성·다운로드, ko/en/ja 상세페이지·검색·sitemap 등록.
+- Critic: 모바일 목록 버튼 배치와 연속 업로드 경쟁 상태를 발견. 저사양 메모리·브라우저별 차이를 잔여 이슈로 분류. Critical 0, High 0, Medium 2.
+- Optimizer 회차 1: 320px 목록 버튼을 다음 행으로 배치하고 파일 추가 중복 실행을 잠금. 상태 문구를 파일 확인/PDF 생성으로 분리.
+- QA 재검증: lint/type-check/build PASS, 전체 Vitest 64파일·742테스트 PASS, 도구 브라우저 QA 3개 locale·320/375/768/1280px·PDF 페이지 순서/크기/다운로드·EXIF 방향 1~8 실제 픽셀·투명 PNG 흰 배경·유출 및 Console Error 0 PASS. SEO 90 URL/canonical/hreflang PASS.
+- Product Owner 상태: `NEEDS HUMAN REVIEW`. 핵심 자동 테스트는 PASS이나 저사양 실제 기기, 브라우저별 차이, 출력 인쇄 확인이 남아 `DONE`으로 선언하지 않음. 상세 기록은 `tasks/image-to-pdf/QA.md`.

@@ -10,7 +10,11 @@ import { TOOL_DETAIL_CONFIG, type DetailToolPath } from "@/lib/tools/detail-cont
 
 const INLINE_DETAIL_PATHS = new Set<DetailToolPath>([
   "/tools/json-formatter",
+  "/tools/markdown-viewer",
   "/tools/image-compressor",
+  "/tools/image-metadata-remover",
+  "/tools/image-to-pdf",
+  "/tools/hwp-hwpx-viewer",
   "/tools/word-counter",
 ]);
 

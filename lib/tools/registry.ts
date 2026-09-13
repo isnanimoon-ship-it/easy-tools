@@ -8,10 +8,14 @@ import {
   Database,
   FileKey,
   FileText,
+  BookOpenText,
+  FileSearch,
   Files,
   Globe2,
   ImageDown,
   ImageIcon,
+  FileImage,
+  ScanSearch,
   Images,
   KeyRound,
   Link2,
@@ -63,7 +67,11 @@ export const TOOLS = [
   { path: "/tools/favicon-generator", translationKey: "faviconGenerator", category: "image", icon: AppWindow, homeOrder: 19, menuOrder: 7 },
   { path: "/tools/sql-formatter", translationKey: "sqlFormatter", category: "developer", icon: Database, homeOrder: 20, menuOrder: 8 },
   { path: "/tools/excel-chart-maker", translationKey: "excelChartMaker", category: "fileData", icon: BarChart3, homeOrder: 21, menuOrder: 1 },
-  { path: "/tools/p2p-file-transfer", translationKey: "p2pFileTransfer", category: "fileData", icon: Files, homeOrder: 22, menuOrder: 2, visibility: "hidden" },
+  { path: "/tools/hwp-hwpx-viewer", translationKey: "hwpHwpxViewer", category: "fileData", icon: FileSearch, homeOrder: 22, menuOrder: 2 },
+  { path: "/tools/markdown-viewer", translationKey: "markdownViewer", category: "text", icon: BookOpenText, homeOrder: 23, menuOrder: 4 },
+  { path: "/tools/image-metadata-remover", translationKey: "imageMetadataRemover", category: "image", icon: ScanSearch, homeOrder: 24, menuOrder: 8 },
+  { path: "/tools/image-to-pdf", translationKey: "imageToPdf", category: "image", icon: FileImage, homeOrder: 26, menuOrder: 9 },
+  { path: "/tools/p2p-file-transfer", translationKey: "p2pFileTransfer", category: "fileData", icon: Files, homeOrder: 25, menuOrder: 3, visibility: "hidden" },
 ] as const satisfies readonly ToolDefinition[];
 
 export type ToolPath = (typeof TOOLS)[number]["path"];

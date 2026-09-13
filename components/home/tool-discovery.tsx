@@ -13,15 +13,6 @@ import {
   type ToolPath,
 } from "@/lib/tools/registry";
 
-const POPULAR_PATHS: ToolPath[] = [
-  "/tools/image-compressor",
-  "/tools/qr-code-generator",
-  "/tools/json-formatter",
-  "/tools/word-counter",
-  "/tools/password-generator",
-  "/tools/url-encoder-decoder",
-];
-
 const EXTRA_KEYWORDS: Partial<Record<ToolPath, string>> = {
   "/tools/word-counter": "글자 문자 단어 줄 count character word text 文字 文字数",
   "/tools/json-formatter": "json beautify pretty minify 개발 데이터 整形 圧縮",
@@ -46,7 +37,7 @@ const EXTRA_KEYWORDS: Partial<Record<ToolPath, string>> = {
   "/tools/excel-chart-maker": "excel csv chart graph 엑셀 그래프 차트 xlsx",
 };
 
-export function ToolDiscovery() {
+export function ToolDiscovery({ popularRanking }: { popularRanking: React.ReactNode }) {
   const t = useTranslations("Home");
   const nav = useTranslations("Common.toolsNav");
   const [query, setQuery] = useState("");
@@ -68,7 +59,6 @@ export function ToolDiscovery() {
     [category, nav, normalizedQuery, t],
   );
 
-  const popularTools = POPULAR_PATHS.map((path) => HOME_TOOLS.find((tool) => tool.path === path)).filter(Boolean) as typeof HOME_TOOLS;
   const recentTools = [...HOME_TOOLS].sort((a, b) => b.homeOrder - a.homeOrder).slice(0, 4);
 
   function selectCategory(nextCategory: ToolCategoryKey | null) {
@@ -109,9 +99,7 @@ export function ToolDiscovery() {
       ) : (
         <>
       <HomeSection id="popular-tools" title={t("popular.title")} description={t("popular.description")}>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {popularTools.map((tool) => <ToolCard key={tool.path} tool={tool} compact />)}
-        </div>
+        {popularRanking}
       </HomeSection>
 
       <HomeSection id="categories" title={t("categories.title")} description={t("categories.description")} muted>
@@ -159,7 +147,7 @@ function FilterButton({ active, onClick, children }: { active: boolean; onClick:
   return <button type="button" aria-pressed={active} onClick={onClick} className={`min-h-10 rounded-xl border px-3 py-2 text-sm font-semibold transition focus:outline-none focus:ring-4 focus:ring-[var(--focus-ring)] ${active ? "border-[var(--primary-fill)] bg-[var(--primary-fill)] text-white" : "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:bg-[var(--surface-muted)]"}`}>{children}</button>;
 }
 
-function ToolCard({ tool, compact = false }: { tool: (typeof HOME_TOOLS)[number]; compact?: boolean }) {
+export function ToolCard({ tool, compact = false }: { tool: (typeof HOME_TOOLS)[number]; compact?: boolean }) {
   const t = useTranslations("Home");
   const Icon = tool.icon;
   return <Link href={tool.path} className={`group block rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm transition hover:border-[var(--info-border)] hover:shadow-md focus:outline-none focus:ring-4 focus:ring-[var(--focus-ring)] ${compact ? "p-5" : "p-6"}`}><span className="grid size-11 place-items-center rounded-xl bg-[var(--info-bg)] text-[var(--primary)]"><Icon aria-hidden="true" size={22} /></span><h3 className={`${compact ? "mt-4 text-lg" : "mt-5 text-xl"} font-bold text-[var(--foreground)]`}>{t(`tools.${tool.translationKey}.title`)}</h3><p className="mt-2 line-clamp-2 leading-6 text-[var(--text-muted)]">{t(`tools.${tool.translationKey}.description`)}</p><span className="mt-4 inline-flex items-center gap-2 font-semibold text-[var(--primary)]">{t("tools.open")}<ArrowRight aria-hidden="true" size={17} className="transition-transform group-hover:translate-x-1" /></span></Link>;
