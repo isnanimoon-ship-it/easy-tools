@@ -33,15 +33,15 @@ function currentTarget() {
 export function ShareBar() {
   const pathname = usePathname();
   if (!isShareablePath(pathname) || INLINE_DETAIL_PATHS.has(pathname)) return null;
-  return <ShareBarContent key={pathname} />;
+  return <Container className="py-7 sm:py-9"><ShareBarSection key={pathname} /></Container>;
 }
 
-/** Used by tool pages that place their detail content inline, right after the tool itself. */
+/** Used by tool pages that place their detail content inline, right after the tool itself — already inside the page's own Container, so this skips the extra one ShareBar adds. */
 export function InlineShareBar() {
-  return <ShareBarContent />;
+  return <div className="py-7 sm:py-9"><ShareBarSection /></div>;
 }
 
-function ShareBarContent() {
+function ShareBarSection() {
   const t = useTranslations("Common.share");
   const [kakaoReady, setKakaoReady] = useState(false);
   const [status, setStatus] = useState("");
@@ -87,17 +87,15 @@ function ShareBarContent() {
     window.open(xShareUrl(url, title), "_blank", "noopener,noreferrer");
   }
 
-  return <Container className="py-7 sm:py-9">
-    <section aria-label={t("label")} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
-      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-        <h2 className="mr-1 text-sm font-bold text-[var(--text-muted)]">{t("label")}</h2>
-        <button type="button" onClick={shareX} className={buttonClass}><span aria-hidden="true" className="text-lg leading-none">𝕏</span>{t("x")}</button>
-        <button type="button" onClick={() => void shareKakao()} disabled={!kakaoReady} title={!kakaoKey ? t("kakaoSetup") : !kakaoReady ? t("kakaoLoading") : undefined} className={buttonClass}><MessageCircle aria-hidden size={17}/>{t("kakao")}</button>
-        <button type="button" onClick={() => void copyLink()} className={buttonClass}><Copy aria-hidden size={17}/>{t("copy")}</button>
-        <button type="button" onClick={() => void shareOther()} className={buttonClass}><Share2 aria-hidden size={17}/>{t("more")}</button>
-      </div>
-      {status ? <p role="status" className="mt-3 text-sm text-[var(--text-muted)]">{status}</p> : null}
-      {manualUrl ? <input aria-label={t("manualCopy")} readOnly value={manualUrl} onFocus={event => event.currentTarget.select()} className="mt-2 w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] p-2 text-sm"/> : null}
-    </section>
-  </Container>;
+  return <section aria-label={t("label")} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+      <h2 className="mr-1 text-sm font-bold text-[var(--text-muted)]">{t("label")}</h2>
+      <button type="button" onClick={shareX} className={buttonClass}><span aria-hidden="true" className="text-lg leading-none">𝕏</span>{t("x")}</button>
+      <button type="button" onClick={() => void shareKakao()} disabled={!kakaoReady} title={!kakaoKey ? t("kakaoSetup") : !kakaoReady ? t("kakaoLoading") : undefined} className={buttonClass}><MessageCircle aria-hidden size={17}/>{t("kakao")}</button>
+      <button type="button" onClick={() => void copyLink()} className={buttonClass}><Copy aria-hidden size={17}/>{t("copy")}</button>
+      <button type="button" onClick={() => void shareOther()} className={buttonClass}><Share2 aria-hidden size={17}/>{t("more")}</button>
+    </div>
+    {status ? <p role="status" className="mt-3 text-sm text-[var(--text-muted)]">{status}</p> : null}
+    {manualUrl ? <input aria-label={t("manualCopy")} readOnly value={manualUrl} onFocus={event => event.currentTarget.select()} className="mt-2 w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] p-2 text-sm"/> : null}
+  </section>;
 }
