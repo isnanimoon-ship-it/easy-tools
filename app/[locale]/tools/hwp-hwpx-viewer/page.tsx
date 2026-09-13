@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { Container } from "@/components/layout/container";
 import { HwpHwpxViewer } from "@/components/tools/hwp-hwpx-viewer/hwp-hwpx-viewer";
+import { InlineShareBar } from "@/components/layout/share-bar";
 import { ToolDetailContent } from "@/components/tools/shared/tool-detail-content";
 import { ToolPageHero } from "@/components/tools/shared/tool-page-hero";
 import { routing } from "@/i18n/routing";
@@ -30,6 +31,7 @@ export default async function HwpHwpxViewerPage({ params }: PageProps) {
     <ToolPageHero locale={locale} title={t("title")} description={t("description")} homeLabel={common("homeLabel")} category={{ key: "fileData", label: common("toolsNav.categories.fileData") }} tool={{ path: "/tools/hwp-hwpx-viewer", label: t("title") }} />
     <Container className="py-8 sm:py-12">
       <HwpHwpxViewer />
+      <InlineShareBar />
       <ToolDetailContent toolPath="/tools/hwp-hwpx-viewer" locale={locale} />
     </Container>
   </>;

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { Container } from "@/components/layout/container";
 import { ImageToPdf } from "@/components/tools/image-to-pdf/image-to-pdf";
+import { InlineShareBar } from "@/components/layout/share-bar";
 import { ToolDetailContent } from "@/components/tools/shared/tool-detail-content";
 import { ToolPageHero } from "@/components/tools/shared/tool-page-hero";
 import { routing } from "@/i18n/routing";
@@ -27,6 +28,6 @@ export default async function ImageToPdfPage({ params }: PageProps) {
   const common = await getTranslations("Common");
   return <>
     <ToolPageHero locale={locale} title={t("title")} description={t("description")} homeLabel={common("homeLabel")} category={{ key: "image", label: common("toolsNav.categories.image") }} tool={{ path: "/tools/image-to-pdf", label: t("title") }}/>
-    <Container className="py-8 sm:py-12"><ImageToPdf/><ToolDetailContent toolPath="/tools/image-to-pdf" locale={locale}/></Container>
+    <Container className="py-8 sm:py-12"><ImageToPdf/><InlineShareBar/><ToolDetailContent toolPath="/tools/image-to-pdf" locale={locale}/></Container>
   </>;
 }

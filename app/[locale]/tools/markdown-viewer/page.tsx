@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { Container } from "@/components/layout/container";
+import { InlineShareBar } from "@/components/layout/share-bar";
 import { MarkdownViewer } from "@/components/tools/markdown-viewer/markdown-viewer";
 import { ToolDetailContent } from "@/components/tools/shared/tool-detail-content";
 import { ToolPageHero } from "@/components/tools/shared/tool-page-hero";
@@ -27,6 +28,6 @@ export default async function MarkdownViewerPage({ params }: PageProps) {
   const common = await getTranslations("Common");
   return <>
     <ToolPageHero locale={locale} title={t("title")} description={t("description")} homeLabel={common("homeLabel")} category={{ key: "text", label: common("toolsNav.categories.text") }} tool={{ path: "/tools/markdown-viewer", label: t("title") }} />
-    <Container className="py-8 sm:py-12"><MarkdownViewer/><ToolDetailContent toolPath="/tools/markdown-viewer" locale={locale}/></Container>
+    <Container className="py-8 sm:py-12"><MarkdownViewer/><InlineShareBar/><ToolDetailContent toolPath="/tools/markdown-viewer" locale={locale}/></Container>
   </>;
 }

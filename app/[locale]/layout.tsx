@@ -7,7 +7,6 @@ import Script from "next/script";
 import { NaverWcs } from "@/components/analytics/naver-wcs";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { ShareBar } from "@/components/layout/share-bar";
 import { getBaseUrl } from "@/lib/site-url";
 import { localizedAlternates, siteName } from "@/lib/seo";
 import { THEME_BOOTSTRAP } from "@/lib/theme";
@@ -96,7 +95,6 @@ export default async function LocaleLayout({
           <Header />
           <main id="main-content" className="flex-1">
             {children}
-            <ShareBar />
           </main>
           <Footer />
         </NextIntlClientProvider>

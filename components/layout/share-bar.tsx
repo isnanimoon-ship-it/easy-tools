@@ -12,6 +12,17 @@ import { isShareablePath, publicPageUrl, xShareUrl } from "@/lib/share";
 const kakaoKey = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY;
 const buttonClass = "inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-muted)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--focus-ring)] disabled:cursor-not-allowed disabled:opacity-50";
 
+/** Tool pages that render their detail content (and share bar) inline instead of via ToolDetailRouter. */
+const INLINE_DETAIL_PATHS = new Set([
+  "/tools/json-formatter",
+  "/tools/markdown-viewer",
+  "/tools/image-compressor",
+  "/tools/image-metadata-remover",
+  "/tools/image-to-pdf",
+  "/tools/hwp-hwpx-viewer",
+  "/tools/word-counter",
+]);
+
 function currentTarget() {
   return {
     url: publicPageUrl(window.location.origin, window.location.pathname),
@@ -21,8 +32,13 @@ function currentTarget() {
 
 export function ShareBar() {
   const pathname = usePathname();
-  if (!isShareablePath(pathname)) return null;
+  if (!isShareablePath(pathname) || INLINE_DETAIL_PATHS.has(pathname)) return null;
   return <ShareBarContent key={pathname} />;
+}
+
+/** Used by tool pages that place their detail content inline, right after the tool itself. */
+export function InlineShareBar() {
+  return <ShareBarContent />;
 }
 
 function ShareBarContent() {
@@ -80,7 +96,6 @@ function ShareBarContent() {
         <button type="button" onClick={() => void copyLink()} className={buttonClass}><Copy aria-hidden size={17}/>{t("copy")}</button>
         <button type="button" onClick={() => void shareOther()} className={buttonClass}><Share2 aria-hidden size={17}/>{t("more")}</button>
       </div>
-      {!kakaoKey ? <p className="mt-3 text-xs leading-5 text-[var(--text-muted)]">{t("kakaoSetup")}</p> : null}
       {status ? <p role="status" className="mt-3 text-sm text-[var(--text-muted)]">{status}</p> : null}
       {manualUrl ? <input aria-label={t("manualCopy")} readOnly value={manualUrl} onFocus={event => event.currentTarget.select()} className="mt-2 w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] p-2 text-sm"/> : null}
     </section>

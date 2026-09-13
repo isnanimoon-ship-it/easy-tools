@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { Container } from "@/components/layout/container";
+import { InlineShareBar } from "@/components/layout/share-bar";
 import {
   WordCounter,
   type WordCounterLabels,
@@ -65,6 +66,8 @@ export default async function WordCounterPage({ params }: WordCounterPageProps) 
 
       <Container className="py-8 sm:py-12">
         <WordCounter locale={locale} labels={labels} />
+
+        <InlineShareBar />
 
         <ToolDetailContent toolPath="/tools/word-counter" locale={locale} />
       </Container>

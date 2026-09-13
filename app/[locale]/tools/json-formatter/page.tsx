@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { Container } from "@/components/layout/container";
+import { InlineShareBar } from "@/components/layout/share-bar";
 import { ToolDetailContent } from "@/components/tools/shared/tool-detail-content";
 import { ToolPageHero } from "@/components/tools/shared/tool-page-hero";
 import { JsonFormatter, type JsonFormatterLabels } from "@/components/tools/json-formatter/json-formatter";
@@ -45,6 +46,7 @@ export default async function JsonFormatterPage({ params }: PageProps) {
     <ToolPageHero locale={locale} title={t("title")} description={t("description")} homeLabel={common("homeLabel")} category={{ key: "developer", label: common("toolsNav.categories.developer") }} tool={{ path: "/tools/json-formatter", label: t("title") }} />
     <Container className="py-8 sm:py-12">
       <JsonFormatter labels={labels} />
+      <InlineShareBar />
       <ToolDetailContent toolPath="/tools/json-formatter" locale={locale} />
     </Container>
   </>;
