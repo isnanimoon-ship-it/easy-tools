@@ -5,10 +5,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { Container } from "@/components/layout/container";
+import { ContactMailtoForm } from "@/components/contact/contact-mailto-form";
 import { routing } from "@/i18n/routing";
 import { createPageMetadata } from "@/lib/seo";
 
-type PageProps = { params: Promise<{ locale: string }> };
+type PageProps = { params: Promise<{ locale: string }>; searchParams: Promise<{ tool?: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -17,13 +18,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createPageMetadata({ locale, title: t("title"), description: t("description"), pathname: `/${locale}/contact` });
 }
 
-export default async function ContactPage({ params }: PageProps) {
+export default async function ContactPage({ params, searchParams }: PageProps) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations("Contact");
   const bugItems = t.raw("sections.bugReport.items") as string[];
   const email = t("sections.email.email");
+  const { tool = "" } = await searchParams;
 
   return (
     <>
@@ -37,6 +39,7 @@ export default async function ContactPage({ params }: PageProps) {
       </section>
 
       <Container className="max-w-3xl space-y-6 py-8 sm:py-12">
+        {locale === "ko" ? <ContactMailtoForm initialTool={tool}/> : null}
         <section className="rounded-2xl border border-[var(--info-border)] bg-[var(--info-bg)] p-5 shadow-sm sm:p-6">
           <div className="flex items-center gap-2">
             <Mail aria-hidden="true" size={20} className="text-[var(--info-fg)]" />

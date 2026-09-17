@@ -4,6 +4,7 @@ import sitemap from "@/app/sitemap";
 import { createPageMetadata, localizedAlternates } from "./seo";
 import { routing } from "@/i18n/routing";
 import { PUBLIC_TOOLS } from "@/lib/tools/registry";
+import { GUIDES } from "@/lib/content/guides";
 
 describe("SEO metadata", () => {
   it("creates reciprocal locale and x-default alternates", () => {
@@ -18,10 +19,12 @@ describe("SEO metadata", () => {
   });
   it("lists every locale and tool exactly once in the sitemap", () => {
     const entries=sitemap(); const expectedPaths=["","/about","/contact","/privacy","/terms",...PUBLIC_TOOLS.map(tool=>tool.path)];
-    expect(entries).toHaveLength(expectedPaths.length*routing.locales.length); expect(new Set(entries.map(entry=>entry.url)).size).toBe(entries.length);
+    const koreanOnlyPaths=["/guides",...GUIDES.map(guide=>`/guides/${guide.slug}`),"/updates"];
+    expect(entries).toHaveLength(expectedPaths.length*routing.locales.length+koreanOnlyPaths.length); expect(new Set(entries.map(entry=>entry.url)).size).toBe(entries.length);
     for(const path of expectedPaths) for(const locale of routing.locales) expect(entries.some(entry=>entry.url===`https://www.konly.co.kr/${locale}${path}`)).toBe(true);
     expect(entries.every(entry=>entry.url.startsWith("https://www.konly.co.kr/"))).toBe(true);
     expect(entries.find(entry=>entry.url.endsWith("/en/tools/json-formatter"))?.alternates?.languages?.["x-default"]).toBe("https://www.konly.co.kr/ko/tools/json-formatter");
+    for(const path of koreanOnlyPaths){expect(entries.some(entry=>entry.url===`https://www.konly.co.kr/ko${path}`)).toBe(true);expect(entries.some(entry=>entry.url===`https://www.konly.co.kr/en${path}`)).toBe(false);}
   });
   it("publishes the production sitemap through robots", () => {
     expect(robots()).toEqual({rules:{userAgent:"*",allow:"/"},sitemap:"https://www.konly.co.kr/sitemap.xml",host:"https://www.konly.co.kr"});

@@ -25,4 +25,15 @@ export function createPageMetadata({ locale, title, description, pathname }:{ lo
   };
 }
 
+export function createKoreanPageMetadata({ title, description, pathname, type = "website" }:{ title:string; description:string; pathname:string; type?: "website" | "article" }): Metadata {
+  return {
+    title,
+    description,
+    alternates: { canonical: pathname },
+    openGraph: { title, description, url: pathname, siteName: siteNames.ko, locale: ogLocales.ko, type, images: [{ url: "/og", width: 1200, height: 630, alt: `${siteNames.ko} · KONLY` }] },
+    twitter: { card: "summary_large_image", title, description, images: ["/og"] },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  };
+}
+
 export function siteName(locale: AppLocale) { return siteNames[locale]; }
