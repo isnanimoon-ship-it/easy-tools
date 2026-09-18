@@ -5,6 +5,7 @@ import { setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/layout/container";
 import { KoreanHome } from "@/components/home/korean-home";
+import { KoreanPopularBanner } from "@/components/home/korean-popular-banner";
 import { PopularRankingWidget } from "@/components/home/popular-ranking-widget";
 import { ToolDiscovery } from "@/components/home/tool-discovery";
 import type { AppLocale } from "@/i18n/routing";
@@ -31,7 +32,7 @@ export default async function Home({ params }: HomeProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return locale === "ko" ? <KoreanHome /> : <HomeContent />;
+  return locale === "ko" ? <KoreanHome popularRanking={<KoreanPopularBanner />} /> : <HomeContent />;
 }
 
 function HomeContent() {

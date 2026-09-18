@@ -13,7 +13,7 @@ import { HOME_TOOLS, type ToolPath } from "@/lib/tools/registry";
 
 const TOOL_MAP = new Map(HOME_TOOLS.map(tool => [tool.path, tool]));
 
-export function KoreanHome() {
+export function KoreanHome({ popularRanking }: { popularRanking: React.ReactNode }) {
   const t = useTranslations("Home");
   const [query, setQuery] = useState("");
   const normalized = query.trim().toLocaleLowerCase("ko");
@@ -22,13 +22,16 @@ export function KoreanHome() {
   return <>
     <section className="border-b border-[var(--border)] bg-[var(--surface)]">
       <Container className="py-12 sm:py-20">
-        <div className="max-w-4xl">
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(19rem,24rem)] lg:gap-10">
+          <div className="max-w-4xl">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[var(--info-bg)] px-3 py-1.5 text-sm font-semibold text-[var(--primary)]"><Sparkles aria-hidden size={16}/>Konly 실용 도구</div>
           <h1 className="whitespace-pre-line text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-6xl">업무 중 잠깐 필요한 작업을{`\n`}설치 없이, 브라우저에서 해결하세요</h1>
           <p className="mt-5 max-w-3xl text-base leading-7 text-[var(--text-muted)] sm:text-lg sm:leading-8">HWP 문서 확인부터 스크린샷 정리, 개인정보 가리기, 이미지 편집까지. 가능한 작업은 파일을 외부 서버에 맡기지 않고 브라우저 안에서 처리합니다.</p>
           <div className="mt-7 flex flex-wrap gap-3"><a href="#work-tools" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[var(--primary-fill)] px-5 py-3 font-bold text-white focus:outline-none focus:ring-4 focus:ring-[var(--focus-ring)]">도구 찾아보기<ArrowRight aria-hidden size={18}/></a><a href="#privacy-tools" className="inline-flex min-h-12 items-center rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-3 font-bold text-[var(--foreground)] hover:bg-[var(--surface-muted)] focus:outline-none focus:ring-4 focus:ring-[var(--focus-ring)]">개인정보 보호 도구 보기</a></div>
           <p className="mt-6 font-semibold text-[var(--foreground)]">설치 없이 · 회원가입 없이 · 브라우저 중심 처리</p>
           <p className="mt-1 text-sm leading-6 text-[var(--text-muted)]">도구마다 파일 처리 방식과 지원 범위를 명확하게 안내합니다.</p>
+          </div>
+          {popularRanking}
         </div>
       </Container>
     </section>
