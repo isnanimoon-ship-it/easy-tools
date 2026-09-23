@@ -4,8 +4,9 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getTopTools } from "@/lib/analytics/popularity";
 import { POPULAR_PATHS } from "@/lib/tools/popular-paths";
-import { HOME_TOOLS } from "@/lib/tools/registry";
+import { homeToolsForLocale } from "@/lib/tools/registry";
 
+const HOME_TOOLS = homeToolsForLocale("ko");
 const TOOL_BY_SLUG = new Map(HOME_TOOLS.map(tool => [tool.path.replace("/tools/", ""), tool]));
 const TOOL_BY_PATH = new Map(HOME_TOOLS.map(tool => [tool.path, tool]));
 

@@ -15,6 +15,9 @@ const INLINE_BREADCRUMB_PATHS = new Set([
   "/tools/image-to-pdf",
   "/tools/hwp-hwpx-viewer",
   "/tools/word-counter",
+  "/tools/korean-keyboard-converter",
+  "/tools/image-watermark",
+  "/tools/animated-gif-maker",
 ]);
 
 export function ToolBreadcrumbRouter() {

@@ -9,7 +9,7 @@
     "skipToContent": "本文へ移動",
     "status": "利用可能",
     "theme": { "enableDark": "ダークモードをオン", "enableLight": "ライトモードをオン" },
-    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "image": "画像", "text": "テキスト", "developer": "開発者", "generator": "ジェネレーター", "fileData": "ファイル・データ", "network": "ネットワーク" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64エンコーダー/デコーダー", "urlEncoderDecoder": "URLエンコーダー/デコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル抽出", "qrCodeGenerator": "QRコード生成", "ipInfo": "IPアドレス情報", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像ファイルサイズを小さくする", "imageMetadataRemover": "写真メタデータ削除", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像の個人情報を隠す", "screenshotStatusbarRemover": "スクリーンショットのステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー", "koreanInitialConverter": "ハングル初声変換ツール", "jwtDecoder": "JWTデコーダー", "faviconGenerator": "ファビコンジェネレーター", "sqlFormatter": "SQLフォーマッター", "excelChartMaker": "Excel・CSVグラフ作成", "hwpHwpxViewer": "HWP・HWPX文書ビューア", "markdownViewer": "Markdownビューア", "imageToPdf": "画像PDF変換", "p2pFileTransfer": "QRファイル転送" },
+    "toolsNav": { "label": "ツールメニュー", "mobileLabel": "モバイルツールメニュー", "open": "ツール", "all": "すべてのツール", "categories": { "image": "画像", "text": "テキスト", "developer": "開発者", "generator": "ジェネレーター", "fileData": "ファイル・データ", "network": "ネットワーク" }, "wordCounter": "文字数カウンター", "jsonFormatter": "JSONフォーマッター", "passwordGenerator": "パスワード生成", "base64Converter": "Base64エンコーダー/デコーダー", "urlEncoderDecoder": "URLエンコーダー/デコーダー", "youtubeThumbnailDownloader": "YouTubeサムネイル抽出", "qrCodeGenerator": "QRコード生成", "ipInfo": "IPアドレス情報", "imageColorPicker": "画像カラーピッカー", "imageCompressor": "画像ファイルサイズを小さくする", "imageMetadataRemover": "写真メタデータ削除", "imageWatermark": "画像にウォーターマークを追加", "animatedGifMaker": "アニメーションGIF作成", "screenshotStitcher": "スクリーンショット結合", "privacyRedactor": "画像の個人情報を隠す", "screenshotStatusbarRemover": "スクリーンショットのステータスバー削除", "regexTester": "正規表現テスター", "cronExpressionGenerator": "Cron式ジェネレーター", "textCleaner": "テキストクリーナー", "koreanInitialConverter": "ハングル初声変換ツール", "jwtDecoder": "JWTデコーダー", "faviconGenerator": "ファビコンジェネレーター", "sqlFormatter": "SQLフォーマッター", "excelChartMaker": "Excel・CSVグラフ作成", "hwpHwpxViewer": "HWP・HWPX文書ビューア", "markdownViewer": "Markdownビューア", "imageToPdf": "画像PDF変換", "p2pFileTransfer": "QRファイル転送" },
     "footer": "© {year} かんたんツール。誰でもかんたんに。",
     "footerDescription": "日常や仕事の小さな作業を解決するブラウザツールです。処理方法と制限事項は各ツールページで案内します。",
     "share": { "label": "共有", "x": "X", "kakao": "カカオトーク", "copy": "リンクをコピー", "more": "ほかのアプリ", "copied": "ページのリンクをコピーしました。", "copyFailed": "自動コピーに失敗しました。下のアドレスを選択してコピーしてください。", "manualCopy": "コピーするページのアドレス", "shareFailed": "共有メニューを開けませんでした。", "kakaoSetup": "カカオトークへの直接共有にはアプリキーとドメイン登録が必要です。対応端末では「ほかのアプリ」から選択できます。", "kakaoLoading": "カカオトーク共有を準備中です。", "kakaoLoadFailed": "カカオトーク共有を読み込めませんでした。", "kakaoFailed": "カカオトーク共有を開始できませんでした。アプリ設定を確認してください。", "nativeUnavailable": "このブラウザは端末の共有機能に対応していません。" },
@@ -64,6 +64,8 @@
         "hwpHwpxViewer": { "title": "HWP・HWPX文書ビューア", "description": "対応する韓国語文書をサーバーへ送信せず、ブラウザで読み取り専用表示します。" },
         "markdownViewer": { "title": "Markdownビューア", "description": "Markdownの原文やUTF-8ファイルをブラウザで安全にプレビューします。" },
       "imageMetadataRemover": { "title": "写真メタデータ削除", "description": "写真のGPSやEXIFなどの情報をブラウザで確認して削除します。" },
+      "imageWatermark": { "title": "画像にウォーターマークを追加", "description": "テキストまたはロゴを位置、サイズ、透明度、繰り返しを調整して追加します。" },
+      "animatedGifMaker": { "title": "アニメーションGIF作成", "description": "複数の画像を順番と表示時間を設定して1つの動くGIFに変換します。" },
       "imageToPdf": { "title": "画像PDF変換", "description": "JPG、PNG、WebP画像を順番に1つのPDFにまとめます。" },
       "p2pFileTransfer": { "title": "QRファイル転送", "description": "サービスのサーバーに保存せず、QRまたはリンクで接続して別のブラウザへファイルを転送します。" }
     }
@@ -174,6 +176,8 @@
       "examples": { "title": "使用例" },
       "privacy": "入力したテキストはブラウザ内でのみ処理されます。"
     },
+    "imageWatermark": { "metadata": { "title": "画像にウォーターマークを追加", "description": "テキストやロゴの位置、サイズ、透明度、回転、繰り返しを調整してブラウザで画像に追加します。" }, "title": "画像にウォーターマークを追加", "description": "画像にテキストまたはロゴのウォーターマークを配置して元の解像度で保存します。" },
+    "animatedGifMaker": { "metadata": { "title": "アニメーションGIF作成", "description": "JPG、PNG、WebP画像の順番と表示時間を設定し、ブラウザーでアニメーションGIFを作成します。" }, "title": "アニメーションGIF作成", "description": "複数の画像を指定した順番と速度で再生する1つのGIFにまとめます。" },
     "jwtDecoder": {
       "metadata": { "title": "JWTデコーダー", "description": "JWTを貼り付けるとHeaderとPayloadをブラウザ内で即座にデコードし、有効期限を確認できます。署名検証は行いません。ブラウザ内のみで処理されます。" },
       "title": "JWTデコーダー", "description": "JWTを入力するとHeaderとPayloadをブラウザ内ですぐに確認できます。デコードは署名検証ではありません。",

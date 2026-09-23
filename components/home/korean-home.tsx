@@ -9,8 +9,9 @@ import { GuideCard } from "@/components/guides/guide-card";
 import { Link } from "@/i18n/navigation";
 import { GUIDES } from "@/lib/content/guides";
 import { DEVELOPER_PATHS, FEATURED_TOOLS, USE_CASES, WORK_GROUPS } from "@/lib/home/ko-content";
-import { HOME_TOOLS, type ToolPath } from "@/lib/tools/registry";
+import { homeToolsForLocale, type ToolPath } from "@/lib/tools/registry";
 
+const HOME_TOOLS = homeToolsForLocale("ko");
 const TOOL_MAP = new Map(HOME_TOOLS.map(tool => [tool.path, tool]));
 
 export function KoreanHome({ popularRanking }: { popularRanking: React.ReactNode }) {

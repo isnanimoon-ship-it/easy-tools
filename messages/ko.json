@@ -9,7 +9,7 @@
     "skipToContent": "본문으로 바로가기",
     "status": "이용 가능",
     "theme": { "enableDark": "다크 모드 켜기", "enableLight": "라이트 모드 켜기" },
-    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "image": "이미지", "text": "텍스트", "developer": "개발자", "generator": "생성기", "fileData": "파일·데이터", "network": "네트워크" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 인코더/디코더", "urlEncoderDecoder": "URL 인코더/디코더", "youtubeThumbnailDownloader": "유튜브 썸네일 추출기", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 용량 줄이기", "imageMetadataRemover": "사진 메타데이터 삭제", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기", "sqlFormatter": "SQL 포맷터", "excelChartMaker": "엑셀·CSV 그래프 만들기", "hwpHwpxViewer": "HWP·HWPX 문서 뷰어", "markdownViewer": "Markdown 뷰어", "imageToPdf": "이미지 PDF 변환기", "p2pFileTransfer": "QR 파일 전송" },
+    "toolsNav": { "label": "도구 메뉴", "mobileLabel": "모바일 도구 메뉴", "open": "도구", "all": "전체 도구", "categories": { "image": "이미지", "text": "텍스트", "developer": "개발자", "generator": "생성기", "fileData": "파일·데이터", "network": "네트워크" }, "wordCounter": "글자수 계산기", "jsonFormatter": "JSON 포맷터", "passwordGenerator": "비밀번호 생성기", "base64Converter": "Base64 인코더/디코더", "urlEncoderDecoder": "URL 인코더/디코더", "youtubeThumbnailDownloader": "유튜브 썸네일 추출기", "qrCodeGenerator": "QR 코드 생성기", "ipInfo": "IP 정보 확인", "imageColorPicker": "이미지 색상 추출기", "imageCompressor": "이미지 용량 줄이기", "imageMetadataRemover": "사진 메타데이터 삭제", "imageWatermark": "이미지 워터마크 추가", "animatedGifMaker": "애니메이션 GIF 만들기", "screenshotStitcher": "스크린샷 이어붙이기", "privacyRedactor": "이미지 개인정보 가리기", "screenshotStatusbarRemover": "스크린샷 상태바 제거", "regexTester": "정규식 테스터", "cronExpressionGenerator": "Cron 표현식 생성기", "textCleaner": "텍스트 정리기", "koreanInitialConverter": "한글 초성 변환기", "koreanKeyboardConverter": "한글 오타(자판) 변환기", "jwtDecoder": "JWT 디코더", "faviconGenerator": "파비콘 생성기", "sqlFormatter": "SQL 포맷터", "excelChartMaker": "엑셀·CSV 그래프 만들기", "hwpHwpxViewer": "HWP·HWPX 문서 뷰어", "markdownViewer": "Markdown 뷰어", "imageToPdf": "이미지 PDF 변환기", "p2pFileTransfer": "QR 파일 전송" },
     "footer": "© {year} 간편도구. 누구나 간편하게.",
     "footerDescription": "Konly는 문서 확인, 이미지 정리, 개인정보 보호, 개발 보조처럼 일상과 업무에서 반복되는 작은 작업을 브라우저에서 해결할 수 있도록 만든 웹 도구 서비스입니다. 가능한 기능은 브라우저 안에서 처리하며, 각 도구의 지원 범위와 제한사항을 안내합니다.",
     "share": { "label": "공유", "x": "X", "kakao": "카카오톡", "copy": "링크 복사", "more": "다른 앱", "copied": "현재 페이지 주소를 복사했습니다.", "copyFailed": "자동 복사에 실패했습니다. 아래 주소를 선택해 복사하세요.", "manualCopy": "직접 복사할 페이지 주소", "shareFailed": "기기 공유창을 열지 못했습니다.", "kakaoSetup": "카카오톡 직접 공유는 Kakao Developers 앱 키와 도메인 설정 후 사용할 수 있습니다. 지원 기기에서는 ‘다른 앱’에서 카카오톡을 선택할 수 있습니다.", "kakaoLoading": "카카오톡 공유 기능을 준비 중입니다.", "kakaoLoadFailed": "카카오톡 공유 기능을 불러오지 못했습니다.", "kakaoFailed": "카카오톡 공유를 시작하지 못했습니다. 앱 설정을 확인하세요.", "nativeUnavailable": "이 브라우저에서는 기기 공유를 지원하지 않습니다." },
@@ -57,6 +57,7 @@
       "cronExpressionGenerator": { "title": "Cron 표현식 생성기", "description": "5필드 Cron을 만들고 해석하며 시간대별 다음 실행 시간을 확인합니다." },
       "textCleaner": { "title": "텍스트 정리기", "description": "여러 줄의 공백과 빈 줄을 정리하고 중복된 줄을 제거합니다." },
       "koreanInitialConverter": { "title": "한글 초성 변환기", "description": "한글 텍스트를 입력하면 각 음절의 초성만 즉시 추출합니다." },
+      "koreanKeyboardConverter": { "title": "한글 오타(자판) 변환기", "description": "한/영 전환을 놓쳐 잘못 입력한 문장을 표준 두벌식 자판 기준으로 되돌립니다." },
       "jwtDecoder": { "title": "JWT 디코더", "description": "JWT를 붙여넣으면 Header와 Payload를 브라우저에서 즉시 확인합니다." },
       "faviconGenerator": { "title": "파비콘 생성기", "description": "텍스트, 이모지, 이미지로 웹사이트용 파비콘 세트를 생성합니다." },
       "sqlFormatter": { "title": "SQL 포맷터", "description": "MySQL, PostgreSQL, SQL Server, Oracle, SQLite 문법을 고려해 SQL 쿼리를 브라우저에서 정렬합니다." },
@@ -64,6 +65,8 @@
         "hwpHwpxViewer": { "title": "HWP·HWPX 문서 뷰어", "description": "한글 문서를 서버에 업로드하지 않고 브라우저에서 읽기 전용으로 확인합니다." },
         "markdownViewer": { "title": "Markdown 뷰어", "description": "Markdown 원문이나 UTF-8 파일을 브라우저에서 안전하게 미리봅니다." },
       "imageMetadataRemover": { "title": "사진 메타데이터 삭제", "description": "사진의 GPS, EXIF 등 숨은 정보를 브라우저에서 확인하고 제거합니다." },
+      "imageWatermark": { "title": "이미지 워터마크 추가", "description": "사진에 텍스트나 로고 워터마크를 원하는 위치와 투명도로 추가합니다." },
+      "animatedGifMaker": { "title": "애니메이션 GIF 만들기", "description": "여러 이미지를 순서와 재생 시간을 조절해 하나의 움직이는 GIF로 만듭니다." },
       "imageToPdf": { "title": "이미지 PDF 변환기", "description": "JPG, PNG, WebP 여러 장을 순서대로 하나의 PDF로 만듭니다." },
       "p2pFileTransfer": { "title": "QR 파일 전송", "description": "파일을 서비스 서버에 저장하지 않고 QR이나 링크로 연결해 상대방 브라우저로 전송합니다." }
     }
@@ -174,6 +177,13 @@
       "examples": { "title": "예시" },
       "privacy": "입력한 텍스트는 브라우저에서만 처리됩니다."
     },
+    "koreanKeyboardConverter": {
+      "metadata": { "title": "한글 오타(자판) 변환기", "description": "한영 전환을 놓쳐 잘못 입력한 영문 자판을 한글로 되돌리거나 한글을 두벌식 영문 키로 변환합니다." },
+      "title": "한글 오타(자판) 변환기",
+      "description": "한/영 전환을 깜빡하고 입력한 문장을 표준 두벌식 자판 기준으로 되돌립니다."
+    },
+    "imageWatermark": { "metadata": { "title": "이미지 워터마크 추가", "description": "사진에 텍스트나 로고 워터마크를 배치하고 위치, 크기, 투명도와 반복 설정을 조절해 저장하세요." }, "title": "이미지 워터마크 추가", "description": "사진에 텍스트 또는 로고 워터마크를 원하는 위치와 투명도로 추가합니다." },
+    "animatedGifMaker": { "metadata": { "title": "애니메이션 GIF 만들기", "description": "JPG, PNG, WebP 여러 장의 순서와 표시 시간을 조절해 브라우저에서 움직이는 GIF로 만드세요." }, "title": "애니메이션 GIF 만들기", "description": "여러 이미지를 원하는 순서와 속도로 재생되는 하나의 GIF 파일로 만듭니다." },
     "jwtDecoder": {
       "metadata": { "title": "JWT 디코더", "description": "JWT를 붙여넣으면 Header와 Payload를 브라우저에서 즉시 디코딩하고 만료 시간을 확인하세요. 서명 검증은 하지 않으며 브라우저에서만 처리됩니다." },
       "title": "JWT 디코더", "description": "JWT를 입력하면 Header와 Payload를 브라우저에서 바로 확인할 수 있습니다. 디코딩은 서명 검증이 아닙니다.",

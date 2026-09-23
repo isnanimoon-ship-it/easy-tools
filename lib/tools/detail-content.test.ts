@@ -6,7 +6,7 @@ import { PUBLIC_TOOLS } from "./registry";
 
 describe("tool detail content", () => {
   it("covers every public Korean tool page", () => {
-    const publicPaths = PUBLIC_TOOLS.map((tool) => tool.path).sort();
+    const publicPaths = PUBLIC_TOOLS.filter(tool => !("locales" in tool) && !("detailMode" in tool)).map((tool) => tool.path).sort();
     const configuredPaths = Object.keys(TOOL_DETAIL_CONFIG).sort();
     const koreanPaths = Object.keys(TOOL_DETAIL_DATA.ko).sort();
     expect(configuredPaths).toEqual(publicPaths);
@@ -33,7 +33,7 @@ describe("tool detail content", () => {
   });
 
   it("covers every English tool and the explicitly localized Japanese detail pages", () => {
-    expect(Object.keys(TOOL_DETAIL_DATA.en).sort()).toEqual(PUBLIC_TOOLS.map((tool) => tool.path).sort());
+    expect(Object.keys(TOOL_DETAIL_DATA.en).sort()).toEqual(PUBLIC_TOOLS.filter(tool => !("locales" in tool) && !("detailMode" in tool)).map((tool) => tool.path).sort());
     expect(Object.keys(TOOL_DETAIL_DATA.ja).sort()).toEqual([
       "/tools/hwp-hwpx-viewer",
       "/tools/image-compressor",

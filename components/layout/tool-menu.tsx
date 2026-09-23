@@ -2,16 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Code2, FileSpreadsheet, Grid2X2, ImageIcon, Network, Sparkles, Type } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { TOOL_CATEGORY_KEYS, toolsInCategory, type ToolCategoryKey } from "@/lib/tools/registry";
+import type { AppLocale } from "@/i18n/routing";
 
 const categoryIcons = { image: ImageIcon, text: Type, developer: Code2, generator: Sparkles, fileData: FileSpreadsheet, network: Network } as const;
-const categories = TOOL_CATEGORY_KEYS.map(key => ({ key, icon: categoryIcons[key], tools: toolsInCategory(key) }));
-type MenuKey = (typeof categories)[number]["key"] | "all";
+type MenuKey = ToolCategoryKey | "all";
 
 export function ToolMenu() {
   const t = useTranslations("Common.toolsNav");
+  const locale = useLocale() as AppLocale;
+  const categories = TOOL_CATEGORY_KEYS.map(key => ({ key, icon: categoryIcons[key], tools: toolsInCategory(key, locale) }));
   const pathname = usePathname();
   const rootRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState<MenuKey | null>(null);

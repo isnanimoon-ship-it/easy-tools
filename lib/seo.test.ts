@@ -3,7 +3,7 @@ import robots from "@/app/robots";
 import sitemap from "@/app/sitemap";
 import { createPageMetadata, localizedAlternates } from "./seo";
 import { routing } from "@/i18n/routing";
-import { PUBLIC_TOOLS } from "@/lib/tools/registry";
+import { publicToolsForLocale } from "@/lib/tools/registry";
 import { GUIDES } from "@/lib/content/guides";
 
 describe("SEO metadata", () => {
@@ -18,13 +18,16 @@ describe("SEO metadata", () => {
     expect(metadata.robots).toMatchObject({index:true,follow:true});
   });
   it("lists every locale and tool exactly once in the sitemap", () => {
-    const entries=sitemap(); const expectedPaths=["","/about","/contact","/privacy","/terms",...PUBLIC_TOOLS.map(tool=>tool.path)];
+    const entries=sitemap(); const commonPaths=["","/about","/contact","/privacy","/terms"];
     const koreanOnlyPaths=["/guides",...GUIDES.map(guide=>`/guides/${guide.slug}`),"/updates"];
-    expect(entries).toHaveLength(expectedPaths.length*routing.locales.length+koreanOnlyPaths.length); expect(new Set(entries.map(entry=>entry.url)).size).toBe(entries.length);
-    for(const path of expectedPaths) for(const locale of routing.locales) expect(entries.some(entry=>entry.url===`https://www.konly.co.kr/${locale}${path}`)).toBe(true);
+    const localizedCount = routing.locales.reduce((count, locale) => count + commonPaths.length + publicToolsForLocale(locale).length, 0);
+    expect(entries).toHaveLength(localizedCount+koreanOnlyPaths.length); expect(new Set(entries.map(entry=>entry.url)).size).toBe(entries.length);
+    for(const locale of routing.locales) for(const path of [...commonPaths,...publicToolsForLocale(locale).map(tool=>tool.path)]) expect(entries.some(entry=>entry.url===`https://www.konly.co.kr/${locale}${path}`)).toBe(true);
     expect(entries.every(entry=>entry.url.startsWith("https://www.konly.co.kr/"))).toBe(true);
     expect(entries.find(entry=>entry.url.endsWith("/en/tools/json-formatter"))?.alternates?.languages?.["x-default"]).toBe("https://www.konly.co.kr/ko/tools/json-formatter");
     for(const path of koreanOnlyPaths){expect(entries.some(entry=>entry.url===`https://www.konly.co.kr/ko${path}`)).toBe(true);expect(entries.some(entry=>entry.url===`https://www.konly.co.kr/en${path}`)).toBe(false);}
+    expect(entries.some(entry=>entry.url.endsWith("/ko/tools/korean-keyboard-converter"))).toBe(true);
+    expect(entries.some(entry=>entry.url.endsWith("/en/tools/korean-keyboard-converter"))).toBe(false);
   });
   it("publishes the production sitemap through robots", () => {
     expect(robots()).toEqual({rules:{userAgent:"*",allow:"/"},sitemap:"https://www.konly.co.kr/sitemap.xml",host:"https://www.konly.co.kr"});

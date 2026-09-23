@@ -8,6 +8,7 @@ import {
   Database,
   FileKey,
   FileText,
+  Film,
   BookOpenText,
   FileSearch,
   Files,
@@ -18,6 +19,7 @@ import {
   ScanSearch,
   Images,
   KeyRound,
+  Keyboard,
   Link2,
   Palette,
   QrCode,
@@ -27,6 +29,7 @@ import {
   WholeWord,
   type LucideIcon,
 } from "lucide-react";
+import type { AppLocale } from "@/i18n/routing";
 
 export const TOOL_CATEGORY_KEYS = ["image", "text", "developer", "generator", "fileData", "network"] as const;
 export type ToolCategoryKey = (typeof TOOL_CATEGORY_KEYS)[number];
@@ -39,6 +42,8 @@ export type ToolDefinition = {
   homeOrder: number;
   menuOrder: number;
   visibility?: "hidden";
+  locales?: readonly AppLocale[];
+  detailMode?: "inline";
 };
 
 /**
@@ -71,6 +76,9 @@ export const TOOLS = [
   { path: "/tools/markdown-viewer", translationKey: "markdownViewer", category: "text", icon: BookOpenText, homeOrder: 23, menuOrder: 4 },
   { path: "/tools/image-metadata-remover", translationKey: "imageMetadataRemover", category: "image", icon: ScanSearch, homeOrder: 24, menuOrder: 8 },
   { path: "/tools/image-to-pdf", translationKey: "imageToPdf", category: "image", icon: FileImage, homeOrder: 26, menuOrder: 9 },
+  { path: "/tools/korean-keyboard-converter", translationKey: "koreanKeyboardConverter", category: "text", icon: Keyboard, homeOrder: 27, menuOrder: 5, locales: ["ko"] },
+  { path: "/tools/image-watermark", translationKey: "imageWatermark", category: "image", icon: Images, homeOrder: 28, menuOrder: 10, detailMode: "inline" },
+  { path: "/tools/animated-gif-maker", translationKey: "animatedGifMaker", category: "image", icon: Film, homeOrder: 29, menuOrder: 11, detailMode: "inline" },
   { path: "/tools/p2p-file-transfer", translationKey: "p2pFileTransfer", category: "fileData", icon: Files, homeOrder: 25, menuOrder: 3, visibility: "hidden" },
 ] as const satisfies readonly ToolDefinition[];
 
@@ -79,8 +87,17 @@ export type ToolPath = (typeof TOOLS)[number]["path"];
 function isPublicTool(tool: ToolDefinition) { return tool.visibility !== "hidden"; }
 
 export const PUBLIC_TOOLS = TOOLS.filter(isPublicTool);
-export const HOME_TOOLS = [...PUBLIC_TOOLS].sort((a, b) => a.homeOrder - b.homeOrder);
+export const HOME_TOOLS = [...PUBLIC_TOOLS].filter(tool => !("locales" in tool)).sort((a, b) => a.homeOrder - b.homeOrder);
 
-export function toolsInCategory(category: ToolCategoryKey) {
-  return PUBLIC_TOOLS.filter(tool => tool.category === category).sort((a, b) => a.menuOrder - b.menuOrder);
+export function publicToolsForLocale(locale: AppLocale) {
+  return PUBLIC_TOOLS.filter(tool => !("locales" in tool) || (tool.locales as readonly AppLocale[]).includes(locale));
+}
+
+export function homeToolsForLocale(locale: AppLocale) {
+  return [...publicToolsForLocale(locale)].sort((a, b) => a.homeOrder - b.homeOrder);
+}
+
+export function toolsInCategory(category: ToolCategoryKey, locale?: AppLocale) {
+  const tools = locale ? publicToolsForLocale(locale) : PUBLIC_TOOLS;
+  return tools.filter(tool => tool.category === category).sort((a, b) => a.menuOrder - b.menuOrder);
 }

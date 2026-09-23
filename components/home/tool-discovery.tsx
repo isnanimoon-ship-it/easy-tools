@@ -1,17 +1,18 @@
 "use client";
 
 import { ArrowRight, Search, ShieldCheck, X } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 
 import { Link } from "@/i18n/navigation";
 import {
-  HOME_TOOLS,
+  homeToolsForLocale,
   TOOL_CATEGORY_KEYS,
   toolsInCategory,
   type ToolCategoryKey,
   type ToolPath,
 } from "@/lib/tools/registry";
+import type { AppLocale } from "@/i18n/routing";
 
 const EXTRA_KEYWORDS: Partial<Record<ToolPath, string>> = {
   "/tools/word-counter": "글자 문자 단어 줄 count character word text 文字 文字数",
@@ -39,13 +40,15 @@ const EXTRA_KEYWORDS: Partial<Record<ToolPath, string>> = {
 
 export function ToolDiscovery({ popularRanking }: { popularRanking: React.ReactNode }) {
   const t = useTranslations("Home");
+  const locale = useLocale() as AppLocale;
+  const homeTools = useMemo(() => homeToolsForLocale(locale), [locale]);
   const nav = useTranslations("Common.toolsNav");
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<ToolCategoryKey | null>(null);
 
   const normalizedQuery = query.trim().toLocaleLowerCase();
   const visibleTools = useMemo(
-    () => HOME_TOOLS.filter((tool) => {
+    () => homeTools.filter((tool) => {
       if (category && tool.category !== category) return false;
       if (!normalizedQuery) return true;
       const haystack = [
@@ -56,10 +59,10 @@ export function ToolDiscovery({ popularRanking }: { popularRanking: React.ReactN
       ].join(" ").toLocaleLowerCase();
       return haystack.includes(normalizedQuery);
     }),
-    [category, nav, normalizedQuery, t],
+    [category, homeTools, nav, normalizedQuery, t],
   );
 
-  const recentTools = [...HOME_TOOLS].sort((a, b) => b.homeOrder - a.homeOrder).slice(0, 4);
+  const recentTools = [...homeTools].sort((a, b) => b.homeOrder - a.homeOrder).slice(0, 4);
 
   function selectCategory(nextCategory: ToolCategoryKey | null) {
     setCategory(nextCategory);
@@ -105,7 +108,7 @@ export function ToolDiscovery({ popularRanking }: { popularRanking: React.ReactN
       <HomeSection id="categories" title={t("categories.title")} description={t("categories.description")} muted>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
           {TOOL_CATEGORY_KEYS.map((key) => {
-            const tools = toolsInCategory(key);
+            const tools = toolsInCategory(key, locale);
             const Icon = tools[0].icon;
             return <button key={key} type="button" onClick={() => selectCategory(key)} className="group min-h-32 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 text-left shadow-sm transition hover:border-[var(--info-border)] hover:shadow-md focus:outline-none focus:ring-4 focus:ring-[var(--focus-ring)]"><span className="grid size-10 place-items-center rounded-xl bg-[var(--info-bg)] text-[var(--primary)]"><Icon aria-hidden="true" size={20} /></span><span className="mt-4 block font-bold text-[var(--foreground)]">{nav(`categories.${key}`)}</span><span className="mt-1 block text-sm text-[var(--text-muted)]">{t("categories.count", { count: tools.length })}</span></button>;
           })}
@@ -147,7 +150,7 @@ function FilterButton({ active, onClick, children }: { active: boolean; onClick:
   return <button type="button" aria-pressed={active} onClick={onClick} className={`min-h-10 rounded-xl border px-3 py-2 text-sm font-semibold transition focus:outline-none focus:ring-4 focus:ring-[var(--focus-ring)] ${active ? "border-[var(--primary-fill)] bg-[var(--primary-fill)] text-white" : "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:bg-[var(--surface-muted)]"}`}>{children}</button>;
 }
 
-export function ToolCard({ tool, compact = false }: { tool: (typeof HOME_TOOLS)[number]; compact?: boolean }) {
+export function ToolCard({ tool, compact = false }: { tool: ReturnType<typeof homeToolsForLocale>[number]; compact?: boolean }) {
   const t = useTranslations("Home");
   const Icon = tool.icon;
   return <Link href={tool.path} className={`group block rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm transition hover:border-[var(--info-border)] hover:shadow-md focus:outline-none focus:ring-4 focus:ring-[var(--focus-ring)] ${compact ? "p-5" : "p-6"}`}><span className="grid size-11 place-items-center rounded-xl bg-[var(--info-bg)] text-[var(--primary)]"><Icon aria-hidden="true" size={22} /></span><h3 className={`${compact ? "mt-4 text-lg" : "mt-5 text-xl"} font-bold text-[var(--foreground)]`}>{t(`tools.${tool.translationKey}.title`)}</h3><p className="mt-2 line-clamp-2 leading-6 text-[var(--text-muted)]">{t(`tools.${tool.translationKey}.description`)}</p><span className="mt-4 inline-flex items-center gap-2 font-semibold text-[var(--primary)]">{t("tools.open")}<ArrowRight aria-hidden="true" size={17} className="transition-transform group-hover:translate-x-1" /></span></Link>;
